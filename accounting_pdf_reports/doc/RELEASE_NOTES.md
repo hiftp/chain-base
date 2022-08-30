@@ -1,5 +1,41 @@
 ## Module <accounting_pdf_reports>
 
+#### 11.03.2022
+#### Version 15.0.7.4.0
+##### FIX
+- general ledger filter
+
+#### 11.03.2022
+#### Version 15.0.7.3.0
+##### REV
+- dynamic report download link
+
+#### 28.02.2022
+#### Version 15.0.7.2.0
+##### REV
+- pre init hook removed due to reported errors
+
+#### 27.02.2022
+#### Version 15.0.7.1.0
+##### IMP
+- report download links
+
+#### 27.02.2022
+#### Version 15.0.7.0.0
+##### IMP
+- refactoring code
+
+#### 25.02.2022
+#### Version 15.0.6.4.0
+##### IMP
+- pre_init_hook to clean up m2m data's
+
+
+#### 25.02.2022
+#### Version 15.0.6.3.0
+##### IMP
+- remove deprecated warning of currency conversion
+
 #### 22.02.2022
 #### Version 15.0.6.2.0
 ##### FIX

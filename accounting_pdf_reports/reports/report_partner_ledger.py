@@ -71,7 +71,6 @@ class ReportPartnerLedger(models.AbstractModel):
     def _get_report_values(self, docids, data=None):
         if not data.get('form'):
             raise UserError(_("Form content is missing, this report cannot be printed."))
-
         data['computed'] = {}
 
         obj_partner = self.env['res.partner']
@@ -106,7 +105,11 @@ class ReportPartnerLedger(models.AbstractModel):
                 AND NOT account.deprecated
                 AND """ + query_get_data[1] + reconcile_clause
         self.env.cr.execute(query, tuple(params))
-        partner_ids = [res['partner_id'] for res in self.env.cr.dictfetchall()]
+        if data['form']['partner_ids']:
+            partner_ids = data['form']['partner_ids']
+        else:
+            partner_ids = [res['partner_id'] for res in
+                           self.env.cr.dictfetchall()]
         partners = obj_partner.browse(partner_ids)
         partners = sorted(partners, key=lambda x: (x.ref or '', x.name or ''))
 

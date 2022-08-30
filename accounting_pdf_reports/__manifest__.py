@@ -3,11 +3,11 @@
 
 {
     'name': 'Odoo 15 Accounting Financial Reports',
-    'version': '15.0.4.6.0',
+    'version': '15.0.6.2.0',
     'category': 'Invoicing Management',
     'description': 'Accounting Reports For Odoo 15, Accounting Financial Reports, Odoo 15 Financial Reports',
     'summary': 'Accounting Reports For Odoo 15',
-    'sequence': '10',
+    'sequence': '1',
     'author': 'Odoo Mates, Odoo SA',
     'license': 'LGPL-3',
     'company': 'Odoo Mates',
@@ -44,5 +44,4 @@
     'application': False,
     'auto_install': False,
     'images': ['static/description/banner.gif'],
-    'qweb': [],
 }

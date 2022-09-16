@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_shopee_of_sale,access.user.import.shopee.sale,model_import_shopee_sale,base.group_user,1,1,1,1
+access_import_shopify_of_sale,access.user.import.shopify.sale,model_import_shopify_sale,base.group_user,1,1,1,1
+access_import_amazon_of_sale,access.user.import.amazon.sale,model_import_amazon_sale,base.group_user,1,1,1,1
+access_import_amazon_txn,access.user.import.amazon.txn,model_import_amazon_txn,base.group_user,1,1,1,1

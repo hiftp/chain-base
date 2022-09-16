@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="wizard_import_shopify" model="ir.ui.view">
+			<field name="name">wizard.wizard.import.shopify.form</field>
+			<field name="model">import.shopify.sale</field>
+			<field name="arch" type="xml">
+				<form string="Import shopify Of Sale" >
+				<group>
+                    <field name="company_id" />
+                </group>
+				<group>
+                    <field name="order_source" />
+                </group>
+				<group>
+                    <field name="tax_id" />
+                </group>
+				<group>
+                    <field name="cost_id" />
+                </group>
+                <group>
+                    <field name="File_slect" filename="name"/>
+                </group>	
+					<footer>
+						<button string="訂單匯入" name="imoport_file"
+							type="object" class="oe_highlight" />
+						<button string="國際paypal銷帳匯入" name="imoport_paypal_invoice_file"
+							type="object" class="oe_stat_button" icon="fa-tags" />
+						<button string="台灣(台幣)hitrust-銷帳匯入" name="imoport_hitrust_invoice_file"
+							type="object" class="oe_end_button" icon="fa-globe" />
+						<button string="國際(美金)hitrust-銷帳匯入" name="imoport_hitrust_us_invoice_file"
+							type="object" class="oe_end_button" icon="fa-globe" />
+						<button string="取消" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="jowua_act_shopify_of_sale" model="ir.actions.act_window">
+			<field name="name">匯入shopify訂單</field>
+			<field name="res_model">import.shopify.sale</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="wizard_import_shopify" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+    		id="menu_shopify_of_sale"
+    		action="jowua_act_shopify_of_sale"
+    		name="匯入shopify訂單"
+    		parent="sale.sale_order_menu"
+    		sequence="6"/>
+
+	</data>
+</odoo>

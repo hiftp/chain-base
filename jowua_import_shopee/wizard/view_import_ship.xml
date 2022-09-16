@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="wizard_import_ship" model="ir.ui.view">
+			<field name="name">wizard.wizard.import.ship.form</field>
+			<field name="model">import.ship.sale</field>
+			<field name="arch" type="xml">
+				<form string="Import ship Of Sale" >
+                <group>
+                    <field name="File_slect" filename="name"/>
+                </group>	
+					<footer>
+						<button string="物流編號 匯入" name="imoport_file"
+							type="object" class="oe_highlight" />
+						<button string="取消" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="jowua_act_ship_of_sale" model="ir.actions.act_window">
+			<field name="name">匯入物流編號</field>
+			<field name="res_model">import.ship.sale</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="wizard_import_ship" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+    		id="menu_ship_of_sale"
+    		action="jowua_act_ship_of_sale"
+    		name="匯入 物流編號 excel"
+    		parent="sale.sale_order_menu"
+    		sequence="7"/>
+
+	</data>
+</odoo>

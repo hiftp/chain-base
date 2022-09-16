@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_sale_order_form_view_shopee" model="ir.ui.view">
+        <field name="name">inherit.sale.order.form.view.shopee</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="write_off_date" />
+                <field name="write_off_importdate" />
+                <field name="write_off_memo" />
+                <field name="write_off_amount" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_with_shopee" model="ir.ui.view">
+        <field name="name">sale.order.tree.quotation.shopee</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='partner_id']" position="after">
+                <field name="client_order_ref" optional="show"/>
+                <field name="write_off_date" optional="show"/>
+                <field name="write_off_importdate" optional="show"/>
+                <field name="write_off_memo" optional="hide"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='amount_total']" position="after">
+                <field name="write_off_amount" optional="show" sum="銷帳金額合計"/>
+                <field name="write_off_refund" optional="hide" sum="退款金額合計"/>
+                <field name="effective_date" string="實際出貨" optional="show"/>
+            </xpath>
+            <field name="commitment_date" position="replace">
+                <field name="commitment_date" optional="hide"/>
+            </field>
+            <field name="company_id" position="replace">
+                <field name="company_id" optional="hide"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_order_tree_with_shopee" model="ir.ui.view">
+        <field name="name">sale.order.tree.shopee</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='partner_id']" position="after">
+                <field name="client_order_ref" optional="show"/>
+                <field name="write_off_date" optional="show"/>
+                <field name="write_off_importdate" optional="show"/>
+                <field name="write_off_memo" optional="show"/>
+            </xpath>
+            <xpath expr="//tree/field[@name='amount_total']" position="after">
+                <field name="write_off_amount" optional="show" sum="銷帳金額合計"/>
+                <field name="write_off_refund" optional="hide" sum="退款金額合計"/>
+                <field name="effective_date" string="實際出貨" optional="show"/>
+            </xpath>
+            <field name="commitment_date" position="replace">
+                <field name="commitment_date" optional="hide"/>
+            </field>
+            <field name="expected_date" position="replace">
+                <field name="expected_date" optional="hide"/>
+            </field>
+            <field name="company_id" position="replace">
+                <field name="company_id" optional="hide"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="shopee_sale_order_view_search_inherit_sale" model="ir.ui.view">
+        <field name="name">shopee.sale.order.search.inherit.sale</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <field name="write_off_importdate"/>
+                <field name="write_off_memo"/>
+                <field name="ship_date"/>
+                <separator/>
+                <filter string="本日銷帳" name="writeoffimportdate_today"
+                    domain="[('write_off_importdate', '=', context_today().strftime('%Y-%m-%d'))]"/>
+            </xpath>
+            <xpath expr="//filter[@name='order_month']" position="after">
+                <filter name="writeoffimportdate_group" string="銷帳日期" domain="[]" context="{'group_by': 'write_off_importdate'}"/>
+                <filter name="writeoffmemo_group" string="銷帳種類" domain="[]" context="{'group_by': 'write_off_memo'}"/>
+                <filter name="ship_date_group" string="物流出貨日期" domain="[]" context="{'group_by': 'ship_date'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

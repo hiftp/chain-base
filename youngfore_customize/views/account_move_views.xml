@@ -1,0 +1,38 @@
+<odoo>
+    <record id="account.action_move_journal_line" model="ir.actions.act_window">
+        <field name="name">日記帳分錄</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_move_tree"/>
+        <field name="search_view_id" ref="account.view_account_move_filter"/>
+        <field name="context">{'default_type': 'entry', 'view_no_maturity': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a journal entry
+            </p><p>
+            A journal entry consists of several journal items, each of
+            which is either a debit or a credit transaction.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_move_form_inherit_youngfore" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.youngfore</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@id='other_tab_group']" position="inside">
+                <group string="匯入進貨明細表" name="purchase_data" >
+                    <field name="import_memo"/>
+                    <field name="purchase_no"/>
+                    <field name="purchase_date"/>
+                    <field name="bill_no"/>
+                    <field name="bill_date"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="before">
+                <field name="ap_type"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

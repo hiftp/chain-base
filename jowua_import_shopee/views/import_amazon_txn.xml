@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="import_amazon_txn_view_search" model="ir.ui.view">
+            <field name="name">import.amazon.txn.search</field>
+            <field name="model">import.amazon.txn</field>
+            <field name="arch" type="xml">
+                <search string="amazon">
+                    <field name="import_date"/>
+                    <field name="date"/>
+                    <field name="order"/>
+                    <field name="sku"/>
+                    <field name="txn_type"/>
+                    <field name="payment_type"/>
+                    <field name="payment_detail"/>
+
+                    <filter string="本日轉入" name="importdate_today"
+                        domain="[('import_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="產品" name="sku" domain="[]" context="{'group_by':'sku'}"/>
+                        <filter string="交易類型" name="txn_type" domain="[]" context="{'group_by':'txn_type'}"/>
+                        <filter string="付款類型" name="payment_type" domain="[]" context="{'group_by':'payment_type'}"/>
+                        <filter string="付款詳情" name="payment_detail" domain="[]" context="{'group_by':'payment_detail'}"/>
+                        <filter string="訂單編號" name="order" domain="[]" context="{'group_by':'order'}"/>
+                        <filter string="訂單日期" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="匯入日期" name="import_date" domain="[]" context="{'group_by':'import_date'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <record id="view_import_amazon_txn_tree" model="ir.ui.view">
+            <field name="name">import.amazon.txn.tree</field>
+            <field name="model">import.amazon.txn</field>
+            <field name="arch" type="xml">
+                <tree string="amazon">
+                    <field name="import_date"/>
+                    <field name="date"/>
+                    <field name="order"/>
+                    <field name="sku"/>
+                    <field name="txn_type"/>
+                    <field name="payment_type"/>
+                    <field name="payment_detail"/>
+                    <field name="amount"/>
+                    <field name="quantity"/>
+                    <field name="product_title"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_import_amazon_txn_form" model="ir.ui.view">
+            <field name="name">import.amazon.txn.form</field>
+            <field name="model">import.amazon.txn</field>
+            <field name="arch" type="xml">
+                <form string="amazon設定">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="import_date"/>
+                                <field name="date"/>
+                                <field name="order"/>
+                                <field name="sku"/>
+                                <field name="txn_type"/>
+                                <field name="payment_type"/>
+                                <field name="payment_detail"/>
+                                <field name="amount"/>
+                                <field name="quantity"/>
+                                <field name="product_title"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_import_amazon_txn_pivot">
+            <field name="name">import.amazon.txn.pivot</field>
+            <field name="model">import.amazon.txn</field>
+            <field name="arch" type="xml">
+                <pivot string="amazon 交易記錄">
+                    <field name="txn_type" type="col"/>
+                    <field name="order" type="row"/>
+                    <field name="quantity" type="measure"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="import_amazon_txn_view_graph" model="ir.ui.view">
+            <field name="name">import.amazon.txn.graph</field>
+            <field name="model">import.amazon.txn</field>
+            <field name="arch" type="xml">
+                <graph string="amazon分析">
+                    <field name="sku"/>
+                    <field name="amount" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="action_import_amazon_txn_form" model="ir.actions.act_window">
+            <field name="name">amazon 交易記錄</field>
+            <field name="res_model">import.amazon.txn</field>
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="search_view_id" ref="import_amazon_txn_view_search"/>
+        </record>
+
+        <menuitem
+    		id="menu_amazon_txn"
+    		action="action_import_amazon_txn_form"
+    		name="amazon 交易資料"
+    		parent="menu_amazon_group"
+    		sequence="2"/>
+
+
+    </data>
+</odoo>

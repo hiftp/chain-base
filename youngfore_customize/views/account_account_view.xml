@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_account_form_inherit">
+        <field name="name">view.account.form.inherit</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="analytic_tag_ids" domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]" groups="analytic.group_analytic_tags" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

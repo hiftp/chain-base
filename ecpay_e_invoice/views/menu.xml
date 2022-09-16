@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="綠界電子發票"
+                  id="menu_ecpay_e_invoice_root"
+                  web_icon="/account/static/description/icon.png"
+                  sequence="80" />
+
+        <menuitem id="uniform_invoice_menu"
+                  name="統一發票"
+                  parent="menu_ecpay_e_invoice_root"
+                  action="uniform_invoice_view_action"/>
+    </data>
+</odoo>

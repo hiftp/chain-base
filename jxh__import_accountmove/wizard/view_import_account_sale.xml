@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="wizard_import_account_sale" model="ir.ui.view">
+			<field name="name">wizard.import.account.sale.form</field>
+			<field name="model">import.account.sale</field>
+			<field name="arch" type="xml">
+				<form string="Import account sale." >
+                <group>
+					<field name="company_id" />
+					<field name="journal_id" />
+                    <field name="file_slect" filename="file_name"/>
+					<field name="file_name" invisible="1"/>
+                </group>	
+					<footer>
+						<button string="匯入" name="imoport_file"
+							type="object" class="oe_highlight" />
+						<button string="取消" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="act_jxh_import_account_sale" model="ir.actions.act_window">
+			<field name="name">匯入進貨明細表</field>
+			<field name="res_model">import.account.sale</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="wizard_import_account_sale" />
+			<field name="target">new</field>
+		</record>
+
+		<menuitem
+    		id="menu_jxh_import_account_sale"
+    		action="act_jxh_import_account_sale"
+    		name="匯入明細表"
+    		parent="account.menu_finance_receivables"
+    		sequence="2"/>
+
+	</data>
+</odoo>

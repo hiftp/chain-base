@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<record id="wizard_import_shopee" model="ir.ui.view">
+			<field name="name">wizard.wizard.import.shopee.form</field>
+			<field name="model">import.shopee.sale</field>
+			<field name="arch" type="xml">
+				<form string="Import shopee Of Sale" >
+				<group>
+                    <field name="company_id" />
+                </group>
+				<group>
+                    <field name="tax_id" />
+                </group>
+				<group>
+                    <field name="cost_id" />
+                </group>
+                <group>
+                    <field name="File_slect" filename="name"/>
+                </group>	
+					<footer>
+						<button string="訂單匯入" name="imoport_file"
+							type="object" class="oe_highlight" />
+						<button string="銷帳匯入" name="imoport_invoice_file"
+							type="object" class="oe_stat_button" icon="fa-tags" />
+
+						<button string="取消" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="jowua_act_shopee_of_sale" model="ir.actions.act_window">
+			<field name="name">匯入蝦皮訂單</field>
+			<field name="res_model">import.shopee.sale</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="wizard_import_shopee" />
+			<field name="target">new</field>
+		</record>
+
+		<!-- <menuitem
+    		id="menu_import"
+    		name="Imports"
+    		parent="account.menu_finance"
+    		groups="account.group_account_manager"
+    		sequence="5"/> -->
+		<menuitem
+    		id="menu_shopee_of_sale"
+    		action="jowua_act_shopee_of_sale"
+    		name="匯入蝦皮訂單"
+    		parent="sale.sale_order_menu"
+    		sequence="5"/>
+
+	</data>
+</odoo>

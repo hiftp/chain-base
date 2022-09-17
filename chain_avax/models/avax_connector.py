@@ -66,7 +66,7 @@ class AvaxConnector(models.Model):
 
         avax_provider = Web3.HTTPProvider(self.service_url)
         w3 = Web3(avax_provider)
-        connected = w3.isConnected()
+        connected = w3.is_connected()
         result = self._action_avax_connector_wizard(
             'Connected to {}:{}'.format(self.name, connected))
         return result

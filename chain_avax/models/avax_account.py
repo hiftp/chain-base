@@ -73,8 +73,8 @@ class AvaxAccount(models.Model):
         avax_provider = Web3.HTTPProvider(self.connector_id.service_url)
         w3 = Web3(avax_provider)
         if self.address:
-            balance = w3.eth.getBalance(self.address)
-            balance = w3.fromWei(balance, 'ether')
+            balance = w3.eth.get_balance(self.address)
+            balance = w3.from_wei(balance, 'ether')
             self.balance = balance
         return
 
@@ -82,7 +82,7 @@ class AvaxAccount(models.Model):
         """
         Account wizard creation
         """
-        action = self.env.ref('avax.avax_account_wizard_form_action')
+        action = self.env.ref('chain_avax.avax_account_wizard_form_action')
         result = action.sudo().read()[0]
         return result
 
@@ -90,7 +90,7 @@ class AvaxAccount(models.Model):
         """
         Send avax wizard
         """
-        action = self.env.ref('avax.avax_account_send_wizard_form_action')
+        action = self.env.ref('chain_avax.avax_account_send_wizard_form_action')
         result = action.sudo().read()[0]
         return result
 

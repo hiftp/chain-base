@@ -127,7 +127,7 @@ class AvaxContract(models.Model):
         """
         simple wizard call to show the messsage
         """
-        action = self.env.ref('avax.avax_connector_wizard_form_action')
+        action = self.env.ref('chain_avax.avax_connector_wizard_form_action')
         result = action.sudo().read()[0]
         result['context'] = {'default_message': message}
         return result
@@ -165,7 +165,7 @@ class AvaxContract(models.Model):
     def _get_deploy_msg(self, args, response=None, tx_hash=None):
         msg = 'Deploy'
         if tx_hash:
-            url = self.contract_id.connector_id.explorer_url+'tx/'+tx_hash.hex()
+            url = self.connector_id.explorer_url+'tx/'+tx_hash.hex()
             msg += 'Transaction:{} \n'.format(tx_hash.hex())
             msg += 'Explorer:{} \n'.format(url)
         return msg
@@ -173,7 +173,7 @@ class AvaxContract(models.Model):
     def action_deploy(self):
         """
         """
-        action = self.env.ref('avax.avax_contract_deploy_wizard_form_action')
+        action = self.env.ref('chain_avax.avax_contract_deploy_wizard_form_action')
         result = action.sudo().read()[0]
         return result
 
@@ -196,9 +196,9 @@ class AvaxContract(models.Model):
             pass
         # Submit the transaction that deploys the contract
 
-        nonce = w3.eth.getTransactionCount(account_id.address)
+        nonce = w3.eth.get_transaction_count(account_id.address)
 
-        withdraw_txn = contract.constructor().buildTransaction({
+        withdraw_txn = contract.constructor().build_transaction({
             'nonce': nonce,
             'chainId': self.connector_id.chain,
             'gasPrice': w3.eth.gas_price,

@@ -75,7 +75,7 @@ class AvaxConnector(models.Model):
         """
         simple wizard call to show the messsage
         """
-        action = self.env.ref('avax.avax_connector_wizard_form_action')
+        action = self.env.ref('chain_avax.avax_connector_wizard_form_action')
         result = action.sudo().read()[0]
         result['context'] = {'default_message': message}
         return result

@@ -6,7 +6,7 @@ from odoo.tests import common
 
 class TestLoadViews(common.TransactionCase):
     def test_aeroo_template_data_not_in_result(self):
-        self.env.ref("report_aeroo.aeroo_sample_report").create_action()
+        self.env.ref("chain_report_aeroo.aeroo_sample_report").create_action()
         result = self.env["res.partner"].load_views([(None, "tree")], {"toolbar": True})
         actions = result["fields_views"]["tree"]["toolbar"]["print"]
         assert "aeroo_template_data" not in actions[0]

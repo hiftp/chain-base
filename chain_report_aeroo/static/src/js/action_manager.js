@@ -1,4 +1,4 @@
-odoo.define("report_aeroo.action_manager", function (require) {
+odoo.define("chain_report_aeroo.action_manager", function (require) {
 "use strict";
 
 // Need to load qweb reports (report.report) before loading aeroo.
@@ -54,7 +54,7 @@ ActionManager.include({
 
         return new Promise(function (resolve, reject) {
             session.get_file({
-                url: "/web/report_aeroo",
+                url: "/web/chain_report_aeroo",
                 data: {
                     report_id: action.id,
                     record_ids: JSON.stringify(action.context.active_ids),

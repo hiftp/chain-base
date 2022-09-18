@@ -13,7 +13,7 @@ class TestAerooReportMulti(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        image_path = module.get_module_path('report_aeroo') + '/static/img/logo.png'
+        image_path = module.get_module_path('chain_report_aeroo') + '/static/img/logo.png'
 
         cls.partner_1 = cls.env['res.partner'].create({
             'name': 'Partner 1',
@@ -23,7 +23,7 @@ class TestAerooReportMulti(common.SavepointCase):
 
         cls.partner_2 = cls.partner_1.copy()
 
-        cls.report = cls.env.ref('report_aeroo.aeroo_sample_report_multi')
+        cls.report = cls.env.ref('chain_report_aeroo.aeroo_sample_report_multi')
 
     def _render_report(self, partners):
         """Render the demo aeroo report for the given partners.
@@ -35,13 +35,13 @@ class TestAerooReportMulti(common.SavepointCase):
         self.report.sudo(self.env.ref('base.user_demo').id)._render(partners.ids, {})
 
     def test_generate_report_with_pdf_format_and_multiple_records(self):
-        self.report.aeroo_out_format_id = self.env.ref('report_aeroo.aeroo_mimetype_pdf_odt')
+        self.report.aeroo_out_format_id = self.env.ref('chain_report_aeroo.aeroo_mimetype_pdf_odt')
         self._render_report(self.partner_1 | self.partner_2)
 
     def test_generate_report_with_odt_format_and_multiple_records(self):
-        self.report.aeroo_out_format_id = self.env.ref('report_aeroo.aeroo_mimetype_doc_odt')
+        self.report.aeroo_out_format_id = self.env.ref('chain_report_aeroo.aeroo_mimetype_doc_odt')
         self._render_report(self.partner_1 | self.partner_2)
 
     def test_generate_report_with_single_record(self):
-        self.report.aeroo_out_format_id = self.env.ref('report_aeroo.aeroo_mimetype_doc_odt')
+        self.report.aeroo_out_format_id = self.env.ref('chain_report_aeroo.aeroo_mimetype_doc_odt')
         self._render_report(self.partner_1 | self.partner_2)

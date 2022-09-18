@@ -16,7 +16,7 @@ class TestAerooReport(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        image_path = module.get_module_path('report_aeroo') + '/static/img/logo.png'
+        image_path = module.get_module_path('chain_report_aeroo') + '/static/img/logo.png'
 
         cls.company = cls.env['res.company'].create({
             'name': 'My Company',
@@ -43,13 +43,13 @@ class TestAerooReport(common.SavepointCase):
             'lang': 'en_US',
         })
 
-        cls.report = cls.env.ref('report_aeroo.aeroo_sample_report')
+        cls.report = cls.env.ref('chain_report_aeroo.aeroo_sample_report')
         cls.report.write({
             'attachment': None,
             'attachment_use': False,
             'aeroo_lang_eval': 'o.lang',
             'aeroo_company_eval': 'o.company_id',
-            'aeroo_out_format_id': cls.env.ref('report_aeroo.aeroo_mimetype_pdf_odt').id,
+            'aeroo_out_format_id': cls.env.ref('chain_report_aeroo.aeroo_mimetype_pdf_odt').id,
         })
 
     def _render_report(self, partners):
@@ -75,7 +75,7 @@ class TestAerooReport(common.SavepointCase):
 
     def test_sample_report_doc(self):
         self.report.aeroo_out_format_id = self.env.ref(
-            'report_aeroo.aeroo_mimetype_doc_odt')
+            'chain_report_aeroo.aeroo_mimetype_doc_odt')
         self._render_report(self.partner)
 
     def test_sample_report_pdf_by_lang(self):

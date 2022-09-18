@@ -28,7 +28,7 @@ from ..extra_functions import (
 class TestAerooReport(common.TransactionCase):
     def setUp(self):
         super().setUp()
-        self.report = self.env.ref("report_aeroo.aeroo_sample_report")
+        self.report = self.env.ref("chain_report_aeroo.aeroo_sample_report")
 
     @data(
         (0, "00:00"),
@@ -247,7 +247,7 @@ class TestGroupBy(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.report = cls.env.ref("report_aeroo.aeroo_sample_report")
+        cls.report = cls.env.ref("chain_report_aeroo.aeroo_sample_report")
         cls.contact_1 = cls.env["res.partner"].create({"name": "C1", "type": "contact"})
         cls.invoice_1 = cls.env["res.partner"].create({"name": "I1", "type": "invoice"})
         cls.invoice_2 = cls.env["res.partner"].create({"name": "I2", "type": "invoice"})

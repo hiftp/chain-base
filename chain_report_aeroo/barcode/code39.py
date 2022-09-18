@@ -169,7 +169,7 @@ def create_c39(height, smallest, text):
     mod_path_list.append(ad)
 
     for mod_path in mod_path_list:
-        font_file = mod_path + os.path.sep + "report_aeroo" + \
+        font_file = mod_path + os.path.sep + "chain_report_aeroo" + \
             os.path.sep + "barcode" + os.path.sep + "FreeMonoBold.ttf"
         if os.path.lexists(font_file):
             font = ImageFont.truetype(font_file, fontsize)

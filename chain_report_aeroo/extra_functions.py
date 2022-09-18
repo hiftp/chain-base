@@ -9,8 +9,10 @@ import base64
 import itertools
 import logging
 import time
-from babel.core import localedata
+# from babel.core import localedata
 from datetime import datetime, date, timedelta
+
+from babel import localedata
 from html2text import html2text
 from io import BytesIO
 from PIL import Image

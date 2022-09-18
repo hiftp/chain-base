@@ -19,7 +19,7 @@ class TestAerooReportLangEval(common.SavepointCase):
             'lang': 'fr_FR',
         })
 
-        cls.report = cls.env.ref('report_aeroo.aeroo_sample_report')
+        cls.report = cls.env.ref('chain_report_aeroo.aeroo_sample_report')
 
     def test_eval_lang_using_the_lang_defined_on_the_partner(self):
         self.report.aeroo_lang_eval = "o.lang"

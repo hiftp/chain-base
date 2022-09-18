@@ -1,4 +1,6 @@
 # -*- coding: utf8 -*-
+from cytoolz import join
+from reportlab import xrange
 
 shortname = "lorem"
 program = "Lorem Ipsum Generator (%s)" % shortname
@@ -693,7 +695,7 @@ please read <http://www.gnu.org/philosophy/why-not-lgpl.html>."""
 #  * http://lipsum.sourceforge.net/whatis.php for source lorems and inspiration
 
 
-from string import join
+# from string import join
 
 def get_lorem(q = 0):
     i = -1
@@ -1958,7 +1960,7 @@ def do_lorem(n=0, l=0, c=0, q=0):
                 c = 0
                 outchars.append(chars[0:c1])
 
-        res += join(outchars,'')+'\n'
+        res += join(outchars, '')+'\n'
 
     else:
         # do words

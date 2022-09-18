@@ -5,7 +5,7 @@
 from . import (
     test_email_template,
     test_extra_functions,
-    test_report_aeroo,
-    test_report_aeroo_company_eval,
-    test_report_aeroo_lang_eval,
+    test_chain_report_aeroo,
+    test_chain_report_aeroo_company_eval,
+    test_chain_report_aeroo_lang_eval,
 )

@@ -23,7 +23,7 @@ DEFAULT_MIMETYPE = 'octet-stream'
 
 class AerooReportController(http.Controller):
 
-    @http.route('/web/report_aeroo', type='http', auth="user")
+    @http.route('/web/chain_report_aeroo', type='http', auth="user")
     @serialize_exception
     def generate_aeroo_report(self, report_id, record_ids, token, debug=False):
         """Generate an aeroo report.
@@ -69,7 +69,7 @@ class AerooReportController(http.Controller):
                 report_name=report_name)
 
         if len(report) > 1:
-            report_display_names = '\n'.join(report.mapped('display_name'))
+            report_display_names = '\n'.join(report.mapped('print_report_name'))
             raise ValidationError(_(
                 'Multiple aeroo reports found with the same name ({report_name}):\n\n'
                 '{report_display_names}').format(

@@ -19,8 +19,7 @@
         "security/security.xml",
         "views/ir_actions_report.xml",
         "views/mail_template.xml",
-        # "views/report_aeroo_assets.xml",
-        "data/report_aeroo_data.xml",
+        "data/chain_report_aeroo_data.xml",
         "security/ir.model.access.csv",
     ],
     "assets": {

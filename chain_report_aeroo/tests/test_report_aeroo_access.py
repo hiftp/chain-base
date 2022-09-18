@@ -10,9 +10,9 @@ class TestAerooReportAccess(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.report = cls.env.ref('report_aeroo.aeroo_sample_report')
+        cls.report = cls.env.ref('chain_report_aeroo.aeroo_sample_report')
         cls.user = cls.env.ref('base.user_demo')
-        cls.user.groups_id |= cls.env.ref('report_aeroo.group_aeroo_manager')
+        cls.user.groups_id |= cls.env.ref('chain_report_aeroo.group_aeroo_manager')
 
     def test_report_create(self):
         assert self.report.sudo(self.user).copy({})

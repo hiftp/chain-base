@@ -11,7 +11,7 @@ class TestMailTemplateWithAerooReport(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner_1 = cls.env["res.partner"].create({"name": "Partner 1"})
-        cls.report = cls.env.ref("report_aeroo.aeroo_sample_report_multi")
+        cls.report = cls.env.ref("chain_report_aeroo.aeroo_sample_report_multi")
         cls.template = cls.env["mail.template"].create(
             {
                 "name": "Partner Email",

@@ -27,7 +27,7 @@
         'demo/avax_demo.xml',
     ],
     'license': 'OPL-1',
-    "external_dependencies": {"python": ["web3", "solcx"]},
+    "external_dependencies": {"python": ["web3"]},
     'installable': True,
     'auto_install': False,
 }

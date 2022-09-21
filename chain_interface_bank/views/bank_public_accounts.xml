@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="interface_bank.bank_public_accounts_tree_view" model="ir.ui.view">
+            <field name="name">银企直联内部账户</field>
+            <field name="model">bank.public.accounts</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="company_id"/>
+                    <field name="costomer_name"/>
+                    <field name="costomer_number"/>
+                    <field name="payment_number"/>
+                    <field name="payment_username"/>
+                    <field name="payment_bank"/>
+                    <field name="deposit_id"/>
+                    <field name="dprovince_id"/>
+                    <field name="city_id"/>
+                    <field name="btype"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.bank_public_accounts_action">
+            <field name="name">银企直联内部账户</field>
+            <field name="res_model">bank.public.accounts</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="内部付款账户" id="interface_bank.bank_public_accounts_menu"
+                  parent="interface_bank.configure_menu"
+                  sequence="4"
+                  action="interface_bank.bank_public_accounts_action"/>
+
+
+        <record id="interface_bank.bank_external_accounts_tree_view" model="ir.ui.view">
+            <field name="name">银企直联外部账户</field>
+            <field name="model">bank.external.accounts</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="company_id"/>
+                    <field name="e_bank_number"/>
+                    <field name="e_bank_name"/>
+                    <field name="payment_bank"/>
+                    <field name="deposit_id"/>
+                    <field name="dprovince_id"/>
+                    <field name="account_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.bank_external_accounts_action">
+            <field name="name">银企直联外部账户</field>
+            <field name="res_model">bank.external.accounts</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="外部付款账户" id="interface_bank.bank_external_accounts_menu"
+                  parent="interface_bank.configure_menu"
+                  sequence="5"
+                  action="interface_bank.bank_external_accounts_action"/>
+
+    </data>
+</odoo>

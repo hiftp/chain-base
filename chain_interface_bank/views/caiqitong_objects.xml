@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="interface_bank.interface_bank_tree_view" model="ir.ui.view">
+            <field name="name">收款方归属银行/行别</field>
+            <field name="model">interface.bank</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_bank_action">
+            <field name="name">收款方归属银行/行别</field>
+            <field name="res_model">interface.bank</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="公共数据管理" id="interface_bank.interface_bank_main_menu"
+                  parent="interface_bank.configure_menu"
+                  sequence="6"/>
+
+        <menuitem name="收款方归属银行/行别" id="interface_bank.interface_bank_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="1"
+                  action="interface_bank.interface_bank_action"/>
+
+
+        <record id="interface_bank.interface_bank_deposit_tree_view" model="ir.ui.view">
+            <field name="name">开户行管理</field>
+            <field name="model">interface.bank.deposit</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="add"/>
+                    <field name="bank_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_bank_deposit_action">
+            <field name="name">开户行管理</field>
+            <field name="res_model">interface.bank.deposit</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="开户行管理" id="interface_bank.interface_bank_deposit_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="2"
+                  action="interface_bank.interface_bank_deposit_action"/>
+
+
+        <record id="interface_bank.interface_bank_province_tree_view" model="ir.ui.view">
+            <field name="name">省份管理</field>
+            <field name="model">interface.bank.province</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="deposit_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_bank_province_action">
+            <field name="name">省份管理</field>
+            <field name="res_model">interface.bank.province</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="省份管理" id="interface_bank.interface_bank_province_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="3"
+                  action="interface_bank.interface_bank_province_action"/>
+
+
+        <record id="interface_bank.interface_bank_city_tree_view" model="ir.ui.view">
+            <field name="name">城市代码管理</field>
+            <field name="model">interface.bank.city</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="province_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_bank_city_action">
+            <field name="name">城市代码管理</field>
+            <field name="res_model">interface.bank.city</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="城市代码管理" id="interface_bank.interface_bank_city_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="4"
+                  action="interface_bank.interface_bank_city_action"/>
+
+
+        <record id="interface_bank.bank_currency_tree_view" model="ir.ui.view">
+            <field name="name">币种管理</field>
+            <field name="model">bank.currency</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="number"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.bank_currency_action">
+            <field name="name">币种管理</field>
+            <field name="res_model">bank.currency</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="币种管理" id="interface_bank.bank_currency_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="5"
+                  action="interface_bank.bank_currency_action"/>
+
+
+        <record id="interface_bank.bill_storage_tree_view" model="ir.ui.view">
+            <field name="name">票据入库单</field>
+            <field name="model">interface.bank.bill.storage</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" create="true">
+                    <field name="company_id" string="公司"/>
+                    <field name="requestId"/>
+                    <field name="batchId"/>
+                    <field name="custNo"/>
+                    <field name="custName"/>
+                    <field name="line_ids"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="interface_bank.bill_storage_form_view" model="ir.ui.view">
+            <field name="name">票据入库单</field>
+            <field name="model">interface.bank.bill.storage</field>
+            <field name="arch" type="xml">
+                <form string="票据入库单">
+                    <header>
+                        <button name="upload_storage" type="object" states="0" string="上载至财企通系统" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="requestId"/>
+                            <field name="batchId"/>
+                            <field name="custNo"/>
+                            <field name="custName"/>
+                        </group>
+                        <field name="line_ids" mdel="tree">
+                            <tree>
+                                <field name="draftNo"/>
+                                <field name="draftTp"/>
+                                <field name="draftCls"/>
+                                <field name="draftSource"/>
+                                <field name="isseDate"/>
+                                <field name="dueDate"/>
+                                <field name="isseAmt"/>
+                                <field name="drwrName"/>
+                                <field name="accptrName"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="interface_bank.bill_storage_action">
+            <field name="name">票据入库单</field>
+            <field name="res_model">interface.bank.bill.storage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="interface_bank.bill_storage_menu" name="财企通-票据入库单" parent="interface_bank.cqt_menu"
+                  sequence="1"
+                  action="interface_bank.bill_storage_action"/>
+
+        <record id="interface_bank.bill_storage_line_form_view" model="ir.ui.view">
+            <field name="name">票据入库列表</field>
+            <field name="model">interface.bank.bill.storage.line</field>
+            <field name="arch" type="xml">
+                <form string="票据入库列表">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="draftNo"/>
+                                <field name="draftTp"/>
+                                <field name="draftCls"/>
+                                <field name="draftSource"/>
+                                <field name="isseDate"/>
+                                <field name="dueDate"/>
+                                <field name="accptrDate"/>
+                                <field name="isseAmt"/>
+                                <field name="drwrAcnt"/>
+                                <field name="drwrName"/>
+                                <field name="pyeeAcnt"/>
+                                <field name="pyeeName"/>
+                            </group>
+                            <group>
+                                <field name="pyeeAcctsvcr"/>
+                                <field name="pyeeAcctsvcrName"/>
+                                <field name="accptrAcnt"/>
+                                <field name="accptrName"/>
+                                <field name="accptrBank"/>
+                                <field name="accptrBankName"/>
+                                <field name="accptrAcctsvcr"/>
+                                <field name="accptrAcctsvcrName"/>
+                                <field name="accptrAddr"/>
+                                <field name="accptrCtrctNo"/>
+                                <field name="txCtrctNb"/>
+                                <field name="bnkEndrsmtmk"/>
+                                <field name="preHolderName"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="interface_bank.bank_weekly_funding_plan_tree_view" model="ir.ui.view">
+            <field name="name">资金池周计划</field>
+            <field name="model">bank.weekly.funding.plan</field>
+            <field name="arch" type="xml">
+                <tree default_order="id desc" create="true">
+                    <field name="company_id" string="公司"/>
+                    <field name="requestId"/>
+                    <field name="custNo"/>
+                    <field name="custName"/>
+                    <field name="startDate"/>
+                    <field name="endDate"/>
+                    <field name="weekUp"/>
+                    <field name="weekDown"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="interface_bank.bank_weekly_funding_plan_form_view" model="ir.ui.view">
+            <field name="name">资金池周计划</field>
+            <field name="model">bank.weekly.funding.plan</field>
+            <field name="arch" type="xml">
+                <form string="资金池周计划">
+                    <header>
+                        <button name="upload_weekly_funding_plan" type="object" states="0" string="上载至财企通系统"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="custNo"/>
+                                <field name="custName"/>
+                                <field name="weekUp"/>
+                                <field name="weekDown"/>
+                            </group>
+                            <group>
+                                <field name="requestId"/>
+                                <field name="startDate"/>
+                                <field name="endDate"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="mondayUp"/>
+                                <field name="tuesdayUp"/>
+                                <field name="wednesdayUp"/>
+                                <field name="thursdayUp"/>
+                                <field name="fridayUp"/>
+                                <field name="saturdayUp"/>
+                                <field name="sundayUp"/>
+                            </group>
+                            <group>
+                                <field name="mondayDown"/>
+                                <field name="tuesdayDown"/>
+                                <field name="wednesdayDown"/>
+                                <field name="thursdayDown"/>
+                                <field name="fridayDown"/>
+                                <field name="saturdayDown"/>
+                                <field name="sundayDown"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.bank_weekly_funding_plan_action">
+            <field name="name">资金池周计划</field>
+            <field name="res_model">bank.weekly.funding.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="interface_bank.bank_weekly_funding_plan_menu"
+                  name="财企通-资金池周计划"
+                  parent="interface_bank.cqt_menu"
+                  sequence="2"
+                  action="interface_bank.bank_weekly_funding_plan_action"/>
+
+    </data>
+</odoo>

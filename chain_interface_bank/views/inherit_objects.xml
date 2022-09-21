@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--<record id="interface_bank.partner_form_inherit" model="ir.ui.view">-->
+            <!--<field name="name">res.partner.form</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="inherit_id" ref="base.view_partner_form"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<xpath expr='//notebook' position="inside">-->
+                    <!--<page string="银行账户信息">-->
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<field name="iback_username"/>-->
+                                <!--<field name="iback_number"/>-->
+                                <!--<field name="ibank_id"/>-->
+                                <!--<field name="ideposit_id"/>-->
+                                <!--<field name="iprovince_id"/>-->
+                                <!--<field name="icity_id"/>-->
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--&lt;!&ndash;<field name="is_for_sap"/>&ndash;&gt;-->
+                            <!--</group>-->
+                        <!--</group>-->
+                    <!--</page>-->
+                <!--</xpath>-->
+            <!--</field>-->
+        <!--</record>-->
+
+    </data>
+</odoo>

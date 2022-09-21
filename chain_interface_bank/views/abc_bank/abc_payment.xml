@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--农业银行付款确认向导-->
+    <record id="interface_bank.interface_abc_payment_commit_form_view" model="ir.ui.view">
+        <field name="name">农业银行付款确认向导</field>
+        <field name="model">interface.abc.payment.commit</field>
+        <field name="arch" type="xml">
+            <form string="付款">
+                <group class="alert alert-success">
+                    <group>
+                        <field name="partner_id" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_bank_number" attrs="{'readonly': 'true'}"/>
+                        <field name="pay_money" attrs="{'readonly': 'true'}"/>
+                        <field name="CrProv" placeholder="请选择收款方省份"/>
+                    </group>
+                    <group>
+                        <field name="partner_contact" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_phone" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_add" attrs="{'readonly': 'true'}"/>
+                    </group>
+                </group>
+                <p class="alert alert-info">
+                    请仔细核对以上付款信息！点击确认后系统会将付款信息发送到农业银行系统处理付款请求,付款结果将在1-7个工作日内反馈！
+                </p>
+                <group>
+                    <group>
+                        <field name="bank_type" placeholder="请选择付款银行..."/>
+                        <field name="payment_type" placeholder="请选择功能类型..."/>
+                    </group>
+                    <group>
+                        <field name="public_account_id" placeholder="请选择付款账户..." options="{'no_create_edit': True}"/>
+                        <field name="DbProv" placeholder="请选择付款方省份"/>
+                    </group>
+                    <group>
+                        <field name="conFlag"/>
+                    </group>
+                    <group>
+                        <field name="is_BookingFlag" widget="radio" options="{'horizontal': true}"/>
+                        <field name="BookingTime" attrs="{'invisible': [('is_BookingFlag', '=', '0')]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="确认付款"
+                            name="summit_payment"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="取消付款" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_abc_payment_commit_action" model="ir.actions.act_window">
+        <field name="name">农业银行付款确认向导</field>
+        <field name="res_model">interface.abc.payment.commit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="interface_bank.interface_abc_payment_commit_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="interface_bank.interface_abc_payment_commit_form_inherit" model="ir.ui.view">
+        <field name="name">interface.bank.payment.from</field>
+        <field name="model">interface.bank.payment</field>
+        <field name="inherit_id" ref="interface_bank.interface_bank_payment_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//header' position="inside">
+                <button name="%(interface_bank.interface_abc_payment_commit_action)d"
+                        string="农业银行付款"
+                        type="action"
+                        attrs="{'invisible': ['|', ('bank_type', '!=', '01'), ('state', '!=', '00')]}"
+                        groups="interface_bank.manage_group"
+                        class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--签发银行汇票-->
+    <record id="interface_bank.interface_abc_bank_draft_tree_view" model="ir.ui.view">
+        <field name="name">签发银行汇票</field>
+        <field name="model">interface.abc.bank.draft</field>
+        <field name="arch" type="xml">
+            <tree default_order="id desc" create="true">
+                <field name="form_code"/>
+                <field name="company_id" string="公司"/>
+                <field name="public_account_id"/>
+                <field name="receipt"/>
+                <field name="receipt_number"/>
+                <field name="pay_money"/>
+                <field name="bill_type"/>
+                <field name="cash_flag"/>
+                <field name="draft_flag"/>
+                <field name="pay_summary"/>
+                <field name="state" string="单据状态"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_abc_bank_draft_form_view" model="ir.ui.view">
+        <field name="name">签发银行汇票</field>
+        <field name="model">interface.abc.bank.draft</field>
+        <field name="arch" type="xml">
+            <form string="签发银行汇票">
+                <header>
+                    <button name="start_bank_issue" string="签发银行汇票" type="object"
+                            states="00" class="oe_highlight"/>
+                    <button name="get_withdraw_password" string="获取支取密码" type="object"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="form_code"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <field name="public_account_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <field name="currency_type" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <field name="DbProv" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="pay_money" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="pay_summary" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                        <group>
+                            <field name="receipt" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="receipt_number" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="bill_type" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="cash_flag" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="draft_flag" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                        <field name="pay_use" attrs="{'readonly': [('state', '!=', '00')]}"
+                               placeholder="用途"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="interface_bank.interface_abc_bank_draft_action">
+        <field name="name">签发银行汇票</field>
+        <field name="res_model">interface.abc.bank.draft</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="interface_bank.interface_abc_bank_draft_menu"
+              name="签发银行汇票"
+              parent="interface_bank.abc_menu"
+              sequence="1"
+              action="interface_bank.interface_abc_bank_draft_action"/>
+
+
+    <!--实时代付-->
+    <record id="interface_bank.interface_abc_realtime_payment_form_view" model="ir.ui.view">
+        <field name="name">实时代付</field>
+        <field name="model">interface.abc.realtime.payment</field>
+        <field name="arch" type="xml">
+            <form string="付款">
+                <group class="alert alert-success">
+                    <group>
+                        <field name="partner_bank_number" attrs="{'readonly': 'true'}"/>
+                        <field name="CrProv"/>
+                    </group>
+                    <group>
+                        <field name="CrCur"/>
+                        <field name="Amt"/>
+                    </group>
+                </group>
+                <p class="alert alert-info">
+                    请仔细核对以上付款信息！点击确认后系统会将付款信息发送到农业银行系统处理付款请求,付款结果将在1-7个工作日内反馈！
+                </p>
+                <group>
+                    <group>
+                        <field name="account_id" placeholder="请选择付款账户..." options="{'no_create_edit': True}"/>
+                        <field name="DbProv" placeholder="请选择付款省份" />
+                        <field name="currency_id" placeholder="请选择付款方币种..."/>
+                        <field name="ConFlag" widget="radio" options="{'horizontal': true}"/>
+                        <field name="CheckNameFlag" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <group>
+                        <field name="PayInt" widget="radio" options="{'horizontal': true}"/>
+                        <field name="AgtDbInd" widget="radio" options="{'horizontal': true}"/>
+                        <field name="NVoucherType" placeholder="请选择..."/>
+                        <field name="CshDraFlag" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="确认"
+                            name="summit_payment"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_abc_realtime_payment_action" model="ir.actions.act_window">
+        <field name="name">实时代付</field>
+        <field name="res_model">interface.abc.realtime.payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="interface_bank.interface_abc_realtime_payment_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="interface_bank.interface_abc_realtime_payment_form_inherit" model="ir.ui.view">
+        <field name="name">interface.bank.payment.from</field>
+        <field name="model">interface.bank.payment</field>
+        <field name="inherit_id" ref="interface_bank.interface_bank_payment_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//header' position="inside">
+                <button name="%(interface_bank.interface_abc_realtime_payment_action)d"
+                        string="农行实时代付"
+                        type="action"
+                        attrs="{'invisible': ['|', ('bank_type', '!=', '01'), ('state', '!=', '00')]}"
+                        groups="interface_bank.manage_group"
+                        class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--实时代付记录-->
+    <record id="interface_bank.abc_realtime_payment_line_tree_view" model="ir.ui.view">
+        <field name="name">实时代付记录</field>
+        <field name="model">abc.realtime.payment.line</field>
+        <field name="arch" type="xml">
+            <tree default_order="id desc" create="false">
+                <field name="payment"/>
+                <field name="account_id"/>
+                <field name="currency_id"/>
+                <field name="partner_bank_number"/>
+                <field name="CrProv"/>
+                <field name="CrCur"/>
+                <field name="ConFlag"/>
+                <field name="CheckNameFlag"/>
+                <field name="PayInt"/>
+                <field name="AgtDbInd"/>
+                <field name="NVoucherType"/>
+                <field name="CshDraFlag"/>
+                <field name="Amt"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="interface_bank.abc_realtime_payment_line_action">
+        <field name="name">实时代付记录</field>
+        <field name="res_model">abc.realtime.payment.line</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="interface_bank.abc_realtime_payment_line_menu"
+              name="实时代付记录"
+              parent="interface_bank.log_main"
+              sequence="4"
+              action="interface_bank.abc_realtime_payment_line_action"/>
+
+
+    <!--代发工资-农行账户-->
+    <record id="interface_bank.interface_abc_wages_behalf_tree_view" model="ir.ui.view">
+        <field name="name">代发工资-农行账户</field>
+        <field name="model">interface.abc.wages.behalf</field>
+        <field name="arch" type="xml">
+            <tree default_order="form_code desc" create="true">
+                <field name="form_code"/>
+                <field name="account_id"/>
+                <field name="currency_id"/>
+                <field name="Amt"/>
+                <field name="number"/>
+                <field name="Postscript"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_abc_wages_behalf_form_view" model="ir.ui.view">
+        <field name="name">代发工资-农行账户</field>
+        <field name="model">interface.abc.wages.behalf</field>
+        <field name="arch" type="xml">
+            <form string="代发工资-农行账户">
+                <header>
+                    <button name="start_bank_issue" string="确认发送" type="object"
+                            states="00" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="form_code"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="account_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <field name="DbProv" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="currency_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="Amt" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="number" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                        <field name="Postscript" attrs="{'readonly': [('state', '!=', '00')]}"
+                               placeholder="附言..."/>
+                    </group>
+                    <field name="line_ids" mdel="tree" attrs="{'readonly': [('state', '!=', '00')]}">
+                        <tree create="true" edit="true" editable="top">
+                            <field name="name"/>
+                            <field name="customer_number"/>
+                            <field name="amt"/>
+                            <field name="postscript"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="interface_bank.interface_abc_wages_behalf_action">
+        <field name="name">代发工资-农行账户</field>
+        <field name="res_model">interface.abc.wages.behalf</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="interface_bank.interface_abc_wages_behalf_menu"
+              name="代发工资-农行账户"
+              parent="interface_bank.abc_menu"
+              sequence="2"
+              action="interface_bank.interface_abc_wages_behalf_action"/>
+
+
+    <!--费用报销-->
+    <record id="interface_bank.interface_abc_reimbur_sement_tree_view" model="ir.ui.view">
+        <field name="name">费用报销</field>
+        <field name="model">interface.abc.reimbur.sement</field>
+        <field name="arch" type="xml">
+            <tree default_order="form_code desc" create="true">
+                <field name="form_code"/>
+                <field name="sement_name"/>
+                <field name="sement_no"/>
+                <field name="account_id"/>
+                <field name="currency_id"/>
+                <field name="amt"/>
+                <field name="number"/>
+                <field name="postscript"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_abc_reimbur_sement_form_view" model="ir.ui.view">
+        <field name="name">费用报销</field>
+        <field name="model">interface.abc.reimbur.sement</field>
+        <field name="arch" type="xml">
+            <form string="费用报销">
+                <header>
+                    <button name="start_bank_issue" string="确认发送" type="object"
+                            states="00" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="form_code"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="account_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                            <field name="currency_id" attrs="{'readonly': [('state', '!=', '00')]}"
+                                   options="{'no_create_edit': True}"/>
+                        </group>
+                        <group>
+                            <field name="amt" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="number" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="sement_name" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="sement_no" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                        <group>
+                            <field name="sement_currency_id" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                            <field name="pc_id" attrs="{'readonly': [('state', '!=', '00')]}"/>
+                        </group>
+                        <field name="postscript" attrs="{'readonly': [('state', '!=', '00')]}"
+                               placeholder="附言..."/>
+                    </group>
+                    <field name="line_ids" mdel="tree" attrs="{'readonly': [('state', '!=', '00')]}">
+                        <tree create="true" edit="true" editable="top">
+                            <field name="postscript"/>
+                            <field name="amt"/>
+                        </tree>
+                    </field>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="interface_bank.interface_abc_reimbur_sement_action">
+        <field name="name">费用报销</field>
+        <field name="res_model">interface.abc.reimbur.sement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="interface_bank.interface_abc_reimbur_sement_menu"
+              name="费用报销"
+              parent="interface_bank.abc_menu"
+              sequence="3"
+              action="interface_bank.interface_abc_reimbur_sement_action"/>
+
+
+    <record id="interface_bank.interface_abc_search_transaction_form_inherit" model="ir.ui.view">
+        <field name="name">interface.bank.payment.from</field>
+        <field name="model">interface.bank.payment</field>
+        <field name="inherit_id" ref="interface_bank.interface_bank_payment_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//header' position="inside">
+                <button name="search_transaction" string="异常交易查询"
+                        type="object"
+                        attrs="{'invisible': ['|', ('bank_type', '!=', '01'), ('state', '!=', '00')]}"
+                        groups="interface_bank.manage_group"
+                        class="oe_highlight"
+                        confirm="若使用农行支付提示数据包不完整时,使用此按钮手动获取交易结果！非农行支付的单据请勿执行！"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -11,6 +11,7 @@
                         <group>
                             <group string="Address" name="basic_information">
                                 <field name="public_address" />
+                                <field name="nonce" />
                             </group>
                         </group>
                     </page>

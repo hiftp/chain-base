@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="True">
+        <record id="interface_bank.payment_number" model="ir.sequence">
+            <field name="name">银行付款单编号生成规则</field>
+            <field name="code">interface.bank.payment</field>
+            <field name="prefix">NO%(year)s%(month)s%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="interface_bank.payment_partner_number" model="ir.sequence">
+            <field name="name">银行付款单客户编号生成规则</field>
+            <field name="code">interface.payment.partner.number</field>
+            <field name="prefix">F%(year)s%(month)s%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="interface_bank.bank_bill_storage_number" model="ir.sequence">
+            <field name="name">票据入库单编号生成规则</field>
+            <field name="code">interface.bank.bill.storage.number</field>
+            <field name="prefix">%(year)s%(month)%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="interface_bank.weekly_funding_plan_number" model="ir.sequence">
+            <field name="name">资金池周计划编号生成规则</field>
+            <field name="code">bank.weekly.funding.plan.number</field>
+            <field name="prefix">%(year)s%(month)%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="interface_bank.interface_abc_bank_draft_number" model="ir.sequence">
+            <field name="name">签发银行汇票编号生成规则</field>
+            <field name="code">interface.abc.bank.draft.number</field>
+            <field name="prefix">Q%(year)s%(month)s%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="interface_bank.interface_abc_wages_behalf_number" model="ir.sequence">
+            <field name="name">代发工资编号生成规则</field>
+            <field name="code">abc.wages.behalf.number</field>
+            <field name="prefix">WFGZ%(year)s%(month)s%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">4</field>
+        </record>
+
+        <record id="interface_bank.interface_abc_reimbur_sement_number" model="ir.sequence">
+            <field name="name">费用报销编号生成规则</field>
+            <field name="code">interface.abc.reimbur.sement</field>
+            <field name="prefix">BX%(year)s%(month)s%(day)s</field>
+            <field name="suffix"/>
+            <field name="padding">7</field>
+        </record>
+
+    </data>
+</odoo>

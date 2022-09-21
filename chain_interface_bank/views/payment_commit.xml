@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="interface_bank.interface_payment_commit_form_view" model="ir.ui.view">
+        <field name="name">付款确认向导</field>
+        <field name="model">interface.payment.commit</field>
+        <field name="arch" type="xml">
+            <form string="付款">
+                <group class="alert alert-info">
+                    <group>
+                        <field name="partner_id" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_bank_number" attrs="{'readonly': 'true'}"/>
+                        <field name="pay_money" attrs="{'readonly': 'true'}"/>
+                        <field name="company_id" attrs="{'readonly': 'true'}"/>
+                    </group>
+                    <group>
+                        <field name="partner_contact" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_phone" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_add" attrs="{'readonly': 'true'}"/>
+                    </group>
+                </group>
+                <p class="alert alert-success">
+                    请仔细核对以上付款信息！点击确认后系统会将付款信息交于财企通系统处理付款请求,付款结果将在1-7个工作日内反馈！
+                </p>
+                <group>
+                    <group>
+                        <field name="bank_type" placeholder="请选择付款银行..."/>
+                        <field name="payment_type" placeholder="请选择功能类型..."/>
+                    </group>
+                    <group>
+                        <field name="public_account_id" placeholder="请选择付款账户..." options="{'no_create_edit': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="确认付款"
+                            name="summit_payment"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="取消付款" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_payment_commit_action" model="ir.actions.act_window">
+        <field name="name">付款确认向导</field>
+        <field name="res_model">interface.payment.commit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="interface_bank.interface_payment_commit_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+    <record id="interface_bank.interface_xianxia_payment_commit_form_view" model="ir.ui.view">
+        <field name="name">线下付款确认向导</field>
+        <field name="model">interface.xianxia.payment.commit</field>
+        <field name="arch" type="xml">
+            <form string="付款">
+                <group class="alert alert-success">
+                    <group>
+                        <field name="partner_id" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_bank_number" attrs="{'readonly': 'true'}"/>
+                        <field name="pay_money" attrs="{'readonly': 'true'}"/>
+                    </group>
+                    <group>
+                        <field name="partner_contact" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_phone" attrs="{'readonly': 'true'}"/>
+                        <field name="partner_contact_add" attrs="{'readonly': 'true'}"/>
+                    </group>
+                </group>
+                <p class="alert alert-info">
+                    请仔细核对以上付款信息！点击确认后系统默认该单据为支付成功！
+                </p>
+                <group>
+                    <group>
+                        <field name="move_name" attrs="{'readonly': 'true'}"/>
+                        <field name="is_read"/>
+                    </group>
+                    <group>
+                        <field name="payment_type" placeholder="现金、支付宝、微信钱包支付..."/>
+                        <field name="payment_money" placeholder="请输入支付金额..." readonly="1"/>
+                    </group>
+                    <field name="payment_stated" placeholder="请填写备注消息..."/>
+                </group>
+                <footer>
+                    <button string="确认支付"
+                            name="summit_payment"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="暂不支付" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_xianxia_payment_commit_action" model="ir.actions.act_window">
+        <field name="name">线下付款确认向导</field>
+        <field name="res_model">interface.xianxia.payment.commit</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="interface_bank.interface_xianxia_payment_commit_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="interface_bank.interface_abc_charge_type_tree_view" model="ir.ui.view">
+            <field name="name">收费种类代码</field>
+            <field name="model">interface.abc.charge.type</field>
+            <field name="arch" type="xml">
+                <tree default_order="code desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_abc_charge_type_action">
+            <field name="name">收费种类代码</field>
+            <field name="res_model">interface.abc.charge.type</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="收费种类代码(农行)" id="interface_bank.interface_abc_charge_type_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="6"
+                  action="interface_bank.interface_abc_charge_type_action"/>
+
+        <record id="interface_bank.interface_abc_province_city_tree_view" model="ir.ui.view">
+            <field name="name">农行省市代码表</field>
+            <field name="model">interface.abc.province.city</field>
+            <field name="arch" type="xml">
+                <tree default_order="code desc" editable="top" create="true">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_abc_province_city_action">
+            <field name="name">农行省市代码表</field>
+            <field name="res_model">interface.abc.province.city</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem name="农行省市代码表" id="interface_bank.interface_abc_province_city_menu"
+                  parent="interface_bank.interface_bank_main_menu"
+                  sequence="7"
+                  action="interface_bank.interface_abc_province_city_action"/>
+
+        <record id="interface_bank.bank_public_accounts_tree_inherit" model="ir.ui.view">
+            <field name="name">内部付款账户</field>
+            <field name="model">bank.public.accounts</field>
+            <field name="inherit_id" ref="interface_bank.bank_public_accounts_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='city_id']" position="before">
+                    <field name="abc_pc" attrs="{'required': [('btype', '!=', '00')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="interface_bank.interface_payment_account_tree_view" model="ir.ui.view">
+            <field name="name">付款科目配置</field>
+            <field name="model">interface.payment.account</field>
+            <field name="arch" type="xml">
+                <tree default_order="code company_id" editable="top" create="true">
+                    <field name="company_id"/>
+                    <field name="account_id"/>
+                    <field name="account_code"/>
+                    <field name="bank_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_payment_account_action">
+            <field name="name">付款科目配置</field>
+            <field name="res_model">interface.payment.account</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{'search_default_group_by_company_id': True}</field>
+        </record>
+
+        <menuitem name="付款科目配置" id="interface_bank.interface_payment_account_menu"
+                  parent="interface_bank.configure_menu"
+                  sequence="5"
+                  action="interface_bank.interface_payment_account_action"/>
+
+        <record model="ir.ui.view" id="interface_bank.interface_payment_account_search">
+            <field name="model">interface.payment.account</field>
+            <field name="arch" type="xml">
+                <search string="付款科目配置">
+                    <field name="company_id"/>
+                    <field name="account_id"/>
+                    <field name="account_code"/>
+                    <field name="bank_type"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_company_id" string="公司" domain="[]"
+                                context="{'group_by':'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

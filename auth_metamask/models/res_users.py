@@ -6,10 +6,9 @@ from math import floor
 from eth_account.messages import defunct_hash_message
 from web3.auto import w3
 
-from odoo import SUPERUSER_ID, api, fields, models
+from odoo import _, SUPERUSER_ID, api, fields, models
 from odoo.exceptions import AccessDenied
 from odoo.http import request
-
 _logger = logging.getLogger(__name__)
 
 
@@ -21,14 +20,10 @@ class Users(models.Model):
             user_id.nonce = floor(random.random() * 1000000)
 
     nonce = fields.Integer(required=True, compute="_compute_nonce", store=True)
-    public_address = fields.Char(required=True, index=True)
+    public_address = fields.Char('Pubilc Address', required=True, index=True)
 
     _sql_constraints = [
-        (
-            "public_address",
-            "unique(public_address)",
-            "This public address already exist",
-        )
+        ('public_address_unique', 'unique(public_address)', """This public address already exist""",)
     ]
 
     @api.onchange("public_address")

@@ -1,0 +1,12 @@
+.box{
+    padding: 10px;
+}
+.o_main, .o_text{
+    background-color: #00ad69;
+    margin: 1px 10px;
+}
+
+.o_highlight{
+    color: #fff;
+}
+

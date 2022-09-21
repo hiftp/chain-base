@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="interface_bank.settings_configuration" model="ir.ui.view">
+            <field name="name">interface.bank.settings.view</field>
+            <field name="model">interface.bank.settings</field>
+            <field name="arch" type="xml">
+                <form string="设置" class="oe_form_configuration">
+                    <header>
+                        <button string="保存" type="object" name="execute" class="oe_highlight"/>
+                        <button string="取消" type="object" name="cancel" class="oe_link" special="cancel"/>
+                    </header>
+                    <group>
+                        <group string="财企通接口设置">
+                            <field name="feg_add" placeholder="请输入财企通前置机完整地址！"/>
+                            <field name="csystem_code" placeholder="请输入用于财企通的系统代码！"/>
+                            <field name="csystem_name" placeholder="请输入用于财企通的系统名称！"/>
+                            <field name="p_csystem_code"/>
+                            <field name="p_csystem_name"/>
+                            <field name="auto_read_payment"/>
+                            <field name="interval_number"
+                                   attrs="{'invisible': [('auto_read_payment', '!=', 'y')], 'required': [('auto_read_payment', '=', 'y')]}"/>
+                            <field name="interval_type"
+                                   attrs="{'invisible': [('auto_read_payment', '!=', 'y')], 'required': [('auto_read_payment', '=', 'y')]}"/>
+                            <newline/>
+                        </group>
+                        <group string="中国农业银行接口设置">
+                            <field name="abc_ip" placeholder="请输入调用农业银行通讯器的ip地址！"/>
+                            <field name="abc_port" placeholder="请输入调用农业银行端口地址！"/>
+                            <field name="abc_operator_number" placeholder="请输入企业操作员编号！"/>
+                            <field name="abc_auth_no" placeholder="请输入认证码！"/>
+                            <field name="abc_sign" placeholder="请输入数字签名！"/>
+                            <field name="ftp_host" placeholder="请输入ftp地址！"/>
+                            <field name="ftp_port" placeholder="请输入ftp端口！"/>
+                            <field name="ftp_user" placeholder="请输入ftp用户！"/>
+                            <field name="ftp_pwd" placeholder="请输入ftp用户密码！"/>
+                            <field name="dir_ftp" placeholder="请输入下载路径！"/>
+                            <field name="dir_up_ftp" placeholder="请输入上传目录！"/>
+                        </group>
+                        <group string="其他配置">
+                            <field name="open_interface" placeholder="请选择！"/>
+                            <field name="search_payment" placeholder="请选择！"/>
+                            <field name="open_callback" placeholder="请选择！"/>
+                        </group>
+                        <group string="银企直连付款状态反写OA付款单配置">
+                            <field name="update_payment_state"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="interface_bank.settings_configuration_action" model="ir.actions.act_window">
+            <field name="name">银企直联配置</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">interface.bank.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="interface_bank.settings_configuration_settings" name="银企直联配置"
+                  parent="interface_bank.configure_menu"
+                  sequence="4"
+                  groups="interface_bank.controller"
+                  action="interface_bank.settings_configuration_action"/>
+
+    </data>
+</odoo>

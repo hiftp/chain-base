@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="interface_bank.dash_board_client" model="ir.actions.client">
+            <field name="name">仪表盘</field>
+            <field name="tag">interface_dash_board</field>
+        </record>
+
+        <template id="InterfaceDashBoard" name="Interface DashBoard"
+                  inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/interface_bank/static/src/style/dash_board.css"/>
+                <script type="text/javascript" src="/interface_bank/static/src/js/dash_board.js"
+                        charset="utf-8"/>
+            </xpath>
+        </template>
+
+        <!--<menuitem name="仪表盘"-->
+                  <!--id="interface_bank.dash_board_menu"-->
+                  <!--parent="interface_bank.main_menu"-->
+                  <!--sequence="1"-->
+                  <!--action="interface_bank.dash_board_client"/>-->
+
+    </data>
+</odoo>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="interface_bank.interface_bank_payment_tree_view" model="ir.ui.view">
+        <field name="name">银行付款单</field>
+        <field name="model">interface.bank.payment</field>
+        <field name="arch" type="xml">
+            <tree default_order="id desc" create="true">
+                <field name="form_code" string="单据编号"/>
+                <field name="company_id" string="公司"/>
+                <field name="partner_id"/>
+                <field name="partner_bank_number"/>
+                <field name="pay_money"/>
+                <field name="pay_use"/>
+                <field name="public_signs"/>
+                <field name="payment_model"/>
+                <field name="cross_row_identi"/>
+                <field name="off_site_identi"/>
+                <field name="public_account_id"/>
+                <field name="save_datetime"/>
+                <field name="state" string="单据状态"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="interface_bank.interface_bank_payment_form_view" model="ir.ui.view">
+        <field name="name">银行付款单</field>
+        <field name="model">interface.bank.payment</field>
+        <field name="arch" type="xml">
+            <form string="付款">
+                <header>
+                    <button name="pay_again"
+                            type="object"
+                            string="审核不通过"
+                            states="approval"
+                            class="oe_highlight"
+                    />
+                    <button name="approval_payment"
+                            type="object"
+                            string="审核"
+                            states="approval"
+                            class="oe_highlight"
+                    />
+                    <button name="update_from_code" type="object" string="重新生成编号"
+                            states="00" class="oe_highlight"
+                            confirm="该功能会修改当前单据的编号/流水号,非特殊情况请勿使用！"/>
+                    <button name="%(interface_bank.interface_xianxia_payment_commit_action)d" string="使用线下支付"
+                            type="action"
+                            groups="interface_bank.manage_group"
+                            attrs="{'invisible': [('state', '!=', '00')]}"
+                            class="oe_highlight"/>
+                    <button name="%(interface_bank.interface_payment_commit_action)d"
+                            string="使用财企通付款"
+                            type="action"
+                            groups="interface_bank.manage_group"
+                            attrs="{'invisible': ['|', ('bank_type', '!=', '00'), ('state', '!=', '00')]}"
+                            class="oe_highlight"/>
+                    <button name="search_cqt_payment_result"
+                            string="查询付款结果"
+                            type="object"
+                            groups="interface_bank.manage_group"
+                            attrs="{'invisible': ['|', ('bank_type', '!=', '00'), ('state', '!=', '01')]}"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar" modifiers="{'readonly': true}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="form_code"
+                                   attrs="{'readonly': [('state', '!=', 1)]}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"
+                                   attrs="{'readonly': ['|', ('state', '!=', 'approval'), ('external_system_from', '=', 'y')]}"/>
+                            <field name="partner_bank_number"
+                                   attrs="{'readonly': ['|', ('state', '!=', 'approval'), ('external_system_from', '=', 'y')]}"/>
+                            <field name="pay_money"
+                                   attrs="{'readonly': ['|', ('state', '!=', 'approval'), ('external_system_from', '=', 'y')]}"/>
+                            <field name="partner_number"
+                                   attrs="{'readonly': [('state', '!=', 'approval')]}"/>
+                            <field name="partner_contact" attrs="{'readonly': [('state', '!=', 'approval')]}"/>
+                            <field name="partner_contact_phone" attrs="{'readonly': [('state', '!=', 'approval')]}"/>
+                            <field name="partner_contact_add" attrs="{'readonly': [('state', '!=', 'approval')]}"/>
+                            <field name="pay_use" attrs="{'readonly': [('state', '!=', 'approval')]}"/>
+                        </group>
+                        <group>
+                            <field name="public_signs" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
+                            <field name="payment_model" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
+                            <field name="cross_row_identi" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
+                            <field name="off_site_identi" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
+                            <field name="payee_identi" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio" options="{'horizontal': true}"/>
+                            <field name="debit_identi" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   widget="radio" options="{'horizontal': true}"/>
+                            <field name="currency_type" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   placeholder="请选择币种..." options="{'no_create_edit': True}"/>
+                            <field name="company_id" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                                   options="{'no_create_edit': True}"/>
+                        </group>
+                        <field name="pay_summary" attrs="{'readonly': [('state', '!=', 'approval')]}"
+                               placeholder="付款摘要..."/>
+                    </group>
+                    <notebook>
+                        <page string="收款方信息">
+                            <group>
+                                <group>
+                                    <field name="payee_bank"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_bank"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_province"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_city"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                </group>
+                                <group>
+                                    <field name="payee_bank_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_bank_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_province_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="abc_provincial_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="payee_opening_city_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                    <field name="abc_city_code"
+                                           attrs="{'readonly': [('state', '!=', 'approval'), ('state', '!=', '00')], 'required': [('payee_identi', '=', '01')]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="付款信息">
+                            <group>
+                                <group>
+                                    <field name="public_account_id" attrs="{'readonly': 1}"/>
+                                    <field name="payment_type" attrs="{'readonly': 1}"/>
+                                    <field name="payment_stated" attrs="{'readonly': 1}"/>
+                                </group>
+                                <group>
+                                    <field name="move_id" attrs="{'readonly': 1}"/>
+                                    <field name="bank_type" attrs="{'readonly': 1}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="来源信息">
+                            <group>
+                                <group>
+                                    <field name="external_system_from" attrs="{'readonly': 1}"/>
+                                    <field name="save_datetime" attrs="{'readonly': 1}"/>
+                                </group>
+                                <group>
+                                    <field name="source_number" placeholder="其他来源的单据编号" attrs="{'readonly': 1}"/>
+                                    <field name="source_model" placeholder="其他来源的单据模型" attrs="{'readonly': 1}"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+<!--                    增加支付记录-->
+<!--                    @author: fengjiqiang@inspur.com-->
+                    <notebook>
+                        <page string="付款支付记录">
+                            <group col="6" colspan="2">
+                                <field name="pay_per_money_sum"/>
+                                <field name="paied_money" readonly="1"/>
+                                <field name="pay_remain_money"/>
+                            </group>
+                            <field name="payment_line_ids" options="{'no_create': True, 'no_open': True}" readonly="1">
+                                <tree string="">
+                                    <field name="pay_per_money_char"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form string="">
+                                    <group>
+                                        <field name="pay_per_money_char" invisible="1"/>
+                                        <field name="pay_per_money"/>
+                                        <field name="state"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+<!--                    end-->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="interface_bank.interface_bank_payment_action">
+        <field name="name">银行付款单</field>
+        <field name="res_model">interface.bank.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_by_company_id': True, 'search_default_group_by_state': True}
+        </field>
+    </record>
+
+    <menuitem id="interface_bank.interface_bank_payment_menu"
+              name="银行付款单"
+              parent="interface_bank.main_menu"
+              sequence="10"
+              groups="interface_bank.manage_group,interface_bank.approval_payment_group"
+              action="interface_bank.interface_bank_payment_action"/>
+
+    <record model="ir.ui.view" id="interface_bank.interface_bank_payment_search">
+        <field name="model">interface.bank.payment</field>
+        <field name="arch" type="xml">
+            <search string="银行付款单">
+                <field name="form_code" string="单据编号"/>
+                <field name="company_id" string="公司"/>
+                <field name="partner_id" string="申请人"/>
+                <field name="partner_id"/>
+                <field name="partner_bank_number"/>
+                <field name="pay_money"/>
+                <field name="pay_use"/>
+                <field name="public_signs"/>
+                <field name="payment_model"/>
+                <field name="cross_row_identi"/>
+                <field name="off_site_identi"/>
+                <field name="bank_type"/>
+                <field name="create_uid" string="创建人"/>
+                <field name="public_account_id"/>
+                <field name="save_datetime"/>
+                <field name="state" string="单据状态"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_company_id" string="公司" domain="[]"
+                            context="{'group_by':'company_id'}"/>
+                    <filter name="group_by_state" string="支付状态" domain="[]"
+                            context="{'group_by':'state'}"/>
+                    <filter name="group_by_save_datetime" string="创建日期" domain="[]"
+                            context="{'group_by':'save_datetime'}"/>
+                    <filter name="group_by_Creator" string="创建人" domain="[]"
+                            context="{'group_by':'create_uid'}"/>
+                    <filter name="group_by_payee" string="申请人" domain="[]"
+                            context="{'group_by':'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+</odoo>

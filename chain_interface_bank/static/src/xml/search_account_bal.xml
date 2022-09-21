@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="SearchBankAccountBalance">
+        <div class="container-fluid" style="background: white;">
+            <br />
+            <br />
+            <div style="width:100%; ">
+                <table>
+                    <tr>
+                        <td>账户类型:</td>
+                        <td class="search_select">
+                            <select name="s_type" id="s_type" placeholder="账户类型">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>内部账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="内部账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>银行账户:</td>
+                        <td class="search_select">
+                            <select name="external_id" id="external_id" placeholder="银行账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn btn-primary" id="search">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <hr />
+            <div>
+                <table class="table table-bordered table-condensed">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SearchBankAccountBalanceLine">
+        <tr>
+            <th>查询日期</th><th>查询时间</th><th>客户编号</th><th>客户名称</th><th>账号</th><th>户名</th><th>余额</th><th>可用余额</th><th>结果码</th><th>结果信息</th>
+        </tr>
+        <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.createDate"/></td>
+                <td><t t-esc="line.createTime"/></td>
+                <td><t t-esc="line.custNo"/></td>
+                <td><t t-esc="line.custName"/></td>
+                <td><t t-esc="line.acntNo"/></td>
+                <td><t t-esc="line.acntName"/></td>
+                <td><t t-esc="line.balance"/></td>
+                <td><t t-esc="line.availBalance"/></td>
+                <td><t t-esc="line.resultCode"/></td>
+                <td><t t-esc="line.resultMsg"/></td>
+            </tr>
+        </t>
+    </t>
+
+</templates>

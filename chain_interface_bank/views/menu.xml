@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="银企直联" id="interface_bank.main_menu"
+                  groups="interface_bank.manage_group,interface_bank.approval_payment_group"
+                  web_icon="interface_bank,static/description/icon.png"
+        />
+
+        <menuitem name="银企直联-财企通" id="interface_bank.cqt_menu"
+                  parent="interface_bank.main_menu"
+                  sequence="11"
+                  groups="interface_bank.manage_group"
+        />
+
+        <menuitem name="查询操作" id="interface_bank.search_main_menu"
+                  parent="interface_bank.cqt_menu"
+                  sequence="5"
+                  groups="interface_bank.manage_group"
+        />
+
+        <menuitem name="结果记录" id="interface_bank.search_result_main_menu"
+                  parent="interface_bank.cqt_menu"
+                  sequence="6"
+                  groups="interface_bank.manage_group"
+        />
+
+        <menuitem name="银企直联-农业银行" id="interface_bank.abc_menu"
+                  parent="interface_bank.main_menu"
+                  sequence="22"
+                  groups="interface_bank.manage_group"
+        />
+
+        <menuitem name="日志记录" id="interface_bank.log_main"
+                  parent="interface_bank.main_menu" sequence="99"
+                  groups="interface_bank.manage_group"
+        />
+
+        <menuitem name="配置项" id="interface_bank.configure_menu"
+                  groups="interface_bank.manage_group"
+                  parent="interface_bank.main_menu" sequence="100"
+        />
+
+    </data>
+</odoo>

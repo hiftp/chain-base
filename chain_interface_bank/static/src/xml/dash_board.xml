@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+     <t t-name="InterfaceBankDashBoard">
+
+         <div class="container-fluid" style="background: white;">
+             <div class="row box">
+                 <div>
+                    <table class="table table-condensed">
+                        <tbody>
+                            <tr>
+                                <td class="o_text">
+                                    <div class="o_highlight">当天情况</div>
+                                </td>
+                                <td class="o_main" title="今日发生付款额度">
+                                    发生付款额度:
+                                    <span class="o_highlight" id="today_money">
+                                    0
+                                    </span>
+                                    ￥
+                                </td>
+                                <td class="o_main" title="今日新增付款单数量">
+                                    今日新增付款单数量:
+                                    <span class="o_highlight" id="payment_len">
+                                    0
+                                    </span>
+                                    张
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+              </div>
+             <div class="col-xs-6">
+                 <table class="table table-hover" id="new_payment"></table>
+             </div>
+
+             <div class="col-xs-6" >
+                 <table class="table table-hover" id="payment_result"></table>
+             </div>
+          </div>
+     </t>
+
+
+    <t t-name="InterfaceBankDashBoardNewPayment">
+        <caption>待处理付款单</caption>
+        <tr>
+            <th>单据号</th>
+            <th>收款人</th>
+            <th>收款账号</th>
+            <th>支付金额</th>
+        </tr>
+         <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.form_number"/></td>
+                <td><t t-esc="line.partner_id"/></td>
+                <td><t t-esc="line.partner_bank_number"/></td>
+                <td><t t-esc="line.pay_money"/></td>
+            </tr>
+        </t>
+    </t>
+
+    <t t-name="InterfaceBankDashBoardPaymentResult">
+        <caption>银行付款结果</caption>
+         <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.result_str"/></td>
+            </tr>
+        </t>
+    </t>
+
+</templates>
+
+
+
+
+

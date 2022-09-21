@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="interface_bank.interface_bank_log_tree_view" model="ir.ui.view">
+            <field name="name">银企直联日志记录</field>
+            <field name="model">interface.bank.log</field>
+            <field name="arch" type="xml">
+                <tree default_order="create_date desc" create="false">
+                    <field name="company_id"/>
+                    <field name="bank_type"/>
+                    <field name="public_account_id"/>
+                    <field name="transaction_type"/>
+                    <field name="form_code"/>
+                    <field name="partner_id"/>
+                    <field name="partner_bank_number"/>
+                    <field name="pay_money"/>
+                    <field name="stated"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="interface_bank.interface_bank_log_action">
+            <field name="name">银企直联日志记录</field>
+            <field name="res_model">interface.bank.log</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <menuitem name="银企直联日志" id="interface_bank.interface_bank_log_menu"
+                  parent="interface_bank.log_main"
+                  sequence="3"
+                  action="interface_bank.interface_bank_log_action"/>
+    </data>
+</odoo>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+     <!--查询农业银行账户余额-->
+    <t t-name="SearchABCBankAccountBalance">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询农业银行账户余额</h2>
+            <br/>
+            <div style="width:100%; ">
+                <table>
+                    <tr>
+                        <td>银行账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="银行账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>交易币种:</td>
+                        <td class="search_select">
+                            <select name="currency_id" id="currency_id" placeholder="交易币种">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table table-striped table-hover">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SearchABCBankAccountBalanceLine">
+        <tr>
+            <td>账号户名:</td>
+            <td colspan="5" class="right" id="DbAccName"><t t-esc="data.DbAccName"/></td>
+        </tr>
+        <tr>
+            <td>交易账号:</td>
+            <td class="right" id="DbAccNo" colspan="2"><t t-esc="data.DbAccNo"/></td>
+            <td>客户编号:</td>
+            <td class="right" id="costomer_number" colspan="2"><t t-esc="data.costomer_number"/></td>
+        </tr>
+        <tr>
+            <td>余额:</td>
+            <td class="right" id="Bal"><t t-esc="data.Bal"/></td>
+            <td>可用余额:</td>
+            <td class="right" id="AvailBal"><t t-esc="data.AvailBal"/></td>
+            <td>账户性质:</td>
+            <td class="right" id="AccType"><t t-esc="data.AccType"/></td>
+        </tr>
+        <tr>
+            <td>账户状态:</td>
+            <td class="right" id="AccSts"><t t-esc="data.AccSts"/></td>
+            <td>上日余额:</td>
+            <td class="right" id="LastBal"><t t-esc="data.LastBal"/></td>
+            <td>人工冻结金额:</td>
+            <td class="right" id="FrzAmt"><t t-esc="data.FrzAmt"/></td>
+        </tr>
+        <tr>
+            <td>上日可用余额:</td>
+            <td class="right" id="LastAvailBal"><t t-esc="data.LastAvailBal"/></td>
+            <td>自动冻结金额:</td>
+            <td class="right" id="FrzBal"><t t-esc="data.FrzBal"/></td>
+            <td>限制可用额:</td>
+            <td class="right" id="ValUDLmt"><t t-esc="data.ValUDLmt"/></td>
+        </tr>
+        <tr>
+            <td>当月可用额:</td>
+            <td class="right" id="ValMonthLmt"><t t-esc="data.ValMonthLmt"/></td>
+            <td>当日可用额:</td>
+            <td class="right" id="ValDayLmt"><t t-esc="data.ValDayLmt"/></td>
+            <td colspan="2"></td>
+        </tr>
+    </t>
+
+
+    <!--查询异常交易结果-->
+    <t t-name="InterfaceAbcAbnormalTransaction">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询异常交易结果</h2>
+            <br/>
+            <div style="width:100%; ">
+                <table>
+                    <tr>
+                        <td>银行账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="银行账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>交易币种:</td>
+                        <td class="search_select">
+                            <select name="currency_id" id="currency_id" placeholder="交易币种">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>单据编号:</td>
+                        <td class="search_select">
+                            <input type="text" name="payment_id" id="payment_id" placeholder="请输入编号或流水号"/>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table table-striped table-hover">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="InterfaceAbcAbnormalTransactionResult">
+        <tr>
+            <td>系统消息:</td>
+            <td class="right" id="RespInfo"><t t-esc="data.RespInfo"/></td>
+        </tr>
+        <tr>
+            <td>付款账号:</td>
+            <td class="right" id="DbAccNo"><t t-esc="data.DbAccNo"/></td>
+        </tr>
+        <tr>
+            <td>付款单流水号:</td>
+            <td class="right" id="CmeSeqNo"><t t-esc="data.CmeSeqNo"/></td>
+        </tr>
+        <tr>
+            <td>流水详细信息:</td>
+            <td class="right" id="RespPrvData"><t t-esc="data.RespPrvData"/></td>
+        </tr>
+        <tr>
+           <td>流水的状态信息:</td>
+            <td class="right" id="Postscript"><t t-esc="data.Postscript"/></td>
+        </tr>
+    </t>
+
+
+    <!--查询账户支付限额-->
+    <t t-name="SearchAbcBankPaymentLimit">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询账户支付限额</h2>
+            <br/>
+            <div style="width:100%; ">
+                <table>
+                    <tr>
+                        <td>银行账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="银行账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>交易币种:</td>
+                        <td class="search_select">
+                            <select name="currency_id" id="currency_id" placeholder="交易币种">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SearchAbcBankPaymentLimitResult">
+        <tr>
+            <td>结算账户户名:</td>
+            <td colspan="3" class="right" id="DbAccName"><t t-esc="data.DbAccName"/></td>
+            <td>交易账号:</td>
+            <td colspan="3" class="right" id="DbAccNo"><t t-esc="data.DbAccNo"/></td>
+        </tr>
+        <tr>
+            <td>不定期支出限额:</td>
+            <td class="right" id="AperPayLmt"><t t-esc="data.AperPayLmt"/></td>
+            <td>不定期取现限额:</td>
+            <td class="right" id="AperCashLmt"><t t-esc="data.AperCashLmt"/></td>
+            <td>不定期终止日期:</td>
+            <td class="right" id="EndDate"><t t-esc="data.EndDate"/></td>
+            <td>不定期起始日期:</td>
+            <td class="right" id="StartDate"><t t-esc="data.StartDate"/></td>
+        </tr>
+        <tr>
+            <td>月支出限额:</td>
+            <td class="right" id="MonPayLmt"><t t-esc="data.MonPayLmt"/></td>
+            <td>月取现限额:</td>
+            <td class="right" id="MonCashLmt"><t t-esc="data.MonCashLmt"/></td>
+            <td>日支出限额:</td>
+            <td class="right" id="DayPayLmt"><t t-esc="data.DayPayLmt"/></td>
+            <td>日取现限额:</td>
+            <td class="right" id="DayCashLmt"><t t-esc="data.DayCashLmt"/></td>
+        </tr>
+        <tr>
+            <td>单笔支出限额:</td>
+            <td class="right" id="SglPayLmt"><t t-esc="data.SglPayLmt"/></td>
+            <td>单笔取现限额:</td>
+            <td class="right" id="SglCashLmt"><t t-esc="data.SglCashLmt"/></td>
+            <td></td>
+            <td class="right"></td>
+            <td></td>
+            <td class="right"></td>
+        </tr>
+    </t>
+
+
+    <!--校验卡号、户名一致性-->
+    <t t-name="SearchAbcAccountConsistent">
+        <div class="container-fluid" style="background: white;">
+            <h2>校验卡号、户名一致性</h2>
+            <br/>
+            <div style="width:100%;">
+                <table>
+                    <tr>
+                        <td>银行账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="银行账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>支付金额:</td>
+                        <td class="search_select">
+                            <input name="Amt" id="Amt" type="number" placeholder="要查询的金额"/>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>借记卡号:</td>
+                        <td class="search_select">
+                            <input name="DbAccNo" id="DbAccNo" type="text" placeholder="请输入要查询的银行卡号"/>
+                        </td>
+                        <td>借记户名:</td>
+                        <td class="search_select">
+                            <input name="DbAccName" id="DbAccName" type="text" placeholder="请输入要查询的银行卡户主姓名"/>
+                        </td>
+                        <td colspan="1">
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="SearchAbcAccountConsistentResult">
+        <tr>
+            <td>帐户名称:</td>
+            <td colspan="2" class="right" id="Name"><t t-esc="data.Name"/></td>
+            <td>帐户状态:</td>
+            <td colspan="2" class="right" id="AccStatus"><t t-esc="data.AccStatus"/></td>
+        </tr>
+        <tr>
+            <td>客户号:</td>
+            <td class="right" id="CustomNo"><t t-esc="data.CustomNo"/></td>
+            <td>省市代码:</td>
+            <td class="right" id="ProCod"><t t-esc="data.ProCod"/></td>
+            <td>额度分配行号:</td>
+            <td class="right" id="BrNo"><t t-esc="data.BrNo"/></td>
+        </tr>
+    </t>
+
+
+    <!--查询工资处理结果-->
+    <t t-name="InterfaceABCSearchWagesResult">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询工资处理结果</h2>
+            <br/>
+            <div style="width:100%;">
+                <table>
+                    <tr>
+                        <td>交易账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="交易账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>代发工资流水号:</td>
+                        <td class="search_select">
+                           <input name="form_code" id="form_code" type="text" placeholder="代发工资流水号"/>
+                        </td>
+                        <td colspan="1">
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="InterfaceABCSearchWagesResultLine">
+        <tr>
+            <th>序号</th>
+            <th>状态</th>
+            <th>账号</th>
+            <th>户名</th>
+            <th>金额</th>
+            <th>备注</th>
+            <th>错误信息</th>
+        </tr>
+        <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.line1"/></td>
+                <td><t t-esc="line.line2"/></td>
+                <td><t t-esc="line.line3"/></td>
+                <td><t t-esc="line.line4"/></td>
+                <td><t t-esc="line.line5"/></td>
+                <td><t t-esc="line.line6"/></td>
+                <td><t t-esc="line.line7"/></td>
+            </tr>
+        </t>
+    </t>
+
+
+    <!--查询代发工资文件明细-->
+    <t t-name="InterfaceABCSearchFileDetail">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询代发工资文件明细</h2>
+            <br/>
+            <div style="width:100%;">
+                <table>
+                    <tr>
+                        <td>交易账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="交易账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>代发工资流水号:</td>
+                        <td class="search_select">
+                           <input name="form_code" id="form_code" type="text" placeholder="代发工资流水号"/>
+                        </td>
+                        <td colspan="1">
+                            <button class="btn btn-sm btn btn-primary" id="search">开始查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="InterfaceABCSearchFileDetailLine">
+        <tr>
+            <th>序号</th>
+            <th>状态</th>
+            <th>账号</th>
+            <th>户名</th>
+            <th>金额</th>
+            <th>备注</th>
+            <th>错误信息</th>
+        </tr>
+        <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.line1"/></td>
+                <td><t t-esc="line.line2"/></td>
+                <td><t t-esc="line.line3"/></td>
+                <td><t t-esc="line.line4"/></td>
+                <td><t t-esc="line.line5"/></td>
+                <td><t t-esc="line.line6"/></td>
+                <td><t t-esc="line.line7"/></td>
+            </tr>
+        </t>
+    </t>
+
+
+    <!--查询联行行号-->
+    <t t-name="InterfaceAbcSearchBankNumber">
+        <div class="container-fluid" style="background: white;">
+            <h2>查询联行行号</h2>
+            <br/>
+            <div style="width:100%;">
+                <table>
+                    <tr>
+                        <td>交易账户:</td>
+                        <td class="search_select">
+                            <select name="account_id" id="account_id" placeholder="交易账户">
+                               <option value=""></option>
+                            </select>
+                        </td>
+                        <td>他行行别:</td>
+                        <td class="search_select">
+                           <select name="bank_id" id="bank_id" placeholder="他行行别">
+                               <option value=""></option>
+                           </select>
+                        </td>
+                        <td>查询银行名:</td>
+                        <td class="search_select">
+                           <input name="bank_name" id="bank_name" type="text" placeholder="支持单字串模糊查询,例如: 中国人民银行成都"/>
+                        </td>
+                        <td colspan="1">
+                            <button class="btn btn-sm btn btn-primary" id="search">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <hr/>
+            <div>
+                <h3 class="excel_title" id="excel_title">等待查询</h3>
+                <table class="table">
+                    <tbody id="search_result"></tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="InterfaceAbcSearchBankNumberLine">
+        <tr>
+            <th>银行行号</th>
+            <th>银行名称</th>
+        </tr>
+        <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.BankNo"/></td>
+                <td><t t-esc="line.BankName"/></td>
+            </tr>
+        </t>
+    </t>
+
+
+</templates>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="InterfaceBankSearchPayment">
+		<div class="container-fluid" style="background: white;">
+            <div class="row-fluid oe_mrp_mingda_report">
+                <div class="span12">
+                    <div class="row-fluid lyrow">
+                        <div class="span2" style="float:right;">
+                            <button class="btn btn-sm btn btn-primary" id="search">查询银行处理结果</button>
+                        </div>
+                        <div class="span3">
+                            付款单编号:<input id="payment_from_number" class="input-medium search-query" type="text"
+                                         placeholder="请输入付款单编号,如果多个编号则用英文逗号','隔开！如:1111,2222,3333" />
+                        </div>
+                        <hr />
+                        <h3 class="text-center" id="excel_title">
+                            请先输入付款单编号再点击查询...
+                        </h3>
+                        <h3 id="excel_title_mes" class="text-center alert alert-success">
+                            提示：本查询界面仅支持查询通过财企通付款的单据.
+                        </h3>
+                        <table class="table table-bordered table-condensed">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+	<t t-name="InterfaceBankSearchPaymentResult">
+        <tr>
+            <th>单笔唯一标识</th><th>状态码</th><th>结果码</th><th>银行系统返回结果信息</th>
+        </tr>
+        <t t-foreach="data" t-as="line">
+            <tr>
+                <td><t t-esc="line.payment_from_code"/></td>
+                <td><t t-esc="line.state_code"/></td>
+                <td><t t-esc="line.result_code"/></td>
+                <td><t t-esc="line.message"/></td>
+            </tr>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="interface_bank_bank_currency_cny" model="bank.currency">
+			<field name="name">人民币</field>
+			<field name="code">CNY</field>
+			<field name="number">01</field>
+		</record>
+
+		<record id="interface_bank_bank_currency_fuhe" model="bank.currency">
+			<field name="name">复合币种</field>
+			<field name="code">00</field>
+			<field name="number">00</field>
+		</record>
+
+		<record id="interface_bank_bank_currency_GBP" model="bank.currency">
+			<field name="name">英镑</field>
+			<field name="code">GBP</field>
+			<field name="number">12</field>
+		</record>
+        <record id="interface_bank_bank_currency_HKD" model="bank.currency">
+			<field name="name">港币</field>
+			<field name="code">HKD</field>
+			<field name="number">13</field>
+		</record>
+        <record id="interface_bank_bank_currency_USD" model="bank.currency">
+			<field name="name">美元</field>
+			<field name="code">USD</field>
+			<field name="number">14</field>
+		</record>
+        <record id="interface_bank_bank_currency_CHF" model="bank.currency">
+			<field name="name">瑞士法郎</field>
+			<field name="code">CHF</field>
+			<field name="number">15</field>
+		</record>
+        <record id="interface_bank_bank_currency_JPY" model="bank.currency">
+			<field name="name">日元</field>
+			<field name="code">JPY</field>
+			<field name="number">27</field>
+		</record>
+        <record id="interface_bank_bank_currency_MOP" model="bank.currency">
+			<field name="name">澳门币</field>
+			<field name="code">MOP</field>
+			<field name="number">81</field>
+		</record>
+
+    </data>
+</odoo>

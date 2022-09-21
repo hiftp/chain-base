@@ -1,0 +1,85 @@
+.o_form_view .o_group.o_inner_group.oe_subtotal_footer.o_inner_group {
+	width: 30% !important;
+}
+
+.oe_mrp_mingda_report {
+	display: block;
+	padding-top: 10px;
+}
+
+.oe_mrp_mingda_report .row-fluid {
+	position: relative;
+}
+
+.oe_mrp_mingda_report .span4 {
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+	width: 10%;
+}
+
+.oe_mrp_mingda_report h3 {
+	font-size: 24.5px;
+	margin: 10px 0;
+	font-family: inherit;
+	font-weight: bold;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	text-rendering: optimizelegibility
+}
+
+.oe_mrp_mingda_report input.search-query {
+	padding-right: 14px;
+	padding-left: 14px;
+	margin-bottom: 0;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1px solid #cccccc;
+	width: 80%;
+	display: inline-block;
+}
+
+.oe_mrp_mingda_report table.table-bordered {
+	border: 1px solid #dddddd;
+	border-left: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.oe_mrp_mingda_report table thead th {
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.oe_mrp_mingda_report table tbody td.line_field {
+	text-align: right;
+	font-size: 14px;
+}
+
+.oe_mrp_mingda_report select {
+	width: 80%;
+	border-radius: 15px;
+	display: inline-block;
+	padding-right: 14px;
+	padding-left: 14px;
+}
+
+.my-input{
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+	width: 20%;
+}
+
+.my-input-button{
+	display: inline-block;
+	margin-bottom: 0;
+	vertical-align: middle;
+}

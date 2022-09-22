@@ -8,13 +8,17 @@
 # Copyright (C) 2018-11  海南贞人 https://www.odoochain.cn
 
 {
-    'name': '2021最新中国企业会计表.Latest Chinese Accounting.',
-    'version': '14.21.11.09',
+    'name': '2022最新中国企业会计表.Latest Chinese Accounting.',
+    'version': '15.21.11.11',
     'author': 'odooChain.cn',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odoochain.cn',
     'license': 'LGPL-3',
     'sequence': 12,
+    "excludes": ["l10n_cn",
+                 "l10n_cn_chain",
+                 "l10n_cn_standard_latest",
+                 ],
     'summary': """    
     Multi level account chart. Chinese enhance. Focus on account chart.
     Add account chart group data. Account group, Chinese tax.
@@ -22,8 +26,8 @@
     """,
     'description': """
     
-    最新中国化财务，主要针对标准会计科目表作了优化。
-    1. 2021最新会计科目表，处理营改增后会计科目调整。更新至最新税率。odoo 14专用。
+    最新中国化财务，主要针对标准会计科目表作了优化。默认为用友科目表格式。
+    1. 2022最新会计科目表，处理营改增后会计科目调整。更新至最新税率。odoo 15专用。
     2. 将菜单中设置为"财务"。
     3. 补充分类及标签信息。
     4. 更新税信息。
@@ -50,7 +54,7 @@
     """,
     'depends': [
         'account',
-        'app_odoo_customize',
+        # 'app_odoo_customize',
     ],
     'images': ['static/description/banner.png'],
     'data': [

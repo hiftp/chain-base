@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--
+    Copyright (C) 2017-now  元植管理顧問 chingyun@yuanchih-consult.com    < PM and LTS >
+
+    依台灣財務報表使用習慣將財務報表階層ref
+-->
+    <data noupdate="0">
+        <record id="account.999_draft_net_income" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.4000_sales" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.5000_cogs" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.5900_gross_profit" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+            <field name="account_report_id" ref="account.account_financial_report_33" />
+        </record>
+        <record id="account.6000_operating_expenses" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.6900_operating_income" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+            <field name="account_report_id" ref="account.account_financial_report_34" />
+        </record>
+        <record id="account.7000_non_op_income" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.7500_non_op_exp" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.7900_Pre_tax_profit" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+            <field name="account_report_id" ref="account.account_financial_report_35" />
+        </record>
+        <record id="account.7950_income_tax_expense" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+        </record>
+        <record id="account.8500_net_income" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_income_statement" />
+            <field name="account_report_id" ref="account.999_draft_net_income" />
+        </record>
+        <record id="account.10xx_current_assets" model="account.financial.report">
+            <field name="parent_id" ref="account.a_assets" />
+        </record>
+        <record id="account.15xx_non_current_assets" model="account.financial.report">
+            <field name="parent_id" ref="account.a_assets" />
+        </record>
+        <record id="account.20xx_current_liabilities" model="account.financial.report">
+            <field name="parent_id" ref="account.l_liabilities" />
+        </record>
+        <record id="account.25xx_non_current_liabilities" model="account.financial.report">
+            <field name="parent_id" ref="account.l_liabilities" />
+        </record>
+        <record id="account.30xx_equity" model="account.financial.report">
+            <field name="parent_id" ref="account.e_equity" />
+        </record>
+        <record id="account.3990_net_income" model="account.financial.report">
+            <field name="parent_id" ref="account.e_equity" />
+            <field name="account_report_id" ref="account.account_financial_report_36" />
+        </record>
+        <record id="account.a_assets" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+        </record>
+        <record id="account.l_liabilities" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+        </record>
+        <record id="account.e_equity" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+        </record>
+        <record id="account.account_financial_report_31" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+            <field name="account_report_id" ref="account.a_assets" />
+        </record>
+        <record id="account.account_financial_report_32" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+            <field name="account_report_id" ref="account.l_liabilities" />
+        </record>
+        <record id="account.account_financial_report_33" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.account_financial_report_34" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.account_financial_report_35" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.account_financial_report_36" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.account_financial_report_37" model="account.financial.report">
+            <field name="parent_id" ref="account.account_financial_report_36" />
+            <field name="account_report_id" ref="account.999_draft_net_income" />
+        </record>
+        <record id="account.account_financial_report_38" model="account.financial.report">
+            <field name="parent_id" ref="account.account_financial_report_36" />
+        </record>
+        <record id="account.account_financial_report_40" model="account.financial.report">
+            <field name="parent_id" ref="account.taiwan_balance_sheet" />
+            <field name="account_report_id" ref="account.account_financial_report_41" />
+        </record>
+        <record id="account.account_financial_report_41" model="account.financial.report">
+            <field name="parent_id" ref="account.999_draft_net_income_view" />
+        </record>
+        <record id="account.account_financial_report_42" model="account.financial.report">
+            <field name="parent_id" ref="account.account_financial_report_41" />
+            <field name="account_report_id" ref="account.e_equity" />
+        </record>
+        <record id="account.account_financial_report_43" model="account.financial.report">
+            <field name="parent_id" ref="account.account_financial_report_41" />
+            <field name="account_report_id" ref="account.l_liabilities" />
+        </record>
+        <record id="accounting_pdf_reports.action_account_report_bs" model="ir.actions.act_window">
+            <field name="name">Balance Sheet</field>
+            <field name="res_model">accounting.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="accounting_pdf_reports.accounting_report_view"/>
+            <field name="target">new</field>
+            <field name="context" eval="{'default_account_report_id':ref('account.taiwan_balance_sheet')}"/>
+        </record>
+        <record id="accounting_pdf_reports.action_account_report_pl" model="ir.actions.act_window">
+            <field name="name">Profit and Loss</field>
+            <field name="res_model">accounting.report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="accounting_pdf_reports.accounting_report_view"/>
+            <field name="target">new</field>
+            <field name="context" eval="{'default_account_report_id':ref('account.taiwan_income_statement')}"/>
+        </record>
+        
+     </data>
+</odoo>

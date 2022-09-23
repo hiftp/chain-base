@@ -34,9 +34,6 @@ https://github.com/Odoo-Taiwan/l10n_tw_cn
 報表結構呈現範例：
 <img src="general_ledger_filter.png">
 
-
-
-
 *特別感謝：
 ★技術支援：新北工具人
 

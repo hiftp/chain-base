@@ -5,7 +5,7 @@
     'version': '15.22.03.15',
     'author': 'odoochain.cn',
     'category': 'Productivity',
-    'website': 'https://www.sunpop.cn',
+    'website': 'https://www.odoochain.cn',
     'license': 'LGPL-3',
     'sequence': 2,
     'images': ['static/description/banner.gif'],

@@ -23,7 +23,8 @@ class ResConfigSettings(models.TransientModel):
     app_show_enterprise = fields.Boolean('Show Enterprise Tag', help="Uncheck to hide the Enterprise tag")
     app_show_share = fields.Boolean('Show Share Dashboard', help="Uncheck to hide the Odoo Share Dashboard")
     app_show_poweredby = fields.Boolean('Show Powered by Odoo', help="Uncheck to hide the Powered by text")
-    group_show_author_in_apps = fields.Boolean(string="Show Author in Apps Dashboard", implied_group='app_odoo_customize.group_show_author_in_apps',
+    group_show_author_in_apps = fields.Boolean(string="Show Author in Apps Dashboard",
+                                               implied_group='chain_odoo_customize.group_show_author_in_apps',
                                                help="Uncheck to Hide Author and Website in Apps Dashboard")
     module_odoo_referral = fields.Boolean('Show Odoo Referral', help="Uncheck to remove the Odoo Referral")
 
@@ -52,13 +53,13 @@ class ResConfigSettings(models.TransientModel):
         app_show_poweredby = True if ir_config.get_param('app_show_poweredby') == "True" else False
 
         app_documentation_url = ir_config.get_param('app_documentation_url',
-                                                    default='https://www.sunpop.cn/documentation/user/12.0/en/index.html')
+                                                    default='https://www.odoochain.cn/documentation/user/12.0/en/index.html')
         app_documentation_dev_url = ir_config.get_param('app_documentation_dev_url',
-                                                        default='https://www.sunpop.cn/documentation/12.0/index.html')
-        app_support_url = ir_config.get_param('app_support_url', default='https://www.sunpop.cn/trial/')
+                                                        default='https://www.odoochain.cn/documentation/12.0/index.html')
+        app_support_url = ir_config.get_param('app_support_url', default='https://www.odoochain.cn/trial/')
         app_account_title = ir_config.get_param('app_account_title', default='My Online Account')
-        app_account_url = ir_config.get_param('app_account_url', default='https://www.sunpop.cn/my-account/')
-        app_enterprise_url = ir_config.get_param('app_enterprise_url', default='https://www.sunpop.cn')
+        app_account_url = ir_config.get_param('app_account_url', default='https://www.odoochain.cn/my-account/')
+        app_enterprise_url = ir_config.get_param('app_enterprise_url', default='https://www.odoochain.cn')
         app_ribbon_name = ir_config.get_param('app_ribbon_name', default='*Sunpop.cn')
         res.update(
             app_system_name=app_system_name,
@@ -97,13 +98,13 @@ class ResConfigSettings(models.TransientModel):
         ir_config.set_param("app_show_poweredby", self.app_show_poweredby or "False")
 
         ir_config.set_param("app_documentation_url",
-                            self.app_documentation_url or "https://www.sunpop.cn/documentation/user/12.0/en/index.html")
+                            self.app_documentation_url or "https://www.odoochain.cn/documentation/user/12.0/en/index.html")
         ir_config.set_param("app_documentation_dev_url",
-                            self.app_documentation_dev_url or "https://www.sunpop.cn/documentation/12.0/index.html")
-        ir_config.set_param("app_support_url", self.app_support_url or "https://www.sunpop.cn/trial/")
+                            self.app_documentation_dev_url or "https://www.odoochain.cn/documentation/12.0/index.html")
+        ir_config.set_param("app_support_url", self.app_support_url or "https://www.odoochain.cn/trial/")
         ir_config.set_param("app_account_title", self.app_account_title or "My Online Account")
-        ir_config.set_param("app_account_url", self.app_account_url or "https://www.sunpop.cn/my-account/")
-        ir_config.set_param("app_enterprise_url", self.app_enterprise_url or "https://www.sunpop.cn")
+        ir_config.set_param("app_account_url", self.app_account_url or "https://www.odoochain.cn/my-account/")
+        ir_config.set_param("app_enterprise_url", self.app_enterprise_url or "https://www.odoochain.cn")
         ir_config.set_param("app_ribbon_name", self.app_ribbon_name or "*Sunpop.cn")
 
     def set_module_url(self):

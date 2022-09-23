@@ -1,0 +1,19 @@
+<odoo>
+	<data>
+
+		<!-- Purchase order form view add single tax field -->
+		<record model="ir.ui.view" id="purchase_single_tax_form_view">
+			<field name="name">Purchase order form view - Single tax</field>
+			<field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='order_line']//tree//field[@name='taxes_id']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+				<xpath expr="//field[@name='company_id']" position="after">
+					<field name="single_tax" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

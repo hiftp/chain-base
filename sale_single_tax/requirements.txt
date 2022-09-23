@@ -1,0 +1,2 @@
+openerp>=13.0
+openerp<14.0

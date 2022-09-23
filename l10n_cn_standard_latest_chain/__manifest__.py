@@ -5,10 +5,10 @@
 # Copyright (C) 2012-2012 南京盈通 ccdos@intoerp.com <small business chart>
 # Copyright (C) 2008-now  开阖软件 jeff@osbzr.com    < PM and LTS >
 # Copyright (C) 2017-now  jeffery9@gmail.com
-# Copyright (C) 2018-11  海南贞人 https://www.odoochain.cn
+# Copyright (C) 2020-now  海南贞人 https://www.odoochain.cn
 
 {
-    'name': '2022最新中国企业会计表.Latest Chinese Accounting.',
+    'name': '2022中国企业会计表.Latest Chinese Accounting.',
     'version': '15.21.11.11',
     'author': 'odooChain.cn',
     'category': 'Accounting/Localizations/Account Charts',

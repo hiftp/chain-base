@@ -17,7 +17,7 @@ msgstr ""
 
 #. module: l10n_cn_standard_latest_chain
 #: model:account.chart.template,name:l10n_cn_standard_latest_chain.l10n_chart_china_standard_business_latest
-msgid "2018中国企业会计科目表"
+msgid "2022中国企业会计科目表"
 msgstr ""
 
 #. module: l10n_cn_standard_latest_chain

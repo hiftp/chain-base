@@ -8,7 +8,7 @@
 # Copyright (C) 2020-now  海南贞人 https://www.odoochain.cn
 
 {
-    'name': '2022中国企业会计表.Latest Chinese Accounting.',
+    'name': '2022中国企业会计表.Latest Chinese Accounting',
     'version': '15.21.11.11',
     'author': 'odooChain.cn',
     'category': 'Accounting/Localizations/Account Charts',

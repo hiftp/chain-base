@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+<menuitem name="EBS Finance" id="nbet_root_menu" web_icon="nbet,static/src/img/icon.png"/>
+
+    <menuitem name="Payments " id="nbet_payment_menu" parent="nbet_root_menu"
+              sequence="2" />
+        <menuitem name="Payment Voucher" id="nbet_payment_voucher_menu" parent="nbet_payment_menu"
+              sequence="6" action="action_nbet_payment_voucher"/>
+        <menuitem name="Payment Mandate" id="nbet_payment_mandate_menu" parent="nbet_payment_menu"
+              sequence="7" action="action_nbet_payment_mandate"/>
+        <menuitem name="Recurring Payment" id="nbet_payment_recurring_menu" parent="nbet_payment_menu"
+              sequence="8"/>
+            <menuitem name="Recurring Payment" id="nbet_payment_recurring_child_menu" parent="nbet_payment_recurring_menu"
+              sequence="1" action="recurring_payment_12.action_account_recurring_payment"/>
+            <menuitem name="Payment Mandate" id="nbet_recurring_template_menu" parent="nbet_payment_recurring_menu"
+              sequence="2" action="recurring_payment_12.action_account_recurring_template"/>
+    <menuitem name="Bills to post" id="nbet_bills_post_menu" parent="nbet_payment_menu"
+              sequence="8" action="account.action_vendor_bill_template"/>
+    <menuitem name="DISCO Payments" id="nbet_payments_menu" parent="nbet_payment_menu"
+              sequence="9" action="account.action_account_payments"/>
+    <menuitem name="Budget" id="nbet_budget_menu" parent="nbet_root_menu"
+              sequence="3" />
+    <menuitem name="Assets" id="nbet_asset_menu" parent="nbet_root_menu"
+              sequence="4" />
+        <menuitem name="Asset Register" id="nbet_asset_reg_menu" parent="nbet_asset_menu"
+              sequence="2" action= "account_asset.action_account_asset_asset_form"/>
+<!--        <menuitem name="Budgets" id="nbet_budgets_menu" parent="nbet_budget_menu"-->
+<!--              sequence="8" action="om_account_budget.act_crossovered_budget_view"/>-->
+    <menuitem name="Final Accounts" id="nbet_final_account_menu" parent="nbet_root_menu"
+              sequence="5" />
+        <menuitem name="Balance Sheet" id="nbet_balance_sheet_menu" parent="nbet_final_account_menu"
+              sequence="2" action="accounting_pdf_reports.action_account_report_bs"/>
+        <menuitem name="Trial Balance" id="nbet_trial_balance_menu" parent="nbet_final_account_menu"
+              sequence="3" action="accounting_pdf_reports.action_account_balance_menu"/>
+        <menuitem name="Profit and Loss" id="nbet_profit_loss_menu" parent="nbet_final_account_menu"
+              sequence="4" action="accounting_pdf_reports.action_account_report_pl"/>
+        <menuitem name="Budgets" id="nbet_profit_budget_menu" parent="nbet_budget_menu"
+              sequence="5" action="om_account_budget.act_crossovered_budget_view"/>
+    <menuitem name="Assets" id="nbet_assets_account_menu" parent="nbet_root_menu"
+              sequence="6" />
+
+    <menuitem name="Reports" id="nbet_report_menu" parent="nbet_root_menu"
+              sequence="4" />
+    <menuitem name="Dynamic Reports" id="nbet_disco_invoicing_menu" parent="nbet_report_menu"
+              sequence="6" action="om_dynamic_reports.action_dynamic_reorts"/>
+        <menuitem name="Standard Report" id="nbet_standard_report_menu" parent="nbet_report_menu"
+                  sequence="5" action="accounting_pdf_reports.action_account_standard_report" />
+    <menuitem name="Contacts" id="nbet_disco_contacts_menu" parent="nbet_report_menu"
+              sequence="7" />
+        <menuitem name="Discos" id="nbet_discos_contacts_menu" parent="nbet_disco_contacts_menu"
+              sequence="7" action="ebs_ocma.action_disco_customer_form"/>
+        <menuitem name="Gencs" id="nbet_gencos_contacts_menu" parent="nbet_disco_contacts_menu"
+              sequence="8" action="ebs_ocma.action_genco_customer_form"/>
+    <menuitem name="Editable Cashbook" id="nbet_edit_cash_menu" parent="nbet_report_menu"
+              sequence="6" action="cash_dynamic_report"/>
+    <menuitem name="Invoices Analysis" id="nbet_invoices_menu" parent="nbet_report_menu" sequence="7" action="account.action_account_invoice_report_all"/>
+    <menuitem name="Budget Analysis test" id="nbet_budgets_menu" parent="nbet_report_menu" sequence="8" action="account_budget.act_crossovered_budget_lines_view"/>
+    <menuitem name="Assets" id="nbet_assets_menu" parent="nbet_report_menu" sequence="9" action="account_asset.action_asset_asset_report"/>
+
+    <menuitem name="Settings" id="nbet_setting_menu" parent="nbet_root_menu"
+              sequence="5" />
+
+    <menuitem name="Voucher types" id="nbet_voucher_type_menu" parent="nbet_setting_menu" sequence="7" action="action_nbet_voucher_type"/>
+    <menuitem name="Chart of Accounts" id="nbet_chart_of_accounts_menu" parent="nbet_setting_menu" sequence="8" action="account.action_account_form"/>
+    <menuitem name="Financial Reports" id="nbet_financial_accounts_menu" parent="nbet_setting_menu" sequence="16" />
+        <menuitem name="Account Reports" id="nbet_report_accounts_menu" parent="nbet_financial_accounts_menu" action="accounting_pdf_reports.action_account_financial_report_tree" sequence="16" />
+
+    <menuitem name="Taxes" id="nbet_taxes_menu" parent="nbet_setting_menu" sequence="9" action="account.action_tax_form"/>
+    <menuitem name="Bank Accounts" id="bank_account_menu" parent="nbet_setting_menu" sequence="10" action="account.action_account_bank_journal_form"/>
+    <menuitem name="Journals" id="nbet_journal_menu" parent="nbet_setting_menu" sequence="11" action="account.action_account_journal_form"/>
+    <menuitem name="Payment Terms" id="nbet_payment_terms_menu" parent="nbet_setting_menu" sequence="12" action="account.action_payment_term_form"/>
+    <menuitem name="Asset Types" id="nbet_asset_type_menu" parent="nbet_setting_menu" sequence="13" action="account_asset.action_account_asset_asset_list_normal_purchase"/>
+    <menuitem name="Analytic Accounts" id="nbet_analytic_accounts_menu" parent="nbet_setting_menu" sequence="14" action="analytic.action_account_analytic_account_form"/>
+    <menuitem name="Analytic Account Group" id="nbet_analytic_group_menu" parent="nbet_setting_menu" sequence="15" action="analytic.account_analytic_group_action"/>
+
+<!--    <menuitem name="GENCO Invoice Verification" id="nbet_genco_invoicing_menu" parent="nbet_ocma_menu"-->
+<!--              sequence="6" action="action_nbet_genco_invoicing"/>-->
+
+
+</odoo>

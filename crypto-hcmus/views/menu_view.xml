@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_crypto" name="Mã hóa và ứng dụng" sequence="19"/>
+</odoo>

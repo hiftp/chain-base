@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_encrypt_decrypt_form" model="ir.ui.view">
+        <field name="name">view.encrypt.decrypt.form</field>
+        <field name="model">encrypt.decrypt</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="action" required="1"/>
+                            <field name="mode" required="1"/>
+                            <field name="key" required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="input_text"/>
+                    </group>
+                    <group>
+                        <group>
+                            <button string="Encrypt" type="object" name="encrypt_text" class="oe_highlight"
+                                attrs="{'invisible':[('action', '=', 'decrypt')]}"/>
+                            <button string="Decrypt" type="object" name="decrypt_text" class="oe_highlight"
+                                attrs="{'invisible':[('action', '=', 'encrypt')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="output_text" readonly="0"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_encrypt_decrypt_tree" model="ir.ui.view">
+        <field name="name">view.encrypt.decrypt.tree</field>
+        <field name="model">encrypt.decrypt</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="mode" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_encrypt_decrypt" model="ir.actions.act_window">
+        <field name="name">Encrypt-Decrypt</field>
+        <field name="res_model">encrypt.decrypt</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_encrypt_decrypt" name="Encrypt-Decrypt"
+        action="action_encrypt_decrypt" 
+        parent="menu_crypto"/>
+
+</odoo>

@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+
+    <!-- root -->
+
+    <menuitem 
+      name="Cancer Detector" 
+      id="cancer_detection.menu_root"
+    /> 
+
+    <!-- action -->
+
+    <record id="cancer_detection.scans_action_window" model="ir.actions.act_window">
+      <field name="name">partner Scans</field>
+      <field name="res_model">partner.scan</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- nav-items -->
+
+    <menuitem 
+      name="Scans" 
+      id="cancer_detection.scans_menu" 
+      parent="cancer_detection.menu_root" 
+      action="cancer_detection.scans_action_window"
+    />
+
+  </data>
+</odoo>

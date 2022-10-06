@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_statistic_vi_form" model="ir.ui.view">
+        <field name="name">view.statisticter.vi.form</field>
+        <field name="model">statisticter.vi</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Compute" type="object" name="compute_result" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group>
+                        <field name="description" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="table" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Contract tree view -->
+    <record id="view_statistic_vi_tree" model="ir.ui.view">
+        <field name="name">view.statisticter.vi.tree</field>
+        <field name="model">statisticter.vi</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_statistic_vi" model="ir.actions.act_window">
+        <field name="name">Statisticter</field>
+        <field name="res_model">statisticter.vi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_statistic_vi" name="Statisticter"
+        action="action_statistic_vi" 
+        parent="menu_crypto"/>
+
+</odoo>

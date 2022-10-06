@@ -16,11 +16,15 @@ Includes the following data for the Chinese localization
 City Data/城市数据
 
     """,
-    'depends': ['l10n_cn_chain',
-                'base_address_city',
-                ],
+    'depends': [
+        # 'l10n_cn_chain',
+        'l10n_cn_standard_latest_chain',
+        'base_address_city',
+    ],
     'data': [
         'data/res_city_data.xml',
+        # 'data/res.city.csv',
+        'views/res_partner_views.xml',
     ],
     'license': 'LGPL-3',
 }

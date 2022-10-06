@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+    
+        <record id="res_partner_form" model="ir.ui.view">
+            <field name="name">res_partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="replace"></xpath>
+                <xpath expr="//field[@name='website']" position="replace"></xpath>
+                <xpath expr="//field[@name='title']" position="replace"></xpath>
+                <xpath expr="//field[@name='category_id']" position="replace"></xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="replace"></xpath>
+                <xpath expr="//page[1]" position="replace"></xpath>
+                <xpath expr="//field[@name='function']" position="after">
+                    <title for='gender'/>
+                    <field name="gender"/>
+                    <title for='age'/>
+                    <field name="age"/>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+</odoo>

@@ -1,0 +1,260 @@
+<odoo>
+  <data>
+
+      <record id="view_payment_voucher_form" model="ir.ui.view">
+        <field name="name">paymentvoucher.form</field>
+        <field name="model">payment_voucher.ebs</field>
+        <field name="arch" type="xml">
+            <form string="Payment Voucher" duplicate="0">
+                <header>
+                    <button name="payment_voucher_request" type="object" string="Submit Voucher" class="oe_highlight" states="draft" groups="nbet.cash_accountant_group"/>
+                    <button name="payment_voucher_prepare" type="object" string="FC Sign off " class="oe_highlight"  states="Prepared" groups="nbet.financial_controller_group"/>
+                    <button name="voucher_cfo_approve" type="object" string="CFO Approval" class="oe_highlight" states="FC Sign Off" groups="nbet.chief_financial_group"/>
+                    <button name="voucher_advance_reject" type="object" string="Reject Request" class="oe_highlight" states="Prepared" groups="nbet.financial_controller_group"/>
+                    <button name="voucher2_advance_reject" type="object" string="Reject Request" class="oe_highlight" states="FC Sign Off" groups="nbet.chief_financial_group"/>
+                    <button name="payment_voucher_process" type="object" string="Process Voucher" class="oe_highlight" states="CFO Approval" groups="nbet.cash_accountant_group"/>
+
+                    <button name="process" string="Process" class="oe_highlight" states="Fin Approve"  type="object"/>
+
+                <field name="state" widget="statusbar" statusbar_visible="draft,Requested,Approved,Rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                            </button>
+                        </div>
+                    <group>
+                <group>
+
+                    <field name="originating_memo"/>
+                    <field name="payee_type"/>
+                    <field name="payee_id"/>
+                    <field name="bill_to_pay"/>
+
+
+                <field name="voucher_no"/>
+
+                </group>
+                    <group>
+                        <field name="date"/>
+
+                        <field name="amount" widget="monetary"/>
+                        <field name="mode_payment" domain="[('type', 'in', ('bank', 'cash'))]" />
+                        <field name="compute_tax"/>
+                        <field name="payment_id"/>
+                        <field name="journal_no"/>
+                        <field name="total_tax"/>
+
+
+
+                    </group>
+
+                    </group>
+                    <group>
+                        <group>
+                        <field name="narration"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+
+
+                    <notebook>
+                    <page string="Tax Details">
+                        <field name="taxes_applied" attrs="{'invisible': [('compute_tax','!=', True)] }">
+                        </field>
+
+
+
+                    </page>
+
+                    </notebook>
+
+
+
+                </sheet>
+                <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+      </record>
+      <record id="view_voucher_details_tree" model="ir.ui.view">
+            <field name="name">voucher.details.tree</field>
+            <field name="model">voucher_details.ebs</field>
+            <field name="arch" type="xml">
+                <tree string="Voucher Details" create="true" delete="true" editable="bottom">
+
+
+                    <field name="payee_type" />
+                    <field name="payee_id" />
+                    <field name="details"/>
+                    <field name="rate"/>
+
+
+                </tree>
+            </field>
+        </record>
+      <record id="view_payment_voucher_kanban" model="ir.ui.view">
+       <field name="name">payment voucher kanban view</field>
+        <field name="model">payment_voucher.ebs</field>
+       <field name="arch" type="xml">
+          <kanban>
+              <field name="voucher_no"/>
+
+              <templates>
+                 <t t-name="kanban-box">
+                     <div t-attf-class="oe_kanban_global_click">
+
+                                <div class="text-center">
+                                    <i class="fa fa-envelope" role="img" aria-label="Enterprise" title="Enterprise"></i> <strong><field name="voucher_no"/></strong>
+                                </div>
+                                <hr class="mt4 mb4"/>
+                                <div class="row">
+                                    <div t-if="record.originating_memo.value" class="col-6 text-center">
+                                        <strong>Memo:</strong>
+                                    </div>
+                                    <div t-if="record.amount.value" class="col-6 text-center">
+                                        <strong>Amount</strong>
+                                    </div>
+                                    <div t-if="record.originating_memo.value" class="col-6 text-center">
+                                        <field name="originating_memo"/>
+                                    </div>
+                                    <div t-if="record.amount.value" class="col-6 text-center o_force_ltr">
+                                        <field name="amount"/>
+                                    </div>
+                                </div>
+
+
+
+
+               </div>
+                    </t>
+       </templates>
+
+       </kanban>
+       </field>
+      </record>
+
+      <record id="view_payment_mandate_form" model="ir.ui.view">
+        <field name="name">paymentmandate.form</field>
+        <field name="model">payment_mandate.ebs</field>
+        <field name="arch" type="xml">
+            <form string="Payment Mandate" duplicate="0">
+                <header>
+                    <button name="payment_mandate_forward" type="object" string="Submit Mandate" class="oe_highlight" states="draft"/>
+                    <button name="payment_mandate_review" type="object" string="FC Review" class="oe_highlight"  states="Forward"/>
+                    <button name="payment_mandate_cfo_review" type="object" string="CFO Review" class="oe_highlight" states="FC Review"/>
+                    <button name="payment_mandate_reject" type="object" string="Reject Mandate" class="oe_highlight" states="Forward" />
+                    <button name="payment_mandate_reject2" type="object" string="Reject Mandate" class="oe_highlight" states="FC Review" />
+                    <button name="payment_mandate_reject3" type="object" string="Reject Mandate" class="oe_highlight" states="CFO Review" />
+                    <button name="payment_mandate_approve" type="object" string="Approve Mandate" class="oe_highlight" states="CFO Review"/>
+
+                    <button name="process" string="Process" class="oe_highlight" states="Fin Approve"  type="object"/>
+
+                <field name="state" widget="statusbar" statusbar_visible="draft,Requested,Approved,Rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" groups="hr.group_hr_user" class="oe_stat_button" icon="fa-archive">
+<!--                                <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>-->
+                            </button>
+                        </div>
+                    <group>
+                <group>
+                    <field name="mandate_no"/>
+                    <field name="date"/>
+                    <field name="amount" widget="monetary"/>
+                    <field name="description"/>
+                    <field name="mode"/>
+
+
+                </group>
+                    <group>
+                        <field name="mandate_ref"/>
+                        <field name="payee_id"/>
+                        <field name="account_no"/>
+                        <field name="bank"/>
+                        <field name="account_name"/>
+
+                    </group>
+
+                    </group>
+
+
+
+
+                </sheet>
+                <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+        </field>
+      </record>
+      <record id="disco_invoicing_view_form" model="ir.ui.view">
+          <field name="name">disco_invoicing_view_form</field>
+          <field name="model">disco_invoicing.ebs</field>
+          <field name="arch" type="xml">
+              <form string="disco_invoicing_form">
+                  <sheet>
+                      <group>
+                          <field name="name"/>
+
+                      </group>
+                      <group>
+
+
+                            <field name="month"/>
+                            <field name="year"/>
+
+                    </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <record id="voucher_type_view_form" model="ir.ui.view">
+          <field name="name">voucher_type_view_form</field>
+          <field name="model">voucher_type.ebs</field>
+          <field name="arch" type="xml">
+              <form string="voucher_type_form">
+                  <sheet>
+                      <group>
+                      <group>
+                          <field name="name"/>
+                          <field name="account_id"/>
+                          <field name="analytic_account_id"/>
+                          <field name="mode_payment" domain="[('type', 'in', ('bank', 'cash'))]" />
+                          <field name="bill_journal" domain="[('type', 'not in', ('bank', 'cash'))]" />
+
+                      </group>
+                      <group>
+
+                      </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+
+      </record>
+      <record id="view_filter_cash_inherited" model="ir.ui.view">
+          <field name="name">view_filter_cash_inherited</field>
+          <field name="model">account.move.line</field>
+          <field name="type">search</field>
+          <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+                <field name="arch" type="xml">
+                        <xpath expr="/search/filter[1]" position="after">
+                               <filter name="bank" string="Bank" domain="[('account_id', '=', '13')]"/>
+                             <filter name="today" string="Today" domain="[('date','&lt;=',((context_today()).strftime('%Y-%m-%d'))),]"/>
+                        </xpath>
+                </field>
+
+      </record>
+
+
+
+  </data>
+</odoo>

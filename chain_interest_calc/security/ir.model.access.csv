@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_interest_calc_nibor_rate,interest_calc.nibor_rate,model_nibor_rate,,1,1,1,0
+access_interest_calc_interest_rate,interest_calc.interest_rate,model_interest_rate,,1,1,1,0
+access_interest_calc_interest_calculation,interest_calc.interest_calculation,model_interest_calculation,,1,1,1,0

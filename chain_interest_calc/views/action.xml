@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_nibor_rate">
+        <field name="name">Nibor Rate</field>
+        <field name="res_model">nibor.rate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    </data>
+</odoo>

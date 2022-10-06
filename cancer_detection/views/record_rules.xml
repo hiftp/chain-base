@@ -1,0 +1,22 @@
+<odoo>
+    <record id="own_partners" model="ir.rule">
+        <field name="name">Own partners</field>
+        <field ref="base.model_res_partner" name="model_id"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <!-- <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <field name="perm_unlink" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="1"/> -->
+    </record>
+
+    <record id="own_scans" model="ir.rule">
+        <field name="name">Own scans</field>
+        <field ref="cancer_detection.model_partner_scan" name="model_id"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="perm_unlink" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+    </record>
+</odoo>

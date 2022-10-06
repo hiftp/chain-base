@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- interest.adjusted views -->
+
+        <record id="interest_adjusted_view_search" model="ir.ui.view">
+            <field name="name">interest.adjusted.view.search</field>
+            <field name="model">interest.adjusted</field>
+            <field name="arch" type="xml">
+                <search string="Interest Adjustments">
+                    <field name="name" string="Date" />
+                    <field name="interest_id" />
+                    <field name="adjustment_type" />
+               </search>
+            </field>
+        </record>
+
+        <record id="interest_adjusted_view_tree" model="ir.ui.view">
+            <field name="name">interest.adjusted.view.tree</field>
+            <field name="model">interest.adjusted</field>
+            <field name="arch" type="xml">
+                <tree string="Interest Adjustments">
+                    <field name="name" />
+                    <field name="interest_id" />
+                    <field name="adjustment_type" />
+                    <field name="adjustment_rate" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="interest_adjusted_view_form" model="ir.ui.view">
+            <field name="name">interest.adjusted.view.form</field>
+            <field name="model">interest.adjusted</field>
+            <field name="arch" type="xml">
+                <form string="Interest Adjusted">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="interest_id" />
+                                <field name="adjustment_type" />
+                                <field name="adjustment_rate" />
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="interest_action_plus" model="ir.actions.act_window">
+            <field name="name">Interest Adjustments</field>
+            <field name="res_model">interest.rate</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('interest_id','=', active_id)]</field>
+            <field name="context">{'default_interest_id': active_id}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add an interest plus
+                </p>
+            </field>
+        </record>
+
+        <!-- interest.rate views -->
+
+        <record id="interest_rate_view_search" model="ir.ui.view">
+            <field name="name">interest.rate.view.search</field>
+            <field name="model">interest.rate</field>
+            <field name="arch" type="xml">
+                <search string="Interest Rates">
+                    <field name="interest_id" string="Date" />
+                    <field name="name" string="Date" />
+                </search>
+            </field>
+        </record>
+
+        <record id="interest_rate_view_tree" model="ir.ui.view">
+            <field name="name">interest.rate.view.tree</field>
+            <field name="model">interest.rate</field>
+            <field name="arch" type="xml">
+                <tree string="Interest Rates">
+                    <field name="interest_id" />
+                    <field name="name" />
+                    <field name="rate" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="interest_rate_view_form" model="ir.ui.view">
+            <field name="name">interest.rate.view.form</field>
+            <field name="model">interest.rate</field>
+            <field name="arch" type="xml">
+                <form string="Interest Rate">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="interest_id" />
+                            </group>
+                            <group>
+                                <field name="name" />
+                                <field name="rate" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="interest_action_rates" model="ir.actions.act_window">
+            <field name="name">Interest Rates</field>
+            <field name="res_model">interest.rate</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('interest_id','=', active_id)]</field>
+            <field name="context">{'default_interest_id': active_id}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add an interest rate
+                </p>
+            </field>
+        </record>
+
+        <!-- interest views -->
+
+        <record id="interest_view_search" model="ir.ui.view">
+            <field name="name">interest.view.search</field>
+            <field name="model">interest</field>
+            <field name="arch" type="xml">
+                <search string="Interest Rates">
+                    <field name="name" string="Name" />
+                    <filter name="active" string="Active" domain="[('active','=',True)]" help="Show active" />
+                    <filter name="inactive" string="Inactive" domain="[('active','=',False)]" help="Show inactive" />
+                </search>
+            </field>
+        </record>
+
+        <record id="interest_view_tree" model="ir.ui.view">
+            <field name="name">interest.view.tree</field>
+            <field name="model">interest</field>
+            <field name="arch" type="xml">
+                <tree string="Interest Rates" decoration-muted="(not active)">
+                    <field name="name" />
+                    <field name="rate_ids" invisible="1" />
+                    <field name="date" />
+                    <field name="rate" />
+                    <field name="active" widget="boolean_toggle" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="interest_view_kanban" model="ir.ui.view">
+            <field name="name">interest.view.kanban</field>
+            <field name="model">interest</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row mb4">
+                                    <div class="col-12">
+                                        <strong><span><t t-esc="record.name.value" /></span></strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong><span>Current Rate: </span></strong>
+                                        <field name="rate" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="interest_view_form" model="ir.ui.view">
+            <field name="name">interest.view.form</field>
+            <field name="model">interest</field>
+            <field name="arch" type="xml">
+                <form string="Interest">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Rates" name="%(interest_action_rates)d" type="action"
+                                    context="{'default_interest_id': id}" attrs="{'invisible': [('active', '=', False)]}"
+                                    class="oe_stat_button" icon="fa-percent" />
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="rate" />
+                                <field name="active" />
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions -->
+
+        <record id="interest_action" model="ir.actions.act_window">
+            <field name="name">Interests</field>
+            <field name="res_model">interest</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create an interest
+                </p>
+            </field>
+        </record>
+
+        <record id="interest_adjusted_action" model="ir.actions.act_window">
+            <field name="name">Interest Adjustments</field>
+            <field name="res_model">interest.adjusted</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create an interest plus
+                </p>
+            </field>
+        </record>
+
+        <record id="interest_rate_action" model="ir.actions.act_window">
+            <field name="name">Interest Rates</field>
+            <field name="res_model">interest.rate</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create an interest rate
+                </p>
+            </field>
+        </record>
+
+        <!-- menu items -->
+
+        <menuitem id="interest_menu" name="Interest" parent="account.menu_finance_configuration" sequence="4" groups="account.group_account_manager" />
+        <menuitem id="interest_action_menu" name="Interests" action="interest_action"
+                  groups="account.group_account_manager" parent="interest_menu" sequence="1" />
+        <menuitem id="interest_adjusted_action_menu" name="Interest Adjustments" action="interest_adjusted_action"
+                  groups="account.group_account_manager" parent="interest_menu" sequence="5" />
+        <menuitem id="interest_rate_action_menu" name="Interest Rates" action="interest_rate_action"
+                  groups="account.group_account_manager" parent="interest_menu" sequence="10" />
+
+    </data>
+</odoo>

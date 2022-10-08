@@ -1,0 +1,38 @@
+.pl-right-content{
+	 display: flex;
+	 align-items: flex-start;
+	 border-color: var(--drk-border);
+}
+ .pl-right-content.o_form_view .o_form_sheet_bg {
+	 width: 60%;
+	 flex-shrink:0;
+	 border-bottom: none;
+	 border-color: var(--drk-border);
+	 border-width: 1px;
+   min-width: 500px;
+   max-width: 800px;
+}
+ .pl-right-content.o_form_view .o_form_sheet_bg .o_form_sheet {
+	 margin: 16px;
+}
+ .pl-right-content.o_form_view .o_form_sheet_bg .o_statusbar_status {
+	 margin-right: 2px;
+}
+ .pl-right-content.o_form_view .o_FormRenderer_chatterContainer {
+	 min-width: 30%;
+	 flex-grow: 1;
+   max-width: 100%;
+}
+/*For large Screen view only Form view*/
+@media screen and (min-width: 1680px){
+   .pl-right-content.o_form_view .o_form_sheet_bg {
+      max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1200px){
+   .pl-right-content.o_form_view .o_form_sheet_bg{
+      min-width: 300px;
+      max-width: 600px;
+   }
+}

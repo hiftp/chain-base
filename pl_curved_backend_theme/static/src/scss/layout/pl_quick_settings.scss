@@ -1,0 +1,531 @@
+.pl_cursor_pointer {
+    @extend %pointer;
+}
+.pl-color{
+    color: var(--color);
+}
+.pl-stroke{
+    stroke: var(--color);
+}
+.pl-fill{
+    fill: var(--color);
+}
+
+.pl-quick-card{
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid var(--pl-border);
+
+    .quick-card-sec{
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .quick-title{
+        font-size: $font-14;
+        font-weight: 500;
+    }
+}
+
+.pl_quick_settings{
+    text-align: left;
+
+    .pl_quick_settings_panel{
+        @extend %d_block;
+        transform: translateX(100%);
+        @include position(fixed, $top: 0px, $left: auto, $right: 0px);
+        z-index: 1001;
+//         z-index: 1000;
+        height: calc(100vh);
+        transition: transform ease-in-out 0.5s;
+        background-color: var(--background);
+        color: var(--color);
+        @extend %shadow-sm;
+        border: 1px solid var(--pl-border);
+
+        &.show{
+            height: calc(100vh);
+            max-height: calc(100vh - 0px);
+            transform: translateX(0);
+            transition: transform ease-in-out 0.5s;
+            min-width: auto;
+        }
+
+        .pl-dropdown-close{
+            @include position(absolute, $top: 10px, $left: auto, $right: 15px);
+            z-index: 20;
+            @extend %pointer;
+        }
+
+        .pl_quick_settings_header{
+            border-bottom: 1px solid var(--pl-border);
+            font-size: $font-14;
+            font-weight: 600;
+            padding-right: 30px;
+        }
+
+        .quick-settings-footer{
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            .pl_drawer_background_default, .pl_background_default{
+              img{
+                @include square(26px, $radius: 0);
+              }
+            }
+            .btn{
+                font-size: $font-14;
+            }
+            .pl_setting_cancel{
+                &:hover{
+                  color: var(--default-btn-color);
+                }
+            }
+        }
+        .pl_quick_setting_body{
+             .pl_quick_setting_leftside{
+                //@extend %d_none;
+             }
+             &.pl_quick_setting_leftside_show{
+                .pl_quick_setting_leftside{
+                    @extend .d-block;
+                }
+                .quick-inner-viewall{
+                    @extend .d-none;
+                }
+                .quick-inner-container{
+                    height: calc(100% - 46px);
+                }
+             }
+
+            .btn-all-settings{
+                height: 40px;
+                border-radius: 3rem;
+                font-size: $font-14;
+            }
+             .pl_quick_setting_rightside{
+                max-width: 290px;
+                min-width: 290px;
+             }
+        }
+    }
+    .dropdown-toggle{
+       @extend %pointer;
+    }
+
+    &.pl_gobal_settings_view{
+        .pl_quick_settings_panel{
+            transform: translateX(-78vw);
+        }
+    }
+}
+
+.pl_quick_settings_panel{
+
+    .pl_quick_setting_body{
+
+         .pl_quick_setting_leftside{
+            max-width: 300px;
+            min-width: 300px;
+
+            .pl_setting_leftside_content{
+                height: 100%;
+                overflow: auto;
+                 border-right: 1px solid var(--pl-border);
+
+                ul.nav{
+                    flex-direction: column;
+                    ul{
+                        @extend %listreset;
+                    }
+                }
+            }
+         }
+
+         .tab-pane{
+                @extend %h-100;
+         }
+
+        .quick-inner-container {
+            overflow: auto;
+            padding-right: 4px;
+            height: calc(100% - 100px);
+        }
+
+    }
+
+    .nav{
+        > li:not(.ml-4):not(.pl-globale-list){
+            border-bottom: 1px solid var(--pl-border);
+        }
+
+        li{
+            padding: 5px;
+            text-align: left;
+            &.pl-global-option{
+              padding: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .btn-global-settings{
+                svg{
+                  path{
+                    fill: var(--gl-icons);
+                  }
+                }
+                  &:hover{
+                    background-color: var(--hover-nav-bg);
+                  }
+              }
+            }
+            a{
+                 display: inline-block;
+                 color: var(--color);
+                 padding: 0.65rem 1rem;
+                 text-align: left;
+                 border-radius: 30px;
+
+                 &.active{
+                    background: var(--quick-nav-active);
+                    font-weight: 500;
+                 }
+            }
+
+            &.pl-globale-list,
+            &.ml-4{
+                a{
+                    padding: 5px 1rem;
+                }
+            }
+        }
+    }
+}// pl_quick_settings_panel / end
+
+
+.o_kanban_view .o_kanban_record{
+    @include app_card_effect;
+}
+
+// General Setting tab panel
+.pl_quick_setting_body{
+    &.row{
+       flex-wrap: nowrap;
+    }
+    .tab-content > .active{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.pl-global-card{
+    @extend .mb-2;
+
+    .pl-global-card-header{
+        @extend .py-2;
+        font-size: 1.2rem;
+        .card-link{
+            .pl-down-arrow{
+                @extend .ml-3;
+                transition:  all ease-in-out 0.3s;
+            }
+            &[aria-expanded="true"]{
+                .pl-down-arrow{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+    }
+    .pl-global-card-body{
+        @extend .pl-3;
+        @extend .pr-3;
+    }
+}
+
+.pl-quick-card-body{
+    max-width: 260px;
+}
+
+// Global Settings
+.pl_global_setting_body{
+    overflow: auto;
+    height: 100%;
+    &.over-unset{
+      overflow: unset;
+    }
+    .pl-global-card{
+        .pl-global-card-header{
+            .card-link{
+                color: var(--color);
+            }
+        }
+    }
+}
+
+
+.global-setting-table{
+    table-layout: fixed;
+    thead{
+
+        tr{
+            th{
+                border-bottom: 1px solid #DCDBDB;
+                border-top: none;
+                padding-top: 0px;
+                &:first-child{
+                  border-radius: 0;
+                }
+                &:last-child{
+                  border-radius: 0;
+                }
+            }
+        }
+    }
+    tbody{
+
+        tr{
+            border-bottom: 1px solid #DCDBDB;
+
+            td{
+                padding-top: 0.7rem;
+                padding-bottom: 0.7rem;
+            }
+        }
+    }
+}
+.pl-file-upload{
+  position: relative;
+  display: flex;
+  align-items: center;
+  .pl_binary_field{
+    opacity: 0;
+    width: 60px;
+    height: 40px;
+    margin: 0 10px 0 0;
+    flex-shrink: 0;
+  }
+  &:before{
+    content: '+';
+    @include position(absolute, $top: 0%, $left: 0%);
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    box-shadow: -1px 0px 8px 3px rgba(0, 0, 0, 0.05);
+    font-size: 2.5rem;
+    color: var(--color);
+    @include flex-center-justify();
+    background: var(--light-text-color);
+    line-height: 100%;
+  }
+  span{
+    font-size: 1rem;
+    color: var(--color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+  }
+}
+.pl-bg-image{
+  display: flex;
+  align-items: center;
+  .custom-control-label{
+    img{
+      width: 34px;
+      height: 25px;
+    }
+  }
+  i{
+    font-size: 1.3rem;
+    margin-left: 8px;
+    color: var(--color);
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}
+.pl_setting_cancel{
+  color: var(--color);
+}
+.pl_binary_field::-webkit-file-upload-button {
+  display: none;
+}
+.pl_binary_field{
+  margin-top: 12px;
+  outline: none;
+  @extend %pointer;
+  &:before{
+    content: '';
+    display: inline-block;
+    background: url('/pl_curved_backend_theme/static/src/images/upload-icon.svg') no-repeat center;
+    background-size: 14px;
+    @include square(14px, $radius: 0);
+    margin: 0px 8px -2px 0px;
+  }
+}
+img.pl_company_logo_company_preview,
+.pl_company_logo_global_preview,
+.pl_login_background_image_preview,
+.pl_small_company_logo_global_preview,
+.pl_small_company_logo_company_preview{
+  width: 100%;
+}
+.pl-input-field{
+  width: 100%;
+  border-radius: 4px;
+  background: none;
+  border: 1px solid var(--sm-input-border);
+  color: var(--var);
+  padding: 2px 8px;
+}
+
+.pl_opacity_value_max{
+    font-size: 15px;
+    padding-left: 6px;
+}
+.pl_opacity_value_min{
+    font-size: 15px;
+    padding-right: 6px;
+}
+.defaut_btn{
+  svg{
+    path{
+      stroke: var(--color);
+      opacity: 0.8;
+    }
+  }
+  &:hover{
+    svg{
+      opacity: 0.5;
+    }
+  }
+}
+.pl_setting_cancel_company{
+  color: var(--color);
+  &:hover{
+    color: var(--default-btn-color);
+  }
+}
+
+//checkbox-radio button
+.pl-custom-title{
+  padding: 0 0 0.75rem 3rem !important;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+  max-width: 15rem;
+  li{
+    width: 50%;
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+.pl-active-deactive-icon{
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   height: 100%;
+   padding-left: 1rem;
+   max-width: 13.33rem;
+   img{
+      height: 1.2rem;
+   }
+}
+.pl_global_setting_body{
+  .pl-custom-title{
+    max-width: calc(200px + 2rem);
+  }
+  .pl-active-deactive-icon{
+    min-width: 200px;
+    max-width: 200px;
+  }
+}
+
+// Loader Styling
+.pl_loader_options{
+  .pl_loader_item{
+    .custom-control-label{
+      img{
+        height: 36px;
+        margin: -8px 0 0 12px;
+      }
+    }
+  }
+}
+// Breadcrumb Style
+.breadcrumb_style{
+  .custom-control{
+    .custom-control-label{
+      svg{
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
+//global setting Login Page Designs
+#global_settingLoginPageDesigns{
+  .pl-quick-card{
+    .pl-quick-card-body{
+      max-width: 460px;
+      .login-templates{
+        width: 100%;
+        @include flex-with-wrap();
+        align-items: flex-start;
+        .quick-card-sec{
+          width: calc(33.33% - 15px);
+          margin: 0 15px 15px 0;
+          .custom-control-label{
+            padding: 12px;
+          }
+        }
+      }
+    }
+    .quick-card-sec{
+      box-shadow: 0px 10px 15px rgba(var(--shadow-color), 0.05);
+    }
+    .pl_login_page_logo_preview{
+      max-height: 62px;
+    }
+  }
+}
+.o_web_client{
+    .quick-setting-overlay{
+        position: fixed !important;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.4) !important;
+        z-index: 1000;
+        cursor: pointer;
+        border-radius: 0 !important;
+        display:none !important;
+    }
+    .pl_quick_settings_panel.show ~ .quick-setting-overlay{
+        display: block !important;
+    }
+}
+.pl_vertical_body_panel {
+    .pl_left_sidebar_panel{
+        .pl-menu-systray{
+            .pl_quick_settings{
+                .quick-setting-overlay{
+                        background-image: none !important;
+                }
+            }
+        }
+    }
+}
+.pl_quick_settings_panel ~ .quick-setting-overlay{
+    display: none !important;
+}
+.o_web_client{
+    .pl_horizontal_bar{
+        .pl_quick_settings{
+            .quick-setting-overlay{
+                    background-image: none !important;
+            }
+        }
+    }
+}

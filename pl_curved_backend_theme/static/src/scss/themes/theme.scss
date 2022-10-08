@@ -1,0 +1,18 @@
+light-background: #fefefe;
+$light-text: #000000;
+$dark-background: #000000;
+$dark-text: #fefefe;
+
+@mixin theme-colors($light-theme: true) {
+  @if $light-theme {
+    background-color: $light-background;
+    color: $light-text;
+  } @else {
+    background-color: $dark-background;
+    color: $dark-text;
+  }
+}
+
+.banner {
+  @include theme-colors($light-theme: true);
+}

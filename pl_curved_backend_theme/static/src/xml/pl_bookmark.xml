@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pl_curved_backend_theme.bookmark_bar">
+        <div class="right-sidebar-inner h-100">
+            <div class="pl-zoom-view">
+                <button class="fa fa-search-plus btn pl-btn-zoom" data-toggle="collapse"
+                        data-target="#zoomPanel"></button>
+                <div id="zoomPanel" class="collapse zoom-panel">
+                    <div class="d-flex align-items-center">
+                        <div class="pl-zoom-per pl-2">100%</div>
+                        <div class="pl-zoom-inn-dec d-flex align-items-center mx-2">
+                            <button class="btn btn-small pl-btn-dec">-</button>
+                            <button class="btn btn-small pl-btn-inn">+</button>
+                        </div>
+                        <button class="fa fa fa-repeat pl-btn-reset btn btn-secondary"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="pl-bookmark-auto">
+                <div class="pl-bookmark-body h-100">
+                    <div class="d-flex flex-column h-100">
+                        <div class="pl-bookmark-panel py-2"></div>
+                        <div class="text-center pl_add_bookmark_dropdown py-3 position-relative dropdown">
+                            <button class="btn btn-secondary-outline pl-add-bookmark" title="Add Bookmark"
+                                    data-toggle="dropdown">+</button>
+                            <div id="addBookmarkDropdown"
+                                 class="dropdown-menu dropdown-menu-right mr-3 pl-add-bookmark-dropdown">
+                            <div class="pl-add-bookmark-header py-2 px-3">
+                                <h4>Add Bookmark</h4>
+                            </div>
+                                <div class="pl-add-bookmark-body pt-2 px-3 pb-3">
+                                <div class="form-group m-0">
+<!--                                  <label for="bookmark_name">Name:</label>-->
+                                    <input type="text" class="form-control" id="bookmark_name" placeholder="Name"/>
+                                </div>
+                                    <div id="pl_bookmark_alert" class="alert alert-danger" role="alert"
+                                         style="display:none">Can't be empty</div>
+                            </div>
+                                <div class="pl-add-bookmark-footer py-2 px-3">
+                                    <button type="button" class="btn btn-primary pl-save-bookmark">Done</button>
+                                    <button type="button" class="btn btn-default" data-toggle="collapse"
+                                    data-target="#addBookmarkDropdown">Cancel</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            <div class="bookmarpl-toggle">
+                <button type="button" aria-label="Next" title="Bookmark Setting"
+                        class="fa fa-chevron-right pl-bookmarpl-menu-toggle btn"/>
+            </div>
+        </div>
+    </t>
+</templates>

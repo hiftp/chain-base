@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pl_arc_navbar" xml:space="preserve">
+    <t t-inherit-mode="extension" t-inherit="web.NavBar" owl="1">
+        <xpath expr="//nav" position="inside">
+            <t t-if="pl_menu_bar == 'Horizontal' ? 'pl_horizontal_bar' : ''">
+                <button class="phone-menu-btn" id="phone-menu-btn">
+                    <svg width="24" height="16" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.00043 10.0001H26" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2 2H25.9996" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2.00043 18H26" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <!-- PhoneSideMenu -->
+                <div class="pl-phone-side-menu">
+                    <div class="overlay"></div>
+                    <div class="pl-phone-menu-list">
+                        <div class="pl-phone-profile">
+<!--                            <t t-debug="tdb">aaaa</t>-->
+<!--                            <Dropdown class="pl_user_menu o_user_menu" t-on-dropdown-item-selected.stop="onDropdownItemSelected">-->
+<!--                                <t t-set-slot="toggler">-->
+<!--                                    <img class="rounded-circle o_user_avatar" t-att-src="source" alt="User"/>-->
+<!--                                </t>-->
+<!--&lt;!&ndash;                                                            <t t-debug="tdb">bbbb</t>&ndash;&gt;-->
+<!--                                <div class="pl-user-info-inside-dropdown border-bottom pb-2 px-3">-->
+<!--                                    <span class="oe_topbar_name"><t t-esc="user.name"/><t t-if="env.debug" t-esc="' (' + user.db.name + ')'"/></span>-->
+<!--                                </div>-->
+<!--&lt;!&ndash;                                                            <t t-debug="tdb">cccc</t>&ndash;&gt;-->
+<!--                                <t t-foreach="getElements()" t-as="element" t-key="element_index">-->
+<!--                                    <t t-if="!element.hide">-->
+<!--                                        <UserMenuItem-->
+<!--                                            t-if="element.type == 'item'"-->
+<!--                                            payload="{ callback: element.callback, id: element.id }"-->
+<!--                                            href="element.href"-->
+<!--                                            t-esc="element.description"-->
+<!--                                        />-->
+<!--                                        <div t-if="element.type == 'separator'" role="separator" class="dropdown-divider"/>-->
+<!--                                    </t>-->
+<!--                                </t>-->
+<!--                            </Dropdown>-->
+
+                           <div class="pl-user-profile-img">
+                                <img src="https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg" />
+                           </div>
+                            <div>
+                                <span class="pl_user_name" type="text" id="dropdownMenu2" aria-expanded="false"></span>
+<!--                                <div class="dropdown-menu pl_user_action_horizontal" aria-labelledby="dropdownMenu2">-->
+<!--                                        <t t-call="web.UserMenu"/>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <t t-if="currentAppSections.length" t-call="pl_curved_backend_theme.SubMenu">
+                            <t t-set="childs" t-value="currentAppSections" />
+                        </t>
+                    </div>
+                    <a href="http://kpn0115:8015/web/session/logout" class="dropdown-item focus" data-menu="logout">Log out</a>
+                </div>
+            </t>
+        </xpath>
+
+        <!-- Hide Systemtray for menubar vertical -->
+        <xpath expr="//div[hasclass('o_menu_systray')]" position="replace">
+            <div class="o_menu_systray" role="menu">
+                <t t-if="pl_menu_bar == 'Horizontal'">
+                    <t t-foreach="systrayItems" t-as="item" t-key="item.key">
+                        <NotUpdatable>
+                            <ErrorHandler onError="error => handleItemError(error, item)">
+                                <t t-component="item.Component" t-props="item.props" />
+                            </ErrorHandler>
+                        </NotUpdatable>
+                    </t>
+                </t>
+            </div>
+        </xpath>
+
+        <!-- Hide menu brand for menubar Vertical -->
+        <xpath expr="//MenuItem[hasclass('o_menu_brand')]" position="replace">
+            <t t-if="pl_menu_bar == 'Horizontal'">
+                <t t-if="__proto__['pl_company_logo']">
+                    <span class="brand_logo">
+                        <img t-attf-src="data:image/png;base64,{{__proto__['pl_company_logo']}}" class="pl_company_short_logo" alt="Company Logo" title="Company Logo" />
+                    </span>
+                </t>
+                <!-- App Brand -->
+                <a t-if="currentApp" t-attf-href="#menu_id={{currentApp.id}}" class="dropdown-item o_menu_brand" t-att-data-section="currentApp.id" t-att-data-menu-xmlid="currentApp.xmlID" ><t t-esc="currentApp.name"></t></a>
+<!--                <MenuItem t-if="currentApp" href="getMenuItemHref(currentApp)" payload="currentApp" t-esc="currentApp.name" class="o_menu_brand" t-ref="menuBrand" />-->
+            </t>
+        </xpath>
+
+        <!-- Hide Current App Sections for menubar Vertical -->
+        <xpath expr="//t[@t-call='web.NavBar.SectionsMenu']" position="replace">
+            <t t-if="pl_menu_bar == 'Horizontal'">
+                <!-- Current App Sections -->
+                <t t-if="currentAppSections.length" t-call="web.NavBar.SectionsMenu">
+                    <t t-set="sections" t-value="currentAppSections" />
+                </t>
+            </t>
+        </xpath>
+
+        <!-- Hide Apps Menu for menubar Vertical -->
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
+            <t t-if="pl_menu_bar == 'Horizontal'">
+                <!-- Apps Menu -->
+                <t t-call="web.NavBar.AppsMenu">
+                    <t t-set="apps" t-value="menuService.getApps()" />
+                </t>
+            </t>
+        </xpath>
+
+        <xpath expr="//nav" position="after">
+            <div class="pl_left_sidebar_panel">
+                <div class="pl_app_sidebar">
+                    <div class="inner-sidebar">
+                        <t t-if="pl_menu_bar == 'Vertical'">
+                            <nav class="o_main_navbar">
+                                <t t-call="web.NavBar.AppsMenu">
+                                    <t t-set="apps" t-value="menuService.getApps()" />
+                                </t>
+                            </nav>
+<!--                            <div class="pl_company_short_logo_outer"></div>-->
+                            <div class="pl_company_short_logo_outer">
+                                <t t-set="pl_company_short_logo" t-value="pl_small_company_logo"/>
+                                <t t-if="pl_company_short_logo">
+                                    <img t-attf-src="data:image/png;base64,{{[pl_company_short_logo]}}"
+                                         class="pl_company_short_logo" alt="Company Logo" title="Company Logo"/>
+                                </t>
+                            </div>
+                            <!-- <ul class="pl-menu-systray o_menu_systray" /> -->
+                            <div class="pl-menu-systray o_menu_systray" role="menu">
+                                <t t-foreach="systrayItems" t-as="item" t-key="item.key">
+                                    <NotUpdatable>
+                                        <ErrorHandler onError="error => handleItemError(error, item)">
+                                            <t t-component="item.Component" t-props="item.props" />
+                                        </ErrorHandler>
+                                    </NotUpdatable>
+                                </t>
+                            </div>
+<!--                            <ul class="pl_user_menu" />-->
+
+                            <button class="phone-menu-btn">
+                                <svg width="24" height="16" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.00043 10.0001H26" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 2H25.9996" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2.00043 18H26" stroke="#616266" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+
+                            <div class="pl-phone-side-menu">
+                                <div class="overlay"></div>
+                                <div class="pl-phone-menu-list">
+                                    <div class="pl-phone-profile">
+                                        <div class="pl-user-profile-img">
+                                            <img src="https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg" />
+                                        </div>
+                                        <div>
+                                                <span class="pl_user_name" type="text" id="dropdownMenu2" aria-expanded="false"></span>
+<!--                                            <button class="dropdown-toggle pl_user_name" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>-->
+<!--                                            <div class="dropdown-menu pl_user_action" aria-labelledby="dropdownMenu2">-->
+
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+<!--                                    <t t-call="web.UserMenu"/>-->
+                                </div>
+                            </div>
+
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <t t-if="pl_menu_bar == 'Vertical'">
+                <div class="pl_vertical_menus d-flex flex-column">
+                    <div class="pl_vertical_menu_header p-4 text-center">
+                        <img alt="alt" title="title" class="pl_vertical_app_icon mb-3" src="#" />
+                         <a class="pl_menubrand o_menu_brand" role="button" />
+<!--                        <MenuItem t-if="currentApp" href="getMenuItemHref(currentApp)" payload="currentApp" t-esc="currentApp.name" class="o_menu_brand pl_menubrand" t-ref="menuBrand" />-->
+                    </div>
+                    <div class="pl_vertical_menu_body px-4 pb-4 h-100">
+                        <!-- Current App Sections -->
+                        <t t-if="currentAppSections.length" t-call="pl_curved_backend_theme.SubMenu">
+                            <t t-set="childs" t-value="currentAppSections" />
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+
+        <xpath expr="//header" position="attributes">
+            <attribute name="t-att-class">pl_menu_bar == 'Horizontal' ? 'pl_horizontal_bar' : ''</attribute>
+        </xpath>
+    </t>
+</templates>

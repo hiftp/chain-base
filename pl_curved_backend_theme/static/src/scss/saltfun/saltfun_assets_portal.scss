@@ -1,0 +1,44 @@
+// Portal colors
+.badge-secondary {
+    color: #FFFFFF;
+    background-color: #090d61;
+}
+#wrapwrap > main {
+    background: #ffffff;
+}
+
+#wrapwrap.o_portal {
+    background-color: #FFFFFF !important;
+}
+
+.btn-link {
+    color: #141CBA;
+}
+
+.btn-link:hover {
+    color: #090d61;
+    text-decoration: underline;
+}
+
+.btn-fill-secondary, .btn-secondary {
+    color: #FFFFFF;
+    background-color: #141CBA;
+    border-color: #141CBA;
+}
+
+.btn-fill-secondary:not(:disabled):not(.o_wysiwyg_loader):not(.disabled):active, .btn-secondary:not(:disabled):not(.o_wysiwyg_loader):not(.disabled):active, .btn-fill-secondary:not(:disabled):not(.o_wysiwyg_loader):not(.disabled).active, .btn-secondary:not(:disabled):not(.o_wysiwyg_loader):not(.disabled).active, .show > .btn-fill-secondary.dropdown-toggle, .show > .dropdown-toggle.btn-secondary {
+    color: #FFFFFF;
+    background-color: #0b129e;
+    border-color: #0b129e;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #FFFFFF;
+    background-color: #f07e2f;
+}
+
+.alert-secondary{
+    color: #362c33;
+    background-color: #fee1ce;
+    border-color: #e3c0a8;
+}

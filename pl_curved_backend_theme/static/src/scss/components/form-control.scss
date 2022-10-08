@@ -1,0 +1,57 @@
+.custom-control.custom-checkbox .custom-control-input:not(:checked):not(:indeterminate) ~ .custom-control-label:before{
+    outline: none;
+}
+
+.custom-control{
+    padding-left: 2rem;
+    word-break: break-all;
+
+    &.custom-radio, &.custom-checkbox{
+        .custom-control-label{
+            @extend %pointer;
+            &::before, &::after{
+                width: 1.33rem;
+                height: 1.33rem;
+                left: -2rem;
+                top: 0.2rem;
+            }
+            &::before{
+                 border-width: 0.16666666666666666rem;
+                 border-width: 1px;
+                 background: transparent;
+            }
+        }
+    }
+
+    &.custom-control-align-center{
+//         .custom-control-label::before,
+//         .custom-control-label::after{
+//             top: 50%;
+//             transform: translateY(-50%);
+//         }
+    }
+}
+
+.o_Chatter_scrollPanel{
+  .o_Message {
+    background-color: var(--bg-light-block);
+  }
+}
+// .o_form_view .oe_button_box .btn.oe_stat_button > .o_stat_info .o_stat_value, .o_form_view .oe_button_box .btn.oe_stat_button > span .o_stat_value
+
+.o_form_view {
+  .oe_button_box {
+    .btn.oe_stat_button {
+      >.o_stat_info .o_stat_value,
+      > span .o_stat_value{
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+.pl-body-bg-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,9 @@
+.nav-tabs .nav-item .nav-link {
+  border-radius: 25px 25px 25px 0px;
+}
+.nav-tabs .nav-item .nav-link:before {
+  display: none;
+}
+.nav-tabs .nav-item .nav-link.active, .nav-tabs .nav-item .nav-link:hover {
+  background: var(--primary-btn);
+}

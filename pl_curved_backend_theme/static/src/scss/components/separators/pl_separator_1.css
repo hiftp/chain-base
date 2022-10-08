@@ -1,0 +1,13 @@
+.pl-right-content .o_form_view {
+	 border-top-style: solid;
+	 border-top: solid 1px var(--drk-border);
+	 border-width: 1px;
+}
+ .pl-right-content .o_form_view .o_form_sheet_bg {
+	 border-right-style: solid;
+	 border-width: 1px;
+}
+
+.o_ActivityBox_titleLine{
+    border-style: solid !important;
+}

@@ -1,0 +1,19 @@
+// user for message nortification for vertical menu
+@keyframes leftFade {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+
+@keyframes leftScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

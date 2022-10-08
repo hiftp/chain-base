@@ -1,0 +1,18 @@
+.custom-control.custom-checkbox .custom-control-label::before,
+.custom-control.custom-checkbox .custom-control-label::after {
+  border-radius: 0px;
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after{
+    background: none;
+    height: 0.8rem;
+    width: 0.5rem;
+    border-bottom: 2px solid var(--primary);
+    border-right: 2px solid var(--primary);
+    transform: rotate(40deg);
+    left: -1.6rem;
+    top: 0.4rem;
+}
+
+.o_rtl .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after{
+    right: -1.6rem;
+}

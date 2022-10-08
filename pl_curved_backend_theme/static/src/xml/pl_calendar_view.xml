@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="CalendarView.buttons">
+        <t t-jquery="span.o_calendar_navigation_buttons" t-operation="replace">
+            <span class="o_calendar_navigation_buttons">
+                <button class="o_calendar_button_prev btn btn-primary" aria-label="Previous" title="Previous">
+                    <span class="fa fa-arrow-left"/>
+                </button>
+                <button class="o_calendar_button_today btn btn-primary">
+                    <span>Today</span>
+                    <svg width="16" height="20" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 3.42123H3C1.89543 3.42123 1 4.23991 1 5.24981V18.0498C1 19.0597 1.89543 19.8784 3 19.8784H17C18.1046 19.8784 19 19.0597 19 18.0498V5.24981C19 4.23991 18.1046 3.42123 17 3.42123Z" stroke="#616266" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14.0001 1.59247V5.24961" stroke="#616266" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.99991 1.59247V5.24961" stroke="#616266" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 8.90675H19" stroke="#616266" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 14.3923H19" stroke="#616266" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="6.25001" y1="8.79253" x2="6.25001" y2="20.1068" stroke="#616266" stroke-width="1.5"/>
+                        <line x1="13" y1="8.79253" x2="13" y2="20.1068" stroke="#616266" stroke-width="1.5"/>
+                    </svg>
+                </button>
+                <button class="o_calendar_button_next btn btn-primary" aria-label="Next" title="Next">
+                    <span class="fa fa-arrow-right"/>
+                </button>
+            </span>
+        </t>
+    </t>
+</templates>

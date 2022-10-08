@@ -1,0 +1,423 @@
+html[data-login-layout="Style1"],
+html[data-login-layout="Style2"],
+html[data-login-layout="Style3"],
+html[data-login-layout="Style4"],
+html[data-login-layout="Style5"] {
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .card {
+      max-width: 350px !important;
+      width: 350px;
+      border-radius: 10px;
+      .card-body {
+        border-radius: 10px;
+        .border-bottom {
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+// Design - 2
+// Login Temp - 1
+html[data-login-layout="Style1"] {
+  .container {
+    .card {
+      .card-body {
+        .border-bottom {
+          border: none !important;
+        }
+        .oe_login_form, .oe_signup_form, .oe_reset_password_form {
+          .form-group {
+            label {
+              @extend .d-none;
+            }
+            input {
+              border: none;
+              border-bottom: 1px solid #e2e0e0;
+              border-radius: 0px;
+              padding-left: 0;
+
+              &::placeholder {
+                color: #c7c6c6;
+                font-size: 14px;
+              }
+              &:focus {
+                box-shadow: none;
+                border-color: var(--primary);
+              }
+            }
+          }
+          .btn-link{
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Saltfun login page based on Style 2
+html[data-login-layout="Style2"] {
+  .container {
+    .card {
+      // background-color: transparent !important;
+      .card-body {
+        // background-color: transparent !important;
+        .oe_login_form, .oe_signup_form, .oe_reset_password_form {
+          .border-top {
+            border: none !important;
+          }
+          .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 0 !important;
+            input {
+              border: 1px solid #e4e2e2;
+              background:  var(--white);
+              border-radius: 5px;
+              height: 45px;
+              &::placeholder {
+                opacity: 0;
+              }
+              &:focus {
+                box-shadow: none;
+                border-color: var(--primary);
+              }
+            }
+            label {
+              position: absolute;
+              pointer-events: none;
+              top: 13px;
+              left: 12px;
+              color: #c7c6c6;
+              font-size: 14px;
+              font-weight: 400;
+              margin: 0;
+              padding: 0;
+              transition: 0.2s ease all;
+            }
+            input:focus ~ label,
+            input:not(:focus):valid ~ label {
+              top: -7px;
+              line-height: 1;
+              font-size: 13px;
+              opacity: 1;
+              background: var(--white);
+              color: #000;
+            }
+          }
+          // .oe_login_buttons{
+          //   padding-top: 0 !important;
+          //   display: flex;
+          //   align-items: flex-start;
+          //   flex-wrap: wrap;
+          //   .btn-block{
+          //     height: 45px;
+          //     width: 45px;
+          //     border-radius: 50%;
+          //     position: relative;
+          //     box-shadow: 0px 4px 15px rgba(40, 195, 151, 0.25);
+          //     overflow: hidden;
+          //     &::after{
+          //       content: '';
+          //       background: var(--primary) url(/pl_curved_backend_theme/static/src/images/login/login-arrow.svg) no-repeat center;
+          //       background-size: 18px;
+          //       border-radius: 50%;
+          //       width: 45px;
+          //       height: 45px;
+          //       position: absolute;
+          //       left: 0;
+          //       top: 0;
+          //     }
+          //   }
+          //   .btn-link{
+          //     margin-top: 1rem;
+          //   }
+          //   .small {
+          //     margin-top: 1.5rem !important;
+          //     width: 100%;
+          //     &.align-items-center{
+          //       a{
+          //         &:last-child{
+          //           margin: 0;
+          //         }
+          //       }
+          //     }
+          //     a {
+          //       color: #7f7f81;
+          //       font-weight: normal;
+          //       font-size: 14px;
+          //       line-height: 21px;
+          //       &:last-child {
+          //         margin-top: -58px;
+          //         align-self: flex-start;
+          //         margin-left: auto;
+          //       }
+          //     }
+          //   }
+          // }
+        }
+      }
+    }
+  }
+}
+
+// Login Temp - 3
+html[data-login-layout="Style3"] {
+  .container {
+    .card {
+      background-color: transparent !important;
+      .card-body {
+        background-color: transparent !important;
+        .oe_login_form, .oe_signup_form, .oe_reset_password_form {
+          .border-top {
+            border: none !important;
+          }
+          .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 0 !important;
+            input {
+              border: none;
+              border-bottom: 1px solid #C7C6C6;
+              background: transparent;
+              border-radius: 0px;
+              height: 45px;
+              color: var(--white);
+              padding-left: 0;
+              &::placeholder {
+                opacity: 0;
+              }
+              &:focus {
+                box-shadow: none;
+                border-color: var(--primary);
+              }
+            }
+            label {
+              position: absolute;
+              pointer-events: none;
+              top: 13px;
+              left: 0;
+              color: var(--white);
+              font-size: 14px;
+              font-weight: 400;
+              margin: 0;
+              transition: 0.2s ease all;
+              padding: 0;
+              &[for="db"] {
+               display: none;
+              }
+            }
+            input:focus ~ label,
+            input:not(:focus):valid ~ label {
+              top: -7px;
+              line-height: 1;
+              font-size: 13px;
+              opacity: 1;
+            }
+          }
+          .oe_login_buttons{
+            padding-top: 0 !important;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            .btn-block{
+              height: 45px;
+              width: 144px;
+              border-radius: 25px;
+              position: relative;
+              box-shadow: 0px 4px 15px rgba(40, 195, 151, 0.25);
+              background-color: var(--primary);
+              color: var(--white);
+              text-decoration: none;
+            }
+            .btn-link{
+              margin-top: 1rem;
+            }
+            .small {
+              margin-top: 1.5rem !important;
+              width: 100%;
+              &.align-items-center{
+                a{
+                  &:last-child{
+                    margin: 0;
+                  }
+                }
+              }
+              a {
+                color: var(--white);
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+                &:last-child {
+                  margin-top: -58px;
+                  align-self: flex-start;
+                  margin-left: auto;
+                }
+              }
+            }
+          }
+        }
+        .border-top{
+          a{
+            color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Login Temp - 4
+html[data-login-layout="Style4"] {
+  .container {
+    .card {
+      .card-body {
+        .oe_login_form, .oe_signup_form, .oe_reset_password_form {
+          .border-top {
+            border: none !important;
+          }
+          .form-group {
+            margin-bottom: 2rem;
+            label {
+              display: none;
+            }
+            input {
+              background: var(--list-background);
+              border: 1px solid #e4e2e2;
+              border-radius: 30px;
+              height: 45px;
+              padding: 12px 22px;
+              &::placeholder {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                color: #616266;
+              }
+              &:focus {
+                box-shadow: none;
+                border-color: var(--primary);
+              }
+            }
+          }
+          .alert{
+            border-radius: 25px;
+          }
+          .oe_login_buttons {
+            padding-top: 0 !important;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            .btn-block {
+              width: 120px;
+              height: 45px;
+              border-radius: 30px;
+              box-shadow: 0px 4px 15px rgba(40, 195, 151, 0.4);
+              background-color: var(--primary);
+              color: var(--white);
+              text-decoration: none;
+            }
+            .btn-link{
+              margin-top: 1rem;
+            }
+            .small {
+              margin-top: 1.5rem !important;
+              width: 100%;
+              &.align-items-center{
+                a{
+                  &:last-child{
+                    margin: 0;
+                  }
+                }
+              }
+              a {
+                color: #7f7f81;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+                &:last-child {
+                  margin-top: -58px;
+                  align-self: flex-start;
+                  margin-left: auto;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Login Temp - 5
+html[data-login-layout="Style5"] {
+  .container {
+    .card {
+      background-color: transparent !important;
+      .card-body {
+        background: rgba(255, 255, 255, 0.8) !important;
+        .border-bottom {
+          padding-bottom: 0px !important;
+        }
+        .oe_login_form, .oe_signup_form, .oe_reset_password_form {
+          .border-top {
+            border: none !important;
+          }
+          .form-group {
+            margin-bottom: 1.5rem;
+            label {
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 21px;
+              color: #616266;
+            }
+            input {
+              background: var(--list-background);
+              border: 1px solid #e4e2e2;
+              border-radius: 5px;
+              height: 45px;
+              &::placeholder {
+                opacity: 0;
+              }
+              &:focus {
+                box-shadow: none;
+                border-color: var(--primary);
+              }
+            }
+          }
+          .oe_login_buttons {
+            padding-top: 0 !important;
+            .btn-block {
+              height: 45px;
+              box-shadow: 0px 4px 15px rgba(40, 195, 151, 0.4);
+              border-radius: 5px;
+              font-size: 14px;
+              background-color: var(--primary);
+              color: var(--white);
+              text-decoration: none;
+              &:after{
+
+              }
+            }
+            .btn-link{
+              margin-top: 1rem;
+            }
+            .small {
+              margin-top: 1.5rem !important;
+              a {
+                color: #7f7f81;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

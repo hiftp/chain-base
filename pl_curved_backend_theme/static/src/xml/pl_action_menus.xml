@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pl_action_menu_templates" xml:space="preserve">
+    <t t-name="pl_curved_backend_theme.pl_controlpanel_inherit" t-inherit-mode="extension" t-inherit="web.Legacy.ControlPanel"
+       owl="1">
+
+        <xpath expr="//ol[@t-if='props.withBreadcrumbs']" position="attributes">
+            <attribute name="class"></attribute>
+            <attribute name="t-attf-class">breadcrumb pl_custom_breadcrumb</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_cp_bottom_left')]" position="replace">
+            <div class="o_cp_bottom_left">
+                <div class="o_cp_buttons" role="toolbar" aria-label="Control panel buttons" t-ref="buttons">
+                        <t t-slot="buttons"/>
+                    </div>
+                <t t-if="plIsMobileDevice()">
+                    <PlActionMenus t-if="props.actionMenus and props.actionMenus.items"
+                                   t-props="props.actionMenus"
+                    />
+                    </t>
+                <t t-else="">
+                          <ActionMenus t-if="props.actionMenus and props.actionMenus.items"
+                                       t-props="props.actionMenus"
+                          />
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="pl_curved_backend_theme.PlActionMenus" owl="1">
+        <div class="o_cp_action_menus" t-on-item-selected.stop="_onItemSelected">
+            <PlDropdownMenu t-if="pl_all_items.length"
+                            title="env._t('Action')"
+                            items="pl_all_items"
+                            icon="'fa fa-cog'"
+                            closeOnSelected="true"
+                            pl_all_data="pl_all_data"
+            />
+        </div>
+    </t>
+    <t t-name="pl_curved_backend_theme.PlDropdownMenu" owl="1">
+    <div class="btn-group o_dropdown" t-att-class="{ show: state.open }">
+        <button type="button"
+                class="o_dropdown_toggler_btn btn btn-secondary"
+                t-att-aria-expanded="state.open ? 'true' : 'false'"
+                tabindex="-1"
+                t-on-click="state.open = !state.open"
+                t-on-keydown="_onButtonKeydown"
+        >
+            <i t-if="icon" t-att-class="icon"/>
+            <span class="o_dropdown_title" t-esc="title"/>
+            <i t-if="displayCaret" t-attf-class="o_dropdown_caret fa fa-caret-{{ state.open ? 'down' : 'right' }}"/>
+            <i t-elif="displayChevron"
+               t-attf-class="fa fa-chevron-{{ state.open ? 'down' : 'right' }} float-right mt4"/>
+        </button>
+        <ul t-if="state.open" class="o_dropdown_menu dropdown-menu show" role="menu"
+            t-on-item-selected="_onItemSelected"
+        >
+            <t t-foreach="Object.keys(props.pl_all_data)" t-as="key">
+                <t t-if="props.pl_all_data[key].length">
+                    <div style="pointer-events: none;">
+                        <h6 class="dropdown-header" style="pointer-events: none;">
+                            <t t-if="key == 'actions'">Actions</t>
+                            <t t-else="">Print Actions</t>
+                        </h6>
+                    </div>
+                    <t t-set="currentGroup" t-value="null"/>
+                    <t t-foreach="props.pl_all_data[key]" t-as="item" t-key="item.key || item.id || ('item-' + item_index)">
+                    <li t-if="currentGroup !== null and currentGroup !== item.groupNumber" class="dropdown-divider"
+                        role="separator"/>
+                        <t t-if="item.Component" t-component="item.Component" t-props="item.props"/>
+                        <DropdownMenuItem t-else="" t-props="item"/>
+                        <t t-set="currentGroup" t-value="item.groupNumber"/>
+                    </t>
+                </t>
+            </t>
+        </ul>
+    </div>
+</t>
+</templates>

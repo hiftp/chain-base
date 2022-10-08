@@ -1,0 +1,71 @@
+<templates>
+    <t t-name="pl_throbber">
+        <div>
+            <div class="oe_blockui_spin" >
+
+                <div t-if="widget['pl_loader']=='pl_loader_1'" t-att-class="widget['pl_loader']">
+                    <div class="spinner-border"></div>
+                </div>
+
+                <div t-if="widget['pl_loader']=='pl_loader_2'" t-att-class="widget['pl_loader']">
+                    <div class="round">
+                        <div class="rol"></div>
+                        <div class="rol"></div>
+                        <div class="rol"></div>
+                        <div class="rol"></div>
+                        <div class="dots">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div t-if="widget['pl_loader']=='pl_loader_3'" t-att-class="widget['pl_loader']">
+                    <div class="dots-move">
+                        <div class="dot-1"></div>
+                        <div class="dot-2"></div>
+                        <div class="dot-3"></div>
+                    </div>
+                </div>
+                <div t-if="widget['pl_loader']=='pl_loader_4'" t-att-class="widget['pl_loader']">
+                    <div class="babalas">
+                        <div class="babala-1"></div>
+                        <div class="babala-2"></div>
+                        <div class="babala-3"></div>
+                        <div class="babala-4"></div>
+                        <div class="babala-5"></div>
+                    </div>
+                </div>
+                <div t-if="widget['pl_loader']=='pl_loader_5'" t-att-class="widget['pl_loader']">
+                    <div class="two_dots">
+                        <div class="dot-1"></div>
+                        <div class="dot-2"></div>
+                    </div>
+                </div>
+                <div t-if="widget['pl_loader']=='pl_loader_6'" t-att-class="widget['pl_loader']">
+                    <div class="square_loader">
+                        <div class="square_loaderbar">
+                            <div class="dot-1"></div>
+                            <div class="dot-2"></div>
+                            <div class="dot-3"></div>
+                            <div class="dot-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div t-if="widget['pl_loader']=='pl_loader_7'" t-att-class="widget['pl_loader']">
+                    <section class="double-circle-loader">
+                      <div class="loader loader-6">
+                        <div class="loader-inner"></div>
+                      </div>
+                    </section>
+                </div>
+
+                <img t-if="widget['pl_loader']=='pl_loader_default'" src="/web/static/src/img/spin.png" style="animation: fa-spin 1s infinite steps(12);" alt="Loading..."/>
+
+            </div>
+            <br/>
+        <div class="oe_throbber_message" style="color:white"></div>
+        </div>
+    </t>
+</templates>

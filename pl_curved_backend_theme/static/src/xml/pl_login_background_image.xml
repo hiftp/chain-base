@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="pl_login_background_image_template">
+        <!-- For loop -->
+        <t t-foreach="pl_login_image" t-as="pl_image">
+            <div class="quick-card-sec mr-1 mb-3 d-inline-block">
+                <div class="custom-control custom-radio custom-control-align-center pl-bg-image">
+                    <input type="radio" t-att-id="'pl_login_bg_img_' + '#' + pl_image.id"
+                           t-att-data-value="pl_image.id"
+                           data-model="pl.login.background.image"
+                           data-field-save="pl_login_background_image_save"
+                           name="pl_login_background_setting"
+                           t-att-checked="pl_image.pl_active ? 'checked' : None"
+                           class="custom-control-input pl_login_background_color pl_binary_field pl_radio_list"/>
+                    <label class="custom-control-label pl_back_img_hover"
+                           t-att-for="'pl_login_bg_img_' + '#' + pl_image.id">
+                        <img class="pl_image_hover" t-att-src="pl_image.pl_image"
+                             t-att-data-zoom-image="pl_image.pl_image"/>
+                    </label>
+                    <i class="fa fa-trash pl_login_background_image_del"
+                       t-att-data-id="'pl_login_bg_img_' + '#' + pl_image.id"/>
+                </div>
+            </div>
+        </t>
+        <div class="row no-gutters align-items-center mb-3">
+            <div class="col d-flex align-items-center pl_global_binary_field pl-file-upload">
+                <input type="file" class="pl_binary_field pl_login_background_image"
+                       name="pl_login_background_image"
+                       t-att-id="pl_image_add"
+                       t-att-name="pl_image_save" accept="image/*"/>
+                <!-- <span>fileName</span> -->
+            </div>
+        </div>
+        <!-- color col / end -->
+    </t>
+</templates>

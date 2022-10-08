@@ -1,0 +1,119 @@
+// align items center
+@mixin flex-column() {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+@mixin flex-center-justify(){
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+@mixin flex-with-wrap() {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@mixin align-center() {
+    @include flex-with-wrap();
+    align-items: center;
+}
+
+@mixin justify-center() {
+    @include flex-with-wrap();
+    justify-content: center;
+}
+
+@mixin flex-center() {
+    @include align-center();
+    justify-content: center
+}
+/// mixin for offset positioning
+// @include position(absolute, $top: 1em, $left: 50%);
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+
+// Mixin to manage box size and radius
+@mixin square($size, $radius: 0) {
+  width: $size;
+  height: $size;
+
+  @if $radius != 0 {
+    border-radius: $radius;
+  }
+}
+// Example
+// @include square(100px, $radius: 4px);
+
+// Mixin to manage text truncate
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/* for border-radius, named to be consistent with rounded corner */
+@mixin rounded($radius: 6px) {
+	border-radius: $radius;
+}
+
+// Mixin to manage vertical-center
+@mixin vertical-center {
+  //position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+
+// User for apps card loding effect
+@keyframes apps_effect {
+  from {
+    transform: translate3d(-200%, -200%, 100px) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0%, 0%, 0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@mixin app_transition {
+  @for $i from 1 through 120 {
+    &:nth-child(#{$i}) {
+      animation: apps_effect #{$i * .04}s ease-in-out;
+    }
+  }
+}
+
+
+@keyframes card_effect {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@mixin app_card_effect {
+  @for $i from 1 through 120 {
+    &:nth-child(#{$i}) {
+      animation: card_effect #{$i/2 * .1}s ease-in ;
+    }
+  }
+}

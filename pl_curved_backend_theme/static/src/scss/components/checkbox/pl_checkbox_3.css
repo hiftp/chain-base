@@ -1,0 +1,9 @@
+.custom-control.custom-checkbox .custom-control-label::before, .custom-control.custom-checkbox .custom-control-label::after {
+  border-radius: 2px;
+  background-color: var(--primary);
+}
+.custom-control.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: var(--primary);
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgOSA5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMSA1TDMuNSA3LjVMOCAxIiBzdHJva2U9IiNGRkY3RjciIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+Cg==");
+  background-size: 10px;
+}

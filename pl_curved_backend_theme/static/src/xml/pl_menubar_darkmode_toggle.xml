@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="pl_toggle_switch_templates" xml:space="preserve">
+    <t t-name="pl_toggle_switch">
+        <div class="pl_switch_btn">
+            <div class="custom-control custom-switch pl_toggle_theme"> <!--mt-n2-->
+                <input type="checkbox" checkbox="checkbox" data-name="pl_dark_mode" name="pl_dark_mode_toggle"
+                       class="custom-control-input pl_menu_toggle_switch" id="pl_menubar_dark_mode"
+                       t-att-checked="widget.data['pl_dark_mode'] ? 'checked' : None"
+                       />
+                <label class="custom-control-label pl_cursor_pointer" for="pl_menubar_dark_mode"/>
+            </div>
+        </div>
+    </t>
+</templates>

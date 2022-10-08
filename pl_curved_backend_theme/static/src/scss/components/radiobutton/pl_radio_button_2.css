@@ -1,0 +1,23 @@
+.custom-control.custom-radio .custom-control-label::before {
+  background: var(--primary);
+  border-color: transparent;
+}
+.custom-control.custom-radio .custom-control-input ~ .custom-control-label::after {
+  //transform: scale(0);
+  background-color: var(--primary);
+  transition: transform ease-in-out 0.3s;
+  border-radius: 50%;
+}
+.custom-control.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  transform: scale(0.45);
+  background-image: none;
+  background-color: #fff;
+}
+.custom-control.custom-control-align-center .custom-control-input:checked ~ .custom-control-label::after {
+  /*top: 2px;*/
+  /*top: 50%;
+  transform: translateY(-50%) scale(0.5);*/
+}
+#ThemeButtonStyles .custom-control.custom-control-align-center .custom-control-input:checked ~ .custom-control-label::after {
+  /*top: 10px;*/
+}

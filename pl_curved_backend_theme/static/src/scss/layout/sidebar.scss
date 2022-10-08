@@ -1,0 +1,334 @@
+$sidebar-width: 90px;
+$right-sidebar-width: 65px;
+$sidebar-border: $pl_border;
+
+.pl_left_sidebar_panel {
+  max-width: $sidebar-width + 5px;
+  flex: 0 0 $sidebar-width + 5px;
+  @include position(absolute, $top: 46px, $bottom: 0, $left: 0);
+  height: calc(100% - 46px);
+  width: 100%;
+  z-index: 9;
+
+  .pl_app_sidebar {
+    @extend %h-100;
+
+    .inner-sidebar {
+      // padding: 0 1rem;
+      @extend %h-100;
+
+      ul {
+        @extend %listreset;
+      }
+
+      .pl_favt_apps {
+        @extend %h-100;
+        overflow: auto;
+      }
+
+      ul.pl_app_sidebar_menu {
+        @extend %listreset;
+        @include rounded(1rem);
+        padding-top: 0.5rem;
+        padding-bottom: 0.8rem;
+        @extend %h-100;
+        overflow: auto;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+        &::-webkit-scrollbar-thumb {
+          @extend %bg-transparent;
+        }
+
+        li.pl_menu_list {
+          @extend %relative;
+
+          .nav-link {
+            padding: 0.9rem 0.4rem 0.4rem 0.4rem;
+            @extend %text-center;
+
+            .pl_app_name {
+              @extend %d_block;
+              @include truncate(100%);
+              font-size: $base-font;
+              padding-top: 0.1rem;
+            }
+
+            .pl_app_icon {
+              @include square(2.2rem, $radius: 0.188rem);
+              transition: all ease-in-out 0.2s;
+            }
+
+            &:hover {
+              .pl_app_icon {
+                transform: translateY(-2px);
+                box-shadow: 0 14px 16px -10px #000000;
+              }
+            }
+
+            &:before {
+              content: "";
+              @include position(absolute, $top: 0px, $right: 0px);
+              @extend %h-100;
+              background: var(--primary);
+              width: 5px;
+              opacity: 0;
+            }
+
+            &.active {
+              background: var(--pl-over-link);
+              &:before {
+                opacity: 1;
+              }
+            }
+          }
+          // .nav-link / end
+        }
+        // li.pl_menu_list / end
+      }
+      // ul.pl_app_sidebar_menu / end
+
+      .pl-phone-side-menu {
+        .pl-phone-menu-list {
+          .pl_mobile_nav_bottom {
+            display: none;
+          }
+        }
+      }
+    }
+    // inner-sidebar  / end
+    &:hover {
+      ul.pl_app_sidebar_menu {
+        scrollbar-color: #141CBA transparent;
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--primary);
+        }
+      }
+    }
+  }
+  // pl_app_sidebar  / end
+}
+
+body.o_web_client {
+  .o_action_manager {
+    margin-left: $sidebar-width + 5;
+    transition: all ease-in-out 0.3s;
+  }
+}
+
+body.pl_hide_app_names {
+  .pl_left_sidebar_panel {
+    max-width: $sidebar-width;
+    flex: 0 0 $sidebar-width;
+  }
+
+  .o_action_manager {
+    margin-left: $sidebar-width;
+  }
+
+  .pl_vertical_menus {
+    left: $sidebar-width;
+  }
+
+  .pl_app_sidebar_menu {
+    .pl_menu_list {
+      .pl_app {
+        .pl_app_name {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  &.pl_favtbar_bottom {
+    padding-bottom: 55px;
+
+    .pl_left_sidebar_panel {
+      height: 55px;
+    }
+    .pl_app_sidebar_menu {
+      .pl_menu_list {
+        .pl_app {
+          height: 100%;
+          padding: 0;
+          @include flex-center-justify();
+        }
+      }
+    }
+  }
+}
+
+// User menu placement in top
+.pl_user_menu_top {
+  &.pl_vertical_body_panel {
+    .pl_left_sidebar_panel {
+      .pl_app_sidebar {
+        .inner-sidebar {
+          .o_main_navbar {
+            order: 2;
+          }
+
+          .pl_user_menu {
+            order: 1;
+            position: relative;
+            margin: 0 auto;
+            height: 40px;
+            width: 40px;
+
+            .dropdown-toggle{
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 4rem !important;
+                padding: 0px !important;
+                line-height: 3rem !important;
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                background-size: 1.6rem !important;
+                display: block !important;
+                border: none;
+                img {
+                    height: 40px;
+                    width: 40px;
+                    margin-right: 0 !important;
+                    object-fit: cover;
+                    }
+            }
+
+            .dropdown-menu {
+              top: 30px !important;
+              left: 50px !important;
+              bottom: inherit !important;
+              transform-origin: left top !important;
+            }
+          }
+
+          .pl-phone-side-menu {
+            .pl-phone-menu-list {
+              .pl_mobile_nav_bottom {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// pl_favtbar_bottom
+body.o_web_client.pl_favtbar_bottom {
+  padding-bottom: 65px;
+  .o_action_manager {
+    margin-left: 12px;
+  }
+  .pl_left_sidebar_panel {
+    max-width: 100%;
+    flex: 0 0 100%;
+    height: 65px;
+    top: auto;
+
+    ul.pl_app_sidebar_menu {
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      padding: 0px;
+      li.pl_menu_list {
+        max-width: 80px;
+        @extend %w-100;
+
+        .nav-link:before {
+          @extend %w-100;
+          height: 5px;
+          top: auto;
+          bottom: 0px;
+        }
+      }
+    }
+  }
+
+  &.pl_favtbar_autohide {
+    padding-bottom: 0px;
+    .pl_left_sidebar_panel {
+      transform: translateY(85%);
+      position: fixed;
+      background: transparent;
+      height: 75px;
+      opacity: 0;
+
+      .pl_app_sidebar {
+        .inner-sidebar {
+          @include flex-center-justify();
+          .pl_favt_apps {
+            background: rgba($black, 0.2);
+            padding: 1rem 1.5rem;
+            overflow: inherit;
+            background: linear-gradient(91.01deg, #fefdfd 18.2%, rgba(255, 255, 255, 0.4) 100.77%);
+            box-shadow: 0px 8px 10px -1px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(60px);
+            border-radius: 45px;
+            border: 1px solid $pl_border;
+          }
+
+          ul.pl_app_sidebar_menu {
+            overflow: inherit;
+
+            li.pl_menu_list {
+              .nav-link {
+                padding: 0 0.5rem;
+                height: inherit;
+                .pl_app_name {
+                  @include position(absolute, $top: -53px, $left: 0%, $right: 0);
+                  background: $black;
+                  color: $white;
+                  opacity: 0;
+                  padding: 5px 10px;
+                  min-width: 70px;
+                  border-radius: 22px;
+                  margin: auto;
+                }
+                .pl_app_icon {
+                  @include square(3.2rem, $radius: 0px);
+                  transition: all ease-in-out 0.3s;
+                  transform: scale(1);
+                  transform-origin: 50% 100%;
+                  -webkit-box-reflect: below 2px -webkit-gradient(linear, left
+                        top, left bottom, from(transparent), color-stop(0.7, transparent), to(rgba(255, 255, 255, 0.5)));
+                }
+                &.active {
+                  background: transparent;
+                  &:before {
+                    height: 0px;
+                  }
+                }
+              }
+              &:hover {
+                .nav-link {
+                  .pl_app_name {
+                    opacity: 1;
+                  }
+                  background-color: transparent;
+                  .pl_app_icon {
+                    transform: scale(1.5);
+                    margin: 0 1em;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .pl-phone-side-menu {
+          .pl-phone-menu-list {
+            .pl_mobile_nav_bottom {
+              display: none;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+  }
+}

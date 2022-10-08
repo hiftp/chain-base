@@ -1,0 +1,88 @@
+/*.pl_quick_settings .pl_quick_settings_panel {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_vr_2.png") 12/0px 0px 0px 3px round;
+}
+ .pl_quick_settings .pl_quick_settings_panel .nav > li:not(.ml-4):not(.pl-globale-list) {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .pl_quick_settings .pl_quick_settings_panel .pl_quick_settings_header {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .pl_quick_settings_panel .pl_quick_setting_body .pl_quick_setting_leftside .pl_setting_leftside_content {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_vr_2.png") 12/0px 3px 0px 0px round;
+}
+ .pl-quick-card {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_form_view .o_form_statusbar {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_form_view .o_form_statusbar .o_statusbar_status {
+	 align-self: flex-start;
+}
+ .o_form_view .o_form_statusbar .o_statusbar_status .o_arrow_button {
+	 min-height: 31px;
+}
+ .o_form_view .o_not_full.oe_button_box {
+	 box-shadow: none;
+	 border-bottom-style: solid;
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_form_view .o_form_sheet_bg {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_form_view .oe_button_box.o_not_full .oe_stat_button {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_vr_2.png") 6/0px 0px 0px 3px round;
+}
+ .nav-tabs {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .modal-content .modal-footer {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+}
+ .modal-content .modal-header {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_Chatter_fixedPanel .o_ChatterTopbar .o_ChatterTopbar_actions.o-has-active-button {
+	 border-bottom: none;
+}
+ .o_Chatter_fixedPanel .o_Chatter_composer.o-bordered {
+	 border: 1px dotted var(--table-tr-bordercolor);
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_sq_2.svg") 5/8px 8px 8px 8px round;
+}
+ .o_Chatter_fixedPanel .o_Composer_toolButtons {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+}
+ hr {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+	 border-width: 3px;
+}
+ .o_settings_container .o_setting_box .o_setting_right_pane {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_vr_2.png") 12/0px 0px 0px 3px round;
+}
+ .o_Message.o-not-discussion {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}
+ .o_base_settings .o_control_panel .o_panel .o_setting_search .searchInput {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/0px 0px 3px 0px round;
+}*/
+
+.o_ActivityBox_titleLine{
+  border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+  border-width: 1px !important;
+}
+ hr {
+	 border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+	 border-width: 2px;
+}
+.o_MessagingMenu_dropdownMenu .o_NotificationList .o_NotificationList_separator{
+  border-width: 2px;
+  border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+}
+.dropdown-divider{
+  border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+  border-width: 2px;
+}
+.o_Discuss div.o_Discuss_sidebar hr{
+  border-width: 2px;
+  border-image: url("/pl_curved_backend_theme/static/src/images/border_img_2.png") 12/3px 0px 0px 0px round;
+}

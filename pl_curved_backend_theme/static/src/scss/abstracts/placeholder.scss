@@ -1,0 +1,81 @@
+// ml-auto to manage reset default list
+%ml_auto{
+    margin-left: auto;
+}
+%d_block{
+    display: block;
+}
+%d_none{
+    display: none;
+}
+%relative{
+    position: relative;
+}
+// @extend %listreset;
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// @extend %empty;
+%empty{
+   &:empty{
+        display: none !important;
+    }
+}
+
+%pointer{
+    cursor: pointer;
+}
+%shadow-sm{
+    box-shadow: 0 4px 10px rgba($black,  0.20);
+}
+%flex-direction{
+    flex-direction: column;
+}
+
+%h-100{
+    height: 100%;
+}
+%w-100{
+    width: 100%;
+}
+
+%full_width{
+    max-width: 100%;
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+%transparent{
+    transition: all ease-in-out 0.3s;
+}
+
+%bg-transparent{
+    background-color: transparent;
+}
+
+// flex column
+%flex-column{
+    display: flex;
+    flex-direction: column;
+}
+%text-center{
+    text-align: center;
+}
+
+// @media (min-width: 991px)
+@include media-breakpoint-up(md) {
+    ::-webkit-scrollbar {
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--primary);
+        border-radius: 10px;
+    }
+}

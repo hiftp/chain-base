@@ -1,0 +1,32 @@
+.nav-tabs {
+  border-bottom-color: var(--list-bordercolor); //var(--drk-border);
+  .nav-item {
+    .nav-link {
+      color: var(--table-td-color);
+      border-radius: 0px;
+      position: relative;
+      background: none;
+      &.active,
+      &:hover {
+        border-color: var(--list-bordercolor);
+        border-bottom-color: var(--cp_bottom-bg);
+//         background: var(--tab-bg);
+        background: var(--cp_bottom-bg);
+      }
+      &::before {
+        content: "";
+        @include position(absolute, $top: -1px, $left: 0);
+        width: 0%;
+        height: 2px;
+        background: $primary;
+      }
+      &.show,
+      &.active {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+// .nav-tabs .nav-item .nav-link.active, .nav-tabs .nav-item .nav-link:hover

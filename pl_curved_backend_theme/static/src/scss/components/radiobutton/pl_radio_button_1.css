@@ -1,0 +1,16 @@
+.custom-control.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  /*background-size: 1rem;*/
+  background: var(--primary);
+  border-radius: 50%;
+  transform: scale(0.5);
+}
+.custom-control.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: transparent;
+  border-color: var(--primary);
+}
+
+.custom-control.custom-radio .custom-control-label::before,
+.custom-control.custom-radio .custom-control-label::after{
+    width: 1.32rem;
+    height: 1.32rem;
+}

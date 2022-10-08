@@ -1,0 +1,160 @@
+$button_shadow:0px 4px 15px rgba(40, 195, 151, 0.4);
+// #pl_add_custom_theme_user, #pl_new_theme_save{
+//   box-shadow:$button_shadow;
+// }
+// .pl-quick-card {
+//         .pl_color_theme_card, .pl-add-theme {
+// //             max-width: 80px;
+//             svg {
+//                 width:35px;
+//                 }
+//          }
+// }
+//
+// .pl_color_theme_card {
+//             .pl_user_theme_edit {
+//                 opacity:0;
+//                 transition:0.3s ease;
+//             }
+//             .pl_user_theme_delete {
+//                 opacity:0;
+//                 transition:0.3s ease;
+//             }
+//         &:hover {
+//             .pl_user_theme_edit {
+//                 opacity:1;
+//             }
+//             .pl_user_theme_delete {
+//                 opacity:1;
+//             }
+//         }
+//     }
+//
+// .pl-add-theme {
+//     min-height: 76px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     i{
+//     font-size:20px;
+//     }
+// }
+.pl_color_theme_qweb_div_user,
+.pl_color_theme_qweb_div_global,
+.pl_color_theme_qweb_div_company {
+    .pl-quick-card {
+        .pl_color_theme_card {
+            padding: 8px;
+            &.pl_theme_selected{
+                box-shadow: 0 0px 0px 2px var(--primary);
+            }
+        }
+        .quick-card-sec {
+            position: relative;
+            //overflow: hidden;
+            .custom-control-label {
+                svg {
+                    box-shadow: 0 2px 6px var(--pl-border);
+                }
+            }
+            .options {
+                width: 100%;
+                transition: all 0.5s;
+                span{
+                  padding: 0 4px 4px;
+                  position: relative;
+                  top: 4px;
+                }
+            }
+            &:hover {
+                .options {
+
+                }
+            }
+        }
+        .pl-add-theme {
+            padding: 0;
+            .btn {
+                width: 83px;
+                height: 52px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+                border-radius: 5px;
+            }
+        }
+        #user_theme_edit_section,
+        #global_theme_edit_section,
+        #company_theme_edit_section {
+            #pl-color-theme-edit-section {
+                label {
+                    display: block;
+                }
+                .form-control,
+                input {
+                    margin-bottom: 16px;
+                    width: 38px;
+                    height: 22px;
+                    border-radius: 0px;
+                    padding: 0;
+                    line-height: 0;
+                    -webkit-appearance: none;
+                    border: 1px solid var(--pl-border);
+                    &::-webkit-color-swatch-wrapper {
+                        padding: 0;
+                    }
+                    &::-webkit-color-swatch {
+                        border: none;
+                    }
+                    &.pl-theme-name{
+                       width: 80%;
+                       padding: 0 8px;
+                    }
+                }
+            }
+        }
+        .pl_theme_edit_cancel {
+            color: var(--color);
+            &:hover {
+                color: var(--default-btn-color);
+            }
+        }
+    }
+}
+
+.pl_color_theme_qweb_div_global,
+.pl_color_theme_qweb_div_company {
+    .pl-quick-card {
+        max-width: 450px;
+    }
+}
+.pl-edit-form{
+  border: 1px solid var(--pl-border);
+  padding: 10px 0px 10px 15px;
+}
+
+.color-theme-title-text {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/*
+* Color theme dark mode.
+*/
+[data-color-mode="pl-dark"] {
+    .pl_color_theme_qweb_div_user,
+    .pl_color_theme_qweb_div_global,
+    .pl_color_theme_qweb_div_company {
+        .pl-quick-card {
+            .pl-add-theme {
+                .btn {
+                    color: white;
+                    box-shadow: 0 0px 2px rgba(187,187,187, 0.7) !important;
+                }
+            }
+
+            .quick-card-sec{
+                box-shadow: 0 0px 2px rgba(187,187,187, 0.7);
+            }
+        }
+    }
+}

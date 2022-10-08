@@ -1,0 +1,30 @@
+:root{
+  font-size: 14px;
+}
+
+.pl_right_sidebar_panel .right-sidebar-inner .pl-zoom-view .pl-btn-zoom
+{
+  left: -1.25rem;
+}
+.pl_right_sidebar_panel .right-sidebar-inner .bookmarpl-toggle .pl-bookmarpl-menu-toggle{
+  left: -1.25rem;
+}
+body.o_web_client.pl_favtbar_bottom {
+    padding-bottom: 71px;
+}
+body.o_web_client.pl_favtbar_bottom .pl_left_sidebar_panel{
+  height: 71px;
+}
+
+.o_control_panel .o_cp_bottom_right{
+  width: 60%;
+}
+.o_control_panel .o_cp_bottom .o_cp_bottom_left{
+  width: 40%;
+}
+
+@media screen and (max-width: 1024px){
+  :root{
+    font-size: 12px;
+  }
+}

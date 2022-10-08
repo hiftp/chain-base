@@ -1,0 +1,14 @@
+.custom-control.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+	 background-image: url('/pl_curved_backend_theme/static/src/images/checkbox-checked_light.svg');
+	 background-size: 14px;
+	 opacity: 1;
+	 background-position: 2px center;
+}
+ .custom-control.custom-checkbox .custom-control-input:focus:not(:checked) ~ .custom-control-label::before, .custom-control.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before, .custom-control.custom-checkbox .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+	 border-color: #adb5bd;
+}
+ .custom-control.custom-checkbox .custom-control-label::before, .custom-control.custom-checkbox .custom-control-label::after {
+	 border-radius: 50%;
+	 height: 18px;
+	 width: 18px;
+}

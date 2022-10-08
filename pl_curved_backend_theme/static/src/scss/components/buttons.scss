@@ -1,0 +1,155 @@
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > .btn-group:not(:last-child) > .btn {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+button.fa.fa-chevron-left.btn.btn-secondary.o_pager_previous.rounded-left {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.btn-fill-primary, .btn-primary{
+    background-color: var(--primary-btn);
+    border-color: var(--primary-btn);
+//     border-color: darken($primary, 5%);
+
+    &:hover{
+        //background-color: darken($primary, 2%);
+        //border-color: darken($primary, 10%);
+        //box-shadow: 0 4px 15px rgba($primary, 0.4);
+        //box-shadow: 0 2px 6px var(--primary-btn);
+        background-color: var(--primary-btn);
+        border-color: var(--primary-btn);
+    }
+
+    &:not(:disabled):not(.disabled):active{
+//         background-color: darken($primary, 4%);
+//         border-color: darken($primary, 15%);
+        background-color: var(--primary-btn);
+        border-color: var(--primary-btn);
+        box-shadow: 0 4px 8px rgba($primary, 0.3);
+
+    }
+    &:focus{
+         outline: none;
+         box-shadow: none;
+    }
+}
+.btn{
+  box-shadow: none !important;
+}
+.o_web_client{
+  .btn-link{
+    color: var(--primary);
+  }
+}
+.btn-fill-primary.disabled,
+.disabled.btn-primary,
+.btn-fill-primary:disabled,
+.btn-primary:disabled{
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+//switch Header
+.pl_toggle_theme{
+  .custom-control-input{
+    &:checked {
+      ~ {
+        .custom-control-label{
+          &::after {
+            transform: translateX(1.9rem);
+          }
+          &:before{
+            background: var(--primary) url("/pl_curved_backend_theme/static/src/images/radio_icon.png") no-repeat left;
+            background-size: contain;
+          }
+        }
+      }
+    }
+    &:focus:not(:checked) {
+      ~{
+        .custom-control-label{
+          &::before{
+            border-color: #adb5bd;
+          }
+        }
+      }
+    }
+  }
+  .custom-control-label{
+    &::before {
+      height: 2rem;
+      box-shadow: none !important;
+    }
+    &:after{
+      width: calc(1.9rem - 4px);
+      height: calc(1.9rem - 4px);
+      top: calc(0.37rem + 2px);
+    }
+  }
+}
+
+// split-dropdown Button
+html[data-color-mode="pl-light"]{
+  .split-dropdown{
+    button{
+      svg{
+        filter: invert(1);
+      }
+    }
+  }
+}
+.split-dropdown{
+  border-radius: var(--theme-style-radius-25);
+  background: var(--cp_bottom-bg);
+  padding: 0.3rem;
+  border: 1px solid var(--pl-border);
+  margin: 0 6px;
+  order: 3;
+  &.show{
+    button{
+      background-color: var(--primary) !important;
+      border-color: transparent !important;
+    }
+  }
+  button{
+    background: var(--cp_bottom-bg);
+    border-color: transparent;
+    border-radius: var(--theme-style-radius-25);
+    &:after{
+      color: var(--color);
+    }
+  }
+  .dropdown-menu{
+    transform: none !important;
+    top: 100% !important;
+    li{
+      &.active_split{
+        a{
+          background: var(--primary);
+          color: var(--nav-link-color);
+          &:hover{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+.custom-switch {
+    padding-left: 0 !important;
+    .custom-control-label {
+        width: 4rem;
+        height: 2rem;
+        &::before {
+            left: 0;
+            top: 0;
+        }
+        &::after {
+            left:2px;
+            top: 2px;
+        }
+    }
+}

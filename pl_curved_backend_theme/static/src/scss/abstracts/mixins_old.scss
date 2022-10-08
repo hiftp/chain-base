@@ -1,0 +1,214 @@
+
+/* generically prefix any property name */
+@mixin prefix($name, $value) {
+	-webkit-#{$name}: $value;
+	-moz-#{$name}: $value;
+	-ms-#{$name}: $value;
+	-o-#{$name}: $value;
+	#{$name}: $value;
+}
+
+/* for border-radius, named to be consistent with rounded corner */
+@mixin rounded($radius: 6px) {
+	border-radius: $radius;
+}
+/* used for rounding a single corner. eg. rounded corner(top, left) */
+@mixin roundedcorner($surface, $side, $radius: 6px) {
+	border-#{$surface}-#{$side}-radius: $radius;
+}
+/// Mixin to manage box-shadow
+@mixin boxshadow($horiz, $vert, $blur, $color) {
+	box-shadow: $horiz $vert $blur $color;
+}
+
+/// Mixin to  manage transition with prefix
+@mixin transition($property: all, $duration: 0.2s, $timing: linear) {
+	-webkit-transition: #{$property} $duration $timing;
+	-moz-transition: #{$property} $duration $timing;
+	-ie-transition: #{$property} $duration $timing;
+	-o-transition: #{$property} $duration $timing;
+	transition: $property $duration $timing;
+}
+/// Mixin to manage transform
+@mixin transform($type) {
+	-webkit-transform: $type;
+	-moz-transform: $type;
+	-ms-transform: $type;
+	-o-transform: $type;
+	transform: $type;
+}
+/// Mixin to use of animation
+@mixin animation($name, $timing: 0.5s) {
+	-webkit-animation: $name $timing;
+	-moz-animation: $name $timing;
+	-ms-animation: $name $timing;
+	-o-animation: $name $timing;
+}
+
+// We define `null` as the default value for each argument
+@mixin text($size: null, $lineHeight: null, $weight: null) {
+  @if $size != null {
+    font-size: $size;
+  }
+
+  @if $lineHeight != null {
+    line-height: $lineHeight;
+  }
+
+  @if $weight != null {
+    font-weight: $weight;
+  }
+}
+
+// Simplified from the original source
+
+$scut-rem-base: 16 !default;
+
+@function scut-rem ($pixels) {
+  @return scut-strip-unit($pixels) / $scut-rem-base * 1rem;
+}
+
+// example
+// .MyComponent { font-size: scut-rem(18px); }
+
+// Compiles to
+// .MyComponent { font-size: 1.125rem; }
+
+
+$breakpoints: (
+  'small':  767px,
+  'medium': 992px,
+  'large':  1200px
+) !default;
+
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+
+
+
+// Mixin to manage text truncate
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Mixin to manage input-placeholder
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+//Just in case there are people how aren't used to using @content here is a usage example:
+
+// Example ---------
+// input, textarea {
+//     @include input-placeholder {
+//         color: $grey;
+//     }
+// }
+
+
+// Mixin to manage cover-background
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+// Mixin to manage background button effect
+@mixin background-transition($initial, $hover, $inversed: false) {
+  background: linear-gradient(
+    90deg,
+    $hover 0%,
+    $hover 50%,
+    $initial 50%,
+    $initial 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  background-position: right bottom;
+  @if $inversed {
+    background-position: left bottom;
+  }
+  transition: background-position 0.25s ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    @if $inversed {
+      background-position: right bottom;
+    }
+  }
+}
+
+// Example
+// button { @include background-transition(#4CAF50, #3F51B5); }
+
+
+// Mixin to manage vertical-center
+@mixin vertical-center {
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+// Example
+// @include vertical-center();
+
+
+// Mixin to manage Arrow with Four Optional Directions
+@mixin arrow($direction: down, $size: 5px, $color: #555) {
+  width: 0;
+  height: 0;
+  @if ($direction == left) {
+     border-top: $size solid transparent;
+     border-bottom: $size solid transparent;
+     border-right: $size solid $color;
+  }
+  @else if ($direction == right) {
+     border-top: $size solid transparent;
+     border-bottom: $size solid transparent;
+     border-left: $size solid $color;
+  }
+  @else if ($direction == down) {
+     border-left: $size solid transparent;
+     border-right: $size solid transparent;
+     border-top: $size solid $color;
+  }
+  @else {
+     border-left: $size solid transparent;
+     border-right: $size solid transparent;
+     border-bottom: $size solid $color;
+  }
+}
+// Example --
+// without arguments (default)
+// 1 @include arrow();
+
+// with custom arguments
+// 2 @include arrow(up, 10px, #efefef);

@@ -23,7 +23,7 @@ City Data/城市数据
     ],
     'data': [
         'data/res_city_data.xml',
-        # 'data/res.city.csv',
+        'data/res.country_data.xml',
         'views/res_partner_views.xml',
     ],
     'license': 'LGPL-3',

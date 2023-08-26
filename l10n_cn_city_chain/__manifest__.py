@@ -19,11 +19,11 @@ City Data/城市数据
     'depends': [
         # 'l10n_cn_chain',
         'l10n_cn_standard_latest_chain',
-        'base_address_city',
+        'base_address_extended',
     ],
     'data': [
         'data/res_city_data.xml',
-        'data/res.country_data.xml',
+        'data/res_country_data.xml',
         'views/res_partner_views.xml',
     ],
     'license': 'LGPL-3',

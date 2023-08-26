@@ -4,11 +4,11 @@
 
 {
     'name': 'China - City Data',
-    'version': '1.8',
+    'version': '1.8.1',
     'icon': '/l10n_cn/static/description/icon.png',
     'category': 'Accounting/Localizations',
-    'author': 'Jeffery Chen Fan<jeffery9@gmail.com>',
-    "excludes": ["l10n_cn_city"],
+    'author': 'Jeffery Chen Fan<jeffery9@gmail.com>', 'odoochain'
+    # "excludes": ["l10n_cn_city"],
     'description': """
 Includes the following data for the Chinese localization
 ========================================================
@@ -17,9 +17,9 @@ City Data/城市数据
 
     """,
     'depends': [
-        # 'l10n_cn_chain',
-        'l10n_cn_standard_latest_chain',
-        'base_address_extended',
+        'l10n_cn_city',
+        # 'l10n_cn_standard_latest_chain',
+        # 'base_address_extended',
     ],
     'data': [
         'data/res_city_data.xml',

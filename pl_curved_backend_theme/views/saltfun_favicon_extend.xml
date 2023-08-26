@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="saltfun_tab_name" name="Saltfun tab name" inherit_id="web.layout" priority="17">
+        <xpath expr="//title" position="replace">
+            <title t-esc="title or 'Saltfun'"/>
+        </xpath>
+	</template>
+	<template id="saltfun_favicon" name="Saltfun favicon" inherit_id="web.layout" priority="17">
+        <xpath expr="//link" position="replace">
+            <link type="image/x-icon" rel="shortcut icon" t-att-href="x_icon or '/pl_curved_backend_theme/static/description/icon.png'"/>
+        </xpath>
+	</template>
+</odoo>

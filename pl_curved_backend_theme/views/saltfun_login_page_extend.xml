@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="login_page_saltfun_remove_powered_by" name="Remove powered by" inherit_id="web.login_layout"
+              priority="17">
+        <xpath expr="//div//div/div" position="replace">
+            <div class="card-body">
+                <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                    <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo"
+                         style="max-height:120px; max-width: 100%; width:auto"/>
+                </div>
+                <t t-out="0"/>
+                <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                    <t t-if="not disable_database_manager">
+                        <a class="border-right pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="login_page_saltfun_remove_superuser" name="Remove superuser from Saltfun login page"
+              inherit_id="web.login" priority="17">
+        <xpath expr="//t[@t-if='debug']" position="replace">
+            <t t-if="debug">
+            </t>
+        </xpath>
+    </template>
+</odoo>

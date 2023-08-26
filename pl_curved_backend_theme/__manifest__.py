@@ -14,7 +14,7 @@
     """,
     'author': "Zenman Ltd.",
     'website': "https://www.saltfun.com",
-    'license': 'OPL-1',
+    'license': 'LGPL-3',
     'version': '15.0.1.0.8',
     'category': 'Themes/Backend',
     'depends': [

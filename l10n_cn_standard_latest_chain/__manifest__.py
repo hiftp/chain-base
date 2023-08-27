@@ -16,7 +16,6 @@
     'license': 'LGPL-3',
     'sequence': 12,
     "excludes": ["l10n_cn",
-                 "l10n_cn_chain",
                  "l10n_cn_standard_latest",
                  ],
     'summary': """    

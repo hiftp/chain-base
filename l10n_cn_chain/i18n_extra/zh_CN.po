@@ -4,150 +4,150 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0alpha1+e\n"
+"Project-Id-Version: Odoo Server 16\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-03-15 12:16+0000\n"
-"PO-Revision-Date: 2017-11-29 10:31+0000\n"
+"PO-Revision-Date: 2023-04-25 12:28+0800\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2711
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2711
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2711
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2711
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2711
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2711
 msgid "Account payable special funds"
 msgstr "专项应付款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2202
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2202
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2202
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2202
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2202
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2202
 msgid "Accounts Payable"
 msgstr "应付账款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1122
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1122
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1122
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1122
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1122
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1122
 msgid "Accounts Receivable"
-msgstr "应付账款"
+msgstr "应收账款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1124
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1124
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1124
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1124
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1124
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1124
 msgid "Accounts Receivable (PoS)"
-msgstr "应收账款（POS)"
+msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1702
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1702
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1702
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1702
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1702
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1702
 msgid "Accumulated amortization"
 msgstr "累计摊销"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1602
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1602
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1602
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1602
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1602
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1602
 msgid "Accumulated depreciation"
 msgstr "累计折旧"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1123
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1123
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1123
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1123
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1123
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1123
 msgid "Advance Payment"
 msgstr "预付账款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6701
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6701
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6701
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6701
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6701
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6701
 msgid "Assets impairment Loss"
-msgstr "爱产减值损失"
+msgstr "资产减值损失"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1503
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1503
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1503
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1503
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1503
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1503
 msgid "Available for sale financial assets"
 msgstr "可供出售金融资产"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1231
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1231
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1231
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1231
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1231
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1231
 msgid "Bad Debt Provisions"
 msgstr "坏账准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2201
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2201
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2201
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2201
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2201
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2201
 msgid "Bills Payable"
 msgstr "应付票据"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1121
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1121
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1121
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1121
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1121
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1121
 msgid "Bills Receivable"
 msgstr "应收票据"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2502
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2502
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2502
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2502
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2502
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2502
 msgid "Bonds Payable"
-msgstr "應付債券"
+msgstr "应付债券"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4002
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4002
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4002
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4002
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4002
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4002
 msgid "Capital Surplus"
 msgstr "資本公積金"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1408
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1408
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1408
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1408
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1408
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1408
 msgid "Consigned processing materials"
-msgstr "委托加工物資"
+msgstr "委托加工的材料"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1604
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1604
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1604
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1604
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1604
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1604
 msgid "Construction in progress"
 msgstr "在建工程"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2901
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2901
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2901
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2901
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2901
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2901
 msgid "Deferred Tax Liability"
-msgstr "遞延所得税負債"
+msgstr "递延税项负债"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2203
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2203
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2203
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2203
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2203
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2203
 msgid "Deposit Received"
-msgstr "預收賬款"
+msgstr "预收账款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1407
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1407
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1407
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1407
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1407
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1407
 msgid "Differences between purchasing and selling price"
-msgstr "商品進銷差價"
+msgstr "商品进销差价"
 
 #. module: l10n_cn_chain
 #: model:ir.model.fields,field_description:l10n_cn_chain.field_account_move__display_name
@@ -155,25 +155,25 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1131
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1131
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1131
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1131
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1131
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1131
 msgid "Divident Receivable"
-msgstr "應收股利"
+msgstr "应收股利"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2241
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2241
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2241
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2241
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2241
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2241
 msgid "Dividents payable"
-msgstr "應付股利"
+msgstr "应付股利"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1605
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1605
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1605
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1605
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1605
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1605
 msgid "Engineering materials"
-msgstr "工程物資"
+msgstr "工程物资"
 
 #. module: l10n_cn_chain
 #: model:ir.model.fields,field_description:l10n_cn_chain.field_account_bank_statement_line__fapiao
@@ -189,53 +189,53 @@ msgid "Fapiao number is an 8-digit number. Please enter a correct one."
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6603
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6603
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6603
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6603
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6603
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6603
 msgid "Financial Expenses"
-msgstr "財務費用"
+msgstr "财务费用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1601
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1601
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1601
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1601
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1601
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1601
 msgid "Fixed assets"
-msgstr "固定資産"
+msgstr "固定资产"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1603
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1603
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1603
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1603
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1603
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1603
 msgid "Fixed assets depreciation reserves"
-msgstr "固定資産减值準備"
+msgstr "固定资产减值准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6101
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6101
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6101
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6101
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6101
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6101
 msgid "Gains and Losses of fair value change"
-msgstr "公允價值變動損益"
+msgstr "公允价值变动损益"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1406
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1406
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1406
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1406
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1406
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1406
 msgid "Goods shipped in transit"
-msgstr "發出商品"
+msgstr "运输中的货物"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1711
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1711
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1711
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1711
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1711
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1711
 msgid "Goodwill"
-msgstr "商譽"
+msgstr "商誉"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1501
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1501
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1501
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1501
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1501
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1501
 msgid "Held to maturity Investment"
-msgstr "持有至到期投資"
+msgstr "持有至到期的投资"
 
 #. module: l10n_cn_chain
 #: model:ir.model.fields,field_description:l10n_cn_chain.field_account_move__id
@@ -243,67 +243,67 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1512
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1512
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1512
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1512
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1512
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1512
 msgid "Impairment provision for long-term equity investments"
-msgstr "長期股權投資减值準備"
+msgstr "长期股权投资的减值准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6801
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6801
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6801
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6801
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6801
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6801
 msgid "Income Tax Expense"
-msgstr "所得税費用"
+msgstr "所得税费用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6111
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6111
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6111
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6111
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6111
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6111
 msgid "Income from investment"
-msgstr "投資收益"
+msgstr "投资收益"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1701
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1701
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1701
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1701
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1701
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1701
 msgid "Intangible Assets"
-msgstr "無形資産"
+msgstr "无形资产"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1703
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1703
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1703
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1703
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1703
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1703
 msgid "Intangible Assets Depreciation Reserves"
-msgstr "無形資産减值準備"
+msgstr "无形资产减值准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1132
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1132
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1132
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1132
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1132
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1132
 msgid "Interest Receivable"
-msgstr "應收利息"
+msgstr "应收利息"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2231
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2231
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2231
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2231
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2231
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2231
 msgid "Interest payable"
-msgstr "應付利息"
+msgstr "应付利息"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1471
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1471
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1471
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1471
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1471
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1471
 msgid "Inventory falling price reserves"
-msgstr "存貨跌價準備"
+msgstr "存货跌价准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1521
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1521
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1521
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1521
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1521
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1521
 msgid "Investmental real estate"
-msgstr "投資性房地産"
+msgstr "投资性房地产"
 
 #. module: l10n_cn_chain
 #: model:ir.model,name:l10n_cn_chain.model_account_move
@@ -316,11 +316,11 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1606
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1606
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1606
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1606
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1606
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1606
 msgid "Liquidation of fixed assets"
-msgstr "固定資産情况"
+msgstr "固定资产情况"
 
 #. module: l10n_cn_chain
 #: model:account.account,name:l10n_cn_chain.1_l10n_chart_china_small_business_liquidity_transfer
@@ -330,276 +330,276 @@ msgid "Liquidity Transfer"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2701
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2701
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2701
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2701
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2701
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2701
 msgid "Long Term payables"
-msgstr "長期應付款"
+msgstr "长期应付款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1801
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1801
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1801
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1801
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1801
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1801
 msgid "Long-term amortized expenses"
-msgstr "長期待攤銷費用"
+msgstr "长期待摊销费用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1511
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1511
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1511
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1511
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1511
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1511
 msgid "Long-term equity investment"
-msgstr "長期股權投資"
+msgstr "长期股权投资"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1531
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1531
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1531
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1531
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1531
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1531
 msgid "Long-term receivables"
-msgstr "長期應收款"
+msgstr "长期应收款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6401
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6401
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6401
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6401
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6401
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6401
 msgid "Main Business Cost"
-msgstr "主營業務成本"
+msgstr "主营营业成本"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6001
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6001
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6001
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6001
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6001
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6001
 msgid "Main Business Income"
-msgstr "主營業務收入"
+msgstr "主营营业收入"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6602
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6602
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6602
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6602
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6602
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6602
 msgid "Management Expenses"
 msgstr "管理費用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_5101
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_5101
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_5101
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_5101
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_5101
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_5101
 msgid "Manufacturing Expenses"
 msgstr "制造費用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1404
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1404
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1404
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1404
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1404
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1404
 msgid "Material Cost Variance"
 msgstr "材料成本差异"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1401
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1401
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1401
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1401
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1401
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1401
 msgid "Material Purchasing"
-msgstr "材料采購"
+msgstr "材料采购"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1402
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1402
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1402
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1402
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1402
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1402
 msgid "Materials in transit"
-msgstr "在途物資"
+msgstr "在途物资"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1405
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1405
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1405
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1405
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1405
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1405
 msgid "Merchandise Inventory"
-msgstr "庫存商品"
+msgstr "库存商品"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6301
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6301
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6301
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6301
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6301
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6301
 msgid "Non-operating Income"
-msgstr "營業外收入"
+msgstr "营业外收入"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6711
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6711
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6711
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6711
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6711
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6711
 msgid "Non-operating expenses"
-msgstr "營業外支出"
+msgstr "营业外支出"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6403
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6403
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6403
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6403
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6403
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6403
 msgid "Operating Taxes and Surcharges"
-msgstr "營業税及附加"
+msgstr "营业税及附加"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6051
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6051
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6051
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6051
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6051
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6051
 msgid "Other Business Income"
-msgstr "其他業務收入"
+msgstr "其他业务收入"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4003
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4003
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4003
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4003
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4003
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4003
 msgid "Other Comprehensive Income"
-msgstr "其他綜合收益"
+msgstr "其他综合收益"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1012
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1012
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1012
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1012
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1012
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1012
 msgid "Other Monetary Funds"
-msgstr "其他貨幣資金"
+msgstr "其他货币资金"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6402
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6402
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6402
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6402
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6402
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6402
 msgid "Other Operating Costs"
-msgstr "其他業務成本"
+msgstr "其他业务成本"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1221
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1221
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1221
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1221
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1221
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1221
 msgid "Other Receivable"
-msgstr "其他應收款"
+msgstr "其他应收款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2501
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2501
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2501
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2501
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2501
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2501
 msgid "Other payable"
-msgstr "其他應付款"
+msgstr "其他应付款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4001
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4001
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4001
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4001
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4001
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4001
 msgid "Paid in capital"
-msgstr "實收資本"
+msgstr "实收资本"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2211
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2211
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2211
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2211
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2211
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2211
 msgid "Payroll payable"
-msgstr "應付職工薪酬"
+msgstr "应付职工薪酬"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6901
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6901
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6901
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6901
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6901
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6901
 msgid "Prior year income adjustment"
-msgstr "以前年度損益調整"
+msgstr "以前年度损益调整"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_5001
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_5001
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_5001
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_5001
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_5001
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_5001
 msgid "Production Costs"
-msgstr "生産成本"
+msgstr "生产成本"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4104
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4104
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4104
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4104
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4104
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4104
 msgid "Profit distribution"
-msgstr "利潤分配"
+msgstr "利润分配"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4103
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4103
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4103
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4103
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4103
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4103
 msgid "Profit for the year"
-msgstr "本年利潤"
+msgstr "本年利润"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2801
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2801
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2801
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2801
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2801
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2801
 msgid "Projected liabilities"
-msgstr "預計負債"
+msgstr "预计负债"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1502
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1502
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1502
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1502
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1502
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1502
 msgid "Provision for impairment of investments held to maturity"
-msgstr "持有至到期投資减值準備"
+msgstr "持有至到期投资的减值准备"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_5301
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_5301
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_5301
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_5301
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_5301
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_5301
 msgid "R & D expenditure"
-msgstr "研發支出"
+msgstr "研发支出"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1403
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1403
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1403
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1403
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1403
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1403
 msgid "Raw Material"
 msgstr "原材料"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_6601
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_6601
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_6601
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_6601
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_6601
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_6601
 msgid "Selling Expenses"
-msgstr "銷售費用"
+msgstr "销售费用"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_5201
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_5201
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_5201
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_5201
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_5201
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_5201
 msgid "Service Cost"
-msgstr "勞務成本"
+msgstr "劳务成本"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2001
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2001
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2001
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2001
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2001
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2001
 msgid "Short-term borrowing"
 msgstr "短期借款"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_4101
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_4101
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_4101
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_4101
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_4101
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_4101
 msgid "Surplus Reserve"
-msgstr "盈餘公積"
+msgstr "盈余公积"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_2221
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_2221
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_2221
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_2221
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_2221
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_2221
 msgid "Tax payable"
-msgstr "應交税費"
+msgstr "应交税金"
 
 #. module: l10n_cn_chain
-#: model:account.account,name:l10n_cn_chain.1_l10n_cn_chain_1101
-#: model:account.account,name:l10n_cn_chain.2_l10n_cn_chain_1101
-#: model:account.account.template,name:l10n_cn_chain.l10n_cn_chain_1101
+#: model:account.account,name:l10n_cn_chain.1_l10n_cn_1101
+#: model:account.account,name:l10n_cn_chain.2_l10n_cn_1101
+#: model:account.account.template,name:l10n_cn_chain.l10n_cn_1101
 msgid "Transactional Financial Assets"
-msgstr "交易性金融資産"
+msgstr "交易性金融资产"
 
 #. module: l10n_cn_chain
-#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_chain_tax_group_vat_13
+#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_tax_group_vat_13
 msgid "VAT 13%"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_chain_tax_group_vat_6
+#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_tax_group_vat_6
 msgid "VAT 6%"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_chain_tax_group_vat_9
+#: model:account.tax.group,name:l10n_cn_chain.l10n_cn_tax_group_vat_9
 msgid "VAT 9%"
 msgstr ""
 
@@ -609,91 +609,91 @@ msgid "小企业会计科目表（财会[2011]17号《小企业会计准则》�
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_13
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_13
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_13
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_13
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_13
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_13
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_13
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_13
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_purchase_excluded_13
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_excluded_13
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_purchase_excluded_13
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_excluded_13
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_purchase_excluded_13
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_excluded_13
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_purchase_excluded_13
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_excluded_13
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_purchase_excluded_13
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_excluded_13
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_purchase_excluded_13
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_excluded_13
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_purchase_excluded_13
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_excluded_13
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_purchase_excluded_13
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_excluded_13
 msgid "税收13%"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_included_13
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_included_13
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_included_13
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_included_13
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_included_13
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_included_13
 msgid "税收13％"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_included_13
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_included_13
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_included_13
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_included_13
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_included_13
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_included_13
 msgid "税收13％（含)"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_6
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_6
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_6
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_6
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_purchase_excluded_6
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_excluded_6
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_purchase_excluded_6
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_excluded_6
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_purchase_excluded_6
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_excluded_6
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_purchase_excluded_6
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_excluded_6
 msgid "税收6%"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_6
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_6
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_included_6
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_6
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_6
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_included_6
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_purchase_excluded_6
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_excluded_6
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_included_6
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_purchase_excluded_6
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_excluded_6
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_included_6
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_purchase_excluded_6
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_excluded_6
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_included_6
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_purchase_excluded_6
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_excluded_6
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_included_6
 msgid "税收6％"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_included_6
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_included_6
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_included_6
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_included_6
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_included_6
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_included_6
 msgid "税收6％（含)"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_9
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_9
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_9
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_9
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_purchase_excluded_9
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_excluded_9
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_purchase_excluded_9
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_excluded_9
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_purchase_excluded_9
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_excluded_9
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_purchase_excluded_9
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_excluded_9
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_purchase_excluded_9
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_excluded_9
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_purchase_excluded_9
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_excluded_9
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_purchase_excluded_9
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_excluded_9
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_purchase_excluded_9
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_excluded_9
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_purchase_excluded_9
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_excluded_9
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_purchase_excluded_9
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_excluded_9
 msgid "税收9%"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_chain_sales_included_9
-#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_chain_sales_included_9
-#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_chain_sales_included_9
+#: model:account.tax,description:l10n_cn_chain.1_l10n_cn_sales_included_9
+#: model:account.tax,description:l10n_cn_chain.2_l10n_cn_sales_included_9
+#: model:account.tax.template,description:l10n_cn_chain.l10n_cn_sales_included_9
 msgid "税收9％"
 msgstr ""
 
 #. module: l10n_cn_chain
-#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_chain_sales_included_9
-#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_chain_sales_included_9
-#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_chain_sales_included_9
+#: model:account.tax,name:l10n_cn_chain.1_l10n_cn_sales_included_9
+#: model:account.tax,name:l10n_cn_chain.2_l10n_cn_sales_included_9
+#: model:account.tax.template,name:l10n_cn_chain.l10n_cn_sales_included_9
 msgid "税收9％（含)"
 msgstr ""

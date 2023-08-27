@@ -18,6 +18,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
+
 class AccountChartTemplate(models.Model):
     _inherit = "account.chart.template"
 
@@ -30,7 +31,7 @@ class AccountChartTemplate(models.Model):
         :return:    A dictionary of values to create a new account.account.
         '''
         # 分隔符，金蝶为 "."，用友为""，注意odoo中一级科目，现金默认定义是4位头，银行是6位头
-        delimiter = ""
+        delimiter = "."
         digits = self.code_digits
         prefix = self.transfer_account_code_prefix or ''
         # Flatten the hierarchy of chart templates.
@@ -80,5 +81,3 @@ class AccountChartTemplate(models.Model):
                             'parent_id': parent.id,
                         })
         return res
-
-

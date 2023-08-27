@@ -18,6 +18,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
+
 class AccountAccount(models.Model):
     _inherit = ['account.account']
     _parent_name = "parent_id"
@@ -32,7 +33,7 @@ class AccountAccount(models.Model):
     @api.model
     def _search_new_account_code(self, company, digits, prefix):
         # 分隔符，金蝶为 "."，用友为""，注意odoo中一级科目，现金默认定义是4位头，银行是6位头
-        delimiter = ""
+        delimiter = "."
         for num in range(1, 100):
             new_code = str(prefix.ljust(digits - 1, '0')) + delimiter + '%02d' % (num)
             rec = self.search([('code', '=', new_code), ('company_id', '=', company.id)], limit=1)

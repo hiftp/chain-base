@@ -17,8 +17,8 @@
 
 from odoo import api, fields, models, exceptions, _
 
-class AccountAccountTemplate(models.Model):
 
+class AccountAccountTemplate(models.Model):
     _inherit = ['account.account.template']
     _parent_name = "parent_id"
     _parent_store = True
@@ -28,5 +28,3 @@ class AccountAccountTemplate(models.Model):
     parent_id = fields.Many2one('account.account.template', 'Parent Chart', index=True, ondelete='cascade')
     child_ids = fields.One2many('account.account.template', 'parent_id', 'Child Chart')
     parent_path = fields.Char(index=True, unaccent=False)
-
-

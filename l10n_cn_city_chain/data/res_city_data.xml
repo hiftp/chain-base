@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="china_city_330105" model="res.city">
             <field name="state_id" ref="base.state_cn_ZJ" />
             <field name="country_id" ref="base.cn" />
@@ -1996,7 +1996,7 @@
         <record id="china_city_460105" model="res.city">
             <field name="state_id" ref="base.state_cn_HI" />
             <field name="country_id" ref="base.cn" />
-            <field name="zipcode">460105</field>
+            <field name="zipcode">570100</field>
             <field name="name">海口市秀英区</field>
         </record>
         <record id="china_city_654003" model="res.city">

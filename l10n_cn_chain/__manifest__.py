@@ -14,6 +14,6 @@ todo
     ],
     'demo': [
     ],
-    'post_init_hook': 'load_translations',
+    # 'post_init_hook': 'load_translations',
     'license': 'LGPL-3',
 }

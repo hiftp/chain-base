@@ -29,6 +29,6 @@
 
     <function model="account.chart.template" name="try_loading">
         <value eval="[ref('l10n_cn_chain.l10n_chart_china_small_business')]"/>
-        <value model="res.company" eval="obj().env.ref('l10n_cn.demo_company_cn')"/>
+        <value model="res.company" eval="obj().env.ref('l10n_cn_chain.demo_company_cn')"/>
     </function>
 </odoo>

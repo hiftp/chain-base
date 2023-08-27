@@ -17,7 +17,7 @@ City Data/城市数据
 
     """,
     'depends': [
-        'l10n_cn_chain',
+        # 'l10n_cn_chain',
         # 'l10n_cn_standard_latest_chain',
         'base_address_extended',
     ],

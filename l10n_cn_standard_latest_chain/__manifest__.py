@@ -9,7 +9,7 @@
 
 {
     'name': '2022中国企业会计表.Latest Chinese Accounting',
-    'version': '15.21.11.11',
+    'version': '16.23.03.01',
     'author': 'odooChain.cn',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odoochain.cn',

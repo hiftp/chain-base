@@ -9,11 +9,11 @@
 
 {
     'name': 'China - Accounting - Chain',
-    'version': '15.0.0.1',
+    'version': '16.0.0.1',
     'category': 'Accounting/Localizations/Account Charts',
-    'author': 'www.openerp-china.org',
+    'author': 'www.odoochain.cn',
     'maintainer': 'jeff@osbzr.com',
-    'website': 'http://openerp-china.org',
+    'website': 'https://odoochain.cn',
     "excludes": ["l10n_cn"],
     'description': """
 Includes the following data for the Chinese localization
@@ -40,9 +40,9 @@ correctly when the cn2an library is installed. (e.g. with pip3 install cn2an)
     'depends': ['base', 'account', 'l10n_multilang'],
     'data': [
         'data/account_tax_group_data.xml',
-        'data/l10n_cn_chart_data.xml',
+        'data/l10n_cn_chain_chart_data.xml',
         'data/account.account.template.csv',
-        'data/l10n_cn_chart_post_data.xml',
+        'data/l10n_cn_chain_chart_post_data.xml',
         'data/account_tax_template_data.xml',
         'data/account_chart_template_data.xml',
         'views/account_move_view.xml',

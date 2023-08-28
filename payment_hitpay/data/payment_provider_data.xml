@@ -5,7 +5,6 @@
         <field name="name">HitPay Payment Gateway</field>
         <field name="display_as">HitPay Payment Gateway</field>
         <field name="code">hitpay</field>
-		<field name="image" type="base64" file="payment_hitpay/static/description/logo.png" />
         <field name="image_128" type="base64" file="payment_hitpay/static/description/logo.png"/>
         <field name="module_id" ref="base.module_payment_hitpay"/>
         <field name="redirect_form_view_id" ref="redirect_form"/>

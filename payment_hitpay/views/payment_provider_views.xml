@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">HitPay Payment Gateway Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group attrs="{'invisible': [('code', '!=', 'hitpay')]}">
+                    <field name="hitpay_api_key" string="API Key" attrs="{'required':[ ('code', '=', 'hitpay'), ('state', '!=', 'disabled')]}"/>
+                    <field name="hitpay_api_salt" string="Salt" attrs="{'required':[ ('code', '=', 'hitpay'), ('state', '!=', 'disabled')]}" password="True"/>
+                </group>
+            </group>
+        </field>
+    </record>
+    
+    <record id="transaction_form_hitpay" model="ir.ui.view">
+        <field name="name">HitPay Transaction Form</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form" />
+        <field name="arch" type="xml">
+            <field name="provider_reference" position="after">
+                <field name="hitpay_payment_request_id" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_payment_id" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_payment_amount" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_payment_currency" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_payment_status" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_refund_id" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_refund_amount" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_refund_currency" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+                <field name="hitpay_refund_createdat" attrs="{'invisible': [('provider_code','not in',('hitpay'))]}" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

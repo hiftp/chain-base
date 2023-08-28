@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="payment_icon_paynow_hitpay" model="payment.icon">
+        <field name="sequence">10</field>
+        <field name="name">PayNow QR</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/paynow.png"/>
+    </record>
+    <record id="payment_icon_google_pay_hitpay" model="payment.icon">
+        <field name="sequence">281</field>
+        <field name="name">Google Pay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/google_pay.png"/>
+    </record>
+    <record id="payment_icon_grabpay_hitpay" model="payment.icon">
+        <field name="sequence">282</field>
+        <field name="name">GrabPay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/grabpay.png"/>
+    </record>
+    <record id="payment_icon_wechatpay_hitpay" model="payment.icon">
+        <field name="sequence">283</field>
+        <field name="name">WeChatPay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/wechatpay.png"/>
+    </record>
+    <record id="payment_icon_alipay_hitpay" model="payment.icon">
+        <field name="sequence">41</field>
+        <field name="name">AliPay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/alipay.png"/>
+    </record>
+    <record id="payment_icon_shopeepay_hitpay" model="payment.icon">
+        <field name="sequence">284</field>
+        <field name="name">ShopeePay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/shopeepay.png"/>
+    </record>
+    <record id="payment_icon_fpx_hitpay" model="payment.icon">
+        <field name="sequence">285</field>
+        <field name="name">FPX</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/fpx.png"/>
+    </record>
+    <record id="payment_icon_atomeplus_hitpay" model="payment.icon">
+        <field name="sequence">287</field>
+        <field name="name">ATome+</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/atomeplus.png"/>
+    </record>
+    <record id="payment_icon_unionbank_hitpay" model="payment.icon">
+        <field name="sequence">288</field>
+        <field name="name">Unionbank Online</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/unionbank.png"/>
+    </record>
+    <record id="payment_icon_qrph_hitpay" model="payment.icon">
+        <field name="sequence">289</field>
+        <field name="name">Instapay QR PH</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/qrph.png"/>
+    </record>
+    <record id="payment_icon_pesonet_hitpay" model="payment.icon">
+        <field name="sequence">290</field>
+        <field name="name">PESONet</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/pesonet.png"/>
+    </record>
+    <record id="payment_icon_billease_hitpay" model="payment.icon">
+        <field name="sequence">291</field>
+        <field name="name">Billease BNPL</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/billease.png"/>
+    </record>
+    <record id="payment_icon_gcash_hitpay" model="payment.icon">
+        <field name="sequence">292</field>
+        <field name="name">GCash</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/gcash.png"/>
+    </record>
+    <record id="payment_icon_eftpos_hitpay" model="payment.icon">
+        <field name="sequence">293</field>
+        <field name="name">eftpos</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/eftpos.png"/>
+    </record>
+    <record id="payment_icon_alfamart_hitpay" model="payment.icon">
+        <field name="sequence">294</field>
+        <field name="name">Alfamart</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/alfamart.png"/>
+    </record>
+    <record id="payment_icon_indomaret_hitpay" model="payment.icon">
+        <field name="sequence">295</field>
+        <field name="name">Indomaret</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/indomaret.png"/>
+    </record>
+    <record id="payment_icon_dana_hitpay" model="payment.icon">
+        <field name="sequence">296</field>
+        <field name="name">DANA</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/dana.png"/>
+    </record>
+    <record id="payment_icon_gopay_hitpay" model="payment.icon">
+        <field name="sequence">297</field>
+        <field name="name">gopay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/gopay.png"/>
+    </record>
+    <record id="payment_icon_linkaja_hitpay" model="payment.icon">
+        <field name="sequence">298</field>
+        <field name="name">Link Aja!</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/linkaja.png"/>
+    </record>
+    <record id="payment_icon_ovo_hitpay" model="payment.icon">
+        <field name="sequence">299</field>
+        <field name="name">OVO</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/ovo.png"/>
+    </record>
+    <record id="payment_icon_qris_hitpay" model="payment.icon">
+        <field name="sequence">300</field>
+        <field name="name">QRIS</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/qris.png"/>
+    </record>
+    <record id="payment_icon_danamononline_hitpay" model="payment.icon">
+        <field name="sequence">301</field>
+        <field name="name">Bank Danamon</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/danamon.png"/>
+    </record>
+    <record id="payment_icon_permata_hitpay" model="payment.icon">
+        <field name="sequence">302</field>
+        <field name="name">PermataBank</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/permata.png"/>
+    </record>
+    <record id="payment_icon_bsi_hitpay" model="payment.icon">
+        <field name="sequence">303</field>
+        <field name="name">Bank Syariah Indonesia</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bsi.png"/>
+    </record>
+    <record id="payment_icon_bca_hitpay" model="payment.icon">
+        <field name="sequence">304</field>
+        <field name="name">BCA</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bca.png"/>
+    </record>
+    <record id="payment_icon_bni_hitpay" model="payment.icon">
+        <field name="sequence">305</field>
+        <field name="name">BNI</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bni.png"/>
+    </record>
+    <record id="payment_icon_bri_hitpay" model="payment.icon">
+        <field name="sequence">306</field>
+        <field name="name">BRI</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bri.png"/>
+    </record>
+    <record id="payment_icon_cimb_hitpay" model="payment.icon">
+        <field name="sequence">307</field>
+        <field name="name">CIMB Niaga</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/cimb.png"/>
+    </record>
+    <record id="payment_icon_doku_hitpay" model="payment.icon">
+        <field name="sequence">308</field>
+        <field name="name">DOKU</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/doku.png"/>
+    </record>
+    <record id="payment_icon_mandiri_hitpay" model="payment.icon">
+        <field name="sequence">309</field>
+        <field name="name">Mandiri</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/mandiri.png"/>
+    </record>
+    <record id="payment_icon_akulaku_hitpay" model="payment.icon">
+        <field name="sequence">310</field>
+        <field name="name">AkuLaku BNPL</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/akulaku.png"/>
+    </record>
+    <record id="payment_icon_kredivo_hitpay" model="payment.icon">
+        <field name="sequence">311</field>
+        <field name="name">Kredivo BNPL</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/kredivo.png"/>
+    </record>
+    <record id="payment_icon_philtrustbank_hitpay" model="payment.icon">
+        <field name="sequence">312</field>
+        <field name="name">PHILTRUST BANK</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/philtrustbank.png"/>
+    </record>
+    <record id="payment_icon_allbank_hitpay" model="payment.icon">
+        <field name="sequence">313</field>
+        <field name="name">AllBank</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/allbank.png"/>
+    </record>
+    <record id="payment_icon_aub_hitpay" model="payment.icon">
+        <field name="sequence">314</field>
+        <field name="name">ASIA UNITED BANK</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/aub.png"/>
+    </record>
+    <record id="payment_icon_chinabank_hitpay" model="payment.icon">
+        <field name="sequence">315</field>
+        <field name="name">CHINABANK</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/chinabank.png"/>
+    </record>
+    <record id="payment_icon_instapay_hitpay" model="payment.icon">
+        <field name="sequence">316</field>
+        <field name="name">instaPay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/instapay.png"/>
+    </record>
+    <record id="payment_icon_landbank_hitpay" model="payment.icon">
+        <field name="sequence">317</field>
+        <field name="name">LANDBANK</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/landbank.png"/>
+    </record>
+    <record id="payment_icon_metrobank_hitpay" model="payment.icon">
+        <field name="sequence">318</field>
+        <field name="name">Metrobank</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/metrobank.png"/>
+    </record>
+    <record id="payment_icon_pnb_hitpay" model="payment.icon">
+        <field name="sequence">319</field>
+        <field name="name">PNB</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/pnb.png"/>
+    </record>
+    <record id="payment_icon_queenbank_hitpay" model="payment.icon">
+        <field name="sequence">320</field>
+        <field name="name">QUEENBANK</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/queenbank.png"/>
+    </record>
+    <record id="payment_icon_rcbc_hitpay" model="payment.icon">
+        <field name="sequence">321</field>
+        <field name="name">RCBC</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/rcbc.png"/>
+    </record>
+    <record id="payment_icon_tayocash_hitpay" model="payment.icon">
+        <field name="sequence">322</field>
+        <field name="name">TayoCash</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/tayocash.png"/>
+    </record>
+    <record id="payment_icon_ussc_hitpay" model="payment.icon">
+        <field name="sequence">323</field>
+        <field name="name">USSC</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/ussc.png"/>
+    </record>
+    <record id="payment_icon_bayad_hitpay" model="payment.icon">
+        <field name="sequence">324</field>
+        <field name="name">bayad</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bayad.png"/>
+    </record>
+    <record id="payment_icon_cebuanalhuillier_hitpay" model="payment.icon">
+        <field name="sequence">325</field>
+        <field name="name">CEBUANA LHUILLIER</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/cebuanalhuillier.png"/>
+    </record>
+    <record id="payment_icon_ecpay_hitpay" model="payment.icon">
+        <field name="sequence">326</field>
+        <field name="name">ecPay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/ecpay.png"/>
+    </record>
+    <record id="payment_icon_palawan_hitpay" model="payment.icon">
+        <field name="sequence">327</field>
+        <field name="name">PALAWAN PAWNSHOP</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/palawan.png"/>
+    </record>
+    <record id="payment_icon_bpi_hitpay" model="payment.icon">
+        <field name="sequence">328</field>
+        <field name="name">BPI</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/bpi.png"/>
+    </record>
+    <record id="payment_icon_psbank_hitpay" model="payment.icon">
+        <field name="sequence">329</field>
+        <field name="name">PSBank</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/psbank.png"/>
+    </record>
+    <record id="payment_icon_robinsonsbank_hitpay" model="payment.icon">
+        <field name="sequence">330</field>
+        <field name="name">Robinsons Bank</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/robinsonsbank.png"/>
+    </record>
+    <record id="payment_icon_doku_wallet_hitpay" model="payment.icon">
+        <field name="sequence">331</field>
+        <field name="name">DOKU Wallet</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/doku_wallet.png"/>
+    </record>
+    <record id="payment_icon_grab_paylater_hitpay" model="payment.icon">
+        <field name="sequence">332</field>
+        <field name="name">PayLater by Grab</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/grab_paylater.png"/>
+    </record>
+    <record id="payment_icon_favepay_hitpay" model="payment.icon">
+        <field name="sequence">333</field>
+        <field name="name">FavePay</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/favepay.png"/>
+    </record>
+        <record id="payment_icon_shopback_paylater_hitpay" model="payment.icon">
+        <field name="sequence">334</field>
+        <field name="name">ShopBack PayLater</field>
+        <field name="image" type="base64" file="payment_hitpay/static/description/shopback_paylater.png"/>
+    </record>
+    
+</odoo>

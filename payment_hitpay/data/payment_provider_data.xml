@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="payment_provider_hitpay" model="payment.provider">
+        <field name="name">HitPay Payment Gateway</field>
+        <field name="display_as">HitPay Payment Gateway</field>
+        <field name="code">hitpay</field>
+		<field name="image" type="base64" file="payment_hitpay/static/description/logo.png" />
+        <field name="image_128" type="base64" file="payment_hitpay/static/description/logo.png"/>
+        <field name="module_id" ref="base.module_payment_hitpay"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+    </record>
+	
+	<record id="payment_method_hitpay" model="account.payment.method">
+		<field name="name"><![CDATA[HitPay Payment Gateway]]></field>
+		<field name="code">hitpay</field>
+		<field name="payment_type">inbound</field>
+	</record>
+
+</odoo>

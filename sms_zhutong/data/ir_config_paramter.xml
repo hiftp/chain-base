@@ -1,0 +1,19 @@
+<odoo>
+    <data noupdate="0">
+
+        <record id="sms_endpoint_param" model="ir.config_parameter">
+            <field name="key">sms.endpoint</field>
+            <field name="value">http://127.0.0.1:8069</field>
+        </record>
+
+        <record id="sms_zhutong_username" model="ir.config_parameter">
+            <field name="key">sms_zhutong.username</field>
+            <field name="value">dtgjyx</field>
+        </record>
+
+        <record id="sms_zhutong_password" model="ir.config_parameter">
+            <field name="key">sms_zhutong.password</field>
+            <field name="value">Sf212121</field>
+        </record>
+    </data>
+</odoo>

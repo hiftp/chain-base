@@ -1,0 +1,7 @@
+<templates>
+    <t t-name="FieldTextTransliterate" owl="1">
+        <input type="text"
+               class="input_transliterate o-autocomplete--input o_input"
+               t-on-click="onSelectDateField"/>
+    </t>
+</templates>

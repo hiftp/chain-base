@@ -14,4 +14,5 @@
         'data/iap_account.xml',
         'data/ir_config_paramter.xml',
     ],
+    'license': 'AGPL-3',
 }

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <menuitem name="Pull Requests"
+        id="menu_github_pull_requests"
+        parent="github_event.menu_github"
+        action="pull_requests_action_window"/>
+
+</odoo>

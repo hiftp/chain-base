@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="github_event_form" model="ir.ui.view">
+        <field name="name">Github Event Form</field>
+        <field name="model">github.event</field>
+        <field name="arch" type="xml">
+            <form string="Github Event">
+                <header>
+                    <button name="process" type="object" string="Process"/>
+                </header>
+                <sheet>
+                    <group name="main">
+                        <field name="action"/>
+                        <field name="create_date" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page name="payload" string="Payload">
+                            <field name="payload" nolabel="1" colspan="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="github_event_list" model="ir.ui.view">
+        <field name="name">Github Event List</field>
+        <field name="model">github.event</field>
+        <field name="arch" type="xml">
+            <tree string="Github Events">
+                <field name="action"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="events_action_window" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="res_model">github.event</field>
+        <field name="target">current</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

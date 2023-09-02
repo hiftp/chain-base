@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <menuitem id="menu_github"
+        name="Github"
+        parent="base.menu_custom"
+        sequence="99"
+        />
+
+    <menuitem name="Events"
+        id="menu_github_event"
+        parent="menu_github"
+        action="events_action_window"
+        />
+
+</odoo>

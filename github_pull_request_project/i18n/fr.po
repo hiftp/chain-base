@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* github_pull_request_project
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-14 19:48+0000\n"
+"PO-Revision-Date: 2019-11-14 19:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: github_pull_request_project
+#: model:ir.model,name:github_pull_request_project.model_github_pull_request
+msgid "Github Pull Request"
+msgstr ""
+
+#. module: github_pull_request_project
+#: model:ir.model.fields,field_description:github_pull_request_project.field_project_task__no_pull_request_open
+msgid "No Pull Request Open"
+msgstr "Aucune pull request d'ouverte"
+
+#. module: github_pull_request_project
+#: model:ir.model.fields,field_description:github_pull_request_project.field_project_task__pull_request_qty
+msgid "Pull Request Qty"
+msgstr "Quantité de pull request"
+
+#. module: github_pull_request_project
+#: model:ir.actions.act_window,name:github_pull_request_project.pull_requests_action_window_context
+#: model:ir.model.fields,field_description:github_pull_request_project.field_project_task__pull_request_ids
+#: model:ir.ui.menu,name:github_pull_request_project.project_pull_request_menu
+#: model_terms:ir.ui.view,arch_db:github_pull_request_project.project_task_form_pull_requests
+msgid "Pull Requests"
+msgstr ""
+
+#. module: github_pull_request_project
+#: model:ir.model,name:github_pull_request_project.model_project_task
+msgid "Task"
+msgstr "Tâche"
+
+#. module: github_pull_request_project
+#: model:ir.model.fields,field_description:github_pull_request_project.field_github_pull_request__task_ids
+msgid "Tasks"
+msgstr "Tâches"
+

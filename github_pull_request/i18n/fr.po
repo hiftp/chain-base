@@ -1,0 +1,185 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* github_pull_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-04 19:31+0000\n"
+"PO-Revision-Date: 2019-12-04 14:33-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: github_pull_request
+#: sql_constraint:github.pull_request:0
+msgid "A Pull Request already exists for this source"
+msgstr "Une pull request existe déjà pour cette source"
+
+#. module: github_pull_request
+#: selection:github.event,pull_request_state:0
+#: selection:github.pull_request,state:0
+msgid "Closed"
+msgstr "Fermé"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__developer_id
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+msgid "Developer"
+msgstr "Développeur"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__event_ids
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_form
+msgid "Events"
+msgstr "Événements"
+
+#. module: github_pull_request
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+msgid "Finished"
+msgstr "Fini"
+
+#. module: github_pull_request
+#: model:ir.model,name:github_pull_request.model_github_event
+msgid "Github Event"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model,name:github_pull_request.model_github_pull_request
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_form
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_tree
+msgid "Github Pull Request"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__host
+msgid "Host"
+msgstr "Hôte"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__id
+msgid "ID"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__latest_update
+msgid "Latest Update"
+msgstr ""
+
+#. module: github_pull_request
+#: selection:github.event,pull_request_state:0
+#: selection:github.pull_request,state:0
+msgid "Merged"
+msgstr "Mergé"
+
+#. module: github_pull_request
+#: selection:github.event,pull_request_state:0
+#: selection:github.pull_request,state:0
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+msgid "Open"
+msgstr "Ouvert"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__organization
+msgid "Organization"
+msgstr "Organisation"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_event__pull_request_id
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_event_form_with_pull_request_fields
+msgid "Pull Request"
+msgstr "Pull Request"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__pull_request_number
+msgid "Pull Request Number"
+msgstr "Numéro de la pull request"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_event__pull_request_state
+msgid "Pull Request State"
+msgstr "État de la pull request"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_event__pull_request_title
+msgid "Pull Request Title"
+msgstr "Titre de la pull request"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_event__pull_request_updated_at
+msgid "Pull Request Updated At"
+msgstr "Date mise à jour de la pull request"
+
+#. module: github_pull_request
+#: model:ir.actions.act_window,name:github_pull_request.pull_requests_action_window
+#: model:ir.ui.menu,name:github_pull_request.menu_github_pull_requests
+msgid "Pull Requests"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__repository
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+msgid "Repository"
+msgstr "Dépôt"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__source
+msgid "Source"
+msgstr ""
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__state
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_event_form_with_pull_request_fields
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_form
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_search
+msgid "State"
+msgstr "État"
+
+#. module: github_pull_request
+#: model:ir.model.fields,field_description:github_pull_request.field_github_pull_request__title
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_event_form_with_pull_request_fields
+msgid "Title"
+msgstr "Titre"
+
+#. module: github_pull_request
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_event_form_with_pull_request_fields
+#: model_terms:ir.ui.view,arch_db:github_pull_request.github_pull_request_form
+msgid "Updated At"
+msgstr "Mise à jour"

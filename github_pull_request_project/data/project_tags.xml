@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="tag_pull_request_open" model="project.tags">
+        <field name="name">PR: Open</field>
+        <field name="color" eval="10"/> <!-- green -->
+    </record>
+
+    <record id="tag_pull_request_merged" model="project.tags">
+        <field name="name">PR: Merged</field>
+        <field name="color" eval="11"/> <!-- purple -->
+    </record>
+
+    <record id="tag_pull_request_closed" model="project.tags">
+        <field name="name">PR: Closed</field>
+        <field name="color" eval="1"/> <!-- red -->
+    </record>
+
+</odoo>

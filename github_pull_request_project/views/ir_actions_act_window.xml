@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="pull_requests_action_window_context" model="ir.actions.act_window">
+    <field name="name">Pull Requests</field>
+    <field name="res_model">github.pull_request</field>
+    <field name="target">current</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{
+      'search_default_task_ids': [active_id],
+      }</field>
+  </record>
+</odoo>

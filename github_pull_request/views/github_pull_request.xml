@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="github_pull_request_tree" model="ir.ui.view">
+        <field name="model">github.pull_request</field>
+        <field name="name">Default tree view for github.pull_request</field>
+        <field name="arch" type="xml">
+            <tree delete="false" string="Github Pull Request">
+                <field name="source"/>
+                <field name="title"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="github_pull_request_form" model="ir.ui.view">
+        <field name="model">github.pull_request</field>
+        <field name="name">Default form view for github.pull_request</field>
+        <field name="arch" type="xml">
+            <form delete="false">
+                <sheet string="Github Pull Request">
+                    <h1>
+                        <field name="title"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="source" required="1"/>
+                            <field name="host" readonly="1"/>
+                            <field name="organization" readonly="1"/>
+                            <field name="repository" readonly="1"/>
+                            <field name="pull_request_number" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="state"/>
+                            <field name="developer_id"/>
+                            <field name="latest_update" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="events" string="Events">
+                            <field colspan="2" name="event_ids" nolabel="1">
+                                <tree>
+                                    <field name="pull_request_state" string="State"/>
+                                    <field name="pull_request_updated_at" string="Updated At"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="github_pull_request_search" model="ir.ui.view">
+        <field name="model">github.pull_request</field>
+        <field name="name">Default search view for github.pull_request</field>
+        <field name="arch" type="xml">
+            <search string="Github Pull Request">
+                <field name="organization"/>
+                <field name="repository"/>
+                <field name="developer_id"/>
+                <field name="state"/>
+                <group name="studio_group_by">
+                    <filter context="{'group_by': 'state'}" name="state" string="State"/>
+                    <filter context="{'group_by': 'developer_id'}" name="developer" string="Developer"/>
+                    <filter context="{'group_by': 'repository'}" name="repository" string="Repository"/>
+                </group>
+                <filter domain="[['state','=','open']]" name="open" string="Open"/>
+                <filter domain="[['state','!=','open']]" name="finished" string="Finished"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="pull_requests_action_window" model="ir.actions.act_window">
+        <field name="name">Pull Requests</field>
+        <field name="res_model">github.pull_request</field>
+        <field name="target">current</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

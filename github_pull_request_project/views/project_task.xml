@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+
+    <record id="project_task_form_pull_requests" model="ir.ui.view">
+        <field name="active" eval="True"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button type="action" class="oe_stat_button" icon="fa-code"
+                        name="%(pull_requests_action_window_context)d">
+                    <field name="pull_request_qty" string="Pull Requests" widget="statinfo" />
+                </button>
+            </div>
+            <notebook position="inside">
+                <page name="pull_requests" string="Pull Requests">
+                    <field name="pull_request_ids"/>
+                </page>
+            </notebook>
+        </field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="model">project.task</field>
+        <field name="name">Project Task: pull request fields</field>
+        <field name="priority">99</field>
+    </record>
+
+</odoo>

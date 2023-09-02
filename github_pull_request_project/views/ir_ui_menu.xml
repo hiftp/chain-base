@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+  <record id="project_pull_request_menu" model="ir.ui.menu">
+    <field name="action" ref="github_pull_request.pull_requests_action_window"/>
+    <field name="name">Pull Requests</field>
+    <field name="parent_id" ref="project.menu_main_pm"/>
+    <field name="sequence">10</field>
+  </record>
+</odoo>

@@ -141,7 +141,7 @@ class ShippingBill(models.Model):
     disposable = fields.Boolean('可丢弃', tracking=True)
     discarded_date = fields.Date('丢弃日期')
 
-    @api.model
+    @api.model_create_multi
     def create(cls, values):
         if not values.get('ref'):
             values['ref'] = cls.env['ir.sequence'].next_by_code('shipping.bill')

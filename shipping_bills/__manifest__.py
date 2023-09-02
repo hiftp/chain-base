@@ -8,7 +8,10 @@
     'website': 'http://www.odoochain.cn/',
     'author': 'odooChain',
     'license': 'AGPL-3',
-    'depends': ['sale','delivery'],
+    'depends': ['sale',
+                'delivery',
+                'sms',
+                ],
     'data': [
         'security/ir.model.access.csv',
         'views/crm_team.xml',

@@ -8,7 +8,7 @@ from datetime import date
 
 class ShippingBillUpdateReturnWizard(models.TransientModel):
     _name = 'shipping.bill.update.return.wizard'
-    
+    _description = 'Shipping Update Return'
     data = fields.Text('数据')
 
     def apply(self):

@@ -8,7 +8,7 @@ from datetime import date
 
 class ShippingBillUpdateSignWizard(models.TransientModel):
     _name = 'shipping.bill.update.sign.wizard'
-
+    _description = 'Shipping Update Sign'
     data = fields.Text('数据')
 
     def apply(self):

@@ -9,7 +9,7 @@ from datetime import date, datetime
 
 class ShippingBillUpdateTransportWizard(models.TransientModel):
     _name = 'shipping.bill.update.transport.wizard'
-
+    _description = 'Shipping Update Transport'
     data = fields.Text('数据')
 
     def apply(self):

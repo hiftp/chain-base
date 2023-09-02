@@ -8,7 +8,7 @@ from datetime import date
 
 class ShippingBillUpdateDiscardWizard(models.TransientModel):
     _name = 'shipping.bill.update.discard.wizard'
-    
+    _description = 'Shipping Update Discard'
     data = fields.Text('数据')
 
     def apply(self):

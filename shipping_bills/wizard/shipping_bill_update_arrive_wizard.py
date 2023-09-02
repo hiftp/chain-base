@@ -8,7 +8,7 @@ from datetime import date
 
 class ShippingBillUpdateArriveWizard(models.TransientModel):
     _name = 'shipping.bill.update.arrive.wizard'
-
+    _description = 'Shipping Update Arrrive'
     data = fields.Text('数据')
 
     def apply(self):

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="shipping_large_parcel_tree">
+        <field name="name">menu.shipping_large_parcel.tree</field>
+        <field name="model">shipping.large.parcel</field>
+        <field name="arch" type="xml">
+            <tree default_order="create_date desc">
+                <field name="name"/>
+                <field name="site_id"/>
+                <field name="logistics_provider"/>
+                <field name="logistics_tracking_code"/>
+                <field name="create_date" string="发出时间"/>
+                <field name="shipping_bill_ids" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipping_large_parcel_form" model="ir.ui.view">
+        <field name="name">menu.shipping_large_parcel.form</field>
+        <field name="model">shipping.large.parcel</field>
+        <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
+        <field name="arch" type="xml">
+            <form string="Partners">
+                <header>
+                    <button name="resend_email" type="object" string="应用并发送邮件" attrs="{'invisible': [('is_sent', '=', True)]}"/>
+                    <button name="resend_email" type="object" string="重新发送邮件" attrs="{'invisible': [('is_sent', '!=', True)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box"/>
+                    <div class="oe_title mb24">
+                        <h1>
+                            <field name="name" id="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="site_id"/>
+                            <field name="create_date" string="创建时间"/>
+                            <field name="delivery_time"/>
+                            <field name="sender_contact"/>
+                            <field name="address_contact"/>
+                            <field name="is_sent" string="已发送" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="logistics_provider"/>
+                            <field name="logistics_tracking_code"/>
+                            <field name="length"/>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="volume"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <notebook>
+<!--                        ('sale_invoice_payment_state', '=', '支付已完成'),-->
+                        <page string="客户运单" name="Customer waybill">
+                            <field name="shipping_bill_ids" domain="[('state', '=', 'valued'), ('sale_site_id', '=', site_id)]">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="picking_code"/>
+                                    <field name="sale_partner_id"/>
+                                    <field name="sale_site_id"/>
+                                    <field name="actual_weight"/>
+                                    <field name="shipping_factor_id"/>
+                                    <field name="in_date"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

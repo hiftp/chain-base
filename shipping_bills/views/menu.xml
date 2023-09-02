@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="root_menu_shipping_bills" name="物流订单"/>
+<!--运单-->
+    <menuitem id="menu_shipping_bills" name="物流订单" parent="root_menu_shipping_bills" sequence="1"/>
+
+    <menuitem id="menu_all_shipping_bills" name="全部订单" parent="shipping_bills.menu_shipping_bills"
+              action="action_shipping_bill" sequence="1"/>
+
+    <menuitem id="menu_warehouse_shipping_bills" name="仓库订单" parent="shipping_bills.menu_shipping_bills"
+              action="action_warehouse_shipping_bill" sequence="2"/>
+
+    <menuitem id="menu_site_shipping_bills" name="各站点订单" parent="shipping_bills.menu_shipping_bills"
+              action="action_site_shipping_bill" sequence="3"/>
+
+<!--看板-->
+    <menuitem id="root_menu_shipping_bills_kanban" name="运单看板" action="action_shipping_bill_kanban"
+              parent="root_menu_shipping_bills" sequence="2"/>
+<!--操作看板-->
+    <menuitem id="root_menu_operational_kanban_board" name="操作员"
+              parent="root_menu_shipping_bills" sequence="3"/>
+
+    <menuitem id="menu_shipping_large_parcel" name="转运包裹"  parent="root_menu_operational_kanban_board"
+              action="action_shipping_large_parcel" sequence="6"/>
+
+    <!--站点操作-->
+    <menuitem id="root_menu_site_manual_operation" name="站点操作"
+              parent="root_menu_shipping_bills" sequence="4"/>
+
+<!--基本配置-->
+    <menuitem id="menu_shipping_bills_config" name="基本配置"
+              parent="root_menu_shipping_bills" sequence="5"/>
+
+    <menuitem id="menu_shipping_factor" name="运费参数" parent="menu_shipping_bills_config"
+        action="action_shipping_factor" sequence="1"/>
+
+    <menuitem id="menu_shipping_state" name="阶段"  parent="menu_shipping_bills_config"
+          action="action_shipping_state" sequence="2"/>
+
+    <menuitem id="menu_shipping_site_list" name="站点列表"  parent="menu_shipping_bills_config"
+          action="sales_team.crm_team_action_config" sequence="3"/>
+
+    <menuitem id="menu_modification_fee" name="改泡费"  parent="menu_shipping_bills_config"
+          action="action_modification_fee" sequence="5"/>
+
+    <!--订单查询-->
+    <menuitem id="menu_shipping_bills_order_inquiry" name="订单查询"
+              parent="root_menu_shipping_bills" sequence="6"/>
+
+    <menuitem id="menu_shipping_bills_out" name="待出库订单" parent="menu_shipping_bills_order_inquiry"
+          action="action_shipping_bill_out" sequence="1"/>
+
+    <menuitem id="menu_shipping_bills_arrived" name="站点订单" parent="menu_shipping_bills_order_inquiry"
+              action="action_shipping_bill_arrived" sequence="2"/>
+
+    <menuitem id="menu_shipping_bills_signed" name="签收订单" parent="menu_shipping_bills_order_inquiry"
+              action="action_shipping_bill_signed" sequence="3"/>
+
+    <menuitem id="menu_sale_order_to_be_stored" name="待入库订单" parent="menu_shipping_bills_order_inquiry"
+      action="action_sale_order_to_be_stored" sequence="8"/>
+
+<!--sale运费参数-->
+    <menuitem id="menu_shipping_factor_sale" name="运费参数" parent="sale.menu_sale_general_settings"
+        action="action_shipping_factor" sequence="3"/>
+</odoo>

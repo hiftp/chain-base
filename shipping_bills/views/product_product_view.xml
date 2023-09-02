@@ -1,0 +1,13 @@
+<odoo>
+    <record id="product_product_form" model="ir.ui.view">
+        <field name="name">product_product_form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="before">
+                <field name="english_product_name"/>
+                <field name="chinese_product_name"/>
+            </field>
+        </field>
+    </record>
+</odoo>

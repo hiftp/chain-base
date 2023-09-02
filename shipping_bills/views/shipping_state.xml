@@ -1,0 +1,16 @@
+<odoo>
+    <record id="shipping_state_tree" model="ir.ui.view">
+        <field name="name">shipping_state_tree</field>
+        <field name="model">shipping.state</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="fold"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+</odoo>

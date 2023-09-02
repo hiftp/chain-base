@@ -1,0 +1,16 @@
+<odoo>
+    <record id="modification_fee_view_tree" model="ir.ui.view">
+        <field name="name">modification_fee_view_tree</field>
+        <field name="model">modification.fee</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="currency_id"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+</odoo>

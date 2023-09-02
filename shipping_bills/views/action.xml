@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="action_shipping_bill" model="ir.actions.act_window">
+        <field name="name">运单</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_warehouse_shipping_bill" model="ir.actions.act_window">
+        <field name="name">仓库订单</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in', ['draft', 'paired', 'valued'])]</field>
+    </record>
+
+    <record id="action_site_shipping_bill" model="ir.actions.act_window">
+        <field name="name">各站点订单</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','in', ['transported', 'arrived', 'signed'])]</field>
+    </record>
+
+    <record id="action_shipping_factor" model="ir.actions.act_window">
+        <field name="name">Shipping Factor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.factor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_sale_order_to_be_stored" model="ir.actions.act_window">
+        <field name="name">运单(待入库)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="to_be_stored_sale_order_form_view"/>
+        <field name="domain">[('shipping_no','!=', False), ('shipping_bill_id', '=', False)]</field>
+    </record>
+
+    <record id="action_shipping_bill_out" model="ir.actions.act_window">
+        <field name="name">运单(待出库)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="shipping_bill_tree_out"/>
+        <field name="domain">[('sale_invoice_payment_state','=','支付已完成'), ('state', '=', 'valued')]</field>
+    </record>
+
+    <record id="action_shipping_bill_arrived" model="ir.actions.act_window">
+        <field name="name">运单(站点)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="shipping_bill_tree_arrived"/>
+        <field name="domain">[('state','=','arrived')]</field>
+    </record>
+
+    <record id="action_shipping_bill_signed" model="ir.actions.act_window">
+        <field name="name">运单(签收)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="shipping_bill_tree_signed"/>
+        <field name="domain">[('state','=','signed')]</field>
+    </record>
+
+    <record id="action_shipping_bill_kanban" model="ir.actions.act_window">
+        <field name="name">运单看板</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.bill</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="shipping_bill_kanban"/>
+    </record>
+
+    <record id="action_shipping_state" model="ir.actions.act_window">
+        <field name="name">运单阶段</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shipping.state</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="shipping_state_tree"/>
+    </record>
+
+    <record id="action_modification_fee" model="ir.actions.act_window">
+        <field name="name">改泡费</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">modification.fee</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="modification_fee_view_tree"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_shipping_large_parcel">
+        <field name="name">大包裹</field>
+        <field name="res_model">shipping.large.parcel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

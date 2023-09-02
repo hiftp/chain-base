@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo><data noupdate="1">
+    <record id="mail_template_shipping_large_parcel" model="mail.template">
+        <field name="name">站点包裹已发出</field>
+        <field name="model_id" ref="model_shipping_large_parcel"/>
+        <field name="subject">您站点的包裹已发出。</field>
+        <field name="email_to">{{ object.site_id.email }}</field>
+        <field name="body_html" type="html">
+            <div style="border:1px solid black;width:70%;margin:0 auto;padding:20px;">
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">您站点的包裹已于<span t-esc="object.create_date.strftime('%Y年%m月%d日 %H:%M:%S')" contenteditable="false"></span>发出。</p>
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">承运商：<span t-esc="object.logistics_provider" contenteditable="false"></span></p>
+                <p style="margin:0px 0 12px 0;box-sizing:border-box;">物流运单：<span t-esc="object.logistics_tracking_code" contenteditable="false"></span></p>
+                <table style="box-sizing:border-box;border-collapse:collapse;" class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;">运单号</th>
+                            <th style="width:50%">取件码</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="object.shipping_bill_ids" t-as="line">
+                            <td><span t-esc="line.name"/></td>
+                            <td><span t-esc="line.sale_fetch_no"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </field>
+        <field name="lang">{{ object.site_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+    <!--包裹到仓-->
+    <record id="mail_template_data_shipping_bill_to_warehouse" model="mail.template">
+        <field name="name">包裹到仓</field>
+        <field name="model_id" ref="model_shipping_bill"/>
+        <field name="subject">Your Parcel [{{ object.name }}] Has Arrived</field>
+        <field name="email_from"></field>
+        <field name="email_to">{{ object.sale_partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;padding:30px;" width="1035px">
+                <tbody style="box-sizing:border-box;"><tr style="box-sizing:border-box;"><td align="center" style="box-sizing:border-box;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing:border-box;padding: 50px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody style="box-sizing:border-box;">
+                            <!-- CONTENT -->
+
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Package Status: Arrived at warehouse
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Shipment Cost: [<span t-esc="object.currency_id.name"/> <span t-esc="'{0:,.2f}'.format(object.fee)"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Please make payment via your registered account. After payment, we'll dispatch your package.
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    For questions, contact customer service.<br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Best,
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Sinefine
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                </tbody>
+            </table>
+        </field>
+        <field name="lang">{{ object.sale_partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+    <!--包裹改泡-->
+    <record id="mail_template_data_shipping_bill_modified_foam" model="mail.template">
+        <field name="name">包裹改泡</field>
+        <field name="model_id" ref="model_shipping_bill"/>
+        <field name="subject">Package Status Update for [{{ object.name }}]</field>
+        <field name="email_from"></field>
+        <field name="email_to">{{ object.sale_partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;padding:30px;" width="1035px">
+                <tbody style="box-sizing:border-box;"><tr style="box-sizing:border-box;"><td align="center" style="box-sizing:border-box;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing:border-box;padding: 50px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody style="box-sizing:border-box;">
+                            <!-- CONTENT -->
+
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Package Status: Repackaged
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    New Shipment Cost: [<span t-esc="object.currency_id.name"/> <span t-esc="'{0:,.2f}'.format(sum(object.sale_invoice_ids.filtered(lambda l: l.payment_state not in ['paid', 'reversed', 'invoicing_legacy']  and l.state != 'cancel').mapped('amount_total')))"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Please adjust your payment via your registered account due to the change in shipment cost.
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    For any concerns, contact customer service.<br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Best,
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Sinefine
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                </tbody>
+            </table>
+        </field>
+        <field name="lang">{{ object.sale_partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+    <!--包裹发出-->
+    <record id="mail_template_data_shipping_bill_issue" model="mail.template">
+        <field name="name">包裹已发出</field>
+        <field name="model_id" ref="model_shipping_bill"/>
+        <field name="subject">Dispatch Confirmation for Package [{{ object.name }}]</field>
+        <field name="email_from"></field>
+        <field name="email_to">{{ object.sale_partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;padding:30px;" width="1035px">
+                <tbody style="box-sizing:border-box;"><tr style="box-sizing:border-box;"><td align="center" style="box-sizing:border-box;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing:border-box;padding: 50px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody style="box-sizing:border-box;">
+                            <!-- CONTENT -->
+
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Package Status: Dispatched Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Pick-up Code: [<span t-esc="object.picking_code"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Your package has been dispatched. For queries, contact our customer service.
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Best,
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Sinefine
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                </tbody>
+            </table>
+        </field>
+        <field name="lang">{{ object.sale_partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+    <!--包裹到站-->
+    <record id="mail_template_data_shipping_bill_reach" model="mail.template">
+        <field name="name">包裹到站并且可以通过取件码领取</field>
+        <field name="model_id" ref="model_shipping_bill"/>
+        <field name="subject">Parcel [{{ object.name }}] Ready for Pick-up at [{{ object.sale_site_id.name }}]</field>
+        <field name="email_from"></field>
+        <field name="email_to">{{ object.sale_partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;padding:30px;" width="1035px">
+                <tbody style="box-sizing:border-box;"><tr style="box-sizing:border-box;"><td align="center" style="box-sizing:border-box;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing:border-box;padding: 50px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody style="box-sizing:border-box;">
+                            <!-- CONTENT -->
+
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Package Status: Ready for Pick-up
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Station Name: [<span t-esc="object.sale_site_id.name"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Station Address: [<span t-esc="object.sale_site_contact_address"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Pick-up Code: [<span t-esc="object.picking_code"/>]
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Present the pick-up code at the station to receive your package. For assistance, contact customer service.
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Best,
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Sinefine
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                </tbody>
+            </table>
+        </field>
+        <field name="lang">{{ object.sale_partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+    <!--包裹签收-->
+    <record id="mail_template_data_shipping_bill_sign_for" model="mail.template">
+        <field name="name">包裹已签收</field>
+        <field name="model_id" ref="model_shipping_bill"/>
+        <field name="subject">Successful Delivery for Package [{{ object.name }}]</field>
+        <field name="email_from"></field>
+        <field name="email_to">{{ object.sale_partner_id.email }}</field>
+        <field name="body_html" type="html">
+            <table border="0" cellpadding="0" cellspacing="0" style="box-sizing:border-box;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;padding:30px;" width="1035px">
+                <tbody style="box-sizing:border-box;"><tr style="box-sizing:border-box;"><td align="center" style="box-sizing:border-box;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="590" style="box-sizing:border-box;padding: 50px; background-color: white; color: #454748; border-collapse:separate;">
+                        <tbody style="box-sizing:border-box;">
+                            <!-- CONTENT -->
+
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Package Status: Delivered and signed
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Tracking Number: [<span t-esc="object.name"/>]
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Your package has been successfully delivered and signed for. For feedback or assistance, reach out to our customer service.
+                                    <br style="box-sizing:border-box;"/><br style="box-sizing:border-box;"/>
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Best,
+                                </td>
+                            </tr>
+                            <tr style="box-sizing:border-box;">
+                                <td style="box-sizing:border-box;">
+                                    Sinefine
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td></tr>
+                </tbody>
+            </table>
+        </field>
+        <field name="lang">{{ object.sale_partner_id.lang }}</field>
+        <field name="auto_delete" eval="True"/>
+    </record>
+</data>
+</odoo>

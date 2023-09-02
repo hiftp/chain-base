@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="shipping_bill_update_sign_wizard_form" model="ir.ui.view">
+        <field name="name">shipping_bill_update_sign_wizard_form</field>
+        <field name="model">shipping.bill.update.sign.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="data" placeholder="运单号/取件码"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="apply" type="object" string="应用" class="oe_highlight"/>
+                    <button special="cancel" class="oe_highlight" string="取消" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

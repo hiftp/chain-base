@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_config_parameter_fee" model="ir.config_parameter">
+            <field name="key">shipping.bills.fee</field>
+            <field name="value">0</field>
+    </record>
+
+</odoo>

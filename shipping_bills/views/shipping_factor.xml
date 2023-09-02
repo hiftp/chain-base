@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+
+        <record id="shipping_factor_tree" model="ir.ui.view">
+            <field name="name">shipping_factor_tree</field>
+            <field name="model">shipping.factor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="factor"/>
+                    <field name="first_weight"/>
+                    <field name="first_total_price"/>
+                    <field name="next_weight_to_ceil"/>
+                    <field name="next_price_unit"/>
+                    <field name="vip_first_weight"/>
+                    <field name="vip_first_total_price"/>
+                    <field name="vip_next_weight_to_ceil"/>
+                    <field name="vip_next_price_unit"/>
+                    <field name="agent_first_weight"/>
+                    <field name="agent_first_total_price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="shipping_factor_form" model="ir.ui.view">
+            <field name="name">shipping_factor_form</field>
+            <field name="model">shipping.factor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header/>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="first_weight"/>
+                                <field name="first_total_price" digits="[16, 3]"/>
+                                <field name="next_weight_to_ceil"/>
+                                <field name="next_price_unit" digits="[16, 3]"/>
+                                <field name="factor"/>
+                                <field name="double_difference"/>
+                            </group>
+                            <group>
+                                <field name="vip_t_first_weight"/>
+                                <field name="vip_t_first_total_price" digits="[16, 3]"/>
+                                <field name="vip_t_next_weight_to_ceil"/>
+                                <field name="vip_t_next_price_unit" digits="[16, 3]"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="vip_first_weight"/>
+                                <field name="vip_first_total_price" digits="[16, 3]"/>
+                                <field name="vip_next_weight_to_ceil"/>
+                                <field name="vip_next_price_unit" digits="[16, 3]"/>
+                            </group>
+                            <group>
+                                <field name="agent_first_weight"/>
+                                <field name="agent_first_total_price" digits="[16, 3]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+
+</odoo>

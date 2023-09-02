@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="shipping_bill_tree" model="ir.ui.view">
+        <field name="name">shipping_bill_tree</field>
+        <field name="model">shipping.bill</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref"/>
+                <field name="in_date"/>
+                <field name="name"/>
+                <field name="length"/>
+                <field name="width"/>
+                <field name="height"/>
+                <field name="actual_weight" digits="[42, 1]"/>
+                <field name="uom_id"/>
+                <field name="discarded_date"/>
+
+                <field name="origin_length" optional="hide"/>
+                <field name="origin_width" optional="hide"/>
+                <field name="origin_height" optional="hide"/>
+                <field name="origin_actual_weight" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="shipping_bill_form" model="ir.ui.view">
+        <field name="name">shipping.bill.form</field>
+        <field name="model">shipping.bill</field>
+        <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="multi_action_match" string="match" type="object" attrs="{'invisible':[('state','!=','draft')]}"
+                             class="btn-primary o_mail_send"
+                    />
+                    <button name="multi_action_compute" string="运费计算" type="object" attrs="{'invisible':[('state','!=','paired')]}"/>
+                    <button name="multi_action_change" string="改泡完成" type="object" attrs="{'invisible':['|',('state','!=','paired'),('has_changed','=',False)]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="ref" readonly="1"/>
+                        </h1>
+                    </div>
+                    <div style="display:flex;">
+                        <div style="flex:1;"><label for="has_bought_safety"/><field name="has_bought_safety"/></div>
+                        <div style="flex:1;"><label for="no_change"/><field name="no_change" readonly="1"/></div>
+                        <div style="flex:1;"><label for="can_change"/><field name="can_change" attrs="{'readonly':[('has_changed','=', True)]}"/></div>
+                        <div style="flex:1;"><label for="has_changed"/><field name="has_changed" readonly="1"/></div>
+                        <div style="flex:1;"><label for="is_changed_done"/><field name="is_changed_done" readonly="1"/></div>
+                        <div style="flex:1;"><label for="disposable"/><field name="disposable" readonly="1"/></div>
+                        <div style="flex:1;"><label for="has_returned"/><field name="has_returned" readonly="1"/></div>
+                    </div>
+                    <hr/>
+                    <group name="1">
+                        <group name="11">
+                            <field name="in_date"/>
+                            <field name="state"/>
+                            <field name="stage_id" invisible="1"/>
+                            <field name="name"/>
+                            <field name="picking_code"/>
+                            <field name="length"/>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="actual_weight"/>
+                            <field name="uom_id"/>
+                            <field name="shipping_factor_id"/>
+                            <field name="discarded_date" attrs="{'invisible':[('state','!=','discarded')]}"/>
+                        </group>
+                        <group name="12">
+                            <field name="sale_order_id" readonly="1"/>
+                            <field name="sale_fetch_no"/>
+                            <field name="sale_partner_id"/>
+                            <field name="sale_site_id"/>
+                            <field name="sale_site_contact_address"/>
+                        </group>
+                    </group>
+                    <group name="2">
+                        <group name="21">
+                            <field name="size_weight" digits="[42, 1]"/>
+                            <field name="volume_weight" digits="[42, 1]"/>
+                            <field name="fee"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group name="22">
+                            <field name="sale_invoice_ids" widget="many2many_tags"/>
+                            <field name="sale_invoice_payment_state"/>
+                        </group>
+                    </group>
+                    <group name="3">
+                        <group name="31">
+                            <field name="out_date"/>
+                            <field name="logistics"/>
+                            <field name="tracking_no"/>
+                        </group>
+                        <group name="32">
+                            <field name="return_address"/>
+                            <field name="return_contact"/>
+                            <field name="return_mobile"/>
+                            <field name="return_name"/>
+                            <field name="in_days"/>
+                        </group>
+                    </group>
+                    <group name="4">
+                        <group name="31">
+                            <field name="arrived_date"/>
+                        </group>
+                        <group name="42">
+                            <field name="signed_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="shipping_bill_kanban" model="ir.ui.view">
+        <field name="name">shipping.bill.kanban</field>
+        <field name="model">shipping.bill</field>
+        <field name="priority">4</field>
+        <field name="arch" type="xml">
+            <kanban records_draggable="0" default_group_by="stage_id" class="o_kanban_applicant" sample="1" create='false'>
+                <field name="stage_id" />
+                <field name="name"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click" style="width:250px;">
+                            <table style="width:100%;font-size:8px;">
+                                <tr>
+                                    <td><strong>站点：</strong></td>
+                                    <td>
+                                        <strong><field name="sale_site_id"/></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>运单号：</strong></td>
+                                    <td>
+                                        <strong><field name="name"/></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>入库日期：</td>
+                                    <td style="text-align:left;"><field name="in_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td>实际重量：</td>
+                                    <td style="text-align:left;"><field name="actual_weight"/></td>
+                                </tr>
+                                <tr>
+                                    <td>线路敏感性：</td>
+                                    <td style="text-align:left;"><field name="shipping_factor_id"/></td>
+                                </tr>
+                                <tr>
+                                    <td>费用：</td>
+                                    <td style="text-align:left;"><field name="currency_id"/><field name="fee"/></td>
+                                </tr>
+                            </table>
+                        </div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+    <record id="shipping_bill_tree_out" model="ir.ui.view">
+        <field name="name">shipping_bill_tree_out</field>
+        <field name="model">shipping.bill</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom"  default_order="create_date asc">
+                <field name="ref" readonly="1"/>
+                <field name="in_date" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="sale_order_id" readonly="1"/>
+                <field name="sale_invoice_payment_state"/>
+                <field name="out_date"/>
+                <field name="logistics"/>
+                <field name="tracking_no"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipping_bill_tree_arrived" model="ir.ui.view">
+        <field name="name">shipping_bill_tree_arrived</field>
+        <field name="model">shipping.bill</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="out_date" readonly="1"/>
+                <field name="logistics" readonly="1"/>
+                <field name="tracking_no" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="sale_fetch_no" readonly="1"/>
+                <field name="sale_partner_id" readonly="1"/>
+                <field name="sale_site_id" readonly="1"/>
+                <field name="arrived_date"/>
+                <field name="state" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shipping_bill_tree_signed" model="ir.ui.view">
+        <field name="name">shipping_bill_tree_signed</field>
+        <field name="model">shipping.bill</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="out_date" readonly="1"/>
+                <field name="logistics" readonly="1"/>
+                <field name="tracking_no" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="sale_fetch_no" readonly="1"/>
+                <field name="sale_partner_id" readonly="1"/>
+                <field name="sale_site_id" readonly="1"/>
+                <field name="signed_date"/>
+                <field name="state" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_sequence_shipping_bill" model="ir.sequence">
+            <field name="name">Shipping Bill</field>
+            <field name="code">shipping.bill</field>
+            <field name="prefix">%(year)s%(month)s%(day)s</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="ir_sequence_sale_fetch_no" model="ir.sequence">
+            <field name="name">取件码</field>
+            <field name="code">sale.fetch.no</field>
+            <field name="prefix"></field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="ir_sequence_large_package_no" model="ir.sequence">
+            <field name="name">大包裹单号</field>
+            <field name="code">shipping.large.parcel</field>
+            <field name="prefix">%(year)s%(month)s%(day)s</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+
+</odoo>
+

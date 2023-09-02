@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_shipping_bill_update_transport_wizard" model="ir.actions.act_window">
+        <field name="name">导入出库大包裹号</field>
+        <field name="res_model">shipping.bill.update.transport.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_shipping_bill_update_arrive_wizard" model="ir.actions.act_window">
+        <field name="name">站点签收</field>
+        <field name="res_model">shipping.bill.update.arrive.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_shipping_bill_update_sign_wizard" model="ir.actions.act_window">
+        <field name="name">客户签收</field>
+        <field name="res_model">shipping.bill.update.sign.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_shipping_bill_update_return_wizard" model="ir.actions.act_window">
+        <field name="name">包裹退运</field>
+        <field name="res_model">shipping.bill.update.return.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_shipping_bill_update_discard_wizard" model="ir.actions.act_window">
+        <field name="name">包裹丢弃</field>
+        <field name="res_model">shipping.bill.update.discard.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

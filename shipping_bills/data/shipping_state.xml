@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="shipping_state_bgrkdpp" model="shipping.state">
+            <field name="name">包裹入库待匹配（无头件）</field>
+            <field name="state">draft</field>
+        </record>
+        <record id="shipping_state_bgdjf" model="shipping.state">
+            <field name="name">包裹待计费</field>
+            <field name="state">paired</field>
+        </record>
+        <record id="shipping_state_bgjfdzf" model="shipping.state">
+            <field name="name">包裹计费待支付</field>
+            <field name="state">valued</field>
+        </record>
+        <record id="shipping_state_bgdzy" model="shipping.state">
+            <field name="name">包裹待转运</field>
+            <field name="state">payment</field>
+        </record>
+        <record id="shipping_state_bgzydzdqs" model="shipping.state">
+            <field name="name">包裹转运待站点签收</field>
+            <field name="state">transported</field>
+        </record>
+        <record id="shipping_state_khqs" model="shipping.state">
+            <field name="name">客户签收</field>
+            <field name="state">arrived</field>
+        </record>
+        <record id="shipping_state_done" model="shipping.state">
+            <field name="name">完成</field>
+            <field name="state">signed</field>
+        </record>
+        <record id="shipping_state_yty" model="shipping.state">
+            <field name="name">已退运</field>
+            <field name="state">returned</field>
+        </record>
+        <record id="shipping_state_dq" model="shipping.state">
+            <field name="name">丢弃</field>
+            <field name="state">discarded</field>
+        </record>
+    </data>
+</odoo>
+

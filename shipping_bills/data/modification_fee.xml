@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="modification_fee_gpf" model="modification.fee">
+            <field name="name">改泡费</field>
+        </record>
+    </data>
+</odoo>
+

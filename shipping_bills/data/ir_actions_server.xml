@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+
+        <record id="ir_actions_server_shipping_bill_multi_action_match" model="ir.actions.server">
+            <field name="name">匹配预报单</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_shipping_bill"/>
+            <field name="binding_model_id" ref="model_shipping_bill"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                records.multi_action_match()
+            </field>
+        </record>
+
+        <record id="ir_actions_server_shipping_bill_multi_action_compute" model="ir.actions.server">
+            <field name="name">计算运费</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_shipping_bill"/>
+            <field name="binding_model_id" ref="model_shipping_bill"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                records.multi_action_compute()
+            </field>
+        </record>
+
+    </data>
+</odoo>

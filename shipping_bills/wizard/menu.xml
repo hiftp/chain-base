@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_shipping_bill_update_arrive_wizard" name="站点签收"
+        parent="root_menu_site_manual_operation" action="action_shipping_bill_update_arrive_wizard"
+              sequence="1"/>
+
+    <menuitem id="menu_shipping_bill_update_sign_wizard" name="客户签收"
+        parent="root_menu_site_manual_operation" action="action_shipping_bill_update_sign_wizard"
+              sequence="2"/>
+
+    <menuitem id="menu_shipping_bill_update_return_wizard" name="包裹退运"
+        parent="root_menu_operational_kanban_board" action="action_shipping_bill_update_return_wizard"
+              sequence="2"/>
+
+    <menuitem id="menu_shipping_bill_update_discard_wizard" name="包裹丢弃"
+        parent="root_menu_operational_kanban_board" action="action_shipping_bill_update_discard_wizard"
+              sequence="3"/>
+
+    <menuitem id="menu_shipping_bill_update_transport_wizard" name="转运包裹xls导入"
+        parent="root_menu_operational_kanban_board" action="action_shipping_bill_update_transport_wizard"
+              sequence="5"/>
+
+</odoo>

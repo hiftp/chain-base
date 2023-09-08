@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--      athletes groups form view-->
+        <record id="athletes_groups_view_form" model="ir.ui.view">
+        	<field name="name">athletes.groups.view.form</field>
+        	<field name="model">athlete.groups</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+
+                            <field name="partner_id"/>
+                            <field name="phone" options="{'enable_sms': True}"/>
+                            <field name="email"  widget="email"/>
+                            <field name="company_id" />
+                        </group>
+                        <group>
+                            <field name="responsible_user_id"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                            <field name="pricelist_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Athletes" name="athletes">
+                            <field name="athlete_ids">
+                                <tree string="Athletes" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids">
+                                <tree string="Documents" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="document" widget="binary" filename="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Organisation">
+                            <field name="organisation_ids">
+                                <tree string="Organisations" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+                </form>
+			</field>
+        </record>
+        <!--      athlete groups  tree view-->
+        <record id='athletes_groups_view_tree' model='ir.ui.view'>
+            <field name="name">athletes_groups_tree</field>
+            <field name="model">athlete.groups</field>
+            <field name="arch" type="xml">
+                <tree string="Athletes" sample="1">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="responsible_user_id"/>
+                    <field name="organisation_ids"  widget="many2many_tags"/>
+                    <field name="document_ids"  widget="many2many_tags"/>
+                    <field name="athlete_ids"  widget="many2many_tags"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </tree>
+            </field>
+        </record>
+        <!--        athletes menu action-->
+        <record id="all_groups_menu_action" model="ir.actions.act_window">
+            <field name="name">Groups</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">athlete.groups</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+
+        <!--        tags form view-->
+        <record model="ir.ui.view" id="group_tags_form_view">
+            <field name="name">Tags</field>
+            <field name="model">group.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        tags tree view-->
+        <record model="ir.ui.view" id="group_tags_tree_view">
+            <field name="name">Tags</field>
+            <field name="model">group.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+<!--        tags menu action-->
+        <record id="groups_tags_menu_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">group.tags</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+              </p>
+              <p>
+                  Tags are perfect to categorize.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

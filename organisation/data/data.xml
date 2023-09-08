@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="organisation_frontend_company" model="res.company">
+            <field name="name">My Organisation Frontend Company</field>
+        </record>
+        <record id="base.model_res_partner" model="ir.model">
+            <field name="website_form_key">create_contact_custom</field>
+            <field name="website_form_access">True</field>
+            <field name="website_form_label">Create a Customer(Organisation)</field>
+        </record>
+        <function model="ir.model.fields" name="formbuilder_whitelist">
+            <value>res.partner</value>
+            <value eval="[
+                'name', 'email', 'phone'
+            ]"/>
+        </function>
+        <record id="athelete_membership" model="ir.sequence">
+            <field name="name">Athlete Membership</field>
+            <field name="code">organisation.athletes</field>
+<!--            <field name="prefix">MEMPLAN/</field>-->
+<!--            <field name="padding">4</field>-->
+            <field name="company_id" eval="False"/>
+        </record>
+        <record model="ir.rule" id="organisation_restricted_company_rule">
+            <field name="name">Organisation: multi-company</field>
+            <field name="model_id" ref="model_organisation_organisation"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="parents_restricted_company_rule">
+            <field name="name">Parents: multi-company</field>
+            <field name="model_id" ref="model_organisation_parents"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+
+        </record>
+        <record model="ir.rule" id="venues_restricted_company_rule">
+            <field name="name">Venues: multi-company</field>
+            <field name="model_id" ref="model_organisation_venues"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="athletes_restricted_company_rule">
+            <field name="name">Athletes: multi-company</field>
+            <field name="model_id" ref="model_organisation_athletes"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="coaches_restricted_company_rule">
+            <field name="name">Coaches: multi-company</field>
+            <field name="model_id" ref="model_organisation_coaches"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="groups_restricted_company_rule">
+            <field name="name">Groups: multi-company</field>
+            <field name="model_id" ref="model_athlete_groups"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="fans_restricted_company_rule">
+            <field name="name">Fans: multi-company</field>
+            <field name="model_id" ref="model_organisation_fans"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+        <record model="ir.rule" id="discipline_restricted_company_rule">
+            <field name="name">Discipline: multi-company</field>
+            <field name="model_id" ref="model_organisation_discipline"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">
+                [('company_id', 'in', company_ids)]
+            </field>
+        </record>
+    </data>
+</odoo>

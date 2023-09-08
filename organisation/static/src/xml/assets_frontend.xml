@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="assets_frontend_organisation" name="Client Dashboard" inherit_id="web.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/organisation/static/src/js/dashboard.js"/>
+            <script type="text/javascript" src="/organisation/static/src/js/customer_form_editor.js"/>
+            <link rel="stylesheet" type="text/css" href="/organisation/static/src/css/organisation.css"/>
+        </xpath>
+    </template>
+</odoo>

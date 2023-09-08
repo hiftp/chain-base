@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_parent_dashboard" name="Portal layout : parent_dashboard menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'parent_dashboard'" t-attf-class="breadcrumb-item #{'active ' if not parent_profile else ''}">
+                <a t-if="parent_profile_page" t-attf-href="/my/parent_dashboard?{{ keep_query() }}">My Dashboard</a>
+                <a t-elif="parent_chathub_page" t-attf-href="/my/parent_dashboard?{{ keep_query() }}">My Dashboard</a>
+                <a t-elif="parent_invoices_page" t-attf-href="/my/parent_dashboard?{{ keep_query() }}">My Dashboard</a>
+                <t t-else="">My Dashboard</t>
+            </li>
+            <li t-if="parent_profile_page" class="breadcrumb-item active">
+                <span>Profile</span>
+            </li>
+            <li t-if="parent_invoices_page" class="breadcrumb-item active">
+                <span>Invoices</span>
+            </li>
+            <li t-if="parent_chathub_page" class="breadcrumb-item active">
+                <span>Channels</span>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_parent_athlete_dashboard" name="Portal layout : parent_athlete_dashboard menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'parent_athlete_dashboard'" t-attf-class="breadcrumb-item #{'active ' if not parent_athlete_profile else ''}">
+                <a t-if="parent_athlete_profile" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_calendar" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_product" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_document" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_timesheet" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_coach" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_forms" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_booking" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_diaries" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <a t-elif="parent_athlete_subscriptions" t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}"><t t-esc="athlete.name"/></a>
+                <t t-else="" t-if="athlete" t-esc="athlete.name"/>
+            </li>
+            <li t-if="parent_athlete_profile" class="breadcrumb-item active">
+                <span>Profile</span>
+            </li>
+            <li t-if="parent_athlete_calendar" class="breadcrumb-item active">
+                <span>Calendar</span>
+            </li>
+            <li t-if="parent_athlete_product" class="breadcrumb-item active">
+                <span>Products</span>
+            </li>
+            <li t-if="parent_athlete_document" class="breadcrumb-item active">
+                <span>Documents</span>
+            </li>
+            <li t-if="parent_athlete_timesheet" class="breadcrumb-item active">
+                <span>Timesheets</span>
+            </li>
+            <li t-if="parent_athlete_coach" class="breadcrumb-item active">
+                <span>Coaches</span>
+            </li>
+            <li t-if="parent_athlete_forms" class="breadcrumb-item active">
+                <span>Forms</span>
+            </li>
+            <li t-if="parent_athlete_booking" class="breadcrumb-item active">
+                <span>Bookings</span>
+            </li>
+            <li t-if="parent_athlete_diaries" class="breadcrumb-item active">
+                <span>Diaries</span>
+            </li>
+             <li t-if="parent_athlete_subscriptions" class="breadcrumb-item active">
+                <span>Subscriptions</span>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="parent_dashboard" name="Link to Parent dashboard" inherit_id="portal.user_dropdown">
+        <xpath expr="//*[@id='o_logout_divider']" position="before">
+            <t t-if="user_id.partner_id.org_group_selection == 'parents'">
+                <a href="/my/parent_dashboard" role="menuitem" class="dropdown-item">Parent Dashboard</a>
+            </t>
+        </xpath>
+    </template>
+
+<!--    <template id="historical_dashboard" name="Link to Historical dashboard" inherit_id="portal.user_dropdown">-->
+<!--        <xpath expr="//*[@id='o_logout_divider']" position="before">-->
+<!--            <a href="/my/history_dashboard" role="menuitem" class="dropdown-item">Historical Dashboard</a>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+<!--    <template id="parent_dashboard" name="Link to Parent dashboard" inherit_id="theme_alan.theme_header_signin">-->
+<!--        <xpath expr="//*[@id='o_logout']" position="before">-->
+<!--            <t t-if="user_id.partner_id.org_group_selection == 'parents'">-->
+<!--                <a href="/my/parent_dashboard" role="menuitem" class="dropdown-item">Parent Dashboard</a>-->
+<!--            </t>-->
+<!--        </xpath>-->
+<!--    </template>-->
+
+    <template id="portal_parent_dashboard" name="Parent Dashboard">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <t t-call="portal.portal_searchbar"/><br/><br/>
+                <h3><b><span t-field="parent.name"/>'s Dashboard</b></h3><br/><br/>
+                <div class="container py-3">
+                    <div class="row px-2">
+                        <t t-foreach="links" t-as="link">
+                            <t t-if="link.tile_active">
+                                <div t-attf-class="col-#{mobile if mobile else '12'} col-sm-#{mobile if mobile else '12'} col-md-#{tablet if tablet else '6'} col-lg-#{desktop if desktop else '4'} my-2 px-2 px-md-3 my-md-3">
+                                    <t t-if="link.dynamic_link">
+                                        <a t-att-href="'%s/%s' % (link.link, parent.id) ">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                    <t t-else="">
+                                        <a t-att-href="'%s' % link.link">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </t>
+    </template>
+
+    <template id="portal_parent_profile_dashboard" name="Parent Profile">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h2>Basic Details</h2>
+            <br/><br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h3 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="parent.name" class="col-9 text-truncate"/></h3>
+                                <form action='/my/edit_parent' method="post">
+                                    <button type="submit" class="btn btn-primary float-right mb32 ">
+                                        Edit details
+                                        <i class="fa fa-pencil"/>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="parent_id" t-att-value="parent.id"/>
+                                    </button>
+                                </form>
+                                <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                    <div class="img-bg">
+                                        <img style="width:100%; height: 100%;" t-if="parent.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(parent.partner_id.image_1024)"/>
+                                        <img t-if="not parent.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/src/img/placeholder.png"/>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6" t-if="parent.phone">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><span t-field="parent.phone"/></span>
+                                </p>
+                        </div>
+                        <div class="col-12 col-md-6" t-if="parent.email">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><t t-esc="parent.email"/></span>
+                                </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_parent_invoices" name="My Invoices and Payments">
+      <t t-call="portal.portal_layout">
+        <t t-set="breadcrumbs_searchbar" t-value="True"/>
+        <t t-call="portal.portal_searchbar">
+            <t t-set="title">Invoices</t>
+        </t>
+        <t t-if="not grouped_invoices">
+            <p>There are currently no invoices and payments for your account.</p>
+        </t>
+        <t t-if="grouped_invoices" t-call="portal.portal_table">
+            <t t-foreach="grouped_invoices" t-as="invoices">
+                <thead>
+                    <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}">
+                        <th>Invoice #</th>
+                        <t t-if="groupby == 'state'">
+                            <th>
+                                <em class="font-weight-normal text-muted"><span/>Invoice/Bill in state:</em>
+                                <span t-field="invoices[0].sudo().state"/>
+                            </th>
+                        </t>
+                        <t t-if="groupby == 'partner_id'">
+                            <th>
+                                <em class="font-weight-normal text-muted"><span/>Invoice/Bill for:</em>
+                                <span t-field="invoices[0].sudo().partner_id.name"/>
+                            </th>
+                        </t>
+                        <th>Invoice Date</th>
+                        <th class='d-none d-md-table-cell'>Due Date</th>
+                        <th/>
+                        <th class="text-right">Amount Due</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="invoices" t-as="invoice">
+                    <tr>
+                        <td>
+                            <a t-att-href="invoice.get_portal_url()" t-att-title="invoice.name">
+                                <t t-esc="invoice.name" t-if="invoice.name != '/'"/>
+                                <em t-else="">Draft Invoice</em>
+                            </a>
+                        </td>
+                        <t t-if="groupby == 'state'">
+                            <td/>
+                        </t>
+                        <t t-if="groupby == 'partner_id'">
+                            <td/>
+                        </t>
+                        <td><span t-field="invoice.invoice_date"/></td>
+                        <td class='d-none d-md-table-cell'><span t-field="invoice.invoice_date_due"/></td>
+                        <td class="tx_status">
+                            <t t-if="invoice.state == 'posted' and invoice.payment_state not in ('in_payment', 'paid', 'reversed')">
+                                <span class="badge badge-pill badge-info"><i class="fa fa-fw fa-clock-o" aria-label="Opened" title="Opened" role="img"></i><span class="d-none d-md-inline"> Waiting for Payment</span></span>
+                            </t>
+                            <t t-if="invoice.state == 'posted' and invoice.payment_state in ('paid', 'in_payment')">
+                                <span class="badge badge-pill badge-success"><i class="fa fa-fw fa-check" aria-label="Paid" title="Paid" role="img"></i><span class="d-none d-md-inline"> Paid</span></span>
+                            </t>
+                            <t t-if="invoice.state == 'posted' and invoice.payment_state == 'reversed'">
+                                <span class="badge badge-pill badge-success"><i class="fa fa-fw fa-check" aria-label="Reversed" title="Reversed" role="img"></i><span class="d-none d-md-inline"> Reversed</span></span>
+                            </t>
+                            <t t-if="invoice.state == 'cancel'">
+                                <span class="badge badge-pill badge-warning"><i class="fa fa-fw fa-remove" aria-label="Cancelled" title="Cancelled" role="img"></i><span class="d-none d-md-inline"> Cancelled</span></span>
+                            </t>
+                        </td>
+                        <td class="text-right"><span t-esc="-invoice.amount_residual if invoice.move_type == 'out_refund' else invoice.amount_residual" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/></td>
+                    </tr>
+                </t>
+                </tbody>
+            </t>
+        </t>
+      </t>
+    </template>
+
+</odoo>

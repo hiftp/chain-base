@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--      organisation coaches form view-->
+        <record id="coaches_view_form" model="ir.ui.view">
+        	<field name="name">coaches.view.form</field>
+        	<field name="model">organisation.coaches</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <field name="employee_id" invisible="1"/>-->
+<!--                        <button name="action_create_employee" string="Create Employee" type="object"-->
+<!--                                class="oe_highlight" attrs="{'invisible': [('employee_id','!=', False)]}"/>-->
+                    </header>
+                <sheet>
+                    <field name="img_coaches" widget="image" class="oe_avatar"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="partner_id" context="{'show_address': 1}"
+                                       options="{'always_reload': true}"/>
+                            <field name="phone" options="{'enable_sms': True}"/>
+                            <field name="email"  widget="email"/>
+                            <field name="employee_id"/>
+                            <field name="create_booking"/>
+                        </group>
+                        <group>
+                            <field name="responsible_user_id"/>
+                            <field name="tag_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color', 'no_create_edit': True}"/>
+                            <field name="price_o2o"/>
+                            <field name="price_team"/>
+                            <field name="currency_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Organisations" name="organisations">
+                            <field name="organisation_ids">
+                                <tree string="Organisations" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="responsible_user_id"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <field name="notes"/>
+                            </group>
+                        </page>
+                        <page string="Athletes">
+                            <field name="athlete_ids">
+                                <tree string="Athletes" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Groups">
+                            <field name="group_ids">
+                                <tree string="Groups" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="responsible_user_id"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Timesheet">
+                            <field name="task_ids">
+                                <tree string="Tasks" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="project_id"/>
+<!--                                    <field name="check_bool_enable_task_timer" invisible="True" />-->
+<!--                                    <field name="start_task_bool" invisible="True"/>-->
+                                    <button
+                                        name="action_task_start"
+                                        string="Start Task"
+                                        type="object"
+                                        class="o_follow_btn o_following btn btn-xs btn-primary">
+                                    </button>
+
+                                    <button
+                                        name="action_task_end"
+                                        string="End Task"
+                                        type="object"
+                                        class="o_follow_btn o_following btn btn-xs btn-primary">
+                                    </button>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Invoices" name="invoices">
+                            <field name="invoice_ids">
+                                <tree string="Invoices" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="state"/>
+                                    <field name="amount_residual" widget="monetary"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calendar" name="calendar">
+                            <field name="event_ids">
+
+                            </field>
+                        </page>
+                        <page string="Disciplines" name="discipline">
+<!--                            <field name="discipline_ids">-->
+
+<!--                            </field>-->
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids">
+                                <tree string="Documents" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="document" widget="binary" filename="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+                </form>
+			</field>
+        </record>
+        <!--      coaches  tree view-->
+        <record id='coaches_view_tree' model='ir.ui.view'>
+            <field name="name">coaches_tree</field>
+            <field name="model">organisation.coaches</field>
+            <field name="arch" type="xml">
+                <tree string="Coaches" sample="1" multi_edit="1">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                    <field name="responsible_user_id"/>
+                    <field name="create_booking"/>
+                    <field name="phone" options="{'enable_sms': True}"/>
+                    <field name="email" widget="email"/>
+                    <field name="price_o2o" widget="monetary" optional="hide"/>
+                    <field name="price_team" widget="monetary" optional="hide"/>
+                    <field name="company_id" optional="hide"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="organisation_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="athlete_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="group_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="task_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="invoice_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="event_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="discipline_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="document_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </tree>
+            </field>
+        </record>
+        <!--        coaches menu action-->
+        <record id="all_coaches_menu_action" model="ir.actions.act_window">
+            <field name="name">Coaches</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.coaches</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('coaches_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('coaches_view_form')})]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+        <!--        coach search view-->
+        <record id="coach_view_search" model="ir.ui.view">
+            <field name="name">coach.search</field>
+            <field name="model">organisation.coaches</field>
+            <field name="arch" type="xml">
+                <search string="Coaches">
+                    <separator/>
+                    <filter string="Can create booking" name="filter_create_booking"
+                            domain="[('create_booking', '=', True)]"/>
+                    <filter string="Can't create booking" name="filter_create_booking"
+                            domain="[('create_booking', '=', False)]"/>
+                    <separator/>
+                    <field string="Name" name="name"
+                           filter_domain="[('name', 'ilike', self)]"/>
+                    <field string="Email" name="email"
+                           filter_domain="[('email', 'ilike', self)]"/>
+                    <field string="Phone" name="phone"
+                           filter_domain="[('phone', 'ilike', self)]"/>
+                    <field string="Employee" name="employee_id"
+                           filter_domain="[('employee_id', 'ilike', self)]"/>
+                    <field string="Organisation" name="organisation_ids"
+                           filter_domain="[('organisation_ids', 'ilike', self)]"/>
+                    <field string="Athlete" name="athlete_ids"
+                           filter_domain="[('athlete_ids', 'ilike', self)]"/>
+                    <field string="Group" name="group_ids"
+                           filter_domain="[('group_ids', 'ilike', self)]"/>
+                    <field string="Discipline" name="discipline_ids"
+                           filter_domain="[('discipline_ids', 'ilike', self)]"/>
+                    <field string="Tag" name="tag_ids"
+                           filter_domain="[('tag_ids', 'ilike', self)]"/>
+                    <group expand="1" string="Group By">
+
+                    </group>
+
+                </search>
+            </field>
+        </record>
+
+        <!--        tags form view-->
+        <record model="ir.ui.view" id="coaches_tags_form_view">
+            <field name="name">Tags</field>
+            <field name="model">coaches.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        tags tree view-->
+        <record model="ir.ui.view" id="coaches_tags_tree_view">
+            <field name="name">Tags</field>
+            <field name="model">coaches.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+<!--        tags menu action-->
+        <record id="coaches_tags_menu_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">coaches.tags</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+              </p>
+              <p>
+                  Tags are perfect to categorize your coaches.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

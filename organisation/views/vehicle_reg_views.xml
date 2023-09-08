@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <!--        form view-->
+        <record model="ir.ui.view" id="venues_tags_form_view">
+            <field name="name">Vehicle Registration</field>
+            <field name="model">vehicle.registration</field>
+            <field name="arch" type="xml">
+                <form string="Vehicle Registration">
+                    <sheet>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page name="athletes" string="Athletes">
+                                <field name="athlete_ids">
+                                    <tree string="Athletes" sample="1">
+                                        <field name="name"/>
+                                        <field name="tag_ids" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids"/>
+                            <field name="activity_ids"/>
+                            <field name="message_ids"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--         tree view-->
+        <record model="ir.ui.view" id="vehicles_tree_view">
+            <field name="name">Vehicle Registration</field>
+            <field name="model">vehicle.registration</field>
+            <field name="arch" type="xml">
+                <tree string="Vehicle Registration" sample="1">
+                    <field name="name"/>
+                    <field name="athlete_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+<!--         menu action-->
+        <record id="vehicle_reg_menu_action" model="ir.actions.act_window">
+            <field name="name">Vehicle Registration</field>
+            <field name="res_model">vehicle.registration</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No records found. Let's create one!
+              </p>
+              <p>
+              </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

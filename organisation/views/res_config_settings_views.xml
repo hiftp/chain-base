@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">
+                res.config.settings.view.form.inherit.organisation
+            </field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="10"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Organisation" data-key="organisation"
+                         string="Organisation">
+                        <h2 groups="website.group_multi_website">Default Organisation</h2>
+                        <div class="row mt16 o_settings_container" id="default_organisation">
+                            <div class="col-xs-12 col-md-6 o_setting_box" id="default_organisation">
+                                <div class="o_setting_right_pane">
+                                    <label string="Organisation" for="default_org_id"/>
+                                    <div class="text-muted">
+                                        Set a default Organisation.The selected Organisation will be set for users who have signed up from website.
+                                    </div>
+                                    <div class="mt16">
+                                        <field name="default_org_id" widget="selection"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 groups="website.group_multi_website">Management</h2>
+                        <div class="row mt16 o_settings_container" id="org_management">
+                            <div class="col-12 col-lg-6 o_setting_box" id="athlete_from_fan">
+                                <div class="o_setting_left_pane">
+                                    <field name="athlete_from_fan"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="athlete_from_fan"/>
+                                    <div class="text-muted">
+                                        Check this field to enable the smart button to create a new Athlete from fan record
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box" id="fan_from_athlete">
+                                <div class="o_setting_left_pane">
+                                    <field name="fan_from_athlete"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="fan_from_athlete"/>
+                                    <div class="text-muted">
+                                        Check this field to enable the smart button to create a new Fan from athlete record
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Dashboard Columns</h2>
+                        <div class="row mt16 o_settings_container" name="dashboard_columns_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 id="mobile">
+                                <div class="o_setting_right_pane">
+                                    <label for="mobile"/>
+                                    <field name="mobile"/>
+                                    <div class="text-muted">Set number of
+                                        columns to be shown on mobile devices.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 id="tablet">
+                                <div class="o_setting_right_pane">
+                                    <label for="tablet"/>
+                                    <field name="tablet"/>
+                                    <div class="text-muted">Set number of
+                                        columns to be shown on tablet devices.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                 id="desktop">
+                                <div class="o_setting_right_pane">
+                                    <label for="desktop"/>
+                                    <field name="desktop"/>
+                                    <div class="text-muted">Set number of
+                                        columns to be shown on desktop devices.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_config_settings_menu_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'organisation'}</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="webiste_payment_template" inherit_id="website_sale.address_on_payment">
+        <xpath expr="//div[@id='shipping_and_billing']" position="inside">
+            <div class="mt-2">
+                <b>
+                    <input type="checkbox" t-att-checked="'checked' if order.order_line.filtered(lambda x:x.product_id.organisation_stage_id and x.product_id.organisation_stage_id.is_allowed_to_company) else None" id="check" style="display:none;"/>
+                    <t t-if="order.order_line.filtered(lambda x:x.product_id.organisation_stage_id and x.product_id.organisation_stage_id.is_allowed_to_company)">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input type="email" id="email" name="email"/>
+                    </t>
+                </b>
+            </div>
+        </xpath>
+    </template>
+</odoo>

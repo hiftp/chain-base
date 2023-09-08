@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--      fans  form view-->
+        <record id="fans_view_form" model="ir.ui.view">
+        	<field name="name">fans.view.form</field>
+        	<field name="model">organisation.fans</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_create_athlete" string="Create Athlete" class="oe_highlight"
+                                type="object"
+                                attrs="{'invisible': [('conf_create_athlete', '=', False)]}"/>
+                        <field name="conf_create_athlete" invisible="1"/>
+                    </header>
+                <sheet>
+
+<!--                    <field name="img_parents" widget="image" class="oe_avatar"/>-->
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="partner_id" context="{'show_address': 1}"
+                                       options="{'always_reload': true}"/>
+                            <field name="phone" options="{'enable_sms': True}"/>
+                            <field name="email"  widget="email"/>
+                            <field name="create_booking"/>
+                        </group>
+                        <group>
+                            <field name="organisation_id"/>
+<!--                            <field name="responsible_user_id"/>-->
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+                </form>
+			</field>
+        </record>
+        <!--      fans  tree view-->
+        <record id='fans_view_tree' model='ir.ui.view'>
+            <field name="name">fans_tree</field>
+            <field name="model">organisation.fans</field>
+            <field name="arch" type="xml">
+                <tree string="Fans" sample="1" multi_edit="1">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="create_booking"/>
+                    <field name="phone" options="{'enable_sms': True}"/>
+                    <field name="email" widget="email"/>
+                    <field name="organisation_id"/>
+                    <field name="event_ids" optional="hide" widget="many2many_tags"/>
+                    <field name="tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </tree>
+            </field>
+        </record>
+        <!--        fans search view-->
+        <record id="fan_view_search" model="ir.ui.view">
+            <field name="name">fan.search</field>
+            <field name="model">organisation.fans</field>
+            <field name="arch" type="xml">
+                <search string="Fans">
+                    <separator/>
+                    <filter string="Can create booking" name="filter_create_booking"
+                            domain="[('create_booking', '=', True)]"/>
+                    <filter string="Can't create booking" name="filter_create_booking"
+                            domain="[('create_booking', '=', False)]"/>
+                    <separator/>
+                    <field string="Name" name="name"
+                           filter_domain="[('name', 'ilike', self)]"/>
+                    <field string="Email" name="email"
+                           filter_domain="[('email', 'ilike', self)]"/>
+                    <field string="Phone" name="phone"
+                           filter_domain="[('phone', 'ilike', self)]"/>
+                    <field string="Organisation" name="organisation_id"
+                           filter_domain="[('organisation_id', 'ilike', self)]"/>
+                    <field string="Tag" name="tag_ids"
+                           filter_domain="[('tag_ids', 'ilike', self)]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Organisation" name="groupby_org"
+                                context="{'group_by': 'organisation_id'}"/>
+                    </group>
+
+                </search>
+            </field>
+        </record>
+        <!--        fans menu action-->
+        <record id="all_fans_menu_action" model="ir.actions.act_window">
+            <field name="name">Fans</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.fans</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+
+        <!--        tags form view-->
+        <record model="ir.ui.view" id="parents_tags_form_view">
+            <field name="name">Tags</field>
+            <field name="model">parents.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        tags tree view-->
+        <record model="ir.ui.view" id="parents_tags_tree_view">
+            <field name="name">Tags</field>
+            <field name="model">parents.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+        <!--        tags menu action-->
+        <record id="fans_tags_menu_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">fans.tags</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+              </p>
+              <p>
+                  Tags are perfect to categorize your fans.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

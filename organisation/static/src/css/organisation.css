@@ -1,0 +1,162 @@
+.img-bg{
+  width: 200px;
+  height: 100%;
+  background-color: #EDEDED;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.contact-img{
+    width:80%;
+    height: 90%;
+    align: center;
+}
+
+.media-body{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.media{
+    border:2px solid #D3D3D3;
+
+}
+.help_tag{
+    font-size: 17px;
+    text-align: center;
+    color: #00438b;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+#c_calendar {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.fc-button-group {
+    margin-top: 2% !important;
+}
+.fc-today-button {
+    margin-top: 2% !important;
+}
+.fc .fc-toolbar{
+    flex-wrap: wrap;
+}
+.fc-toolbar-chunk{
+    width: 100%;
+}
+.fc-toolbar-title{
+    text-align: center;
+}
+#show_elements{
+    padding: 20px;
+    background: #feeff0;
+    width: 287px;
+    position: absolute;
+    border: 1px solid #FF2905;
+    display: none;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+.show_calendar{
+    display: block !important;
+}
+.fc-prev-button{
+    background-color: #FFFFFF !important;
+    border: 1px !important;
+    border-color: #FF2905 !important;
+    color: #FF2905 !important;
+    border: 2px solid #FF2905 !important;
+    margin-right: 5px !important;
+    border-radius: 10px !important;
+}
+.fc-prev-button:hover{
+    background-color: #FF2905 !important;
+    color: #FFFFFF !important;
+}
+.fc-next-button{
+     background-color: #FFFFFF !important;
+    border: 1px !important;
+    border-color: #FF2905 !important;
+    color: #FF2905 !important;
+    border: 2px solid #FF2905 !important;
+    margin-right: 5px !important;
+    border-radius: 10px !important;
+}
+.fc-next-button:hover{
+    background-color: #FF2905 !important;
+    color: #FFFFFF !important;
+}
+.fc-today-button{
+    background-color: #feeff0 !important;
+    border: 2px solid #FF2905 !important;
+    color: #FF2905 !important;
+    border-radius: 10px !important;
+}
+.fc-dayGridMonth-button{
+    border-top-left-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    background-color: #ffffff !important;
+    color: #FF2905 !important;
+    border: 2px solid #FF2905 !important;
+}
+.fc-timeGridWeek-button{
+    background-color: #ffffff !important;
+    color: #FF2905 !important;
+    border: 2px solid #FF2905 !important;
+}
+.fc-timeGridDay-button{
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+    background-color: #ffffff !important;
+    color: #FF2905 !important;
+    border: 2px solid #FF2905 !important;
+}
+.fc-button-active{
+    color: #ffffff !important;
+    background-color: #FF2905 !important;
+}
+#show_elements > div > input{
+    background: #feeff0;
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    color: #FF2905;
+    width: 100%;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+#show_elements > div > label{
+    font-weight: bold;
+}
+.fc-daygrid-event-harness{
+    cursor: pointer;
+}
+#show_elements{
+    left: 20%;
+    top: 80%;
+}
+
+@media (max-width:799.98px){
+#show_elements{
+    left: 11%;
+    top: 50%;}
+}

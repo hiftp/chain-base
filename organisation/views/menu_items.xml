@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="organisation_root_menu"
+                  name="Organisation"
+                  sequence="20"
+                  web_icon="organisation,static/description/icon.png"
+                  groups="organisation.group_organisation_admins,organisation.group_organisation_coaches_internal"/>
+        <menuitem id="organisation_menu"
+                  parent="organisation_root_menu"
+                  name="Organisation" sequence="5"
+                  action="organisation.all_organisations_menu_action"/>
+        <menuitem id="coaches_menu"
+                  parent="organisation_root_menu"
+                  name="Coaches" sequence="10"
+                  action="organisation.all_coaches_menu_action"/>
+        <menuitem id="venues_menu"
+                  parent="organisation_root_menu"
+                  name="Venues" sequence="15"
+                  action="organisation.all_venues_menu_action"/>
+        <menuitem id="athletes_menu"
+                  parent="organisation_root_menu"
+                  name="Athletes" sequence="20"
+                  action="organisation.all_athletes_menu_action"/>
+        <menuitem id="parents_menu"
+                  parent="organisation_root_menu"
+                  name="Parents" sequence="25"
+                  action="organisation.all_parents_menu_action"/>
+        <menuitem id="fans_menu"
+                  parent="organisation_root_menu"
+                  name="Fans" sequence="27"
+                  action="organisation.all_fans_menu_action"/>
+        <menuitem id="groups_menu"
+                  parent="organisation_root_menu"
+                  name="Groups" sequence="30"
+                  action="organisation.all_groups_menu_action"/>
+        <menuitem id="disciplines_menu"
+                  parent="organisation_root_menu"
+                  name="Disciplines" sequence="35"
+                  action="organisation.all_disciplines_menu_action"/>
+        <menuitem id="config_menu"
+                  parent="organisation_root_menu"
+                  groups="organisation.group_organisation_admins"
+                  name="Configuration" sequence="100"/>
+        <menuitem id="organisation_stages_menu"
+                  parent="config_menu"
+                  name="Organisation Stages" sequence="10"
+                  action="organisation.organisation_stages_menu_action"/>
+        <menuitem id="discipline_stages_menu"
+                  parent="config_menu"
+                  name="Discipline Stages" sequence="15"
+                  action="organisation.discipline_stages_menu_action"/>
+        <menuitem id="organisation_tags_menu"
+                  parent="config_menu"
+                  name="Organisation Tags" sequence="20"
+                  action="organisation.organisation_tags_menu_action"/>
+        <menuitem id="coaches_tags_menu"
+                  parent="config_menu"
+                  name="Coaches Tags" sequence="25"
+                  action="organisation.coaches_tags_menu_action"/>
+        <menuitem id="venues_tags_menu"
+                  parent="config_menu"
+                  name="Venues Tags" sequence="30"
+                  action="organisation.venues_tags_menu_action"/>
+        <menuitem id="athletes_tags_menu"
+                  parent="config_menu"
+                  name="Athletes Tags" sequence="35"
+                  action="organisation.athletes_tags_menu_action"/>
+        <menuitem id="parents_tags_menu"
+                  parent="config_menu"
+                  name="Parents Tags" sequence="40"
+                  action="organisation.parents_tags_menu_action"/>
+        <menuitem id="fans_tags_menu"
+                  parent="config_menu"
+                  name="Fans Tags" sequence="43"
+                  action="organisation.fans_tags_menu_action"/>
+        <menuitem id="groups_tags_menu"
+                  parent="config_menu"
+                  name="Groups Tags" sequence="45"
+                  action="organisation.groups_tags_menu_action"/>
+        <menuitem id="discipline_tags_menu"
+                  parent="config_menu"
+                  name="Discipline Tags" sequence="50"
+                  action="organisation.discipline_tags_menu_action"/>
+        <menuitem id="chat_hub_menu"
+                  parent="config_menu"
+                  name="Chathub" sequence="5"
+                  action="organisation.chat_hub_menu_action"/>
+        <menuitem id="org_settings_menu"
+                  parent="config_menu"
+                  name="Organisations" sequence="4"
+                  action="organisation.org_settings_menu_action"/>
+        <menuitem id="res_config_settings_menu"
+                  parent="config_menu"
+                  name="Settings" sequence="1"
+                  action="organisation.res_config_settings_menu_action"/>
+        <menuitem id="vehicle_reg_menu"
+                  parent="config_menu"
+                  name="Vehicle Registration" sequence="1"
+                  action="organisation.vehicle_reg_menu_action"/>
+
+        <menuitem name="Answers"
+                  id="survey_menu_answers"
+                  parent="survey.menu_surveys"
+                  sequence="90"
+                  action="organisation.action_survey_menu_answers"/>
+
+        <menuitem
+                id="menu_nationality"
+                name="Nationality"
+                parent="base.menu_administration"
+                sequence="2"
+                action="organisation.all_nationality_menu_action"/>
+    </data>
+</odoo>

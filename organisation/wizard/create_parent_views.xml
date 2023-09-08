@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_create_parent_form" model="ir.ui.view">
+            <field name="name">parent.create.form</field>
+            <field name="model">parent.creation</field>
+            <field name="arch" type="xml">
+                <form string="Create Parent">
+                    <!-- Invisible fields -->
+
+                    <group>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="partner_ids" invisible="1"/>
+                        <field name="organisation_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="athlete_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="in_portal"/>
+                    </group>
+                    <footer>
+                        <button string="Create Parent" name="action_create_parent" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

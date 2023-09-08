@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--        chathub form view-->
+        <record model="ir.ui.view" id="chat_hub_form_view">
+            <field name="name">Channels</field>
+            <field name="model">chat.hub</field>
+            <field name="arch" type="xml">
+                <form string="Channels">
+                    <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_ids" widget="many2manyattendee"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <separator string="Description"/>
+                    <field name="description" nolabel="1"/>
+                </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!--        chathub tree view-->
+        <record model="ir.ui.view" id="chathub_tree_view">
+            <field name="name">Channels</field>
+            <field name="model">chat.hub</field>
+            <field name="arch" type="xml">
+                <tree string="Channels" sample="1">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <!--        chathub menu action-->
+        <record id="chat_hub_menu_action" model="ir.actions.act_window">
+            <field name="name">Chathub</field>
+            <field name="res_model">chat.hub</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No chathub channels found. Let's create one!
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

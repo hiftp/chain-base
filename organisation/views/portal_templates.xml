@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--    main portal menu-->
+    <template id="portal_athletes_page" name="Athletes" inherit_id="portal.portal_my_home" customize_show="True" priority="100">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Athletes</t>
+                <t t-set="url" t-value="'/my/athletes'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_coach_dashboard_page" name="My Dashboard" inherit_id="portal.portal_my_home" customize_show="True" priority="90">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="partner.org_group_selection == 'ex_coaches'">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Dashboard</t>
+                    <t t-set="url" t-value="'/my/dashboard'"/>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="no_access_template" name="ERROR!">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-lg-7 col-xl-6 mr-lg-auto oe_structure">
+                                <section class="pt40 s_text_block pb40 o_colored_level o_cc o_cc1" data-snippet="s_text_block" data-name="Text">
+                                    <div class="container">
+                                        <span class="d-block fa fa-4x fa-exclamation-triangle mx-auto rounded-circle bg-danger"/><br/>
+                                        <h1 class="text-center">ERROR!!</h1>
+                                        <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                            <hr class="mx-auto border-top w-50 border-dark text-center"/>
+                                        </div>
+                                        <h5 class="text-center">
+                                            <span class="fa fa-close"/>
+                                            <span>Some <b>ERROR</b> occurred</span>
+                                        </h5>
+                                        <p class="text-center">You are not allowed to access this page</p>
+                                    </div>
+                                </section>
+                            </div>
+                        <div class="col-lg-4">
+                            <t t-call="website.company_description"/>
+                        </div>
+                    </div>
+                    </div>
+                <div class="oe_structure" id="oe_structure_website_form_contact_us_thanks_2"/>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_athlete_dashboard" name="Portal layout : dashboard menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'athlete_profile'" class="breadcrumb-item active">
+                Profile
+            </li>
+            <li t-if="page_name == 'athlete_calendar'" class="breadcrumb-item active">
+                Calendar
+            </li>
+            <li t-if="page_name == 'athlete_product'" class="breadcrumb-item active">
+                Products
+            </li>
+            <li t-if="page_name == 'athlete_forms'" class="breadcrumb-item active">
+                Forms
+            </li>
+            <li t-if="page_name == 'athlete_documents'" class="breadcrumb-item active">
+                Documents
+            </li>
+            <li t-if="page_name == 'athlete_timesheet'" class="breadcrumb-item active">
+                Timesheet
+            </li>
+            <li t-if="page_name == 'athlete_parent'" class="breadcrumb-item active">
+                Parents
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_organisation_dashboard" name="Organisation Dashboard">
+            <t t-call="portal.portal_layout"><br/><br/>
+                <t t-if="partner.org_group_selection == 'ex_coaches'">
+                    <h3><b><span t-field="athlete.name"/>'s Dashboard (Coach view)</b></h3><br/><br/>
+                </t>
+                <t t-if="partner.org_group_selection == 'parents'">
+                    <h3><b><span t-field="athlete.name"/>'s Dashboard (Parent view)</b></h3><br/><br/>
+                </t>
+                <t t-if="partner.org_group_selection == 'athletes'">
+                    <h3><b><span t-field="athlete.name"/>'s Dashboard</b></h3><br/><br/>
+                </t>
+                <div class="container py-3">
+                    <div class="row px-2">
+                        <t t-foreach="links" t-as="link">
+                            <t t-if="link.tile_active">
+                                <div t-attf-class="col-#{mobile if mobile else '12'} col-sm-#{mobile if mobile else '12'} col-md-#{tablet if tablet else '6'} col-lg-#{desktop if desktop else '4'} my-2 px-2 px-md-3 my-md-3">
+                                    <t t-if="link.dynamic_link">
+                                        <a t-att-href="'athlete-%s/%s' % (athlete.id, link.link)">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                    <t t-else="">
+                                        <a t-att-href="'%s' % link.link">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </t>
+    </template>
+
+    <template id="portal_athlete_document_dashboard" name="Athlete Document Dashboard">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <t t-if="partner.org_group_selection == 'ex_coaches' or partner.org_group_selection == 'parents'">
+                <form action='/upload_document' method="post">
+                    <button type="submit" class="btn btn-primary float-right mb32 ">
+                        Upload
+                        <i class="fa fa-upload"/>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="athlete_id" t-att-value="athlete.id"/>
+                    </button>
+                </form>
+            </t>
+            <h3>Documents</h3><br/><br/>
+            <t t-if="not documents">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Documents.
+                </div>
+            </t>
+            <div class="row">
+                <t t-if="documents" t-call="portal.portal_table">
+                    <thead>
+                        <th>Document</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="documents" t-as="document">
+                            <td>
+                                <span t-field="document.name"/>
+                            </td>
+                            <td>
+                                <span t-field="document.description"/>
+                            </td>
+                            <td class="formio_form_actions">
+                                <a role="button" class="btn btn-sm btn-primary"
+                                   t-attf-href="/web/content/athletes.documents/#{document.id}/document?download=true">
+                                    <span aria-label="Download" title="Download">Download Document</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_athlete_timesheet_dashboard" name="Athlete Timesheet Dashboard">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h3>Timesheet</h3><br/><br/>
+            <t t-if="not tasks">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Timesheet.
+                </div>
+            </t>
+
+            <div class="row">
+                <t t-if="tasks" t-call="portal.portal_table">
+                    <thead>
+                        <th>Task</th>
+                        <th>Project</th>
+                        <th>Starts from</th>
+                        <th>Duration(Hours)</th>
+                        <th>Manage</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="tasks" t-as="task">
+                            <td>
+                                <span t-field="task.name"/>
+                            </td>
+                            <td>
+                                <span t-field="task.project_id.name"/>
+                            </td>
+                            <td>
+                                <span t-field="task.start_datetime"/>
+                            </td>
+                            <td>
+                                <span t-field="task.task_event_duration"/>
+                            </td>
+                            <td>
+                                <t t-if="partner.org_group_selection == 'athletes'">
+                                    <form action='/athlete/task/manage' method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="task_id" t-att-value="task.id"/>
+                                        <button type="submit" class="btn btn-primary align-items-center mb32 align-middle">
+                                            View
+                                        </button>
+                                    </form>
+                                </t>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_athlete_discipline_dashboard" name="Athlete Discipline Dashboard">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h3>Discipline</h3><br/><br/>
+            <t t-if="not disciplines">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Discipline.
+                </div>
+            </t>
+
+            <div class="row">
+                <t t-if="disciplines" t-call="portal.portal_table">
+                    <thead>
+                        <th>User</th>
+                        <th>Responsible</th>
+                        <th>Stage</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="disciplines" t-as="discipline">
+                            <td>
+                                <span t-field="discipline.user_id.name"/>
+                            </td>
+                            <td>
+                                <span t-if="discipline.responsible_user_id" t-field="discipline.responsible_user_id.name"/>
+                            </td>
+                            <td>
+                                <span t-if="discipline.stage_id" t-field="discipline.stage_id.name"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_athlete_invoice_dashboard" name="Athlete Invoice Dashboard">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h3>Invoice</h3><br/><br/>
+            <t t-if="not products">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Products.
+                </div>
+            </t>
+
+            <div class="row">
+                <t t-if="products" t-call="portal.portal_table">
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="products" t-as="product">
+                            <td>
+                                <span t-field="product.name"/>
+                            </td>
+                            <td>
+                                <span t-if="product.description" t-field="product.description"/>
+                            </td>
+                            <td>
+                                <span t-if="product.lst_price" t-field="product.lst_price"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_athlete_profile_dashboard" name="Athlete Profile">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h2>Basic Details</h2>
+            <br/><br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h3 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="athlete.name" class="col-9 text-truncate"/>
+                                <form action='/my/edit_athlete' method="post">
+                                    <button type="submit" class="btn btn-primary float-right mb32 ">
+                                        Edit details
+                                        <i class="fa fa-pencil"/>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="athlete_id" t-att-value="athlete.id"/>
+                                    </button>
+                                </form>
+                                <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                    <div class="img-bg">
+                                        <img style="width:100%; height: 100%;" t-if="athlete.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(athlete.partner_id.image_1024)"/>
+                                        <img t-if="not athlete.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/img/placeholder.png"/>
+                                    </div>
+                                </div>
+                            </h3>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-key" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><span t-if="athlete.member_id" t-field="athlete.member_id"/></span>
+                                </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><span t-if="athlete.phone" t-field="athlete.phone"/></span>
+                                </p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><t t-if="athlete.email" t-esc="athlete.email"/></span>
+                                </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-1">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-calendar" style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">DOB: <span t-field="athlete.dob" t-options='{"format": "dd/MM/yyyy"}'/></span>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-1">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-calendar" style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">Age: <span t-if="athlete.age" t-field="athlete.age"/></span>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-1">
+                            <p class="pt8 mb-0">
+<!--                                <i class="fa fa-calendar" style="margin-left: 50px;"></i>-->
+<!--                                <span class="athlete-detail">Age: <span t-if="athlete.age" t-field="athlete.age"/></span>-->
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-1" t-if="athlete_partner">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-map-marker" style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">Address:</span>
+                                <div style="margin-left: 50px;" class="row mt16" t-if="athlete_partner">
+                                    <address class="col-8" t-field="athlete.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": True}'/>
+                                </div>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-1" t-if="vehicle_regs">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-car" style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">Vehicle Registration:</span>
+                                <div style="margin-left: 50px;" class="row mt16" t-if="vehicle_regs">
+                                    <table>
+                                        <tbody>
+                                            <t t-foreach="vehicle_regs" t-as="vehicle">
+                                            <tr>
+                                                <td style="vertical-align: top;">
+                                                    <span t-field="vehicle.name"/>
+                                                </td>
+                                            </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <hr/>
+        </t>
+    </template>
+
+    <template id="portal_athlete_coach_dashboard" name="Coaches">
+        <t t-call="portal.portal_layout"><br/>
+            <h3>Coaches</h3><br/><br/>
+            <t t-if="not coaches">
+                <div class="alert alert-warning mt8" role="alert">
+                    No Coaches found!!
+                </div>
+            </t>
+            <t t-else="">
+                <div class="container row mx-n2 mt8">
+                    <t t-foreach="coaches" t-as="coach">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb16">
+                        <a class="contact-card list-group-item-action d-block mx-auto">
+                            <div class="media">
+                                <div class="img-bg">
+                                    <img style="width:100%; height: 100%;" t-if="coach.partner_id.image_1024" class="contact-img rounded-circle img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(coach.partner_id.image_1024)"/>
+                                    <img t-if="not coach.partner_id.image_1024" class="rounded-circle img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/src/img/placeholder.png"/>
+                                </div>
+                                <div class="media-body">
+                                    <h4 id="contact_name" style="border-bottom: 1px solid #e7e7e7;" class="pb8"><span class="contact-name"><t t-esc="coach.name"/></span></h4>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                        <span class="contact-detail"><t t-esc="coach.phone"/></span>
+                                    </p>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                        <span class="contact-detail"><t t-esc="coach.email"/></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div><br/>
+                </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_athlete_parent_dashboard" name="Parents">
+        <t t-call="portal.portal_layout"><br/>
+            <h3>Parents</h3><br/><br/>
+            <t t-if="not parents">
+                <div class="alert alert-warning mt8" role="alert">
+                    Nothing found!!
+                </div>
+            </t>
+            <t t-else="">
+                <div class="container row mx-n2 mt8">
+                    <t t-foreach="parents" t-as="parent">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb16">
+                        <a class="contact-card list-group-item-action d-block mx-auto">
+                            <div class="media">
+                                <div class="img-bg">
+                                    <img style="width:100%; height: 100%;" t-if="parent.partner_id.image_1024" class="contact-img rounded-circle img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(parent.partner_id.image_1024)"/>
+                                    <img t-if="not parent.partner_id.image_1024" class="rounded-circle img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/src/img/placeholder.png"/>
+                                </div>
+                                <div class="media-body">
+                                    <h4 id="contact_name" style="border-bottom: 1px solid #e7e7e7;" class="pb8"><span class="contact-name"><t t-esc="parent.name"/></span></h4>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                        <span class="contact-detail"><t t-esc="parent.phone"/></span>
+                                    </p>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                        <span class="contact-detail"><t t-esc="parent.email"/></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div><br/>
+                </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+<!--    portal_my_invoices inherit-->
+    <template id="portal_my_invoices_parent" name="Payment on My Invoices" inherit_id="account.portal_my_invoices">
+<!--        <xpath expr="//t[@t-call='portal.portal_table']" position="before">-->
+<!--&lt;!&ndash;            <span>YES!!</span>&ndash;&gt;-->
+<!--            <t t-if="parents">-->
+<!--                <form action='/my/athlete_invoices' method="post">-->
+<!--                <button type="submit" class="btn btn-primary float-right mb32 ">-->
+<!--                    Athlete Invoices-->
+<!--                    <i class="fa fa-pencil-square-o"/>-->
+<!--                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+<!--&lt;!&ndash;                    <input type="hidden" name="parent_id" t-att-value="parent.id"/>&ndash;&gt;-->
+<!--                </button>-->
+<!--            </form>-->
+<!--            </t>-->
+<!--        </xpath>-->
+        <xpath expr="//t[@t-call='portal.portal_table']/thead/tr/th[last()]" position="before">
+            <t t-if="show_athlete">
+                <th class="text-center">Athlete</th>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-foreach='invoices']/tr/td[last()]" position="before">
+            <td class="text-center">
+                <t t-if="show_athlete">
+                    <span t-field="invoice.partner_id.name"/>
+                </t>
+            </td>
+        </xpath>
+    </template>
+
+<!--    <template id="my_attendance" name="Attendance">-->
+<!--        <t t-call="portal.portal_layout"><br/><br/>-->
+<!--            <div id="attendance_buttons" class="row">-->
+<!--                <button id="button_sign_in" type="submit" class="btn btn-primary mb32 ">-->
+<!--                    <a class="fa fa-7x o_hr_attendance_sign_in_out_icon fa-sign-out btn-secondary" aria-label="Sign in" title="Sign in"/>-->
+<!--                </button><br/><br/>-->
+<!--                <button id="button_sign_out" type="submit" class="btn btn-primary mb32 ">-->
+<!--                    <a class="fa fa-7x o_hr_attendance_sign_in_out_icon fa-sign-out btn-warning" aria-label="Sign out" title="Sign out"/>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <t t-if="partner.org_group_selection == 'ex_coaches'">&ndash;&gt;-->
+<!--&lt;!&ndash;                <button type="submit" class="btn btn-primary mb32 ">&ndash;&gt;-->
+<!--&lt;!&ndash;                    btn-secondary&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="fa fa-7x o_hr_attendance_sign_in_out_icon fa-sign-out btn-warning" aria-label="Sign out" title="Sign out"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </button>&ndash;&gt;-->
+<!--            </t>-->
+<!--&lt;!&ndash;        </t>&ndash;&gt;-->
+<!--    </template>-->
+
+</odoo>

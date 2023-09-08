@@ -1,0 +1,371 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="module_organisation_category" model="ir.module.category">
+            <field name="name">Organisation</field>
+            <field name="description">Category For Organisation</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="group_organisation_coaches_internal" model="res.groups">
+            <field name="name">Internal Coaches</field>
+            <field name="category_id" ref="module_organisation_category"/>
+        </record>
+
+        <record id="group_organisation_company_access" model="res.groups">
+            <field name="name">Organisation With Company Access</field>
+        </record>
+
+        <record id="group_organisation_admins" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+            <field name="category_id" ref="module_organisation_category"/>
+        </record>
+
+    </data>
+
+    <!--    organisation admin rules-->
+    <data noupdate="1">
+        <record id="organisation_admin_rule" model="ir.rule">
+            <field name="name">Organisations Admin Rule</field>
+            <field name="model_id" ref="model_organisation_organisation"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="coaches_admin_rule" model="ir.rule">
+            <field name="name">Coaches Admin Rule</field>
+            <field name="model_id" ref="model_organisation_coaches"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="venues_admin_rule" model="ir.rule">
+            <field name="name">Venues Admin Rule</field>
+            <field name="model_id" ref="model_organisation_venues"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_admin_rule" model="ir.rule">
+            <field name="name">Athletes Admin Rule</field>
+            <field name="model_id" ref="model_organisation_athletes"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_group_admin_rule" model="ir.rule">
+            <field name="name">Athletes Group Admin Rule</field>
+            <field name="model_id" ref="model_athlete_groups"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="parents_group_admin_rule" model="ir.rule">
+            <field name="name">Parents Admin Rule</field>
+            <field name="model_id" ref="model_organisation_parents"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_admin_rule" model="ir.rule">
+            <field name="name">Disciplines Admin Rule</field>
+            <field name="model_id" ref="model_organisation_discipline"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="organisation_stage_admin_rule" model="ir.rule">
+            <field name="name">Organisation Stage Admin Rule</field>
+            <field name="model_id" ref="model_organisation_stage"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_stage_admin_rule" model="ir.rule">
+            <field name="name">Discipline Stage Admin Rule</field>
+            <field name="model_id" ref="model_discipline_stage"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="organisation_tags_admin_rule" model="ir.rule">
+            <field name="name">Organisation Tags Admin Rule</field>
+            <field name="model_id" ref="model_organisation_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="coaches_tags_admin_rule" model="ir.rule">
+            <field name="name">Coaches Tags Admin Rule</field>
+            <field name="model_id" ref="model_coaches_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="venues_tags_admin_rule" model="ir.rule">
+            <field name="name">Venues Tags Admin Rule</field>
+            <field name="model_id" ref="model_venues_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_tags_admin_rule" model="ir.rule">
+            <field name="name">Athlete Tags Admin Rule</field>
+            <field name="model_id" ref="model_athletes_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_group_tags_admin_rule" model="ir.rule">
+            <field name="name">Athlete Group Tags Admin Rule</field>
+            <field name="model_id" ref="model_group_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="parents_tags_admin_rule" model="ir.rule">
+            <field name="name">Parents Tags Admin Rule</field>
+            <field name="model_id" ref="model_parents_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_tags_admin_rule" model="ir.rule">
+            <field name="name">Discipline Tags Admin Rule</field>
+            <field name="model_id" ref="model_discipline_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_documents_admin_rule" model="ir.rule">
+            <field name="name">Athlete Documents Admin Rule</field>
+            <field name="model_id" ref="model_athletes_documents"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_admins'))]"/>
+        </record>
+    </data>
+
+    <!--    organisation internal coaches rules-->
+    <data noupdate="1">
+        <record id="organisation_internal_coach_rule" model="ir.rule">
+            <field name="name">Organisations Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_organisation"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('coach_ids.partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="coaches_internal_coach_rule" model="ir.rule">
+            <field name="name">Coaches Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_coaches"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="venues_internal_coach_rule" model="ir.rule">
+            <field name="name">Venues Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_venues"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+<!--            <field name="domain_force">[('responsible_user_id','=',user.id)]</field>-->
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_internal_coach_rule" model="ir.rule">
+            <field name="name">Athletes Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_athletes"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('coach_ids.partner_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_group_internal_coach_rule" model="ir.rule">
+            <field name="name">Athletes Group Internal Coach Rule</field>
+            <field name="model_id" ref="model_athlete_groups"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="parents_group_internal_coach_rule" model="ir.rule">
+            <field name="name">Parents Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_parents"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_internal_coach_rule" model="ir.rule">
+            <field name="name">Disciplines Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_discipline"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="organisation_stage_internal_coach_rule" model="ir.rule">
+            <field name="name">Organisation Stage Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_stage"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_stage_internal_coach_rule" model="ir.rule">
+            <field name="name">Discipline Stage Internal Coach Rule</field>
+            <field name="model_id" ref="model_discipline_stage"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="organisation_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Organisation Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_organisation_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="coaches_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Coaches Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_coaches_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="venues_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Venues Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_venues_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Athlete Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_athletes_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_group_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Athlete Group Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_group_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="parents_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Parents Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_parents_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="discipline_tags_internal_coach_rule" model="ir.rule">
+            <field name="name">Discipline Tags Internal Coach Rule</field>
+            <field name="model_id" ref="model_discipline_tags"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+    <data noupdate="1">
+        <record id="athletes_documents_internal_coach_rule" model="ir.rule">
+            <field name="name">Athlete Documents Internal Coach Rule</field>
+            <field name="model_id" ref="model_athletes_documents"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>
+        </record>
+    </data>
+
+</odoo>

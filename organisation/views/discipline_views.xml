@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+                <!--     organisation   kanban view-->
+        <record model="ir.ui.view" id="discipline_view_kanban">
+            <field name="name">discipline.kanban</field>
+            <field name="model">organisation.discipline</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" class="o_modules_kanban" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_details oe_kanban_global_click">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <t t-if="record.user_id.raw_value">
+                                            User :
+                                            <field name="user_id"/>
+                                        </t>
+                                    </li>
+                                    <li>
+                                        <t t-if="record.responsible_user_id.raw_value">
+                                            Responsible :
+                                            <field name="responsible_user_id"/>
+                                        </t>
+                                    </li>
+                                </ul>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--      discipline  form view-->
+        <record id="discipline_view_form" model="ir.ui.view">
+        	<field name="name">discipline.view.form</field>
+        	<field name="model">organisation.discipline</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="user_id"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="phone" options="{'enable_sms': True}"/>
+                            <field name="email"  widget="email"/>
+                        </group>
+                        <group>
+                            <field name="responsible_user_id"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Athletes" name="athletes">
+                            <field name="athlete_ids">
+                                <tree string="Athletes" default_order='id'>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Organisation">
+                            <field name="organisation_ids">
+                                <tree string="Organisations" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </sheet>
+                </form>
+			</field>
+        </record>
+        <!--      discipline  tree view-->
+        <record id='discipline_view_tree' model='ir.ui.view'>
+            <field name="name">discipline_tree</field>
+            <field name="model">organisation.discipline</field>
+            <field name="arch" type="xml">
+                <tree string="Discipline" sample="1">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="responsible_user_id"/>
+                    <field name="tag_ids"/>
+                </tree>
+            </field>
+        </record>
+        <!--        discipline menu action-->
+        <record id="all_disciplines_menu_action" model="ir.actions.act_window">
+            <field name="name">Discipline</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.discipline</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+
+        <!--        stage form view-->
+        <record model="ir.ui.view" id="discipline_stages_form_view">
+            <field name="name">Stage</field>
+            <field name="model">discipline.stage</field>
+            <field name="arch" type="xml">
+                <form string="Discipline Stages">
+                    <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fold"/>
+                        </group>
+                    </group>
+                    <separator string="Requirements"/>
+                    <field name="description" nolabel="1"
+                           placeholder="Give your team the requirements to move an opportunity to this stage."/>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        stage tree view-->
+        <record model="ir.ui.view" id="discipline_stage_tree_view">
+            <field name="name">Stage</field>
+            <field name="model">discipline.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Stages" sample="1" multi_edit="1">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <!--        organisation stages menu action-->
+        <record id="discipline_stages_menu_action" model="ir.actions.act_window">
+            <field name="name">Discipline Stages</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">discipline.stage</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No stage found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+        <!--        tags form view-->
+        <record model="ir.ui.view" id="discipline_tags_form_view">
+            <field name="name">Tags</field>
+            <field name="model">discipline.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        tags tree view-->
+        <record model="ir.ui.view" id="discipline_tags_tree_view">
+            <field name="name">Tags</field>
+            <field name="model">discipline.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+<!--        tags menu action-->
+        <record id="discipline_tags_menu_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">discipline.tags</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+              </p>
+              <p>
+                  Tags are perfect to categorize.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

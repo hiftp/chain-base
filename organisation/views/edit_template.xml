@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="athlete_edit_form_template" name="Organisation Dashboard">
+            <t t-call="portal.portal_layout"><br/><br/>
+                <t t-set="no_breadcrumbs" t-value="1"/><br/><br/>
+                <t t-set="additional_title">Contact Details</t>
+                <form id="athlete_edit_form" action="/my/submit_details" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="athlete_id" t-att-value="athlete.id"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" name="name" t-attf-class="form-control" t-att-value="partner.name"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" name="email" t-attf-class="form-control #{error.get('email') and 'is-invalid' or ''}" t-att-value="partner.email" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="phone">Phone</label>
+                                <input type="tel" name="phone" t-attf-class="form-control" t-att-value="partner.phone" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" id="member_id" for="member_id">Member ID</label>
+                                <input type="text" name="member_id" t-attf-class="form-control" pattern=".{6,}" title="6 characters required" maxlength="6" oninput="this.value = this.value.toUpperCase()" t-att-value="partner.member_id" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">DOB</label>
+                                <input type="date" name="dob" t-attf-class="form-control" t-att-value="athlete.dob" t-att-max="'%s' %date"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">Photo</label>
+<!--                                <input type="file" t-attf-class="form-control" name="photo" class="file" multiple="true" data-show-upload="true" data-show-caption="true" lass="file" data-show-preview="true"/>-->
+                                <div class="row">
+                                    <input style="margin-left: 50px;" type="file" name="photo" class="file" multiple="true" data-show-upload="true" data-show-caption="true" lass="file" data-show-preview="true"/>
+                                </div>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="street">Street</label>
+                                <input type="text" name="street" t-attf-class="form-control" t-att-value="partner.street"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">City</label>
+                                <input type="text" name="city" t-attf-class="form-control" t-att-value="partner.city" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="zipcode">Zip / Postal Code</label>
+                                <input type="text" name="zipcode" t-attf-class="form-control" t-att-value="partner.zip" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="country_id">Country</label>
+                                <select name="country_id" t-attf-class="form-control">
+                                    <option value="">Country...</option>
+                                    <t t-foreach="countries or []" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                            <t t-esc="country.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="state_id">State / Province</label>
+                                <select name="state_id" t-attf-class="form-control">
+                                    <option value="">select...</option>
+                                    <t t-foreach="states or []" t-as="state">
+                                        <option t-att-value="state.id" style="display:none;" t-att-data-country_id="state.country_id.id" t-att-selected="state.id == partner.state_id.id">
+                                            <t t-esc="state.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                Confirm
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </t>
+    </template>
+
+    <template id="parent_edit_form_template" name="Organisation Dashboard">
+            <t t-call="portal.portal_layout"><br/><br/>
+                <t t-set="no_breadcrumbs" t-value="1"/><br/><br/>
+                <t t-set="additional_title">Contact Details</t>
+            <form action="/my/submit_parent" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="parent_id" t-att-value="parent.id"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" name="name" t-attf-class="form-control" t-att-value="partner.name"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" name="email" t-attf-class="form-control" t-att-value="partner.email" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="phone">Phone</label>
+                                <input type="tel" name="phone" t-attf-class="form-control" t-att-value="partner.phone" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="street">Street</label>
+                                <input type="text" name="street" t-attf-class="form-control" t-att-value="partner.street"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">City</label>
+                                <input type="text" name="city" t-attf-class="form-control" t-att-value="partner.city" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="zipcode">Zip / Postal Code</label>
+                                <input type="text" name="zipcode" t-attf-class="form-control" t-att-value="partner.zip" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="country_id">Country</label>
+                                <select name="country_id" t-attf-class="form-control">
+                                    <option value="">Country...</option>
+                                    <t t-foreach="countries or []" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                            <t t-esc="country.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="state_id">State / Province</label>
+                                <select name="state_id" t-attf-class="form-control">
+                                    <option value="">select...</option>
+                                    <t t-foreach="states or []" t-as="state">
+                                        <option t-att-value="state.id" style="display:none;" t-att-data-country_id="state.country_id.id" t-att-selected="state.id == partner.state_id.id">
+                                            <t t-esc="state.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                Confirm
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </t>
+    </template>
+
+    <template id="coach_edit_form_template" name="Organisation Dashboard">
+            <t t-call="portal.portal_layout"><br/><br/>
+                <t t-set="no_breadcrumbs" t-value="1"/><br/><br/>
+                <t t-set="additional_title">Contact Details</t>
+            <form action="/my/submit_coach" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="coach_id" t-att-value="coach.id"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" name="name" t-attf-class="form-control" t-att-value="partner.name"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" name="email" t-attf-class="form-control" t-att-value="partner.email" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="phone">Phone</label>
+                                <input type="tel" name="phone" t-attf-class="form-control" t-att-value="partner.phone" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="street">Street</label>
+                                <input type="text" name="street" t-attf-class="form-control" t-att-value="partner.street"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">City</label>
+                                <input type="text" name="city" t-attf-class="form-control" t-att-value="partner.city" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="zipcode">Zip / Postal Code</label>
+                                <input type="text" name="zipcode" t-attf-class="form-control" t-att-value="partner.zip" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="country_id">Country</label>
+                                <select name="country_id" t-attf-class="form-control">
+                                    <option value="">Country...</option>
+                                    <t t-foreach="countries or []" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                            <t t-esc="country.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="state_id">State / Province</label>
+                                <select name="state_id" t-attf-class="form-control">
+                                    <option value="">select...</option>
+                                    <t t-foreach="states or []" t-as="state">
+                                        <option t-att-value="state.id" style="display:none;" t-att-data-country_id="state.country_id.id" t-att-selected="state.id == partner.state_id.id">
+                                            <t t-esc="state.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                Confirm
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </t>
+    </template>
+
+    <template id="fan_edit_form_template" name="Organisation Dashboard">
+            <t t-call="portal.portal_layout"><br/><br/>
+                <t t-set="no_breadcrumbs" t-value="1"/><br/><br/>
+                <t t-set="additional_title">Contact Details</t>
+            <form action="/my/submit_fan" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="fan_id" t-att-value="fan.id"/>
+                <div class="row o_portal_details">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="name">Name</label>
+                                <input type="text" name="name" t-attf-class="form-control" t-att-value="partner.name"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="email">Email</label>
+                                <input type="email" name="email" t-attf-class="form-control" t-att-value="partner.email" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="phone">Phone</label>
+                                <input type="tel" name="phone" t-attf-class="form-control" t-att-value="partner.phone" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="street">Street</label>
+                                <input type="text" name="street" t-attf-class="form-control" t-att-value="partner.street"/>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="city">City</label>
+                                <input type="text" name="city" t-attf-class="form-control" t-att-value="partner.city" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="zipcode">Zip / Postal Code</label>
+                                <input type="text" name="zipcode" t-attf-class="form-control" t-att-value="partner.zip" />
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label" for="country_id">Country</label>
+                                <select name="country_id" t-attf-class="form-control">
+                                    <option value="">Country...</option>
+                                    <t t-foreach="countries or []" t-as="country">
+                                        <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                                            <t t-esc="country.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div t-attf-class="form-group col-xl-6">
+                                <label class="col-form-label label-optional" for="state_id">State / Province</label>
+                                <select name="state_id" t-attf-class="form-control">
+                                    <option value="">select...</option>
+                                    <t t-foreach="states or []" t-as="state">
+                                        <option t-att-value="state.id" style="display:none;" t-att-data-country_id="state.country_id.id" t-att-selected="state.id == partner.state_id.id">
+                                            <t t-esc="state.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                Confirm
+                                <span class="fa fa-long-arrow-right" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            </t>
+    </template>
+
+</odoo>

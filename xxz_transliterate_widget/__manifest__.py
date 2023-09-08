@@ -30,7 +30,7 @@
     'company': 'Cybrosys Techno Solutions',
     'website': 'https://www.odoochain.cn',
     'depends': ['base_setup'],
-    'excludes':['transliterate_widget'],
+    'excludes': ['transliterate_widget'],
     'data': [
         'view/res_config_settings_view.xml',
     ],

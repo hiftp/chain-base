@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+<!--    extending HrAttendanceKioskMode template-->
+    <t t-name="HrAttendanceKioskMode" t-inherit="hr_attendance.HrAttendanceKioskMode" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('o_hr_attendance_kiosk_welcome_row')]" position="replace">
+<!--            <div class="row o_hr_attendance_kiosk_welcome_row">-->
+            <div class="row">
+                <h3><small>Please Enter Your Member ID</small></h3>
+                <div class="col-sm">
+                    <input type="char" t-attf-class="form-control" name="badge_id" id="badge_id" oninput="this.value = this.value.toUpperCase()" required="1"/>
+                </div>
+            </div>
+            <hr/>
+            <button class="o_hr_attendance_button_submit btn btn-primary mb16">
+                <div class="mb16 mt16">Submit</div>
+            </button>
+        </xpath>
+    </t>
+
+    <!--    extending HrAttendanceKioskConfirm template-->
+    <t t-name="HrAttendanceKioskConfirm" t-inherit="hr_attendance.HrAttendanceKioskConfirm" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='!widget.use_pin']" position="before">
+            <div t-if="!checked_in" class="row">
+                <h3><small>Vehicle Registration</small></h3>
+                <div id="div_vehicle_registration" class="col-sm">
+                    <select name="vehicle_id" id="vehicle_registration_selection" t-attf-class="form-control">
+                    </select>
+                </div>
+            </div><br/>
+        </xpath>
+        <xpath expr="//div[@t-else='']" position="replace">
+            <div t-else="" class="alert alert-danger" role="alert">
+                <b>Please enter your Member ID again</b><br/>
+            </div>
+        </xpath>
+    </t>
+</templates>

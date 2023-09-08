@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_coach_dashboard"
+              name="Portal layout : coach_dashboard menu entries"
+              inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'coach_dashboard'"
+                t-attf-class="breadcrumb-item #{'active ' if not coach_profile else ''}">
+                <a t-if="coach_profile_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <a t-elif="coach_calendar_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <a t-elif="coach_chathub_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <a t-elif="coach_timesheet_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <a t-elif="coach_booking_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <a t-elif="coach_documents_page"
+                   t-attf-href="/my/dashboard?{{ keep_query() }}">My Dashboard
+                </a>
+                <t t-else="">My Dashboard</t>
+            </li>
+            <li t-if="coach_profile_page" class="breadcrumb-item active">
+                <span>Profile</span>
+            </li>
+            <li t-if="coach_calendar_page" class="breadcrumb-item active">
+                <span>Calendar</span>
+            </li>
+            <li t-if="coach_chathub_page" class="breadcrumb-item active">
+                <span>Channels</span>
+            </li>
+            <li t-if="coach_timesheet_page" class="breadcrumb-item active">
+                <span>Tasks</span>
+            </li>
+            <li t-if="coach_booking_page" class="breadcrumb-item active">
+                <span>Bookings</span>
+            </li>
+            <li t-if="coach_documents_page" class="breadcrumb-item active">
+                <span>Documents</span>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_my_home_menu_coach_athlete_dashboard"
+              name="Portal layout : coach_athlete_dashboard menu entries"
+              inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'coach_athlete_list'"
+                t-attf-class="breadcrumb-item #{'active ' if not coach_athlete else ''}">
+                <a t-if="coach_athlete"
+                   t-attf-href="/my/athletes/?{{ keep_query() }}">
+                    <span>Athletes</span>
+                </a>
+                <t t-else="">
+                    <span>Athletes</span>
+                </t>
+            </li>
+            <li t-if="coach_athlete"
+                class="breadcrumb-item #{'active ' if not coach_athlete else ''}">
+                <a t-if="coach_athlete_profile"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_calendar"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_product"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_document"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_timesheet"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_forms"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <a t-elif="coach_athlete_booking"
+                   t-attf-href="/my/athlete-{{ athlete.id }}?{{ keep_query() }}">
+                    <t t-esc="athlete.name"/>
+                </a>
+                <t t-else="">
+                    <t t-esc="athlete.name"/>
+                </t>
+            </li>
+            <li t-if="coach_athlete_profile" class="breadcrumb-item active">
+                <span>Profile</span>
+            </li>
+            <li t-if="coach_athlete_calendar" class="breadcrumb-item active">
+                <span>Calendar</span>
+            </li>
+            <li t-if="coach_athlete_product" class="breadcrumb-item active">
+                <span>Products</span>
+            </li>
+            <li t-if="coach_athlete_document" class="breadcrumb-item active">
+                <span>Documents</span>
+            </li>
+            <li t-if="coach_athlete_timesheet" class="breadcrumb-item active">
+                <span>Timesheets</span>
+            </li>
+            <li t-if="coach_athlete_forms" class="breadcrumb-item active">
+                <span>Forms</span>
+            </li>
+            <li t-if="coach_athlete_booking" class="breadcrumb-item active">
+                <span>Bookings</span>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_coach_dashboard" name="Coach Dashboard">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar"/>
+            <br/>
+            <br/>
+            <h3>
+                <b><span t-field="coach.name"/>'s Dashboard
+                </b>
+            </h3>
+            <br/>
+            <br/>
+            <div class="container py-3">
+                <div class="row px-2">
+                    <t t-foreach="links" t-as="link">
+                        <t t-if="link.tile_active">
+                            <div t-attf-class="col-#{mobile if mobile else '12'} col-sm-#{mobile if mobile else '12'} col-md-#{tablet if tablet else '6'} col-lg-#{desktop if desktop else '4'} my-2 px-2 px-md-3 my-md-3">
+                                <t t-if="link.dynamic_link">
+                                    <a t-att-href="'%s-%s' % (link.link, coach.id)">
+                                        <div class="tile"
+                                             t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                            <t t-if="link.icon">
+                                                <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                     width="64px"
+                                                     height="64px"/>
+                                            </t>
+                                            <t t-else="">
+                                                <img src="/organisation/static/description/images/running.png"
+                                                     width="64px"
+                                                     height="64px"/>
+                                            </t>
+                                            <strong class="my-2"
+                                                    t-attf-style="color: #{link.tile_text_color};">
+                                                <t t-esc="link.name"/>
+                                            </strong>
+                                        </div>
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a t-att-href="'%s' % link.link">
+                                        <div class="tile"
+                                             t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                            <t t-if="link.icon">
+                                                <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                     width="64px"
+                                                     height="64px"/>
+                                            </t>
+                                            <t t-else="">
+                                                <img src="/organisation/static/description/images/running.png"
+                                                     width="64px"
+                                                     height="64px"/>
+                                            </t>
+                                            <strong class="my-2"
+                                                    t-attf-style="color: #{link.tile_text_color};">
+                                                <t t-esc="link.name"/>
+                                            </strong>
+                                        </div>
+                                    </a>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_coach_profile_dashboard" name="Coach Profile">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar"/>
+            <br/>
+            <h2>Basic Details</h2>
+            <br/>
+            <br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h3 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="coach.name"
+                                      class="col-9 text-truncate"/>
+                                <form action='/my/edit_coach' method="post">
+                                    <button type="submit"
+                                            class="btn btn-primary float-right mb32 ">
+                                        Edit details
+                                        <i class="fa fa-pencil"/>
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="coach_id"
+                                               t-att-value="coach.id"/>
+                                    </button>
+                                </form>
+                                <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                    <div class="img-bg">
+                                        <img style="width:100%; height: 100%;"
+                                             t-if="coach.partner_id.image_1024"
+                                             class="img img-responsive img-fluid d-block mx-auto mr4"
+                                             t-att-src="image_data_uri(coach.partner_id.image_1024)"/>
+                                        <img t-if="not coach.partner_id.image_1024"
+                                             class="img img-responsive img-fluid d-block mx-auto mr4"
+                                             src="/web/static/src/img/placeholder.png"/>
+                                    </div>
+                                </div>
+                            </h3>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6" t-if="coach.phone">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-phone"
+                                   style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">
+                                    <span t-field="coach.phone"/>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6" t-if="coach.email">
+                            <p class="pt8 mb-0">
+                                <i class="fa fa-envelope-o"
+                                   style="margin-left: 50px;"></i>
+                                <span class="athlete-detail">
+                                    <t t-esc="coach.email"/>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_coach_calendar_dashboard" name="Dashboard-Calendar">
+        <t t-call="portal.portal_layout">
+
+            <div id="se-wrapper">
+                <div class="container-fluid">
+
+                    <div class="set-dashboard__breadcrumbs">
+                        <div class="set-wrapper">
+                            <ul class="set-dashboard__breadcrumb-items">
+                                <li class="set-dashboard_breadcrumb-item">
+                                    <a href="/my/home"
+                                       class="set-dashboard__breadcrumb-link">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="set-dashboard_breadcrumb-item">
+                                    <a t-att-href="'/my/calendar-%s' % request.env.user.partner_id.id"
+                                       class="set-dashboard__breadcrumb-link">
+                                        Calendar
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <t t-if="not events">
+                        <div class="alert alert-warning mt8" role="alert">
+                            No Events found!
+                        </div>
+                    </t>
+
+                    <input id="c_events" type="hidden"
+                           t-att-value="events_info"/>
+                    <input id="c_length" type="hidden" t-att-value="length"/>
+                    <input id="c_today" type="hidden" t-att-value="today"/>
+                </div>
+            </div>
+            <xpath expr="." position="inside">
+                <link rel="stylesheet"
+                      href="/organisation/static/src/css/lib/main.css"/>
+                <script type="text/javascript"
+                        src="/organisation/static/src/js/lib/main.js"/>
+            </xpath>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
+                var c_calendarEl = document.getElementById('c_calendar');
+                var c_eventsEl = document.getElementById('c_events');
+                var c_str_events = c_eventsEl.value
+                var c_events = eval(c_str_events)
+                var c_lengthEl = document.getElementById('c_length');
+                var c_length = c_lengthEl.value
+                var c_todayEl = document.getElementById('c_today');
+                var c_today = c_todayEl.value
+
+                var c_calendar = new FullCalendar.Calendar(c_calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: c_today,
+                headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                {
+                'id': '1',
+                title: "Training",
+                start: '2021-07-22 06:00:00',
+                end: '2021-07-22 06:30:00',
+                },
+                ]
+
+                });
+
+                c_calendar.render();
+
+                var event = c_calendar.getEventById('1');
+                event.remove();
+
+                for (var i=0; i&lt;c_length; i++) {
+                console.log(c_events[i]);
+                c_calendar.addEvent({
+                title: c_events[i].title,
+                start: c_events[i].start,
+                end: c_events[i].end,
+                color: 'green',
+
+                });
+
+                }
+
+                });
+
+            </script>
+
+            <div id='c_calendar'/>
+            <div id="show_elements">
+                <div id="close"
+                     style="position: absolute;
+                     right: 10px; top: 5px;
+                     font-weight: bold;
+                     cursor: pointer;">
+                    x
+                </div>
+                <div>
+                    <label for="title">
+                        Title
+                    </label>
+                    <input type="text" id="title" readonly="true"/>
+                </div>
+                <hr/>
+                <div>
+                    <label for="start_date_time">
+                        Start Date
+                    </label>
+                    <input type="text" id="start_date_time" readonly="true"/>
+                </div>
+                <hr/>
+                <div>
+                    <label for="end_date_time">
+                        End Date
+                    </label>
+                    <input type="text" id="end_date_time" readonly="true"/>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+    <template id="portal_coach_discipline_dashboard"
+              name="Discipline Dashboard">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <br/>
+            <h3>Discipline</h3>
+            <br/>
+            <br/>
+            <t t-if="not disciplines">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Discipline.
+                </div>
+            </t>
+
+            <div class="row">
+                <t t-if="disciplines" t-call="portal.portal_table">
+                    <thead>
+                        <th>User</th>
+                        <th>Responsible</th>
+                        <th>Stage</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="disciplines" t-as="discipline">
+                            <td>
+                                <span t-field="discipline.user_id.name"/>
+                            </td>
+                            <td>
+                                <span t-if="discipline.responsible_user_id"
+                                      t-field="discipline.responsible_user_id.name"/>
+                            </td>
+                            <td>
+                                <span t-if="discipline.stage_id"
+                                      t-field="discipline.stage_id.name"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_coach_document_dashboard"
+              name="Coach Document Dashboard">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <br/>
+            <t t-if="partner.org_group_selection == 'ex_coaches'">
+                <form action='/my/documents/upload' method="post">
+                    <button type="submit"
+                            class="btn btn-primary float-right mb32 ">
+                        Upload
+                        <i class="fa fa-upload"/>
+                        <input type="hidden" name="csrf_token"
+                               t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="coach_id"
+                               t-att-value="coach.id"/>
+                    </button>
+                </form>
+            </t>
+            <h3>Documents</h3>
+            <br/>
+            <br/>
+            <t t-if="not documents">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Documents.
+                </div>
+            </t>
+            <div class="row">
+                <t t-if="documents" t-call="portal.portal_table">
+                    <thead>
+                        <th>Document</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="documents" t-as="document">
+                            <td>
+                                <span t-field="document.name"/>
+                            </td>
+                            <td>
+                                <span t-field="document.description"/>
+                            </td>
+                            <td class="formio_form_actions">
+                                <a role="button" class="btn btn-sm btn-primary"
+                                   t-attf-href="/web/content/athletes.documents/#{document.id}/document?download=true">
+                                    <span aria-label="Download"
+                                          title="Download">Download Document
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <template id="upload_coach_document_form" name="Upload Form">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <t t-set="no_breadcrumbs" t-value="1"/>
+            <br></br>
+            <form id="upload_form" action="/submit_document" method="post"
+                  enctype="multipart/form-data" class="o_mark_required"
+                  data-mark="*" data-model_name="mail.mail">
+                <input type="hidden" name="csrf_token"
+                       t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="coach_id" t-att-value="coach.id"/>
+                <div id="submit_form"
+                     class="s_website_form_rows row s_col_no_bgcolor">
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="child">
+                                <span class="s_website_form_label_content">
+                                    Coach:
+                                </span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="document_coach" type="text"
+                                       class="form-control s_website_form_input"
+                                       name="coach" readonly="" required=""
+                                       t-att-value="coach.name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required"
+                         data-type="email" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="dob">
+                                <span class="s_website_form_label_content">
+                                    Document:
+                                </span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="text"
+                                       class="form-control s_website_form_input"
+                                       name="name" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="device">
+                                <span class="s_website_form_label_content">
+                                    Description:
+                                </span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="text"
+                                       class="form-control s_website_form_input"
+                                       name="description" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="attachment1">
+                                <span class="s_website_form_label_content">
+                                    Upload here:
+                                </span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="file" name="attachment1"
+                                       class="file" multiple="true"
+                                       data-show-upload="true"
+                                       data-show-caption="true" lass="file"
+                                       data-show-preview="true" required=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix col-12">
+                        <button type="submit"
+                                class="btn btn-primary btn-md o_website_form_send">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+</odoo>

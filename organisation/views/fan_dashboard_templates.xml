@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="portal_my_home_menu_fan_dashboard" name="Portal layout : dashboard menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="fan_profile" class="breadcrumb-item active">
+                Profile
+            </li>
+            <li t-if="fan_calendar" class="breadcrumb-item active">
+                Calendar
+            </li>
+            <li t-if="fan_booking" class="breadcrumb-item active">
+                Bookings
+            </li>
+        </xpath>
+    </template>
+
+    <template id="portal_fans_dashboard" name="Fans Dashboard">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <t t-call="portal.portal_searchbar"/><br/><br/>
+                <h3><b><span t-field="fan.name"/>'s Dashboard</b></h3><br/><br/>
+                <div class="container py-3">
+                    <div class="row px-2">
+                        <t t-foreach="links" t-as="link">
+                            <t t-if="link.tile_active">
+                                <div t-attf-class="col-#{mobile if mobile else '12'} col-sm-#{mobile if mobile else '12'} col-md-#{tablet if tablet else '6'} col-lg-#{desktop if desktop else '4'} my-2 px-2 px-md-3 my-md-3">
+                                    <t t-if="link.dynamic_link">
+                                        <a t-att-href="'%s/%s' % (link.link, fan.id) ">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                    <t t-else="">
+                                        <a t-att-href="'%s' % link.link">
+                                            <div class="tile"
+                                                 t-attf-style="background: linear-gradient(135deg,#{link.tile_background_color_1} 0%,#{link.tile_background_color_2} 100%);">
+                                                <t t-if="link.icon">
+                                                    <img t-attf-src="data:image/jpg;base64,{{ link.icon }}"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <img src="/organisation/static/description/images/running.png"
+                                                         width="64px"
+                                                         height="64px"/>
+                                                </t>
+                                                <strong class="my-2"
+                                                        t-attf-style="color: #{link.tile_text_color};">
+                                                    <t t-esc="link.name"/>
+                                                </strong>
+                                            </div>
+                                        </a>
+                                    </t>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </t>
+    </template>
+
+        <template id="portal_fan_profile_dashboard" name="Fan Profile">
+        <t t-call="portal.portal_layout"><br/><br/>
+            <h2>Basic Details</h2>
+            <br/><br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h3 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="fan.name" class="col-9 text-truncate"/></h3>
+                                <form action='/my/edit_fan' method="post">
+                                    <button type="submit" class="btn btn-primary float-right mb32 ">
+                                        Edit details
+                                        <i class="fa fa-pencil"/>
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="fan_id" t-att-value="fan.id"/>
+                                    </button>
+                                </form>
+                                <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                    <div class="img-bg">
+                                        <img style="width:100%; height: 100%;" t-if="fan.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(fan.partner_id.image_1024)"/>
+                                        <img t-if="not fan.partner_id.image_1024" class="img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/src/img/placeholder.png"/>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6" t-if="fan.phone">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><span t-field="fan.phone"/></span>
+                                </p>
+                        </div>
+                        <div class="col-12 col-md-6" t-if="fan.email">
+                            <p class="pt8 mb-0">
+                                    <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                    <span class="athlete-detail"><t t-esc="fan.email"/></span>
+                                </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_fan_calendar_dashboard" name="Dashboard-Calendar">
+        <t t-call="portal.portal_layout"><br/>
+            <t t-if="not events">
+                <div class="alert alert-warning mt8" role="alert">
+                    No Events found!
+                </div>
+            </t>
+
+            <input id="f_events" type="hidden" t-att-value="events_info"/>
+            <input id="f_length" type="hidden" t-att-value="length"/>
+            <input id="f_today" type="hidden" t-att-value="today"/>
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/organisation/static/src/css/lib/main.css"/>
+                <script type="text/javascript" src="/organisation/static/src/js/lib/main.js"/>
+            </xpath>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('f_calendar');
+                var eventsEl = document.getElementById('f_events');
+                var str_events = eventsEl.value
+                var events = eval(str_events)
+                var lengthEl = document.getElementById('f_length');
+                var length = lengthEl.value
+                var todayEl = document.getElementById('f_today');
+                var today = todayEl.value
+                console.log(today)
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: today,
+                headerToolbar: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                  {
+                    'id': '1',
+                    title: "Training",
+                    start: '2021-07-22 06:00:00',
+                    end: '2021-07-22 06:30:00',
+                  },
+                ]
+
+            });
+
+                calendar.render();
+
+                var event = calendar.getEventById('1');
+                event.remove();
+
+                for (var i=0; i&lt;length; i++) {
+                }
+
+                for (var i=0; i&lt;length; i++) {
+
+                calendar.addEvent({
+                    title: events[i].title,
+                    start: events[i].start,
+                    end: events[i].end,
+                    color: 'green',
+
+                });
+
+                }
+
+            });
+
+            </script>
+
+            <div id='f_calendar'></div>
+
+        </t>
+    </template>
+</odoo>

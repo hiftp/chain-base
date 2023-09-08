@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="portal_athlete_calendar_dashboard" name="Dashboard-Calendar">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <t t-if="not events">
+                <div class="alert alert-warning mt8" role="alert">
+                    No Events found!
+                </div>
+            </t>
+
+            <input id="events" type="hidden" t-att-value="events_info"/>
+            <input id="length" type="hidden" t-att-value="length"/>
+            <input id="today" type="hidden" t-att-value="today"/>
+            <xpath expr="." position="inside">
+                <link rel="stylesheet"
+                      href="/organisation/static/src/css/lib/main.css"/>
+                <script type="text/javascript"
+                        src="/organisation/static/src/js/lib/main.js"/>
+            </xpath>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var eventsEl = document.getElementById('events');
+                var str_events = eventsEl.value
+                var events = eval(str_events)
+                var lengthEl = document.getElementById('length');
+                var length = lengthEl.value
+                var todayEl = document.getElementById('today');
+                var today = todayEl.value
+                console.log(today)
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                initialDate: today,
+                headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                {
+                'id': '1',
+                title: "Training",
+                start: '2021-07-22 06:00:00',
+                end: '2021-07-22 06:30:00',
+                },
+                ]
+
+                });
+
+                calendar.render();
+
+                var event = calendar.getEventById('1');
+                event.remove();
+
+                for (var i=0; i&lt;length; i++) {
+                }
+
+                for (var i=0; i&lt;length; i++) {
+
+                calendar.addEvent({
+                title: events[i].title,
+                start: events[i].start,
+                end: events[i].end,
+                color: 'green',
+
+                });
+
+                }
+
+                });
+
+            </script>
+
+            <div id='calendar'></div>
+
+        </t>
+    </template>
+
+    <template id="portal_athlete_chat_hub" name="Chat Hub">
+        <t t-call="portal.portal_layout">
+
+            <div class="set-dashboard__breadcrumbs">
+                <div class="set-wrapper">
+                    <ul class="set-dashboard__breadcrumb-items">
+                        <li class="set-dashboard_breadcrumb-item">
+                            <a href="/my/home"
+                               class="set-dashboard__breadcrumb-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="set-dashboard_breadcrumb-item">
+                            <a href="/my/my_chat_hub"
+                               class="set-dashboard__breadcrumb-link">
+                                My Channels
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="set-dashboard__title-container">
+                    <div class="set-dashboard__left-action d-flex flex-wrap align-items-center">
+                        <h2 class="set-dashboard__title mr-2">
+                            My Channels
+                        </h2>
+                        <span class="set-badge set-badge--round set-badge--primary set-text set-text--small">
+                            <t t-esc="total"/>
+                        </span>
+                    </div>
+                    <div class="set-dashboard__right-action d-flex align-items-center flex-wrap">
+                        <a href="#"
+                           class="set-button set-button--primary-muted mr-2">
+                            <img src="/sports_erp_dashboard/static/src/images/dashboard/repeat.svg"
+                                 width="18" height="18"
+                                 class="mr-2"/>Assign
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="set-dashboard__table-options">
+                            <a href="#"
+                               class="set-button set-button--light set-dashboard__table-button mr-2">
+                                <i class="fa fa-filter mr-2"/>Filter
+                            </a>
+                            <div class="set-dashboard__input-container">
+                                <input type="search" name="search" id="search"
+                                       placeholder="Search"
+                                       class="set-dashboard__input-search"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <table class="set-dashboard__table mt-3">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox"
+                                               class="set-input--checkbox"
+                                               name="select-all"/>
+                                    </th>
+                                    <th>Channels</th>
+                                    <th>Members</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="channels" t-as="channel">
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox"
+                                                   class="set-input--checkbox"
+                                                   name="select"/>
+                                        </td>
+                                        <td>
+                                            <div class="set-dashboard__table-details">
+                                                <a t-att-href="'/my/channel_id=%s' % channel.id">
+                                                    <span class="set-dashboard__table-name mb-1">
+                                                        <t t-esc="channel.name"/>
+                                                    </span>
+                                                    <span class="set-dashboard__table-role">
+                                                        Channel
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <t t-foreach="channel.partner_ids"
+                                               t-as="member">
+                                                <div class="d-flex flex-wrap align-items-center align-content-center">
+                                                    <span class="set-badge set-badge--blue set-badge--wide">
+                                                        <t t-esc="member.name"/>
+                                                    </span>
+                                                </div>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex flex-wrap align-items-center align-content-center">
+                                                <span class="set-badge set-badge--green set-badge--wide">
+                                                    <t t-esc="channel.description"/>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="set-dashboard__table-actions">
+                                                <a t-att-href="'/my/chat_hub_details/%s' % channel.id"
+                                                   class="set-dashboard__table-action mr-4">
+                                                    <img src="/sports_erp_dashboard/static/src/images/dashboard/edit.svg"
+                                                         class="set-dashboard__table-action-icon"
+                                                         alt="Edit"
+                                                         title="Edit"/>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!--                        <div class="set-dashboard__table-footer">-->
+                        <!--                            <span class="set-dashboard__page-position set-text set-text&#45;&#45;grey">-->
+                        <!--                                Page-->
+                        <!--                                <span t-out="pager['page']['num']"/>-->
+                        <!--                                of-->
+                        <!--                                <t t-if="pager['page_count'] > 1">-->
+                        <!--                                    <span t-out="pager['pages'][-1]['num']"/>-->
+                        <!--                                </t>-->
+                        <!--                                <t t-else="">-->
+                        <!--                                    <span t-out="pager['page']['num']"/>-->
+                        <!--                                </t>-->
+                        <!--                            </span>-->
+                        <!--                            <ul-->
+                        <!--                                    class="set-dashboard__pagination">-->
+                        <!--                                <t t-foreach="pager['pages']"-->
+                        <!--                                   t-as="page">-->
+                        <!--                                    <li t-attf-class="page-item #{'active' if page['num'] == pager['page']['num'] else ''}">-->
+                        <!--                                        <a t-att-href="page['url']"-->
+                        <!--                                           t-attf-class="page-link #{extraLinkClass}"-->
+                        <!--                                           t-out="page['num']"/>-->
+                        <!--                                    </li>-->
+                        <!--                                </t>-->
+                        <!--                            </ul>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--            <h3>Chat-hub</h3>-->
+            <!--            <br/>-->
+            <!--            <br/>-->
+            <!--            <t t-if="not channels">-->
+            <!--                <div class="alert alert-warning mt8" role="alert">-->
+            <!--                    No Chathub channels found!-->
+            <!--                </div>-->
+            <!--            </t>-->
+            <!--            <t t-else="">-->
+            <!--                <div class="row">-->
+            <!--                    <t t-if="channels" t-call="portal.portal_table">-->
+            <!--                        <thead>-->
+            <!--                            <th>Channel</th>-->
+            <!--                            <th>Members</th>-->
+            <!--                            <th>Description</th>-->
+            <!--                        </thead>-->
+            <!--                        <tbody>-->
+            <!--                            <tr t-foreach="channels" t-as="channel">-->
+            <!--                                <td>-->
+            <!--                                    <a t-att-href="'channel_id=%s' % channel.id">-->
+            <!--                                        <span t-field="channel.name"/>-->
+            <!--                                    </a>-->
+            <!--                                </td>-->
+
+            <!--                                <td>-->
+            <!--                                    <t t-foreach="channel.partner_ids"-->
+            <!--                                       t-as="member">-->
+            <!--                                        <span class="badge badge-info badge-pill"-->
+            <!--                                              t-field="member.name"/>-->
+            <!--                                    </t>-->
+            <!--                                </td>-->
+            <!--                                <td>-->
+            <!--                                    <span t-field="channel.description"/>-->
+            <!--                                </td>-->
+            <!--                                &lt;!&ndash;                                <td>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    <form action='/chat_hub/channel' method="post">&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <input type="hidden" name="channel_id" t-att-value="channel.id"/>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <div class="col-sm-10 offset-sm-2">&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                            <button type="submit" class="btn btn-primary"><span class="fa fa-arrow-right"/></button>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        </div>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    </form>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                </td>&ndash;&gt;-->
+            <!--                            </tr>-->
+            <!--                        </tbody>-->
+            <!--                    </t>-->
+            <!--                </div>-->
+            <!--            </t>-->
+        </t>
+    </template>
+
+    <template id="portal_chat_hub_channel" name="Channel">
+        <t t-call="portal.portal_layout">
+            <div class="set-dashboard__breadcrumbs">
+                <div class="set-wrapper">
+                    <ul class="set-dashboard__breadcrumb-items">
+                        <li class="set-dashboard_breadcrumb-item">
+                            <a href="/my/home"
+                               class="set-dashboard__breadcrumb-link">
+                                Home
+                            </a>
+                        </li>
+                        <li class="set-dashboard_breadcrumb-item">
+                            <a href="/my/my_chat_hub"
+                               class="set-dashboard__breadcrumb-link">
+                                My Channels
+                            </a>
+                        </li>
+                        <li class="set-dashboard_breadcrumb-item">
+                            <a t-att-href="'/my/channel_id=%s' % channel.id"
+                               class="set-dashboard__breadcrumb-link">
+                                <t t-esc="channel.name"/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="set-dashboard__title-container">
+                    <h2 class="set-dashboard__title">Chat Hub</h2>
+                </div>
+            </div>
+            <!--            chatter-->
+            <div class="col-12 col-md-12 col-lg-12">
+<!--                <h4>-->
+<!--                    <strong>Messages and communication history</strong>-->
+<!--                </h4>-->
+
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="channel"/>
+                </t>
+            </div>
+
+        </t>
+    </template>
+
+    <template id="portal_coach_timesheet_dashboard" name="Coach-Timesheet">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <t t-if="not tasks">
+                <div class="alert alert-warning mt8" role="alert">
+                    No Tasks found!
+                </div>
+            </t>
+            <t t-else="">
+                <div class="row">
+                    <t t-if="tasks" t-call="portal.portal_table">
+                        <thead>
+                            <th>Task</th>
+                            <th>Project</th>
+                            <th>Start</th>
+                            <th>Duration</th>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="tasks" t-as="task">
+                                <td>
+                                    <a t-att-href="'task_id=%s' % task.id">
+                                        <span t-field="task.name"/>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <span t-field="task.project_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="task.start_datetime"/>
+                                </td>
+                                <td>
+                                    <span t-field="task.task_event_duration"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_coach_task_dashboard" name="My Task">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="1"/>
+            <br/>
+            <br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h5 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="task.name"
+                                      class="col-9 text-truncate"/>
+                                <small class="text-muted d-none d-md-inline">(#
+                                    <span t-field="task.id"/>)
+                                </small>
+                                <div class="col-3 col-md-2 text-right">
+                                    <small class="text-right">Status:</small>
+                                    <span t-field="task.org_stage_id.name"
+                                          class=" badge badge-pill badge-info"
+                                          title="Current stage of this task"/>
+                                    <div id="portal_task_buttons"
+                                         style="padding-right: 20px; adding-tob: 10px;">
+                                        <input id="task_id" type="hidden"
+                                               t-att-value="task.id"/>
+                                        <button
+                                                id="portal_action_task_start"
+                                                data-toggle="Start Task"
+                                                class="o_follow_btn o_following btn btn-xs btn-primary">
+                                            <span class="fa fa-play"></span>
+                                        </button>
+
+                                        <button
+                                                id="portal_action_task_end"
+                                                data-toggle="End Task"
+                                                class="o_follow_btn o_following btn btn-xs btn-primary">
+                                            <span class="fa fa-stop"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </h5>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 mb-1">
+                            <strong>Date:</strong>
+                            <span t-field="task.create_date"
+                                  t-options='{"widget": "date"}'/>
+                        </div>
+                        <div class="col-12 col-md-6" t-if="task.start_datetime">
+                            <strong>Start from:</strong>
+                            <span t-field="task.start_datetime"
+                                  t-options='{"widget": "datetime"}'/>
+                        </div>
+                        <div class="col-12 col-md-6"
+                             t-if="task.task_event_duration">
+                            <strong>Start Duration:</strong>
+                            <span t-field="task.task_event_duration"/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <h4>Checklist</h4>
+                        <t t-if="checklists" t-call="portal.portal_table">
+                            <thead>
+                                <th>Checklist</th>
+                                <th>State</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="checklists" t-as="checklist">
+                                    <td>
+                                        <span t-field="checklist.name"/>
+                                    </td>
+
+                                    <td>
+                                        <span t-field="checklist.state"/>
+                                    </td>
+                                    <td>
+                                        <t t-if="checklist.state == 'new'">
+                                            <form action='/checklist/complete'
+                                                  method="post">
+                                                <input type="hidden"
+                                                       name="csrf_token"
+                                                       t-att-value="request.csrf_token()"/>
+                                                <input type="hidden"
+                                                       name="checklist_id"
+                                                       t-att-value="checklist.id"/>
+                                                <input type="hidden"
+                                                       name="task_id"
+                                                       t-att-value="task.id"/>
+                                                <input type="hidden"
+                                                       name="coach_id"
+                                                       t-att-value="coach.id"/>
+                                                <button
+                                                        type="submit"
+                                                        String="Complete"
+                                                        data-toggle="Complete"
+                                                        class="checklist_button o_follow_btn o_following btn btn-xs btn-primary">
+                                                    Complete
+                                                    <span class="fa fa-check"></span>
+                                                </button>
+                                            </form>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </t>
+                    </div>
+
+                    <div class="row"
+                         t-if="task.description or task.attachment_ids">
+                        <div t-if="task.description"
+                             t-attf-class="col-12 col-lg-7 mb-4 mb-md-0 {{'col-lg-7' if task.attachment_ids else 'col-lg-12'}}">
+                            <hr class="mb-1"/>
+                            <div class="d-flex my-2">
+                                <strong>Description</strong>
+                            </div>
+                            <div class="py-1 px-2 bg-100 small"
+                                 t-field="task.description"/>
+                        </div>
+                        <div t-if="task.attachment_ids"
+                             t-attf-class="col-12 col-lg-5 o_project_portal_attachments {{'col-lg-5' if task.description else 'col-lg-12'}}">
+                            <hr class="mb-1 d-none d-lg-block"/>
+                            <strong class="d-block mb-2">Attachments</strong>
+                            <div class="row">
+                                <div t-attf-class="col {{'col-lg-6' if not task.description else 'col-lg-12'}}">
+                                    <ul class="list-group">
+                                        <a class="list-group-item list-group-item-action d-flex align-items-center oe_attachments py-1 px-2"
+                                           t-foreach='task.attachment_ids'
+                                           t-as='attachment'
+                                           t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                           target="_blank"
+                                           data-no-post-process="">
+                                            <div class='oe_attachment_embedded o_image o_image_small mr-2 mr-lg-3'
+                                                 t-att-title="attachment.name"
+                                                 t-att-data-mimetype="attachment.mimetype"
+                                                 t-attf-data-src="/web/image/#{attachment.id}/50x40?access_token=#{attachment.access_token}"/>
+                                            <div class='oe_attachment_name text-truncate'>
+                                                <t t-esc='attachment.name'/>
+                                            </div>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </template>
+
+    <template id="portal_athlete_task_dashboard" name="My Task">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="1"/>
+            <br/>
+            <br/>
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            <h5 class="d-flex mb-1 mb-md-0 row">
+                                <span t-field="task.name"
+                                      class="col-9 text-truncate"/>
+                                <small class="text-muted d-none d-md-inline">(#
+                                    <span t-field="task.id"/>)
+                                </small>
+                                <div class="col-3 col-md-2 text-right">
+                                    <small class="text-right">Status:</small>
+                                    <span t-field="task.stage_id.name"
+                                          class=" badge badge-pill badge-info"
+                                          title="Current stage of this task"/>
+                                    <div id="portal_athlete_task_buttons"
+                                         style="padding-right: 20px; adding-tob: 10px;">
+                                        <input id="athlete_task_id"
+                                               type="hidden"
+                                               t-att-value="task.id"/>
+                                        <button
+                                                id="portal_action_athlete_task_start"
+                                                data-toggle="Start Task"
+                                                class="o_follow_btn o_following btn btn-xs btn-primary">
+                                            <span class="fa fa-play"></span>
+                                        </button>
+
+                                        <button
+                                                id="portal_action_athlete_task_end"
+                                                data-toggle="End Task"
+                                                class="o_follow_btn o_following btn btn-xs btn-primary">
+                                            <span class="fa fa-stop"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </h5>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 mb-1">
+                            <strong>Date:</strong>
+                            <span t-field="task.create_date"
+                                  t-options='{"widget": "date"}'/>
+                        </div>
+                        <div class="col-12 col-md-6" t-if="task.start_datetime">
+                            <strong>Start from:</strong>
+                            <span t-field="task.start_datetime"
+                                  t-options='{"widget": "datetime"}'/>
+                        </div>
+                        <div class="col-12 col-md-6"
+                             t-if="task.task_event_duration">
+                            <strong>Start Duration:</strong>
+                            <span t-field="task.task_event_duration"/>
+                        </div>
+                    </div>
+
+                    <div class="row"
+                         t-if="task.description or task.attachment_ids">
+                        <div t-if="task.description"
+                             t-attf-class="col-12 col-lg-7 mb-4 mb-md-0 {{'col-lg-7' if task.attachment_ids else 'col-lg-12'}}">
+                            <hr class="mb-1"/>
+                            <div class="d-flex my-2">
+                                <strong>Description</strong>
+                            </div>
+                            <div class="py-1 px-2 bg-100 small"
+                                 t-field="task.description"/>
+                        </div>
+                        <div t-if="task.attachment_ids"
+                             t-attf-class="col-12 col-lg-5 o_project_portal_attachments {{'col-lg-5' if task.description else 'col-lg-12'}}">
+                            <hr class="mb-1 d-none d-lg-block"/>
+                            <strong class="d-block mb-2">Attachments</strong>
+                            <div class="row">
+                                <div t-attf-class="col {{'col-lg-6' if not task.description else 'col-lg-12'}}">
+                                    <ul class="list-group">
+                                        <a class="list-group-item list-group-item-action d-flex align-items-center oe_attachments py-1 px-2"
+                                           t-foreach='task.attachment_ids'
+                                           t-as='attachment'
+                                           t-attf-href="/web/content/#{attachment.id}?download=true&amp;access_token=#{attachment.access_token}"
+                                           target="_blank"
+                                           data-no-post-process="">
+                                            <div class='oe_attachment_embedded o_image o_image_small mr-2 mr-lg-3'
+                                                 t-att-title="attachment.name"
+                                                 t-att-data-mimetype="attachment.mimetype"
+                                                 t-attf-data-src="/web/image/#{attachment.id}/50x40?access_token=#{attachment.access_token}"/>
+                                            <div class='oe_attachment_name text-truncate'>
+                                                <t t-esc='attachment.name'/>
+                                            </div>
+                                        </a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+        </t>
+    </template>
+
+    <template id="portal_athlete_form_dashboard" name="Forms">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Forms</t>
+            </t>
+            <t t-if="not forms">
+                <div class="alert alert-warning mt8" role="alert">
+                    There are no Forms.
+                </div>
+            </t>
+            <t t-if="forms" t-call="portal.portal_table">
+                <thead>
+                    <th>Title</th>
+                    <th>Resource</th>
+                    <th>Created on</th>
+                    <th>Submission date</th>
+                    <th>State</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr t-foreach="forms" t-as="form">
+                        <td>
+                            <span t-field="form.title"/>
+                            <small class="text-muted">#
+                                <span t-field="form.id"/>
+                            </small>
+                        </td>
+                        <td>
+                            <span t-field="form.res_name"/>
+                        </td>
+                        <td>
+                            <span t-field="form.create_date"/>
+                        </td>
+                        <td>
+                            <span t-field="form.submission_date"/>
+                        </td>
+                        <td>
+                            <span t-field="form.state"/>
+                        </td>
+                        <t t-if="partner.org_group_selection == 'parents' or partner.org_group_selection == 'athletes'">
+                            <td class="formio_form_actions">
+                                <t t-if="form.state in ['PENDING', 'DRAFT']">
+                                    <form action='/my/athlete/form'
+                                          method="post">
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="form_id"
+                                               t-att-value="form.id"/>
+                                        <div class="col-sm-10 offset-sm-2">
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-primary">
+                                                <span aria-label="Edit form"
+                                                      title="Edit form">Edit
+                                                    Form
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </t>
+                                <t t-if="form.state == 'COMPLETE'">
+                                    <form action='/my/athlete/form'
+                                          method="post">
+                                        <input type="hidden" name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="form_id"
+                                               t-att-value="form.id"/>
+                                        <div class="col-sm-10 offset-sm-2">
+                                            <button type="submit"
+                                                    class="btn btn-sm btn-secondary">
+                                                <span aria-label="View form"
+                                                      title="View form">View
+                                                    Form
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </t>
+
+                                <!--                                <a t-if="form.state in ['PENDING', 'DRAFT']" role="button" class="btn btn-sm btn-primary"-->
+                                <!--                                   t-attf-href="/my/athlete/form/{{ form.id }}?{{ keep_query() }}">-->
+                                <!--                                    <span aria-label="Edit form" title="Edit form">Edit Form</span>-->
+                                <!--                                </a>-->
+
+                                <!--                                <a t-if="form.state == 'COMPLETE'" role="button" class="btn btn-sm btn-secondary"-->
+                                <!--                                   t-attf-href="/my/athlete/form/{{ form.id }}?{{ keep_query() }}">-->
+                                <!--                                    <span aria-label="View form" title="View form">View Form</span>-->
+                                <!--                                </a>-->
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td/>
+                        </t>
+                    </tr>
+                </tbody>
+            </t>
+            <br/>
+            <br/>
+            <h3>Surveys</h3>
+            <t t-if="surveys" t-call="portal.portal_table">
+                <thead>
+                    <th>Title</th>
+                    <!--                    <th>Resource</th>-->
+                    <!--                    <th>Created on</th>-->
+                    <!--                    <th>Submission date</th>-->
+                    <!--                    <th>State</th>-->
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr t-foreach="surveys" t-as="survey">
+                        <td>
+                            <span t-field="survey.title"/>
+                        </td>
+
+                        <t t-if="partner.org_group_selection == 'parents' or partner.org_group_selection == 'athletes'">
+                            <td class="formio_form_actions">
+                                <!--                                <a href="'/survey_start">-->
+                                <!--                                    <button class="btn btn-sm btn-primary">-->
+                                <!--                                        <t t-if="survey.certification">-->
+                                <!--                                            <span aria-label="Start Certification" title="Edit form">Start Certification</span>-->
+                                <!--                                        </t>-->
+                                <!--                                        <t t-else="">-->
+                                <!--                                            <span aria-label="Start Survey" title="Edit form">Start Survey</span>-->
+                                <!--                                        </t>-->
+                                <!--                                    </button>-->
+                                <!--                                </a>-->
+                                <form action='/survey_start' method="post">
+                                    <input type="hidden" name="csrf_token"
+                                           t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="survey_id"
+                                           t-att-value="survey.id"/>
+                                    <div class="col-sm-10 offset-sm-2">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-secondary">
+                                            <span aria-label="View form"
+                                                  title="View form">Start Survey
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td/>
+                        </t>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="portal_athlete_subscription_dashboard" name="Diaries">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Subscriptions</t>
+            </t>
+            <h3>Subscriptions</h3>
+            <t t-if="subscriptions" t-call="portal.portal_table">
+                <thead>
+                    <th>Reference</th>
+                    <!--                    <th>Resource</th>-->
+                    <!--                    <th>Created on</th>-->
+                    <!--                    <th>Submission date</th>-->
+                    <!--                    <th>State</th>-->
+                    <!--                    <th>Actions</th>-->
+                </thead>
+                <tbody>
+                    <tr t-foreach="subscriptions" t-as="sub">
+                        <td>
+                            <span t-field="sub.name"/>
+                        </td>
+
+                        <!--                        <t t-if="partner.org_group_selection == 'parents' or partner.org_group_selection == 'athletes'">-->
+                        <!--                            <td class="formio_form_actions">-->
+                        <!--&lt;!&ndash;                                <a href="'/survey_start">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                    <button class="btn btn-sm btn-primary">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                        <t t-if="survey.certification">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                            <span aria-label="Start Certification" title="Edit form">Start Certification</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                        </t>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                        <t t-else="">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                            <span aria-label="Start Survey" title="Edit form">Start Survey</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                        </t>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                    </button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+                        <!--                                <form action='/survey_start' method="post">-->
+                        <!--                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
+                        <!--                                    <input type="hidden" name="survey_id" t-att-value="survey.id"/>-->
+                        <!--                                    <div class="col-sm-10">-->
+                        <!--                                        <button type="submit" class="btn btn-sm btn-secondary">-->
+                        <!--                                            <span aria-label="View form" title="View form">Start Survey</span></button>-->
+                        <!--                                    </div>-->
+                        <!--                                </form>-->
+                        <!--                            </td>-->
+                        <!--                        </t>-->
+
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="portal_athlete_diaries_dashboard" name="Diaries">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Diaries</t>
+            </t>
+            <h3>Diaries</h3>
+            <t t-if="surveys" t-call="portal.portal_table">
+                <thead>
+                    <th>Title</th>
+                    <!--                    <th>Resource</th>-->
+                    <!--                    <th>Created on</th>-->
+                    <!--                    <th>Submission date</th>-->
+                    <!--                    <th>State</th>-->
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr t-foreach="surveys" t-as="survey">
+                        <td>
+                            <span t-field="survey.title"/>
+                        </td>
+
+                        <t t-if="partner.org_group_selection == 'parents' or partner.org_group_selection == 'athletes'">
+                            <td class="formio_form_actions">
+                                <!--                                <a href="'/survey_start">-->
+                                <!--                                    <button class="btn btn-sm btn-primary">-->
+                                <!--                                        <t t-if="survey.certification">-->
+                                <!--                                            <span aria-label="Start Certification" title="Edit form">Start Certification</span>-->
+                                <!--                                        </t>-->
+                                <!--                                        <t t-else="">-->
+                                <!--                                            <span aria-label="Start Survey" title="Edit form">Start Survey</span>-->
+                                <!--                                        </t>-->
+                                <!--                                    </button>-->
+                                <!--                                </a>-->
+                                <form action='/survey_start' method="post">
+                                    <input type="hidden" name="csrf_token"
+                                           t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="survey_id"
+                                           t-att-value="survey.id"/>
+                                    <div class="col-sm-10">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-secondary">
+                                            <span aria-label="View form"
+                                                  title="View form">Start Survey
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td/>
+                        </t>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="portal_my_form_edit" name="Portal Form" priority="40">
+        <t t-call="portal.portal_layout">
+            <div t-attf-class="formio_form_container mt16 {{ form.state }}">
+                <div class="formio_form_iframe_container">
+                    <iframe t-attf-src="/form/form/#{form.id}"
+                            class="formio_form_embed"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!--    portal upload form template -->
+    <template id="upload_document_form" name="Upload Form">
+        <t t-call="portal.portal_layout">
+            <br/>
+            <t t-set="no_breadcrumbs" t-value="1"/>
+            <br></br>
+            <form id="upload_form" action="/submit_document" method="post"
+                  enctype="multipart/form-data" class="o_mark_required"
+                  data-mark="*" data-model_name="mail.mail">
+                <input type="hidden" name="csrf_token"
+                       t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="athlete_id"
+                       t-att-value="athlete.id"/>
+                <div id="submit_form"
+                     class="s_website_form_rows row s_col_no_bgcolor">
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="child">
+                                <span class="s_website_form_label_content">
+                                    Athlete:
+                                </span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div id="div_athlete" class="col-sm">
+                                <input id="document_athlete" type="text"
+                                       class="form-control s_website_form_input"
+                                       name="athlete" readonly="" required=""
+                                       t-att-value="athlete.name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required"
+                         data-type="email" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="dob">
+                                <span class="s_website_form_label_content">
+                                    Document:
+                                </span>
+                                <span class="s_website_form_mark">*</span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="text"
+                                       class="form-control s_website_form_input"
+                                       name="name" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="device">
+                                <span class="s_website_form_label_content">
+                                    Description:
+                                </span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="text"
+                                       class="form-control s_website_form_input"
+                                       name="description" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom"
+                         data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                   style="width: 300px" for="attachment1">
+                                <span class="s_website_form_label_content">
+                                    Upload here:
+                                </span>
+                            </label>
+                            <div class="col-sm">
+                                <input type="file" name="attachment1"
+                                       class="file" multiple="true"
+                                       data-show-upload="true"
+                                       data-show-caption="true" lass="file"
+                                       data-show-preview="true" required=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix col-12">
+                        <button type="submit"
+                                class="btn btn-primary btn-md o_website_form_send">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </t>
+    </template>
+
+</odoo>

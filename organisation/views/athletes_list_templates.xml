@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="portal_athlete_list" name="Athletes">
+        <t t-call="portal.portal_layout">
+            <t t-if="partner.org_group_selection == 'ex_coaches'">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <t t-call="portal.portal_searchbar">
+<!--                    <t t-set="title">Athletes</t>-->
+                </t><br/><br/>
+                <form action='/athletes/documents/upload' method="post">
+                    <span class="float-right help_tag">Click to upload document for athletes</span>
+                    <button type="submit" class="btn btn-primary float-right mb32 ">
+                        Upload
+                        <i class="fa fa-upload"/>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    </button>
+                </form>
+            </t>
+            <t t-else="">
+                <t t-set="no_breadcrumbs" t-value="1"/><br/><br/>
+            </t>
+            <t t-if="not athletes">
+                <div class="alert alert-warning mt8" role="alert">
+                    No Athletes found!
+                </div>
+            </t>
+            <t t-else="">
+                <div class="container row mx-n2 mt8">
+                    <t t-foreach="athletes" t-as="athlete">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 pb16">
+                        <a class="list-group-item-action d-block mx-auto" t-att-href="'athlete-%s' % athlete.id">
+                            <div class="media">
+                                <div class="img-bg">
+                                    <img style="width:100%; height: 100%;" t-if="athlete.partner_id.image_1024" class="contact-img rounded-circle img img-responsive img-fluid d-block mx-auto mr4" t-att-src="image_data_uri(athlete.partner_id.image_1024)"/>
+                                    <img t-if="not athlete.partner_id.image_1024" class="rounded-circle img img-responsive img-fluid d-block mx-auto mr4" src="/web/static/img/placeholder.png"/>
+                                </div>
+                                <div class="media-body">
+                                    <h4 style="border-bottom: 1px solid #e7e7e7;" class="pb8"><span><t t-esc="athlete.name"/></span></h4>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-phone" style="margin-left: 50px;"></i>
+                                        <span><t t-esc="athlete.phone"/></span>
+                                    </p>
+                                    <p class="pt8 mb-0">
+                                        <i class="fa fa-envelope-o" style="margin-left: 50px;"></i>
+                                        <span><t t-esc="athlete.email"/></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div><br/>
+                </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="coach_multiple_athlete_document_upload_form" name="Upload Form">
+        <t t-call="portal.portal_layout"><br/>
+            <t t-set="no_breadcrumbs" t-value="1"/><br></br>
+            <form role="form" t-attf-action="/submit_multi_athlete_document" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="mail.mail">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="coach_id" t-att-value="coach.id"/>
+                <div class="s_website_form_rows row s_col_no_bgcolor">
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 300px" for="child">
+                                <span class="s_website_form_label_content">Coach: </span>
+                                <span class="s_website_form_mark"> *</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="document_coach" type="text" class="form-control s_website_form_input" name="coach" readonly="" required="" t-att-value="coach.name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 300px" for="type">
+                                <span class="s_website_form_label_content">Type: </span>
+                                <span class="s_website_form_mark"> *</span>
+                            </label>
+                            <div id="document_type_selection" class="col-sm">
+                                <select name="type" t-attf-class="form-control s_website_form_input" required="required" id="document_type">
+                                    <option value="athlete" selected="athlete">Athlete</option>
+                                    <option value="group">Group</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="add_group" class="col-12" style="display:none">
+                            <h3 style="margin-top: 40px;">Group</h3>
+                        <hr/>
+                        <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="char" data-name="Field">
+                            <div class="row s_col_no_resize s_col_no_bgcolor">
+                                <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px">
+                                    <span class="s_website_form_label_content">Group</span>
+                                    <span class="s_website_form_mark"> *</span>
+                                </label>
+                                <div id="athlete_group_selection" class="col-sm">
+                                    <select id="athlete_group_selected" type="text" class="form-control s_website_form_input" name="group_id" required="">
+                                        <t t-foreach="groups or []" t-as="group">
+                                            <option class="state" t-att-value="group.id">
+                                                <t t-esc="group.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:none;">
+                        <input id="select_athletes_list" name="select_athletes_list" t-att-value="athletes_info"/>
+                    </div>
+                    <div id="athlete_list" class="col-12">
+                        <h4 style="margin-top: 40px;">Athletes</h4>
+                        <hr/>
+                        <table id="group_athletes" style="text-align: left; width: 720px; margin:5px auto;">
+                            <thead>
+                                <tr class="active">
+                                    <th style="vertical-align: top; width: 546px;">Athlete</th>
+                                    <th style="vertical-align: top; width: 546px;">Email</th>
+                                    <th style="vertical-align: top; width: 546px;">Phone</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <t t-foreach="grp_athletes" t-as="athlete">
+                                    <tr>
+                                        <td style="vertical-align: top; width: 168px;">
+                                            <a t-att-title="athlete.name">
+                                                <t t-esc="athlete.name"/>
+                                            </a>
+                                        </td>
+                                        <td style="vertical-align: top; width: 168px;">
+                                            <a t-att-title="athlete.email">
+                                                <t t-esc="athlete.email"/>
+                                            </a>
+                                        </td>
+                                        <td style="vertical-align: top; width: 168px;">
+                                            <a t-att-title="athlete.phone">
+                                                <t t-esc="athlete.phone"/>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </t>
+                                </tbody>
+                        </table><hr/>
+                    </div><br/><br/>
+
+                    <!--                 Add  Athlete -->
+                    <div id="add_athlete" class="col-12" style="display:none">
+                            <h3 style="margin-top: 40px;">Athletes</h3>
+                        <t t-set="athlete_count" t-value="0"/>
+                            <div id="div_add_athlete" class="col-12">
+                                <div t-att-id="'athlete_id' + str(athlete_count)" class="athlete-counter">
+                                    <hr/>
+                                    <div class="form-group col-12 s_website_form_field s_website_form_custom s_website_form_required" data-type="char" data-name="Field">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" t-att-for="'company' + str(athlete_count)">
+                                                <span class="s_website_form_label_content">Athlete</span>
+                                                <span class="s_website_form_mark"> *</span>
+                                            </label>
+                                            <div class="col-sm">
+                                                <select t-att-id="'athlete' + str(athlete_count)" type="text" class="form-control s_website_form_input" t-att-name="'athlete' + str(athlete_count)" required="">
+                                                    <t t-foreach="athletes or []" t-as="athlete">
+                                                        <option class="state" t-att-value="athlete.id">
+                                                            <t t-esc="athlete.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <t t-set="athlete_count" t-value="athlete_count+1"/>
+                                </div>
+                            </div>
+                            <div class="row col-12">
+                                <div class="col-10">
+                                    <div class="row col-2">
+                                        <div>
+                                            <a href="#" id="add_athlete_button" class="btn btn-secondary">Add</a>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <a href="#" id="remove_athlete_button" class="btn btn-secondary">Remove</a>
+                                        </div>
+                                    </div>
+                                </div><br/><br/>
+                            </div><br/>
+                    <input type="hidden" id="athletes_count" name="athlete_count"/>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="email" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 300px" for="dob">
+                                <span class="s_website_form_label_content">Document: </span>
+                                <span class="s_website_form_mark"> *</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="document_name" type="text" class="form-control s_website_form_input" name="name" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom" data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 300px" for="device">
+                                <span class="s_website_form_label_content">Description: </span>
+                                <span class="s_website_form_mark"> *</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="document_description" type="text" class="form-control s_website_form_input" name="description" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 s_website_form_field s_website_form_custom" data-type="char" data-name="Field">
+                        <div class="row s_col_no_resize s_col_no_bgcolor">
+                            <label class="col-form-label col-sm-auto s_website_form_label" style="width: 300px" for="attachment1">
+                                <span class="s_website_form_label_content">Upload here:</span>
+                                <span class="s_website_form_mark"> *</span>
+                            </label>
+                            <div class="col-sm">
+                                <input id="document_file" type="file" name="attachment1" class="file" multiple="true" data-show-upload="true" data-show-caption="true" lass="file" data-show-preview="true" required=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix col-12">
+<!--                    <input type="submit"/>-->
+                    <button type="submit" id="multi_upload_submit" class="btn btn-primary float-right btn-md">
+                        Submit
+                    </button>
+                </div>
+<!--                <button type="submit" id="multi_upload_submit">-->
+<!--                   Submit-->
+<!--                </button>-->
+            </form>
+        </t>
+    </template>
+</odoo>
+
+

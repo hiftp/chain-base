@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <!--     organisation   kanban view-->
+        <record model="ir.ui.view" id="organisation_view_kanban">
+            <field name="name">organisation.kanban</field>
+            <field name="model">organisation.organisation</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" class="o_modules_kanban" sample="1">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_details oe_kanban_global_click">
+                                <strong class="o_kanban_record_title">
+                                    <field name="name"/>
+                                </strong>
+                                <ul>
+                                    <li>
+                                        <t t-if="record.partner_id.raw_value">
+                                            Contact :
+                                            <field name="partner_id"/>
+                                        </t>
+                                    </li>
+                                    <li>
+                                        <t t-if="record.date.raw_value">
+                                            Date :
+                                            <field name="date"/>
+                                        </t>
+                                    </li>
+                                    <li>
+                                        <t t-if="record.responsible_user_id.raw_value">
+                                            Responsible :
+                                            <field name="responsible_user_id"/>
+                                        </t>
+                                    </li>
+                                </ul>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!--      organisation  form view-->
+        <record id="organisation_view_form" model="ir.ui.view">
+        	<field name="name">organisation.view.form</field>
+        	<field name="model">organisation.organisation</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="stage_id" widget="statusbar"
+                               readonly="1" clickable="1"/>
+                    </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="view_coaches"
+                                string="Coaches" type="object"
+                                attrs="{'invisible': [('has_coaches', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                        <button name="view_athletes"
+                                string="Athletes" type="object"
+                                attrs="{'invisible': [('has_athletes', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                        <button name="view_parents"
+                                string="Parents" type="object"
+                                attrs="{'invisible': [('has_parents', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                        <button name="view_venues"
+                                string="Venues" type="object"
+                                attrs="{'invisible': [('has_venues', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                        <button name="view_groups"
+                                string="Groups" type="object"
+                                attrs="{'invisible': [('has_groups', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                        <button name="view_disciplines"
+                                string="Disciplines" type="object"
+                                attrs="{'invisible': [('has_disciplines', '=', False)]}"
+                                class="oe_stat_button" icon="fa-pencil-square-o">
+                        </button>
+                    </div>
+                    <field name="img_organisation" widget="image" class="oe_avatar"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="phone" options="{'enable_sms': True}"/>
+                            <field name="email"  widget="email"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="responsible_user_id"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        </group>
+                            <field name="has_products" invisible="1"/>
+                            <field name="has_coaches" invisible="1"/>
+                            <field name="has_venues" invisible="1"/>
+                            <field name="has_athletes" invisible="1"/>
+                            <field name="has_parents" invisible="1"/>
+                            <field name="has_groups" invisible="1"/>
+                            <field name="has_disciplines" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Products" name="products" attrs="{'invisible': [('has_products', '=', False)]}">
+                            <group>
+                                <field name="product_ids">
+                                    <tree string="Products" default_order='id'>
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="lst_price"/>
+                                        <field name="standard_price"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group>
+                                <field name="notes"/>
+                            </group>
+                        </page>
+                        <page string="Coaches" name="coaches" attrs="{'invisible': [('has_coaches', '=', False)]}">
+                            <field name="coach_ids" force_save="1">
+                                <tree string="Coaches" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Venues" name="venues" attrs="{'invisible': [('has_venues', '=', False)]}">
+                            <field name="venue_ids">
+                                <tree string="Venues" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Athletes" name="athletes" attrs="{'invisible': [('has_athletes', '=', False)]}">
+                            <field name="athlete_ids">
+                                <tree string="Athletes" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Parents" name="parents" attrs="{'invisible': [('has_parents', '=', False)]}">
+                            <field name="parent_ids">
+                                <tree string="Parents" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Groups" name="groups" attrs="{'invisible': [('has_groups', '=', False)]}">
+                            <field name="group_ids">
+                                <tree string="Groups" default_order='id'>
+                                    <field name="partner_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Disciplines" name="disciplines" attrs="{'invisible': [('has_disciplines', '=', False)]}">
+                            <field name="discipline_ids">
+                                <tree string="Disciplines" default_order='id'>
+                                    <field name="user_id"/>
+                                    <field name="phone"/>
+                                    <field name="tag_ids"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+			</field>
+        </record>
+        <!--      organisation  tree view-->
+        <record id='organisation_view_tree' model='ir.ui.view'>
+            <field name="name">organisation_tree</field>
+            <field name="model">organisation.organisation</field>
+            <field name="arch" type="xml">
+                <tree string="Organisations" sample="1">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="responsible_user_id"/>
+                    <field name="tag_ids"/>
+                </tree>
+            </field>
+        </record>
+<!--        org settings form view-->
+        <record id="organisation_view_form2" model="ir.ui.view">
+        	<field name="name">organisation.view.form</field>
+        	<field name="model">organisation.organisation</field>
+			<field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="stage_id" widget="statusbar"
+                               readonly="1" clickable="1"/>
+                    </header>
+                <sheet>
+                    <field name="img_organisation" widget="image" class="oe_avatar"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="has_products"/>
+                            <field name="has_coaches"/>
+                            <field name="has_venues"/>
+                            <field name="has_athletes"/>
+                        </group>
+                        <group>
+                            <field name="has_parents"/>
+                            <field name="has_fans"/>
+                            <field name="has_groups"/>
+                            <field name="has_disciplines"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        organisation menu action-->
+        <record id="all_organisations_menu_action" model="ir.actions.act_window">
+            <field name="name">Organisations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.organisation</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+
+        <!--        stage form view-->
+        <record model="ir.ui.view" id="stages_form_view">
+            <field name="name">Stage</field>
+            <field name="model">organisation.stage</field>
+            <field name="arch" type="xml">
+                <form string="Organisation Stages">
+                    <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fold"/>
+                            <field name="is_frontend"/>
+                            <field name="is_subscription_allowed"/>
+                            <field name="is_booking_allowed"/>
+                            <field name="is_planning_allowed"/>
+                            <field name="is_survey_allowed"/>
+                            <field name="is_chathub_allowed"/>
+                        </group>
+                        <group>
+                            <field name="is_allowed_to_company"/>
+                            <field name="is_event_allowed"/>
+                            <field name="is_documents_allowed"/>
+                            <field name="is_diaries_allowed"/>
+                            <field name="is_forms_allowed"/>
+                        </group>
+                    </group>
+                    <separator string="Requirements"/>
+                    <field name="description" nolabel="1"
+                           placeholder="Give your team the requirements to move an opportunity to this stage."/>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        stage tree view-->
+        <record model="ir.ui.view" id="organisation_stage_tree_view">
+            <field name="name">Stage</field>
+            <field name="model">organisation.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Stages" sample="1" multi_edit="1">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <!--        organisation stages menu action-->
+        <record id="organisation_stages_menu_action" model="ir.actions.act_window">
+            <field name="name">Organisation Stages</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.stage</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No stage found. Let's create one!
+                </p>
+            </field>
+        </record>
+
+        <!--        tags form view-->
+        <record model="ir.ui.view" id="organisation_tags_form_view">
+            <field name="name">Tags</field>
+            <field name="model">organisation.tags</field>
+            <field name="arch" type="xml">
+                <form string="Tags">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--        tags tree view-->
+        <record model="ir.ui.view" id="organisation_tags_tree_view">
+            <field name="name">Tags</field>
+            <field name="model">organisation.tags</field>
+            <field name="arch" type="xml">
+                <tree string="Tags" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                </tree>
+            </field>
+        </record>
+<!--        tags menu action-->
+        <record id="organisation_tags_menu_action" model="ir.actions.act_window">
+            <field name="name">Tags</field>
+            <field name="res_model">organisation.tags</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No tags found. Let's create one!
+              </p>
+              <p>
+                  Tags are perfect to categorize your organisations.
+              </p>
+            </field>
+        </record>
+
+        <!--        organisation settings menu action-->
+        <record id="org_settings_menu_action" model="ir.actions.act_window">
+            <field name="name">Organisations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">organisation.organisation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('organisation_view_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('organisation_view_form2')})]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No Records Found!
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

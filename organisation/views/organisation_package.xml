@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="organisation_packages_menu_action"
+            model="ir.actions.act_window">
+        <field name="name">Organisation Packages</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('organisation_stage_id', '!=', False)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Organisation Package found. Let's create one!
+            </p>
+        </field>
+    </record>
+    <menuitem id="organisation_packages_menu"
+                  parent="config_menu"
+                  name="Organisation Packages" sequence="25"
+                  action="organisation.organisation_packages_menu_action"/>
+</odoo>

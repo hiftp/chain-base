@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="module_category_organisation" model="ir.module.category">
+        <field name="name">Organisation</field>
+        <field name="description">Category For Organisation</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="group_organisation_administrator" model="res.groups">
+        <field name="name">Administrator</field>
+<!--        <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>-->
+        <field name="category_id" ref="module_category_organisation"/>
+    </record>
+    <record id="group_organisation_coaches" model="res.groups">
+        <field name="name">Coaches</field>
+<!--        <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>-->
+        <field name="category_id" ref="module_category_organisation"/>
+    </record>
+    <record id="group_organisation_parents" model="res.groups">
+        <field name="name">Parents</field>
+<!--        <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>-->
+        <field name="category_id" ref="module_category_organisation"/>
+    </record>
+    <record id="group_organisation_athletes" model="res.groups">
+        <field name="name">Athletes</field>
+<!--        <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>-->
+        <field name="category_id" ref="module_category_organisation"/>
+    </record>
+    <record id="group_organisation_fans" model="res.groups">
+        <field name="name">Fans</field>
+<!--        <field name="implied_ids" eval="[(4, ref('organisation.group_organisation_coaches_internal'))]"/>-->
+        <field name="category_id" ref="module_category_organisation"/>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+
+.o_list_record_selector{
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 2;
+}

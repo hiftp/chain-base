@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-Light.eot");
+  src: url("../fonts/Vazir/Vazir-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Light.woff") format("woff"), url("../fonts/Vazir/Vazir-Light.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Light.svg#Vazir") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "vazir-Light";
+  src: url("../fonts/Vazir/Vazir-Light.eot");
+  src: url("../fonts/Vazir/Vazir-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Light.woff") format("woff"), url("../fonts/Vazir/Vazir-Light.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Light.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-LightItalic.eot");
+  src: url("../fonts/Vazir/Vazir-LightItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-LightItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-LightItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-LightItalic.svg#Vazir") format("svg");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "vazir-LightItalic";
+  src: url("../fonts/Vazir/Vazir-LightItalic.eot");
+  src: url("../fonts/Vazir/Vazir-LightItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-LightItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-LightItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-LightItalic.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-Regular.eot");
+  src: url("../fonts/Vazir/Vazir-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Regular.woff") format("woff"), url("../fonts/Vazir/Vazir-Regular.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Regular.svg#Vazir") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "vazir-Regular";
+  src: url("../fonts/Vazir/Vazir-Regular.eot");
+  src: url("../fonts/Vazir/Vazir-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Regular.woff") format("woff"), url("../fonts/Vazir/Vazir-Regular.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Regular.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-RegularItalic.eot");
+  src: url("../fonts/Vazir/Vazir-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-RegularItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-RegularItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-RegularItalic.svg#Vazir") format("svg");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "vazir-RegularItalic";
+  src: url("../fonts/Vazir/Vazir-RegularItalic.eot");
+  src: url("../fonts/Vazir/Vazir-RegularItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-RegularItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-RegularItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-RegularItalic.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-Bold.eot");
+  src: url("../fonts/Vazir/Vazir-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Bold.woff") format("woff"), url("../fonts/Vazir/Vazir-Bold.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Bold.svg#Vazir") format("svg");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "vazir-Bold";
+  src: url("../fonts/Vazir/Vazir-Bold.eot");
+  src: url("../fonts/Vazir/Vazir-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Bold.woff") format("woff"), url("../fonts/Vazir/Vazir-Bold.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Bold.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-BoldItalic.eot");
+  src: url("../fonts/Vazir/Vazir-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-BoldItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-BoldItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-BoldItalic.svg#Vazir") format("svg");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "vazir-BoldItalic";
+  src: url("../fonts/Vazir/Vazir-BoldItalic.eot");
+  src: url("../fonts/Vazir/Vazir-BoldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-BoldItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-BoldItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-BoldItalic.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-Extrabold.eot");
+  src: url("../fonts/Vazir/Vazir-Extrabold.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Extrabold.woff") format("woff"), url("../fonts/Vazir/Vazir-Extrabold.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Extrabold.svg#Vazir") format("svg");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "vazir-Extrabold";
+  src: url("../fonts/Vazir/Vazir-Extrabold.eot");
+  src: url("../fonts/Vazir/Vazir-Extrabold.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-Extrabold.woff") format("woff"), url("../fonts/Vazir/Vazir-Extrabold.ttf") format("truetype"), url("../fonts/Vazir/Vazir-Extrabold.svg#Vazir") format("svg");
+}
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir/Vazir-ExtraboldItalic.eot");
+  src: url("../fonts/Vazir/Vazir-ExtraboldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-ExtraboldItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-ExtraboldItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-ExtraboldItalic.svg#Vazir") format("svg");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "vazir-ExtraboldItalic";
+  src: url("../fonts/Vazir/Vazir-ExtraboldItalic.eot");
+  src: url("../fonts/Vazir/Vazir-ExtraboldItalic.eot?#iefix") format("embedded-opentype"), url("../fonts/Vazir/Vazir-ExtraboldItalic.woff") format("woff"), url("../fonts/Vazir/Vazir-ExtraboldItalic.ttf") format("truetype"), url("../fonts/Vazir/Vazir-ExtraboldItalic.svg#Vazir") format("svg");
+}
+
+/*# sourceMappingURL=chinesefont.css.map */

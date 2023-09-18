@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>  
+        <template id="pl_chinese_font_web_assets_common" inherit_id="web.assets_common">
+		    <xpath expr="." position="inside">
+		          <link rel='stylesheet' href="/pl_chinese_font/static/src/scss/chinesefont.scss" type="text/scss"/>
+                  <link rel="stylesheet" href="/pl_chinese_font/static/src/css/web_style.css" />
+            </xpath>
+        </template>
+        
+        <template id="chinese_report_report_assets_common"  inherit_id="web.report_assets_common">
+            <xpath expr="." position="inside">            
+                <link rel='stylesheet' href="/pl_chinese_font/static/src/scss/chinesefont.scss" type="text/scss"/>
+				<link rel="stylesheet" href="/pl_chinese_font/static/src/css/pdf_style.css" />
+            </xpath>
+        </template>
+		
+        
+    </data>
+</odoo>

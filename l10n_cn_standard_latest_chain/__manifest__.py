@@ -67,6 +67,7 @@
         'data/account_tax_template_data.xml',
         'data/account_chart_template_data.xml',
     ],
+    'external_dependencies': {"python": [], "bin": []},
     'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': True,

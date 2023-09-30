@@ -1,19 +1,24 @@
 
  /*  Font  Start */
-   body { font-family: vazir;}
-   html { font-family: vazir;}
- .pos{font-family: vazir;}
- .pos .modal-dialog .popup {font-family: vazir;}
- .ui-dialog, .modal-dialog{font-family: vazir;}
- .pos textarea {font-family: vazir;}
+   body {
+       font-family: "HarmonyOS_Regular", sans-serif;
+   }
+   html {
+       font-family: "HarmonyOS_Regular", sans-serif;}
+ .pos{
+     font-family: "HarmonyOS_Regular", sans-serif;}
+ .pos .modal-dialog .popup {
+     font-family: "HarmonyOS_Regular", sans-serif;}
+ .ui-dialog, .modal-dialog{
+     font-family: "HarmonyOS_Regular", sans-serif;}
+ .pos textarea {
+     font-family: "HarmonyOS_Regular", sans-serif;}
  /*  Font  End */
  
 .pos .loader {
-    font-family: vazir;
+    font-family: "HarmonyOS_Regular", sans-serif;
 }
-	
-	.pos button, .pos a.button {
-
-    font-family: vazir;
+ .pos button, .pos a.button {
+        font-family: "HarmonyOS_Regular", sans-serif;
 }
 

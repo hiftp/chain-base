@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* 引入字体和图标库 */
+@import url("https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css");
+@font-face {
+  font-family: "Pacifico-Regular";
+  src: url("../font/Pacifico-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "UnidreamLED";
+  src: url("../font/UnidreamLED.ttf") format("truetype");
+}
+
+/*# sourceMappingURL=chinese_font.css.map */

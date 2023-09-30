@@ -9,12 +9,24 @@
         Change the defult chinese font of the all interfaces with a beautiful one preferred by the Chinese user
  ,
     """,
-    'author': "Maharaj",
-    'website': "http://odoo.com",
+    'author': "xiaxiaozheng",
+    'website': "https://www.odoochain.com",
     'category': 'Localization',
-    'version': '14.0.0.0',
+    'version': '16.0.0.1',
     'depends': ['web'],
-    'data': ['views/linkestatic.xml'],
+    'data': [],
+    'assets': {
+        # 这里是改样式，要 after处理
+        'web.assets_common': [
+            ('after', 'web_enterprise/static/src/webclient/home_menu/home_menu_background.scss',
+             'xxz_chinese_font/static/src/scss/chinese_font.scss'),
+            ('after', 'web/static/lib/jquery.ui/jquery-ui.css', 'xxz_chinese_font/static/src/css/web_style.css'),
+
+        ],
+        'web.report_assets_common': [
+            'xxz_chinese_font/static/src/css/pdf_style.css',
+            ],
+    },
     'license': 'LGPL-3',
     "installable": True,
     "auto_install": False,

@@ -1,5 +1,11 @@
 # chain-base
 
+Available addons
+----------------
+addon | version    | maintainers | summary
+--- |------------| --- | ---
+[xxz_chinese_font](xxz_chinese_font/) | 16.0.0.0.1 |  | Use HarmonyOS_Regular Font for PDF etc.
+
 ## notice
 
 theme开头的不会默认导入模块

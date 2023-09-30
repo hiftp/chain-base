@@ -12,7 +12,7 @@
     'author': "xiaxiaozheng",
     'website': "https://www.odoochain.com",
     'category': 'Localization',
-    'version': '16.0.0.1',
+    'version': '16.0.0.0.1',
     'depends': ['web'],
     'data': [],
     'assets': {

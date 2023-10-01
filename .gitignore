@@ -49,3 +49,4 @@ package.json
 tsconfig.json
 /dev/
 /odoo.conf
+/__unported__/

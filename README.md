@@ -5,6 +5,7 @@ Available addons
 addon | version    | maintainers | summary
 --- |------------| --- | ---
 [xxz_chinese_font](xxz_chinese_font/) | 16.0.0.0.1 |  | Use HarmonyOS_Regular Font for PDF etc.
+[l10n_cn_city_chain](l10n_cn_city_chain/) | 16.0.1.8.2 |  | Includes the city data for the Chinese localization.
 
 ## notice
 

@@ -8,9 +8,9 @@
 # Copyright (C) 2020-now  海南贞人 https://www.odoochain.cn
 
 {
-    'name': '2022中国企业会计表.Latest Chinese Accounting',
+    'name': '2023中国企业会计表Chain.Latest Chinese Accounting',
     'version': '16.23.09.18',
-    'author': 'odooChain.cn',
+    'author': 'xiaxiaozheng',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odoochain.cn',
     'license': 'LGPL-3',

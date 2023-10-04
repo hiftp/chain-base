@@ -4,7 +4,7 @@
 {
     'name': 'Chinese - Payroll',
     'category': 'Human Resources/Payroll',
-    'version': '14.0.1.0.0',
+    'version': '16.0.0.0.1',
     'website': 'https://www.odoochain.cn',
     'author': "Odoo Community Association (OCA)",
     'depends': [

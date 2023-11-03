@@ -1,4 +1,4 @@
-# See LICENSE file for full copyright and licensing details.
+# -*- coding: utf-8 -*-
 {
     # Module information
     'name': 'Project Scrum Management Agile Methodology',
@@ -64,7 +64,7 @@
     'depends': [
         'sale_timesheet',
         'calendar',
-        'project_management_security'
+        'project_management_security',
     ],
 
     # Views

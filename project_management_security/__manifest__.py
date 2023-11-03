@@ -1,4 +1,5 @@
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# -*- coding: utf-8 -*-
+
 {
     # Module information
     "name": "Project Management Security",

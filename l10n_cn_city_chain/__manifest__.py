@@ -4,7 +4,7 @@
 
 {
     'name': 'China - City Data',
-    'version': '16.0.1.8.2',
+    'version': '16.0.1.8.3',
     'icon': '/l10n_cn/static/description/icon.png',
     'category': 'Accounting/Localizations',
     'author': 'xiaxiaozheng',

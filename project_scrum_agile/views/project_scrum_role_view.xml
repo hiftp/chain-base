@@ -1,0 +1,54 @@
+<odoo>
+
+    <!-- ROLES TREE -->
+    <record model="ir.ui.view" id="view_scrum_role_tree">
+        <field name="name">view.scrum.role.tree</field>
+        <field name="model">project.scrum.role</field>
+        <field name="arch" type="xml">
+            <tree string="Roles">
+                <field name="project_id"/>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ROLES FORM -->
+    <record model="ir.ui.view" id="view_scrum_role_form">
+        <field name="name">view.scrum.role.form</field>
+        <field name="model">project.scrum.role</field>
+        <field name="arch" type="xml">
+            <form string="Role">
+                <sheet>
+                    <group>
+                        <field name="name" required="1"/>
+                        <field name="code"/>
+                        <field name="project_id" required="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Person">
+                            <group colspan="4">
+                                <field name="person_name"/>
+                                <field name="person_description"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ROLES ACTION -->
+    <record model="ir.actions.act_window" id="action_project_scrum_role">
+        <field name="name">Roles</field>
+        <field name="res_model">project.scrum.role</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ROLES MENU -->
+    <menuitem action="action_project_scrum_role"
+              id="menu_action_project_scrum_role"
+              name="Roles" parent="project.menu_project_config"
+              groups="base.group_no_one"/>
+
+</odoo>

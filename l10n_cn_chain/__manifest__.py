@@ -9,10 +9,10 @@
 
 {
     'name': 'China - Accounting - Chain',
-    'version': '16.0.0.1',
+    'version': '16.0.1.0.1',
     'category': 'Accounting/Localizations/Account Charts',
     'author': 'www.odoochain.cn',
-    'maintainer': 'jeff@osbzr.com',
+    'maintainer': 'xiaxiaozheng',
     'website': 'https://odoochain.cn',
     "excludes": ["l10n_cn"],
     'description': """
@@ -52,6 +52,10 @@ correctly when the cn2an library is installed. (e.g. with pip3 install cn2an)
     'demo': [
         'demo/demo_company.xml',
     ],
+    "external_dependencies": {"python": [
+        "baidu_api",
+        "tenacity",
+    ]},
     'post_init_hook': 'load_translations',
     'license': 'LGPL-3',
 }

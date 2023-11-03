@@ -1,0 +1,94 @@
+<odoo>
+
+    <!-- DEVELOPMENT TEAM TREE VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_team_tree">
+        <field name="model">project.scrum.devteam</field>
+        <field name="name">view.project.scrum.team.tree</field>
+        <field name="arch" type="xml">
+            <tree string="Scrum Development Teams">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- DEVELOPMENT TEAM FORM VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_team_form">
+        <field name="model">project.scrum.devteam</field>
+        <field name="name">view.project.scrum.team.form</field>
+        <field name="arch" type="xml">
+            <form string="Scrum Development Teams">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Team" name="team">
+                        <field name="developer_ids" widget="many2many">
+                                <kanban quick_create="false" create="true" delete="true">
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <field name="lang"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click" style="max-width: 200px">
+                                                <div class="o_kanban_record_top">
+                                                    <img t-att-src="kanban_image('res.users', 'image_1920', record.id.raw_value)" height="40" width="40" class="oe_avatar oe_kanban_avatar_smallbox mb0" alt="Avatar"/>
+                                                    <div class="o_kanban_record_headings ml8">
+                                                        <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                                        <br/><strong class="o_kanban_record_title"><field name="lang"/></strong>
+                                                    </div>
+                                                    <a t-if="! read_only_mode" type="delete" class="text-danger">
+                                                        <i class="fa fa-times" title="Delete"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- DEVELOPMENT TEAM ACTION VIEW -->
+    <record model="ir.actions.act_window" id="action_project_scrum_team">
+        <field name="name">Team</field>
+        <field name="res_model">project.scrum.devteam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- DEVELOPMENT TEAM MENU -->
+    <menuitem action="action_project_scrum_team"
+              id="menu_action_project_scrum_team"
+              name="Development Teams" parent="project.menu_project_config"
+              groups="base.group_no_one"/>
+
+    <!-- INHERITED VIEW OF RES_USERS_FORM -->
+    <record model="ir.ui.view" id="view_project_scrum_inherit_res_users_form">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_title')]/group" position="inside">
+                <field name="scrum_devteam_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

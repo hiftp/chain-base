@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="rule_project_project_cio" model="ir.rule">
+        <field name="name">Project CIO User</field>
+        <field name="model_id" ref="project.model_project_project" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_cio'))]"
+        />
+    </record>
+
+    <record id="rule_project_project_group_management" model="ir.rule">
+        <field name="name">Project Management User</field>
+        <field name="model_id" ref="project.model_project_project" />
+        <field name="global" eval="True" />
+        <field name="domain_force">[]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_management'))]"
+        />
+    </record>
+
+    <record id="project_scrum_sprint_team_member_rule" model="ir.rule">
+        <field name="name">Sprint - Team Member Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_sprint"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_team_member'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_product_backlog_team_member_rule" model="ir.rule">
+        <field name="name">Backlog - Team Member Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_product_backlog"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_team_member'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_sandbox_team_member_rule" model="ir.rule">
+        <field name="name">Sandbox - Team Member Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_sandbox"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_team_member'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_release_team_member_rule" model="ir.rule">
+        <field name="name">Sprint Release - Team Member Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_release"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_team_member'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_meeting_team_member_rule" model="ir.rule">
+        <field name="name">Scrum Meeting - Team Member Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_meeting"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_team_member'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_sprint_project_coordinator_rule" model="ir.rule">
+        <field name="name">Sprint - Project Coordinator Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_sprint"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_supp_project_coordinator')), (4, ref('project_management_security.group_project_coordinator'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record
+        id="project_scrum_product_backlog_project_coordinator_rule"
+        model="ir.rule"
+    >
+        <field name="name">Backlog - Project Coordinator Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_product_backlog"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_supp_project_coordinator')), (4, ref('project_management_security.group_project_coordinator'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_sandbox_project_coordinator_rule" model="ir.rule">
+        <field name="name">Sandbox - Project Coordinator Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_sandbox"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_supp_project_coordinator')), (4, ref('project_management_security.group_project_coordinator'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_release_project_coordinator_rule" model="ir.rule">
+        <field
+            name="name"
+        >Sprint Release - Project Coordinator Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_release"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_supp_project_coordinator')), (4, ref('project_management_security.group_project_coordinator'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+    <record id="project_scrum_meeting_project_coordinator_rule" model="ir.rule">
+        <field
+            name="name"
+        >Scrum Meeting - Project Coordinator Access Rule</field>
+        <field
+            name="model_id"
+            ref="project_scrum_agile.model_project_scrum_meeting"
+        />
+        <field
+            name="groups"
+            eval="[(4, ref('project_management_security.group_supp_project_coordinator')), (4, ref('project_management_security.group_project_coordinator'))]"
+        />
+        <field
+            name="domain_force"
+        >['|',('project_id.favorite_user_ids', 'in', user.id),('project_id.resource_ids','in',user.partner_id.id)]</field>
+    </record>
+
+</odoo>

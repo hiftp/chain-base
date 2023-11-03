@@ -1,0 +1,45 @@
+<odoo>
+
+    <record
+        id="inherit_view_project_scrum_product_backlog_form"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >inherit.view.project.scrum.product.backlog.form</field>
+        <field name="model">project.scrum.product.backlog</field>
+        <field
+            name="inherit_id"
+            ref="project_scrum_agile.view_project_scrum_product_backlog_form"
+        />
+        <field name="arch" type="xml">
+            <field name="effective_hours" position="after">
+                <field name="weightage" />
+            </field>
+            <field name="stage_id" position="after">
+                <field name="author_id_editable" invisible="1" />
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly': [('author_id_editable', '=', False)]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="inherit_view_project_scrum_sprint_form" model="ir.ui.view">
+        <field name="name">inherit.view.project.scrum.sprint.form</field>
+        <field name="model">project.scrum.sprint</field>
+        <field
+            name="inherit_id"
+            ref="project_scrum_agile.view_project_scrum_sprint_form"
+        />
+        <field name="arch" type="xml">
+            <field name="effective_velocity" position="after">
+                <field name="estimate_adjustment" />
+                <field name="weightage" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

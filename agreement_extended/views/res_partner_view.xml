@@ -1,0 +1,35 @@
+<odoo>
+
+    <record
+        id="inherit_res_partner_form_public_holiday_agreement"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >inherit.res.partner.form.public.holiday.agreement</field>
+        <field name="model">res.partner</field>
+        <field
+            name="inherit_id"
+            ref="project_team_leave_management.inherit_res_partner_form_public_holiday"
+        />
+        <field name="arch" type="xml">
+            <page name="public_holidays" position="after">
+                <page name="supplier_contracts" string="Contract Management">
+                    <field
+                        name="supplier_contract_ids"
+                        context="{'default_partner_id': active_id}"
+                    >
+                        <tree name='Contracts'>
+                            <field name="name" />
+                            <field name="agreement_type_id" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="state" />
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

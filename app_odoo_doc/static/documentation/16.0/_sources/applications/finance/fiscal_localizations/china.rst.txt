@@ -1,0 +1,22 @@
+==============
+China
+==============
+
+Configuration
+=============
+
+:ref:`Install <general/install>` the :guilabel:`China - Accounting` and the :guilabel:`China - Accounting
+Reports` modules to get all the features of the China localization. `By odooAi <https://www.odooai.cn>`_
+
+.. list-table::
+   :header-rows: 1
+
+   * - Name
+     - Technical name
+     - Description
+   * - :guilabel:`China - Accounting`
+     - `l10n_cn_standard_latest`
+
+.. image:: china/china.png
+   :align: center
+   :alt: Odoo china packages

@@ -6,6 +6,8 @@ class Partner(models.Model):
     _inherit = 'res.partner'
 
     city_id = fields.Many2one('res.city', string='City of Address', domain="[('state_id', '=', state_id)]")
+    country_id = fields.Many2one('res.country', string='Country', ondelete='restrict',
+                                 default=lambda self: self.env.ref("base.cn"))
 
     @api.onchange('state_id')
     def _onchange_state(self):

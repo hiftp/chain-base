@@ -1,0 +1,32 @@
+<odoo>
+    <!-- PROJECT SCRUM SANDBOX TO BACKLOG FORM VIEW -->
+    <record id="view_scrum_sandbox_to_backlog" model="ir.ui.view">
+        <field name="name">project.scrum.sandbox.to.backlog.form</field>
+        <field name="model">project.scrum.sandbox.to.backlog</field>
+        <field name="arch" type="xml">
+            <form string="Transfer to backlog">
+                <group>
+                    <field name="project_id" invisible="1"/>
+                    <field name="release_id" required='1' style="width:50%;" domain="[('project_id','=',project_id)]"/>
+                </group>
+                <footer>
+                    <button name="do_transfer" string="_Transfer" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- PROJECT SCRUM SANDBOX TO BACKLOG ACTION VIEW -->
+    <record id="action_tranfer_to_backlog" model="ir.actions.act_window">
+        <field name="name">Transfer to Backlog</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.scrum.sandbox.to.backlog</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_scrum_sandbox_to_backlog"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

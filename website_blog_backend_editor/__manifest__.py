@@ -15,8 +15,9 @@
         'views/website_blog.xml',
     ],
     'images': [
-        'static/description/images/screenshot-14-0.png',
-        'static/description/images/screenshot-14-1.png',
+        'static/description/images/screenshot-15-0.png',
+        'static/description/images/screenshot-15-1.png',
+        'static/description/images/screenshot-15-2.png',
         'static/description/banner.png'
     ],
     'license': 'LGPL-3',

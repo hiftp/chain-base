@@ -15,7 +15,7 @@ english and arabic lable,for both LTR and RTL
     'license': 'AGPL-3',
     'category': 'Extra Tools',
     'version': '13.0.0.0',
-    'depends': ['base','web','nati_arabic_font'],
+    'depends': ['base','web','xxz_chinese_font'],
     'qweb': [],
     'data': ['views/res_company.xml',
              'views/base_document_layout.xml',

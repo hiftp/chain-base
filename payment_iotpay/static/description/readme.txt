@@ -1,10 +1,10 @@
-IoTPayÖ§¸¶Íø¹Ø¼¯³ÉÏà¹Ø¼¼Êõ×ÊÁÏÈçÏÂ
+IoTPayÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-1) OdooÖ§¸¶Íø¹Ø¼¯³É¼¼Êõ²Î¿¼ https://erpsolutions.oodles.io/blog/payment-gateway-integration/
-2) IoTPayÖ§¸¶Íø¹Ø²Î¿¼ https://iotpay.ca/
-3) IoTPayÖ§¸¶Íø¹Ø¼¼Êõ²Î¿¼ https://develop.iotpay.ca/zh/interface-rule.html#java-code
-4) IoTPayÖ§¸¶Íø¹Ø²âÊÔÒ³Ãæ https://develop.iotpay.ca/newdemo/jsapi/demo.html
-5) IoTPayÖ§¸¶Íø¹Ø²âÊÔÕËºÅ
-       ÉÌ»§ID: 10001677
-       Ç°ÃæKey:kSA1DVy3V8FqB0pnVOkts85BwM0lMUkX
-       ×¢Òâ£¬²âÊÔÒ³ÃæÉÏ Job No²»ÒªÌîĞ´
+1) OdooÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½Î¿ï¿½ https://erpsolutions.oodles.io/blog/payment-gateway-integration/
+2) IoTPayÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø²Î¿ï¿½ https://iotpay.ca/
+3) IoTPayÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½Î¿ï¿½ https://develop.iotpay.ca/zh/interface-rule.html#java-code
+4) IoTPayÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ https://develop.iotpay.ca/newdemo/jsapi/demo.html
+5) IoTPayÖ§ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½Ëºï¿½
+       ï¿½Ì»ï¿½ID: 10001677
+       Ç°ï¿½ï¿½Key:kSA1DVy3V8FqB0pnVOkts85BwM0lMUkX
+       ×¢ï¿½â£¬ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ Job Noï¿½ï¿½Òªï¿½ï¿½Ğ´

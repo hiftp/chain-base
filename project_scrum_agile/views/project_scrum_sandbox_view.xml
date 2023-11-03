@@ -1,0 +1,90 @@
+<odoo>
+
+    <!-- SANDBOX TREE VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_sandbox_tree">
+        <field name="model">project.scrum.sandbox</field>
+        <field name="name">view.project.scrum.sandbox.tree</field>
+        <field name="arch" type="xml">
+            <tree string="Sandbox" editable="top">
+                <field name="role_id"/>
+                <field name="name"/>
+                <field name="for_then"/>
+                <field name="project_id"/>
+                <field name="developer_id"/>
+                <field name="create_date" readonly="1"/>
+                <field name="meeting_id"
+                       domain="[('project_id','=',project_id)]"
+                       context="{'default_project_id':project_id}"/>
+                <button name="%(action_tranfer_to_backlog)d"
+                        type="action" icon="fa-paper-plane" title="send"
+                        groups="project_scrum_agile.group_scrum_owner"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- SANDBOX FORM VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_sandbox_form">
+        <field name="model">project.scrum.sandbox</field>
+        <field name="name">view.project.scrum.sandbox.form</field>
+        <field name="arch" type="xml">
+            <form string="Sandbox">
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="role_id"/>
+                        <field name="for_then"/>
+                    </group>
+                    <group>
+                        <field name="project_id"/>
+                        <field name="developer_id"/>
+                        <field name="create_date" readonly="1"/>
+                        <field name="meeting_id"
+                                domain="[('project_id', '=', project_id)]"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- SANDBOX SEARCH VIEW -->
+    <record id="view_project_scrum_sandbox_search" model="ir.ui.view">
+        <field name="name">project.scrum.sandbox.search</field>
+        <field name="model">project.scrum.sandbox</field>
+        <field name="arch" type="xml">
+            <search string="Search in sandbox">
+                <field name="developer_id"/>
+                <field name="role_id"/>
+                <field name="name" string="Wants or stops"
+                       filter_domain="['|',('name','ilike',self), ('for_then','ilike',self)]"/>
+                <field name="project_id"/>
+                <field name="create_date"/>
+                <field name="meeting_id"/>
+                <group expand="0" string="Group by...">
+                    <filter string="Author" name="Author"
+                            context="{'group_by': 'developer_id'}"/>
+                    <filter string="Who" name="Who" context="{'group_by': 'role_id'}"/>
+                    <filter string="Project" name="Project"
+                            context="{'group_by': 'project_id'}"/>
+                    <filter string="Creation date" name="Creation date"
+                            context="{'group_by': 'create_date'}"/>
+                    <filter string="Meeting" name="Meeting"
+                            context="{'group_by': 'meeting_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- SANDBOX ACTION VIEW -->
+    <record model="ir.actions.act_window" id="action_project_scrum_sandbox">
+        <field name="name">Sandbox</field>
+        <field name="res_model">project.scrum.sandbox</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- SANDBOX MENU -->
+    <menuitem action="action_project_scrum_sandbox"
+              id="menu_action_project_scrum_sandbox"
+              parent="project_scrum_agile.menu_scrum" name="Sandbox"
+              sequence="8"/>
+
+</odoo>

@@ -1,0 +1,939 @@
+<odoo>
+
+    <menuitem id="menu_scrum" name="Scrum" parent="project.menu_main_pm"
+              sequence="3"/>
+
+    <!-- CALANDER EVENT FORM INHERIT -->
+    <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+        <field name="name">calendar.event.form.inherit</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button string="New" type="object" name="set_new"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('status','not in',['canceled'])]}"/>
+                    <button string="Confirm" type="object" name="set_confirm"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('status','not in',['new'])]}"/>
+                    <button string="Validate" type="object" name="set_validate"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('status','not in',['confirm'])]}"/>
+                    <button string="Cancel" type="object" name="set_cancel"
+                            attrs="{'invisible': [('status','not in',['new','confirm','performed'])]}"/>
+                    <field name="status" widget="statusbar"
+                           statusbar_visible="new,confirm,performed,canceled"/>
+                </header>
+            </xpath>
+            <field name="location" position="after">
+                <field name="project_id"/>
+                <field name="scrum_meeting_id"
+                       attrs="{'invisible': [('scrum_meeting_id','=',False)]}"/>
+                <button string="Create Sprint Minutes" type="object"
+                        name="to_extend_sprint"
+                        attrs="{'invisible': [('scrum_meeting_id','!=',False)]}"/>
+            </field>
+            <field name="start_date" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('allday','=',True)],'invisible':[('allday','=',False)]}
+                </attribute>
+            </field>
+            <field name="stop_date" position="attributes">
+                <attribute name="attrs">
+                    {'required':[('allday','=',True)],'invisible':[('allday','=',False)]}
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- PRODUCT BACKLOG KANBAN -->
+    <record model="ir.ui.view" id="view_project_scrum_product_backlog_kanban">
+        <field name="name">view.project.scrum.product.backlog.kanban</field>
+        <field name="model">project.scrum.product.backlog</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id"
+                    class="o_kanban_small_column o_kanban_project_task">
+                <field name="state"
+                       options='{"group_by_tooltip": {"requirements": "Description", "legend_priority": "Use of stars"}}'/>
+                <field name="color"/>
+                <field name="sequence"/>
+                <field name="priority"/>
+                <field name="name"/>
+                <field name="stage_id"/>
+                <field name="open"/>
+                <field name="role_job_id"/>
+                <field name="role_id"/>
+                <field name="expected_hours" sum="Estimated time" widget="timesheet_uom_no_toggle"/>
+                <field name="effective_hours" sum="Time Used" widget="timesheet_uom_no_toggle"/>
+                <field name="complexity" sum="Story Points"/>
+                <field name="value_to_user" sum="User Value"/>
+                <field name="user_id"/>
+                <field name="responsible_id"/>
+                <templates attrs="{'invisible':[('state', '=', 'done')]}">
+                    <t t-name="kanban-box">
+                        <t t-set="record.group_fancy" t-value="1"/>
+                        <div
+                                t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                            <div class="o_dropdown_kanban dropdown"
+                                 groups="base.group_user">
+                                <a class="dropdown-toggle btn"
+                                   data-toggle="dropdown" href="#" role="button">
+                                    <span class="fa fa-bars fa-lg" title="bars"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu"
+                                    aria-labelledby="dLabel">
+                                    <t t-if="widget.editable">
+                                        <li style="padding: 3px 15px 3px 20px;">
+                                            <a type="edit">Edit Backlog</a>
+                                        </li>
+                                    </t>
+                                    <t t-if="widget.deletable">
+                                        <li style="padding: 3px 15px 3px 20px;">
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                    </t>
+                                    <li>
+                                        <ul class="oe_kanban_colorpicker"
+                                            data-field="color"/>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_content">
+                                <div>
+                                    <b>
+                                        [
+                                        <field name="role_id"/>
+                                        ]
+                                    </b>
+                                    <field name="name"/>
+                                </div>
+                                <div>
+                                    <div t-attf-class="oe_kanban_global_click_edit oe_semantic_html_override">
+                                        <field name="for_then"/>
+                                    </div>
+                                    <div>
+                                        <b>Project:</b>
+                                        <font color="blue">
+                                            <field name="project_id"/>
+                                        </font>
+                                    </div>
+                                    <div>
+                                        <field name="categ_ids"/>
+                                    </div>
+                                    <div class="oe_clear"></div>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <img
+                                            t-att-src="kanban_image('res.users', 'image_small', record.responsible_id.raw_value)"
+                                            t-att-title="record.responsible_id.value"
+                                            width="24" height="24"
+                                            class="oe_kanban_avatar" alt='Image'/>
+                                </div>
+                                <div class="oe_kanban_footer_left">
+                                    <field name="priority" widget="priority"/>
+                                    <span title="Remaining hours">
+                                        <span class="fa fa-clock-o" title="Clock"/>
+                                        <t t-esc="Math.round(record.expected_hours.raw_value)"/>
+                                        <span class="fa fa-hourglass" title="Hourglass"/>
+                                        <t t-esc="Math.round(record.effective_hours.raw_value)"/>
+                                        <span class="fa fa-bolt" title="bolt"/>
+                                        <t t-esc="Math.round(record.complexity.raw_value)"/>
+                                        <span class="fa fa-trophy" title="trophy"/>
+                                        <t t-esc="Math.round(record.value_to_user.raw_value)"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- PRODUCT BACKLOG TREE -->
+    <record model="ir.ui.view" id="view_project_scrum_product_backlog_tree">
+        <field name="model">project.scrum.product.backlog</field>
+        <field name="name">view.project.scrum.product.backlog.tree</field>
+        <field name="arch" type="xml">
+            <tree string="Product Backlog">
+                <field name="backlog_number"/>
+                <field name="sequence" invisible="True"/>
+                <field name="priority" widget="priority"/>
+                <field name="name"/>
+                <field name="role_job_id"/>
+                <field name="role_id"/>
+                <field name="user_id"/>
+                <field name="responsible_id"/>
+                <field name="sprint_id"/>
+                <field name="release_id"/>
+                <field name="project_id"/>
+                <field name="asked_date"/>
+                <field name="state" invisible="True"/>
+                <field name="stage_id"/>
+                <field name="categ_ids" invisible="1"/>
+                <field name="expected_hours" sum="Estimated time" widget="timesheet_uom_no_toggle"/>
+                <field name="effective_hours" sum="Time Used" widget="timesheet_uom_no_toggle"/>
+                <field name="complexity" sum="Story Points"/>
+                <field name="value_to_user" sum="User Value"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- PRODUCT BACKLOG FORM -->
+    <record model="ir.ui.view" id="view_project_scrum_product_backlog_form">
+        <field name="model">project.scrum.product.backlog</field>
+        <field name="name">view.project.scrum.product.backlog.form</field>
+        <field name="arch" type="xml">
+            <form string="Product Backlog"
+                  class="o_form_project_tasks">
+                <header>
+                    <button type="object" string="Open" name="button_open"
+                            groups="project_scrum_agile.group_scrum_owner,project_scrum_agile.group_scrum_master"
+                            attrs="{'invisible': [('backlog_stage_state', 'not in', ['new', 'design', 'analysis', 'specification', 'development', 'testing'] )]}"
+                    />
+                    <button type="object" string="Cancel" name="button_cancel"
+                            groups="project_scrum_agile.group_scrum_owner,project_scrum_agile.group_scrum_master"
+                            attrs="{'invisible': [('backlog_stage_state', 'not in', ['in_progress', 'pending'] )]}"
+                    />
+                    <button type="object" string="End up" name="button_close"
+                            groups="project_scrum_agile.group_scrum_owner,project_scrum_agile.group_scrum_master"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('backlog_stage_state', 'not in', ['in_progress', 'pending'] )]}"/>
+                    <button type="object" string="Reactivate"
+                            name="button_reactivate"
+                            groups="project_scrum_agile.group_scrum_owner,project_scrum_agile.group_scrum_master"
+                            attrs="{'invisible': [('backlog_stage_state', 'not in', ['cancelled', 'done'] )]}"/>
+                    <field name="state" invisible="1"/>
+                    <field name="stage_id" widget="statusbar"
+                           clickable="1"
+                           options="{'fold_field': 'fold'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="backlog_number" readonly="1"/>
+                        </h1>
+                        <h1>
+                            <field name="name" nolabel="1"
+                                   required="1"/>
+                        </h1>
+                    </div>
+                    <label for="categ_ids" class="oe_edit_only"/>
+                    <field name="categ_ids" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="priority" widget="priority"/>
+                            <field name="project_id"
+                                   domain="[('is_scrum', '=', True)]"
+                                   required="1"/>
+                            <field name="release_id"
+                                   domain="[('project_id', '=', project_id)]"/>
+                            <field name="sprint_id"
+                                   domain="[('release_id', '=', release_id)]"/>
+                            <field name="user_id"/>
+                            <field name="responsible_id"/>
+                            <field name="asked_date"/>
+                        </group>
+                        <group>
+                            <field name="backlog_stage_state" invisible="1"/>
+                            <field name="role_job_id"/>
+                            <field name="role_id"/>
+                            <field name="date_open"/>
+                            <field name="date_done"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="description"/>
+                            <field name="for_then"/>
+                            <field name="acceptance_testing"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="General" col="4">
+                            <group col="4">
+                                <field name="complexity"
+                                       string="Story Points"/>
+                                <field name="expected_hours" widget="timesheet_uom_no_toggle"/>
+                                <field name="value_to_user"/>
+                                <field name="task_hours" widget="timesheet_uom_no_toggle"/>
+                                <field name="sequence"/>
+                                <field name="effective_hours" widget="timesheet_uom_no_toggle"/>
+                                <field name="progress" widget="progressbar"
+                                       class="oe_subtotal_footer_separator oe_inline"/>
+                            </group>
+                        </page>
+                        <page string="Tasks">
+                            <field colspan="4" name="tasks_id" nolabel="1"
+                                   widget="one2many_list"
+                                   context="{'default_project_id':project_id, 'default_product_backlog_id':active_id}">
+                                <tree string="Tasks">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="user_ids"/>
+                                    <field name="planned_hours" widget="timesheet_uom_no_toggle"/>
+                                    <field name="effective_hours" widget="timesheet_uom_no_toggle"/>
+                                    <field name="remaining_hours" widget="timesheet_uom_no_toggle"/>
+                                    <!-- <field name="total_hours"/> -->
+                                    <field name="date_deadline"/>
+                                    <field name="stage_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Note">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                           groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- PRODUCT BACKLOG SEARCH -->
+    <record id="view_project_scrum_product_backlog_search" model="ir.ui.view">
+        <field name="name">project.scrum.product.backlog.search</field>
+        <field name="model">project.scrum.product.backlog</field>
+        <field name="arch" type="xml">
+            <search string="Search Stories">
+                <field name="name" string="Name or Number"
+                       filter_domain="['|','|',('name','ilike',self), ('for_then','ilike',self), ('backlog_number', 'ilike', self)]"/>
+                <field name="description"
+                       string="Description of Aceptance Testing"
+                       filter_domain="['|',('acceptance_testing', 'ilike', self), ('description', 'ilike', self)]"/>
+                <field name="user_id" string="Creator by user"
+                       domain="[('user_id','=',uid)]"/>
+                <field name="responsible_id" string="Responsible"
+                       filter_domain="[('responsible_id','ilike',self)]"/>
+                <field name="role_id" string="Listener"
+                       filter_domain="[('role_id','ilike',self)]"/>
+                <filter name="draft" string="Draft"
+                        domain="[('state','=','draft')]"/>
+                <filter name="open" string="Open"
+                        domain="[('state','=','open')]"/>
+                <filter name="pending" string="Pending"
+                        domain="[('state','=','pending')]"/>
+                <filter name="done" string="Finished"
+                        domain="[('state','=','done')]"/>
+                <filter name="cancel" string="Canceled"
+                        domain="[('state','=','cancel')]"/>
+                <separator/>
+                <field name="project_id" string="Project"/>
+                <field name="release_id" string="Release"/>
+                <field name="sprint_id" string="Sprint"/>
+                <separator/>
+                <filter string="Deferred Priority" name="deferred_priority" domain="[('priority', '=', 0)]"/>
+                <filter string="Low Priority" name="low_priority" domain="[('priority', '=', 1)]"/>
+                <filter string="Medium Priority" name="medium_priority" domain="[('priority', '=', 2)]"/>
+                <filter string="High Priority" name="high_priority" domain="[('priority', '=', 3)]"/>
+                <filter string="Critical Priority" name="critical_priority" domain="[('priority', '=', 4)]"/>
+                <filter string="Blocker Priority" name="blocker_priority" domain="[('priority', '=', 5)]"/>
+                <separator/>
+                <filter domain="[('user_id','=',uid)]" name= "created_by_me" help="Created by me"
+                        icon="terp-personal"/>
+                <field name="categ_ids"/>
+                <group expand="0" string="Group by...">
+                    <filter string="State" name="group_by_state" domain="[]"
+                            context="{'group_by':'state'}"/>
+                    <filter string="Listener" name="group_by_role"
+                            domain="[]"
+                            context="{'group_by':'role_id'}"/>
+                    <filter string="Created by" name="group_by_user_id"
+                            domain="[]"
+                            context="{'group_by':'user_id'}"/>
+                    <filter string="Responsible" name="group_by_responsible_id"
+                            domain="[]"
+                            context="{'group_by':'responsible_id'}"/>
+                    <filter string="Project" domain="[]" name="group_by_project_id"
+                            context="{'group_by':'project_id'}"/>
+                    <filter string="Release" domain="[]" name="group_by_release_id"
+                            context="{'group_by':'release_id'}"/>
+                    <filter string="Sprint" domain="[]" name="group_by_sprint_id"
+                            context="{'group_by':'sprint_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- PRODUCT BACKLOG ACTION -->
+    <record model="ir.actions.act_window"
+            id="action_project_scrum_product_backlog">
+        <field name="name">Product Backlog</field>
+        <field name="res_model">project.scrum.product.backlog</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{}</field>
+        <field name="search_view_id"
+               ref="view_project_scrum_product_backlog_search"/>
+    </record>
+
+    <!-- PRODUCT BACKLOG MENU -->
+    <menuitem action="action_project_scrum_product_backlog"
+              id="menu_action_project_scrum_product_backlog"
+              parent="project_scrum_agile.menu_scrum" name="Product Backlog"
+              sequence="4"/>
+
+    <!-- PROJECT SCRUM BURNDOWN LOG SEARCH -->
+    <record id="view_project_burndown_graph_search" model="ir.ui.view">
+        <field name="name">project.scrum.sprint.burndown.log.search</field>
+        <field name="model">project.scrum.sprint.burndown.log</field>
+        <field name="arch" type="xml">
+            <search string="Burndownchart">
+                <field name="sprint_id"/>
+                <field name="date"/>
+                <field name="remaining_hours"/>
+                <field name="remaining_points"/>
+                <field name="real_data"/>
+                <field name="date_day"/>
+                <group expand="0" string="Group by...">
+                    <filter string="Sprint" name="group_by_sprint_id"
+                            context="{'group_by': 'sprint_id'}"/>
+                    <filter string="Date" context="{'group_by': 'date'}" name="group_by_date"/>
+                    <filter string="Day" context="{'group_by': 'date_day'}" name="group_by_date_day"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- BURNDOWNCHART HOURS GRAPH -->
+    <record id="view_project_burndown_graph_hours" model="ir.ui.view">
+        <field name="name">project.scrum.sprint.burndown.log.graph</field>
+        <field name="model">project.scrum.sprint.burndown.log</field>
+        <field name="arch" type="xml">
+            <graph string="BurndownchartHours" stacked="True">
+                <field name="date_day" type="row"/>
+                <field name="remaining_hours" type="measure" operator="+"/>
+                <field name="remaining_points" type="measure" operator="+"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ACTION BURNDOWNCHART HOURS LOG -->
+    <record model="ir.actions.act_window"
+            id="action_project_scrum_burndownchart_hours1">
+        <field name="name">Burndownchart Hours</field>
+        <field name="res_model">project.scrum.sprint.burndown.log</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_project_burndown_graph_hours"/>
+        <field name="context"
+               eval="'{\'search_default_sprint_id\': [active_id]}'"/>
+    </record>
+
+    <!-- BURNDOWNCHART POINTS GRAPH -->
+    <record id="view_project_burndown_graph_points" model="ir.ui.view">
+        <field name="name">project.scrum.sprint.burndown.log.graph</field>
+        <field name="model">project.scrum.sprint.burndown.log</field>
+        <field name="arch" type="xml">
+            <graph string="BurndownchartPoints" type="bar">
+                <field name="date" type="row"/>
+                <field name="remaining_points" type="measure" operator="+"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- ACTION BURNDOWNCHART POINTS -->
+    <record model="ir.actions.act_window"
+            id="action_project_scrum_burndownchart_points1">
+        <field name="name">Burndownchart Points</field>
+        <field name="res_model">project.scrum.sprint.burndown.log</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_project_burndown_graph_points"/>
+        <field name="context"
+               eval="'{\'search_default_sprint_id\': [active_id]}'"/>
+    </record>
+
+    <!-- MEETING CALENDAR -->
+    <record model="ir.ui.view" id="view_project_scrum_meeting_calendar">
+        <field name="name">view.project.scrum.meeting.calendar</field>
+        <field name="model">project.scrum.meeting</field>
+        <field name="arch" type="xml">
+            <calendar string="Scrum Meeting" date_start="start_date"
+                      color="user_id">
+                <field name="sprint_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- MEETING SEARCH -->
+    <record id="view_project_scrum_search" model="ir.ui.view">
+        <field name="name">project.scrum.meeting.search</field>
+        <field name="model">project.scrum.meeting</field>
+        <field name="arch" type="xml">
+            <search string="Search Meeting Sprint">
+                <field name="name"/>
+                <field name="project_id"/>
+                <field name="sprint_id"/>
+                <field name="start_date"/>
+                <field name="status"/>
+                <filter string="New" domain="[('status','=','new')]" name="group_by_status_new"/>
+                <filter string="Confirm" domain="[('status','=','confirm')]" name="group_by_status_confirm"/>
+                <filter string="Canceled"
+                        domain="[('status','=','canceled')]" name="group_by_status_canceled"/>
+                <filter string="Performed"
+                        domain="[('status','=','performed')]" name="group_by_status_performed"/>
+                <group expand="0" string="Group by...">
+                    <filter string="Status" context="{'group_by': 'status'}" name="group_by_status"/>
+                    <filter string="Project"
+                            context="{'group_by': 'project_id'}" name="group_by_project_id"/>
+                    <filter string="Sprint"
+                            context="{'group_by': 'sprint_id'}" name="group_by_sprint_id"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- MEETING TREE -->
+    <record model="ir.ui.view" id="view_scrum_meeting_tree">
+        <field name="name">view.project.scrum.meeting.tree</field>
+        <field name="model">project.scrum.meeting</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Meetings">
+                <field name="name"/>
+                <field name="start" string="Start Date"/>
+                <field name="project_id"/>
+                <field name="sprint_id"/>
+                <field name="user_id"/>
+                <field name="partner_ids"/>
+                <field name="status"/>
+<!--                <field name="state" invisible="True"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!-- MEETING FORM -->
+    <record model="ir.ui.view" id="view_project_scrum_meeting_form">
+        <field name="name">view.project.scrum.meeting.form</field>
+        <field name="model">project.scrum.meeting</field>
+        <field name="arch" type="xml">
+            <form string="Meeting Sprint">
+                <header>
+                   <!--  <button string='Button' type='object' name='set_button'/> -->
+                    <button string="New" type="object" name="set_new"
+                            attrs="{'invisible': [('status','not in',['canceled'])]}"/>
+                    <button string="Confirm" type="object" name="set_confirm"
+                            attrs="{'invisible': [('status','not in',['new'])]}"/>
+                    <button string="Validate" type="object" name="set_validate"
+                            attrs="{'invisible': [('status','not in',['confirm'])]}"/>
+                    <button string="Cancel" type="object" name="set_cancel"
+                            attrs="{'invisible': [('status','not in',['new','confirm','performed'])]}"/>
+
+                    <button string="Product Owner" type="object"
+                            name="send_email"
+                            context="{'type':'owner'}" icon="fa-paper-plane"/>
+                    <button string="Master" type="object" name="send_email"
+                            context="{'type':'master'}" icon="fa-paper-plane"/>
+                    <field name="status" widget="statusbar"
+                           statusbar_visible="new,confirm"
+                           statusbar_colors='{"confirmed":"blue","validated":"green","cancelled":"red","refused":"red"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name"/>
+                        </div>
+                        <h1>
+                            <field name="name" required="1"/>
+                        </h1>
+                        <label for="partner_ids" class="oe_edit_only"/>
+                        <h2>
+                            <field name="partner_ids" widget="many2many_tags"
+                                   context="{'force_email':True}"/>
+                        </h2>
+                    </div>
+                    <notebook>
+                        <page string="Reunion Summary">
+                            <group>
+                                <field name="project_id" required="True"
+                                       domain="[('is_scrum', '=', True)]"/>
+                                <field name="sprint_id"
+                                       domain="['|',('state','in', ['open', 'pending']),('project_id','=',project_id)]"/>
+                            </group>
+                            <separator colspan="4"
+                                       string="What happened during the meeting?"/>
+                            <field colspan="4" name="what_we_did" nolabel="1"/>
+                            <separator colspan="4"
+                                       string="What was done since the last meeting?"/>
+                            <field colspan="4" name="question_yesterday"
+                                   nolabel="1"/>
+                            <separator colspan="4"
+                                       string="What is planned until the next meeting?"/>
+                            <field colspan="4" name="question_today"
+                                   nolabel="1"/>
+                            <separator colspan="4"
+                                       string="There is something that is blocking?"/>
+                            <field colspan="4" name="question_blocks"
+                                   nolabel="1"/>
+                            <separator colspan="4" string=""/>
+                        </page>
+                        <page string="Details Reunion">
+                            <group>
+                                <group>
+                                    <field name="allday" invisible="True"/>
+                                    <field name="duration" invisible="True"/>
+                                    <field name="start_date" string="Starts"
+                                           attrs="{'invisible': [('allday','=',False)],'required': [('allday','=',True)]}"/>
+                                    <field name="start" groups="base.group_no_one"
+                                           attrs="{'invisible': [('allday','=',True)]}"/>
+                                    <field name="stop_date" groups="base.group_no_one"
+                                           attrs="{'invisible': [('allday','=',False)],'required': [('allday','=',True)]}"/>
+                                    <field name="stop" groups="base.group_no_one"
+                                           attrs="{'invisible': [('allday','=',True)]}"/>
+                                    <field name="duration" widget="float_time"
+                                           class="oe_inline" attrs="{'invisible': [('allday','=',True)]}"/>
+                                    <field name="allday" class="oe_inline"/>
+                                </group>
+                                <group>
+                                    <field name="user_id"/>
+                                    <field name="categ_ids"
+                                           widget="many2many_tags"/>
+                                    <field name="location"/>
+                                </group>
+                            </group>
+                            <label for="description"/>
+                            <field name="description"/>
+                        </page>
+                        <page string="Sandbox">
+                            <field name="sandbox_ids"
+                                   context="{'default_project_id':project_id}">
+                                <tree string="Sandbox" editable="top">
+                                    <field name="role_id"/>
+                                    <field name="name"/>
+                                    <field name="for_then"/>
+                                    <field name="project_id" invisible="True"/>
+                                    <field name="developer_id"
+                                           invisible="True"/>
+                                    <field name="create_date"
+                                           invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- MEETING ACTION -->
+    <record model="ir.actions.act_window" id="action_meeting_form">
+        <field name="name">Scrum Meeting</field>
+        <field name="res_model">project.scrum.meeting</field>
+        <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <!-- MEETING MENU -->
+    <menuitem sequence="30" action="action_meeting_form"
+              id="menu_action_meeting_form"
+              name="Scrum Meeting" parent="menu_scrum"/>
+
+    <!-- SPRINT SEARCH -->
+    <record id="view_sprint_filter" model="ir.ui.view">
+        <field name="name">project.scrum.sprint.search</field>
+        <field name="model">project.scrum.sprint</field>
+        <field name="arch" type="xml">
+            <search string="Search Release">
+                <field name="name" string="Name or Number or Goal"
+                       filter_domain="['|','|',('name','ilike',self), ('goal','ilike',self), ('sprint_number','ilike',self)]"/>
+                <field name="review" string="Descripcion"
+                       filter_domain="[('review','ilike',self)]"/>
+                <field name="date_start" string="Start"/>
+                <field name="date_stop" string="Final"/>
+                <field name="product_owner_id" string="Owner"/>
+                <field name="scrum_master_id" string="Scrum Master"/>
+                <field name="project_id" string="Project"/>
+                <field name="release_id" string="Release"/>
+                <group expand="0" string="Group by...">
+                    <filter string="Start" name="group_by_start" domain="[]"
+                            context="{'group_by':'date_start'}"/>
+                    <filter string="Final" name="group_by_end" domain="[]"
+                            context="{'group_by':'date_stop'}"/>
+                    <separator/>
+                    <filter string="Project" name="group_by_project"
+                            domain="[]"
+                            context="{'group_by':'project_id'}"/>
+                    <filter string="Release" name="group_by_release"
+                            domain="[]"
+                            context="{'group_by':'release_id'}"/>
+                    <filter string="Owner Project" name="group_by_release"
+                            domain="[]"
+                            context="{'group_by':'product_owner_id'}"/>
+                    <filter string="Scrum Master" name="group_by_release"
+                            domain="[]"
+                            context="{'group_by':'scrum_master_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- SPRINT TREE VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_sprint_tree">
+        <field name="name">view.project.scrum.sprint.tree</field>
+        <field name="model">project.scrum.sprint</field>
+        <field name="arch" type="xml">
+            <tree string="Sprint">
+                <field name="sprint_number"/>
+                <field name="name"/>
+                <field name="release_id"/>
+                <field name="project_id"/>
+                <field name="scrum_master_id"/>
+                <field name="product_owner_id"/>
+                <field name="date_start"/>
+                <field name="date_stop"/>
+                <field name="effective_velocity"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- SPRINT FORM VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_sprint_form">
+        <field name="name">view.project.scrum.sprint.form</field>
+        <field name="model">project.scrum.sprint</field>
+        <field name="arch" type="xml">
+            <form string="Sprint">
+                <header>
+                    <button type="object" string="Open" name="button_open"
+                            states="draft,pending"/>
+                    <button type="object" string="Pending"
+                            name="button_pending"
+                            states="open"/>
+                    <button type="object" string="Set to Draft"
+                            name="button_draft" states="done,cancel"/>
+                    <button type="object" string="Cancel"
+                            name="button_cancel" states="open,pending"/>
+                    <button type="object" string="Close" name="button_close"
+                            states="open,pending"/>
+                    <button
+                            name="%(project_scrum_agile.action_project_scrum_burndownchart_hours1)d"
+                            string="Burndownchart Hours" type="action"
+                            icon="fa-clock-o"/>
+                    <button
+                            name="%(project_scrum_agile.action_project_scrum_burndownchart_points1)d"
+                            string="Burndownchart Points" type="action"
+                            icon="fa-line-chart"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                name="%(project_scrum_agile.action_meeting_form)d"
+                                type="action"
+                                context="{'search_default_sprint_id': id,'default_project_id':project_id,'default_sprint_id': id}"
+                                icon="fa-calendar">
+                            <field string="Meetings" name="meeting_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+                    <h1>
+                        <field name="sprint_number"/>
+                    </h1>
+                    <group col="4" colspan="4">
+                        <field name="name" required="1"/>
+                        <field name="goal"/>
+                        <field name="date_start" required="1"/>
+                        <field name="date_stop" required="1"/>
+                        <field name="project_id"
+                               domain="[('is_scrum', '=', True)]"/>
+                        <field name="release_id"
+                               domain="[('project_id', '=', project_id)]"
+                               context="{'default_project_id':project_id}"
+                               required="1"/>
+                        <field name="product_owner_id"/>
+                        <field name="scrum_master_id"/>
+                        <field name="progress" widget="progressbar"/>
+                        <field name="effective_hours" widget="timesheet_uom_no_toggle"/>
+                        <field name="expected_hours" widget="timesheet_uom_no_toggle"/>
+                    </group>
+                    <notebook>
+                        <page string="General">
+                            <group string="Velocity">
+                                <field name="effective_velocity"/>
+                            </group>
+                        </page>
+                        <page string="Product Backlog">
+                            <field name="product_backlog_ids"
+                                   context="{'default_project_id':project_id, 'default_product_backlog_id':active_id,
+                                   'default_release_id':release_id,'default_sprint_id':active_id,}">
+                                <tree string="Stories">
+                                    <field name="sequence"/>
+                                    <field name="role_job_id"/>
+                                    <field name="role_id"/>
+                                    <field name="name"/>
+                                    <field name="responsible_id"/>
+                                    <field name="task_hours"
+                                           sum="Total Planned Hours Tasks" widget="timesheet_uom_no_toggle"/>
+                                    <field name="effective_hours"
+                                           sum="Total Hours Effective" widget="timesheet_uom_no_toggle"/>
+                                    <field name="complexity"
+                                           sum="Total Story Points"/>
+                                    <field name="value_to_user"
+                                           sum="Total User Value"/>
+                                    <field name="state" invisible="True"/>
+                                    <field name="stage_id"/>
+                                    <field name="progress"
+                                           widget="progressbar"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Sprint Review">
+                            <field name="review"/>
+                        </page>
+                        <page string="Retrospective">
+                            <group string="Start to do">
+                                <field name="retrospective_start_to_do"
+                                       nolabel="1"/>
+                            </group>
+                            <group string="Continue to do">
+                                <field name="retrospective_continue_to_do"
+                                       nolabel="1"/>
+                            </group>
+                            <group string="Stop to do">
+                                <field name="retrospective_stop_to_do"
+                                       nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Burndownchart Info">
+                            <br/>
+                            <button type="object" string="Calculate"
+                                    name="update_burndownchart"
+                                    icon="fa-cogs"/>
+                            <br/>
+                            <br/>
+                            <field name="burndown_ids">
+                                <tree string="Burndownchart Info"
+                                      editable="bottom">
+                                    <field name="date"/>
+                                    <field name="remaining_hours"/>
+                                    <field name="remaining_points"/>
+                                    <field name="real_data"/>
+                                    <field name="date_day" readonly="1"
+                                           invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                           groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- SPRINT CALENDAR VIEW -->
+    <record model="ir.ui.view" id="view_project_scrum_sprint_calendar">
+        <field name="name">project.scrum.sprint.calendar</field>
+        <field name="model">project.scrum.sprint</field>
+        <field name="arch" type="xml">
+            <calendar color="project_id" date_start="date_start"
+                      date_stop="date_stop" string="Event" quick_add="false">
+                <field name="name"/>
+                <field name="project_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- SPRINT PIVOT VIEW -->
+    <record id="view_project_scrum_sprint_gantt" model="ir.ui.view">
+        <field name="name">project.scrum.sprint.gantt</field>
+        <field name="model">project.scrum.sprint</field>
+        <field eval="2" name="priority"/>
+        <field name="arch" type="xml">
+            <pivot string="Sprints">
+            </pivot>
+        </field>
+    </record>
+
+    <!-- SPRINT ACTION VIEW -->
+    <record model="ir.actions.act_window" id="action_project_scrum_sprint">
+        <field name="name">Sprint</field>
+        <field name="res_model">project.scrum.sprint</field>
+        <field name="view_mode">tree,form,calendar,pivot</field>
+    </record>
+
+    <!-- SPRINT MENU -->
+    <menuitem action="action_project_scrum_sprint"
+              id="menu_action_project_scrum_sprint"
+              parent="menu_scrum" name="Sprints"
+              sequence="1"
+    />
+
+
+    <!-- TASKS INHERIT FORM -->
+    <record id="view_scrum_task_form" model="ir.ui.view">
+        <field name="name">project.task.scrum.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="partner_phone" position="after">
+                <field name="product_backlog_id"
+                       domain="[('project_id','=',project_id),]"/>
+                <field name="type" widget="radio"
+                       invisible="context.get('incidents')"/>
+                <field name="sprint_id" readonly="1"/>
+                <field name="release_id"/>
+            </field>
+            <notebook position="inside">
+                <page string="Incidents"
+                      attrs="{'invisible': [('type','=','issue')]}">
+                    <field name="incidents" nolabel="1"
+                           context="{'default_type': 'issue', 'incidents': True}">
+                        <tree string="Task">
+                            <field name="name"/>
+                            <field name="project_id"/>
+                            <field name="task_id"/>
+                            <field name="progress" widget="progressbar"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+            <field name="user_ids" position="after">
+                <field name="creator_id" string="Creator By"/>
+                <field name="email"/>
+                <field name="partner_ids" widget="many2many_tags"
+                       placeholder="Add contacts to notify..."/>
+            </field>
+            <field name="name" position="replace">
+                <div class="oe_title" colspan="4">
+                    <h1>
+                        <field name="task_number" readonly="1"
+                               string="Task Number"/>
+                    </h1>
+                    <h1>
+                        <field name="name" colspan="4" nolabel="1"/>
+                    </h1>
+                </div>
+            </field>
+        </field>
+    </record>
+
+    <!-- TASK INHERIT TREE -->
+    <record id="view_task_tree2_extended" model="ir.ui.view">
+        <field name="name">project.task.tree.extended</field>
+        <field name="model">project.task</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="sequence" invisible="True"/>
+                <field name="task_number"/>
+                <field name="create_date" string="Creation"/>
+            </field>
+            <field name="name" position="after">
+                <field name="write_date" string="Modified"/>
+                <field name="date_deadline" string="Limit"/>
+                <field name="date_end" string="Finalized"/>
+                <field name="product_backlog_id" string="Request"/>
+                <field name="sprint_id" string="Sprint"/>
+                <field name="release_id" string="Release"/>
+                <field name="project_id" string="Project"/>
+                <field name="creator_id" string="Creator By"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

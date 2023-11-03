@@ -1,0 +1,47 @@
+<odoo>
+
+    <!-- BACKLOG CREATE TASK FORM VIEW -->
+    <record id="view_scrum_backlog_to_task" model="ir.ui.view">
+        <field name="name">project.scrum.backlog.create.task.form</field>
+        <field name="model">project.scrum.backlog.create.task</field>
+        <field name="arch" type="xml">
+            <form string="Convert to Task">
+                <separator string="Convert to Task" colspan="4"/>
+                <group>
+                    <group>
+                        <field name="user_id"/>
+                    </group>
+                </group>
+                <separator colspan="4"/>
+                <footer>
+                    <button name="do_create" string="_Convert" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- BACKLOG CREATE ACTION VIEW -->
+    <record id="action_convert_to_task" model="ir.actions.act_window">
+        <field name="name">Convert into Tasks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.scrum.backlog.create.task</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_scrum_backlog_to_task"/>
+        <field name="target">new</field>
+    </record>
+    <record id="action_scrum_backlog_values" model="ir.actions.act_window">
+        <field name="name">Convert Into Tasks</field>
+        <field name="res_model">project.scrum.backlog.create.task</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_scrum_backlog_to_task"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_project_scrum_product_backlog"/>
+        <field name="groups_id" eval="[(4, ref('group_scrum_owner')),(4, ref('group_scrum_master'))]"/>
+
+    </record>
+
+
+</odoo>

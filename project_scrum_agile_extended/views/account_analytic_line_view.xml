@@ -1,0 +1,23 @@
+<odoo>
+
+    <record id="inherit_view_task_work_tree" model="ir.ui.view">
+        <field name="name">inherit.view.task.work.tree</field>
+        <field name="model">account.analytic.line</field>
+        <field
+            name="inherit_id"
+            ref="project_scrum_agile.view_task_work_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="project_id" position="attributes">
+                <attribute
+                    name="options"
+                >{'no_create': True, 'no_open': True}</attribute>
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="account_id" position="attributes">
+                <attribute name="readonly">True</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

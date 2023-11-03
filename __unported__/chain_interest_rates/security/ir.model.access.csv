@@ -1,7 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_interest_group_all","interest group_all","model_interest",,1,0,0,0
-"access_interest_adjusted_group_all","interest_adjusted group_all","model_interest_adjusted",,1,0,0,0
-"access_interest_rate_group_all","interest_rate group_all","model_interest_rate",,1,0,0,0
-"access_interest_group_system","interest base.group_system","model_interest","base.group_system",1,1,1,1
-"access_interest_adjusted_group_system","interest_adjusted base.group_system","model_interest_adjusted","base.group_system",1,1,1,1
-"access_interest_rate_group_system","interest_rate base.group_system","model_interest_rate","base.group_system",1,1,1,1

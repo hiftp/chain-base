@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-<menuitem name="Nibor Rate" id="nibor_rate_menu" parent="chain_nbet.nbet_setting_menu"
-              sequence="5" action="action_nibor_rate"/>
-
-    </data>
-</odoo>

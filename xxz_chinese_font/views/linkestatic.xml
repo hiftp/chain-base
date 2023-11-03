@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <!-- 
+        <template id="nati_pos_web_assets_common" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <link rel='stylesheet' href="/nati_arabic_font/static/src/scss/almaraifont.scss" type="text/scss"/>
+                <link rel="stylesheet" href="/nati_arabic_font/static/src/css/pos_style.css" />
+            </xpath>   
+        </template>
+        
+        --> 
+        <template id="nati_font_web_assets_common" inherit_id="web.assets_common">
+		    <xpath expr="." position="inside">
+		          <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/almaraifont.scss" type="text/scss"/>
+                  <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/cairofont.scss" type="text/scss"/>
+                  <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/droidfont.scss" type="text/scss"/>
+                  <link rel="stylesheet" href="/xxz_chinese_font/static/src/css/ar/web_style.css" />
+            </xpath>
+        </template>
+        
+        <template id="nati_report_report_assets_common"  inherit_id="web.report_assets_common">
+            <xpath expr="." position="inside">            
+                <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/almaraifont.scss" type="text/scss"/>
+                <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/cairofont.scss" type="text/scss"/>
+                <link rel='stylesheet' href="/xxz_chinese_font/static/src/scss/droidfont.scss" type="text/scss"/>
+            </xpath>
+        </template>
+        
+    </data>
+</odoo>

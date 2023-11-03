@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template id="template" xml:space="preserve">
+    <t t-name="app_odoo_doc.DocMenu" owl="1">
+        <div t-on-click="() => this.actionOpenDoc()">
+            <a href="#" title="Click to get help of current topic"
+               aria-label="Help Doc"
+               tabindex="-1"
+               data-action="manage_filters">
+                <span class="fa fa-book"/>
+            </a>
+        </div>
+    </t>
+</template>

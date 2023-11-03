@@ -1,0 +1,29 @@
+<odoo>
+
+    <!-- HR ANALYTIC TIMESHEET FORM VIEW -->
+    <record id="view_timesheet_start_time" model="ir.ui.view">
+        <field name="name">Start Date</field>
+        <field name="model">hr.analytic.timesheet.start_time</field>
+        <field name="arch" type="xml">
+            <form string="Start Date">
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    or
+                    <button name="button_get_start_time" string="To accept"
+                            type="object" default_focus="1"
+                            class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_timesheet_start" model="ir.actions.act_window">
+        <field name="name">Start Date</field>
+        <field name="res_model">hr.analytic.timesheet.start_time</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_timesheet_start_time"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_account_analytic_line"/>
+    </record>
+
+
+</odoo>

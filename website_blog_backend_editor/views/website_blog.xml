@@ -6,17 +6,9 @@
 		<field name="model">blog.post</field>
 		<field name="priority">16</field>
 		<field name="arch" type="xml">
-			<xpath 
-				expr="//page[@name='seo']" 
-				position="before">
-				<page 
-					name="content" 
-					string="Content"
-					groups="base.group_no_one">
-					<field 
-						name="content" 
-						widget="html" 
-						modifiers="{}" />
+			<xpath expr="//page[@name='seo']" position="before">
+				<page name="content" string="Content" groups="base.group_no_one">
+					<field name="content" widget="html" modifiers="{}" />
 				</page>
 			</xpath>
 		</field>

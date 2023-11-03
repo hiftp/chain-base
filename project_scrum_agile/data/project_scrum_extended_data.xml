@@ -1,0 +1,321 @@
+<odoo>
+
+    <data noupdate="1">
+        <record id="project_tt_analysis" model="project.task.type">
+            <field name="sequence">1</field>
+            <field name="name">Analysis</field>
+            <field name="default_view">True</field>
+            <field name="state">analysis</field>
+        </record>
+        <record id="project_tt_specification" model="project.task.type">
+            <field name="sequence">2</field>
+            <field name="name">Specification</field>
+            <field name="default_view">True</field>
+            <field name="state">specification</field>
+        </record>
+        <record id="project_tt_design" model="project.task.type">
+            <field name="sequence">3</field>
+            <field name="name">Design</field>
+            <field name="default_view">True</field>
+            <field name="state">design</field>
+        </record>
+        <record id="project_tt_development" model="project.task.type">
+            <field name="sequence">4</field>
+            <field name="name">Development</field>
+            <field name="default_view">True</field>
+            <field name="state">development</field>
+        </record>
+        <record id="project_tt_testing" model="project.task.type">
+            <field name="sequence">5</field>
+            <field name="name">Testing</field>
+            <field name="default_view">True</field>
+            <field name="state">testing</field>
+        </record>
+        <record id="project.project_stage_2" model="project.task.type">
+            <field name="sequence">20</field>
+            <field name="name">Done</field>
+            <field name="fold" eval="True"/>
+            <field name="default_view">True</field>
+            <field name="state">done</field>
+        </record>
+        <record id="project.project_stage_3" model="project.task.type">
+            <field name="sequence">30</field>
+            <field name="name">Cancelled</field>
+            <field name="legend_done">Ready to reopen</field>
+            <field name="fold" eval="True"/>
+            <field name="default_view">True</field>
+            <field name="state">cancelled</field>
+        </record>
+
+        <!-- TASK -->
+        <record id="project.mt_task_new" model="mail.message.subtype">
+            <field name="name">Created Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">1</field>
+            <field name="default" eval="True"/>
+            <field name="description">Task Created</field>
+        </record>
+        <record id="project.mt_task_stage" model="mail.message.subtype">
+            <field name="name">Change of State Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">2</field>
+            <field name="default" eval="True"/>
+            <field name="description">Change of State Task</field>
+        </record>
+        <record id="mt_task_assigned" model="mail.message.subtype">
+            <field name="name">Assigned Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">3</field>
+            <field name="default" eval="True"/>
+            <field name="description">Assigned Task</field>
+        </record>
+        <record id="mt_task_started" model="mail.message.subtype">
+            <field name="name">Development Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">4</field>
+            <field name="default" eval="True"/>
+            <field name="description">Development Task</field>
+        </record>
+        <record id="project.mt_task_blocked" model="mail.message.subtype">
+            <field name="name">Blocked Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">5</field>
+            <field name="default" eval="True"/>
+            <field name="description">Blocked Task</field>
+        </record>
+        <record id="mt_task_closed" model="mail.message.subtype">
+            <field name="name">Closed Task</field>
+            <field name="res_model">project.task</field>
+            <field name="sequence">6</field>
+            <field name="default" eval="True"/>
+            <field name="description">Closed Task</field>
+        </record>
+
+        <record id="mt_issue_assigned" model="mail.message.subtype">
+            <field name="name">Assigned Incidence</field>
+            <field name="res_model">project.issue</field>
+            <field name="sequence">3</field>
+            <field name="default" eval="True"/>
+            <field name="description">Assigned Incidence</field>
+        </record>
+        <record id="mt_issue_started" model="mail.message.subtype">
+            <field name="name">Developmental Impact</field>
+            <field name="res_model">project.issue</field>
+            <field name="sequence">4</field>
+            <field name="default" eval="True"/>
+            <field name="description">Developmental Impact</field>
+        </record>
+        <record id="mt_issue_closed" model="mail.message.subtype">
+            <field name="name">Issue Closed</field>
+            <field name="res_model">project.issue</field>
+            <field name="sequence">6</field>
+            <field name="default" eval="True"/>
+            <field name="description">Issue Closed</field>
+        </record>
+
+        <!-- SCRUM PRODUCT BACKLOG -->
+        <record id="mt_story_new" model="mail.message.subtype">
+            <field name="name">Requirement Created</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">1</field>
+            <field name="default" eval="True"/>
+            <field name="description">Requirement Created</field>
+        </record>
+        <record id="mt_story_stage" model="mail.message.subtype">
+            <field name="name">Requirement Change of State</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">2</field>
+            <field name="default" eval="True"/>
+            <field name="description">Requirement Change of State</field>
+        </record>
+        <record id="mt_story_assigned" model="mail.message.subtype">
+            <field name="name">Assigned Requirement</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">3</field>
+            <field name="default" eval="True"/>
+            <field name="description">Assigned Requirement</field>
+        </record>
+        <record id="mt_story_started" model="mail.message.subtype">
+            <field name="name">Developmental Requirements</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">4</field>
+            <field name="default" eval="True"/>
+            <field name="description">Developmental Requirements</field>
+        </record>
+        <record id="mt_story_blocked" model="mail.message.subtype">
+            <field name="name">Blocked Requirement</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">5</field>
+            <field name="default" eval="True"/>
+            <field name="description">Blocked Requirement</field>
+        </record>
+        <record id="mt_story_closed" model="mail.message.subtype">
+            <field name="name">Requirement Closed</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="sequence">6</field>
+            <field name="default" eval="True"/>
+            <field name="description">Requirement Closed</field>
+        </record>
+        <record id="mt_requerimiento_task_new" model="mail.message.subtype">
+            <field name="name">Created Task</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">1</field>
+            <field name="parent_id" eval="ref('project.mt_task_new')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_requerimiento_task_stage" model="mail.message.subtype">
+            <field name="name">Change of State Task</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">2</field>
+            <field name="parent_id" eval="ref('project.mt_task_stage')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_requerimiento_task_assigned"
+                model="mail.message.subtype">
+            <field name="name">Assigned Task</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">3</field>
+            <field name="parent_id" eval="ref('mt_task_assigned')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_requerimiento_task_started"
+                model="mail.message.subtype">
+            <field name="name">Developmental Task</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">4</field>
+            <field name="parent_id" eval="ref('mt_task_started')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_requerimiento_task_blocked"
+                model="mail.message.subtype">
+            <field name="name">Blocked Task</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">5</field>
+            <field name="parent_id" eval="ref('project.mt_task_blocked')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_requerimiento_task_closed" model="mail.message.subtype">
+            <field name="name">Finished homework</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">6</field>
+            <field name="parent_id" eval="ref('mt_task_closed')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_backlog_assigned" model="mail.message.subtype">
+            <field name="name">Assigned Incidence</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">3</field>
+            <field name="parent_id" eval="ref('mt_issue_assigned')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_backlog_started" model="mail.message.subtype">
+            <field name="name">Incidence In Development</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">4</field>
+            <field name="parent_id" eval="ref('mt_issue_started')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+        <record id="mt_backlog_closed" model="mail.message.subtype">
+            <field name="name">Incidence Terminated</field>
+            <field name="res_model">project.scrum.product.backlog</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">6</field>
+            <field name="parent_id" eval="ref('mt_issue_closed')"/>
+            <field name="relation_field">product_backlog_id</field>
+        </record>
+
+        <!-- Project-related subtypes for messaging / Chatter -->
+        <record id="mt_project_story_new" model="mail.message.subtype">
+            <field name="name">Requirement Created</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">1</field>
+            <field name="parent_id" eval="ref('mt_story_new')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+        <record id="mt_project_story_stage" model="mail.message.subtype">
+            <field name="name">Requirement Change of State</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">2</field>
+            <field name="parent_id" eval="ref('mt_story_stage')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+        <record id="mt_project_story_assigned" model="mail.message.subtype">
+            <field name="name">Assigned Requirement</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">3</field>
+            <field name="parent_id" eval="ref('mt_story_assigned')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+        <record id="mt_project_story_started" model="mail.message.subtype">
+            <field name="name">Developmental Requirements</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">4</field>
+            <field name="parent_id" eval="ref('mt_story_started')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+        <record id="mt_project_story_blocked" model="mail.message.subtype">
+            <field name="name">Blocked Requirement</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">5</field>
+            <field name="parent_id" eval="ref('mt_story_blocked')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+        <record id="mt_project_story_closed" model="mail.message.subtype">
+            <field name="name">Completed Requirement</field>
+            <field name="res_model">project.project</field>
+            <field name="default" eval="True"/>
+            <field name="sequence">6</field>
+            <field name="parent_id" eval="ref('mt_story_closed')"/>
+            <field name="relation_field">project_id</field>
+        </record>
+
+        <record id="seq_task_number" model="ir.sequence">
+            <field name="name">Task Number</field>
+            <field name="code">project.task.number</field>
+            <field name="prefix">TAR-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_issue_number" model="ir.sequence">
+            <field name="name">Issue Number</field>
+            <field name="code">project.issue.number</field>
+            <field name="prefix">INC-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_story_number" model="ir.sequence">
+            <field name="name">Story Number</field>
+            <field name="code">product.backlog.number</field>
+            <field name="prefix">REQ-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_sprint_number" model="ir.sequence">
+            <field name="name">Sprint Number</field>
+            <field name="code">product.sprint.number</field>
+            <field name="prefix">SPR-</field>
+            <field name="padding">10</field>
+        </record>
+
+        <record id="seq_release_number" model="ir.sequence">
+            <field name="name">Release Number</field>
+            <field name="code">project.scrum.release</field>
+            <field name="prefix">MOD-</field>
+            <field name="padding">10</field>
+        </record>
+    </data>
+
+</odoo>

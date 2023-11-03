@@ -1,0 +1,56 @@
+<odoo>
+
+    <record id="inherit_agreement_form" model="ir.ui.view">
+        <field name="name">inherit.agreement.form</field>
+        <field name="model">agreement</field>
+        <field name="inherit_id" ref="agreement.agreement_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Supplier</attribute>
+            </field>
+            <field name="agreement_type_id" position="attributes">
+                <attribute name="string">Contract Type</attribute>
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="agreement_type_id" position="after">
+                <field name="project_ids" widget="many2many_tags" />
+            </field>
+            <field name="signature_date" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </field>
+            <field name="start_date" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <field name="end_date" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+            <xpath expr="//page[@name='config']" position="after">
+                <page name="description" string="Description">
+                    <field
+                        name="description"
+                        placeholder="Contract Description"
+                    />
+                </page>
+            </xpath>
+            <xpath expr="//form/sheet" position="before">
+                <header>
+                    <field name="state" widget="statusbar" clickable="True" />
+                </header>
+            </xpath>
+            <field name="active" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="widget">boolean_toggle</attribute>
+            </field>
+        </field>
+    </record>
+
+    <menuitem
+        id="agreement_menu"
+        name="Contracts"
+        parent="project_team_leave_management.menu_partner_supplier"
+        sequence="2"
+        action="agreement.agreement_action"
+        groups="project_management_security.group_cio,project.group_project_manager,project_management_security.group_project_coordinator,base.group_system,project_management_security.group_project_coordinator"
+    />
+
+</odoo>

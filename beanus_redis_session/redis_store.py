@@ -48,7 +48,7 @@ class RedisSessionStore(SessionStore):
         self.redis = redis.Redis(
             host=tools.config.get('ODOO_SESSION_REDIS_HOST', 'localhost'),
             port=int(tools.config.get('ODOO_SESSION_REDIS_PORT', 6379)),
-            db=int(tools.config.get('ODOO_SESSION_REDIS_DBINDEX', 0)),
+            db=int(tools.config.get('ODOO_SESSION_REDIS_DBINDEX', 1)),
             password=tools.config.get('ODOO_SESSION_REDIS_PASSWORD', None))
         self._is_redis_server_running()
 

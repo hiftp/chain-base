@@ -31,12 +31,17 @@ Example setting in configuration file
 ````
 [options]
 
-enable_redis    = True
-redis_host      = localhost      # Redis IP. default: locahost
-redis_port      = 6379           # Redis Port, default: 6379
-redis_dbindex   = 1              # Redis database index, default: 1
-#redis_pass     =                # Redis password, default: None
-
+ODOO_SESSION_REDIS = True
+ODOO_SESSION_REDIS_HOST      = localhost      # Redis IP. default: locahost
+ODOO_SESSION_REDIS_PORT      = 6379           # Redis Port, default: 6379
+ODOO_SESSION_REDIS_DBINDEX   = 1              # Redis database index, default: 1
+#ODOO_SESSION_REDIS_PASSWORD     =                # Redis password, default: None
 server_wide_modules = base,web,beanus_redis_session
+ODOO_SESSION_REDIS_PREFIX = t000
+#ODOO_SESSION_REDIS_URL =
+#ODOO_SESSION_REDIS_EXPIRATION =
+#ODOO_SESSION_REDIS_EXPIRATION_ANONYMOUS =
+#ODOO_SESSION_REDIS_SENTINEL_HOST = 
+#ODOO_SESSION_REDIS_SENTINEL_MASTER_NAME =
 ````
 

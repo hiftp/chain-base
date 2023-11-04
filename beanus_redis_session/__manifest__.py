@@ -14,13 +14,12 @@
     'maintainer': "The Bean Family",
     'license': "LGPL-3",
     'category': 'Bean Family Modules/Utilities',
-    'version': '16.0.0.2',
-    'website': "https://www.thebeanfamily.org",
-    'support': 'community@thebeanfamily.org',
+    'version': '16.0.1.0.2',
+    'website': "https://www.odoochain.com",
     "application": True,
     "installable": True,
     'images': ['static/description/image.png'],
-
+    "excludes": ["session_redis",],
     # any module necessary for this one to work correctly
     'depends': ['base'],
 }
